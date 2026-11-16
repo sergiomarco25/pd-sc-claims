@@ -1,0 +1,6 @@
+# Local runs: `snakemake` (Snakemake reads workflow/profiles/default automatically).
+# Re-run only when an input file is newer than its outputs; code edits need --forcerun <rule>.
+rerun-triggers: [mtime]
+cores: 4
+printshellcmds: true
+keep-going: false

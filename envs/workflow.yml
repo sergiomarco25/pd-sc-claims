@@ -1,0 +1,10 @@
+# Workflow runner (workflow/Snakefile). The analysis itself runs in rapids_singlecell.yml (Python) and mast_rev.yml (R).
+# Recreate: mamba env create -n pdrep_workflow -f envs/workflow.yml
+name: pdrep_workflow
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12
+  - snakemake-minimal=8.27.1
+  - snakemake-executor-plugin-slurm

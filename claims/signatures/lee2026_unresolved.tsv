@@ -1,0 +1,5 @@
+claim_id	term	reason
+lee2026-C08	PD_vs_control_VLMC	0 PD DEGs at FDR<0.05 in VLMC
+lee2026-C07	GO BP: neuronal development; synaptic signalling (IN_LAMP5_RELN, IN_ADARB2, IN_PVALB)	pathway themes named only (no term table in the supplement); per-subclass PD/DLBD DE lists provided
+lee2026-C08	GO BP: vasculature development (VLMC)	pathway theme named only; PD has 0 VLMC DEGs, DLBD VLMC DE lists provided
+lee2026-C09	GO BP: mRNA splicing / mRNA processing; protein localisation to mitochondrion	pathway themes named only; shared-gene list provided as crossdisorder_shared_genes

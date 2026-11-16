@@ -1,0 +1,12 @@
+claim_id	term	reason
+chia2025-C04	SST IN and SV2C IN subcluster markers	subcluster marker table not in supplement; only the defining genes SST and SV2C emitted
+chia2025-C09	distinct microglia state markers	marker table not in supplement; only text-named markers emitted (state may reflect microglia-oligodendrocyte doublets / ambient myelin RNA)
+chia2025-C12	GO BP: cell differentiation / cell migration	pathway named only (Fig. 2e / 4g; no enrichment table in supplement); resolve from MSigDB; microglia DEG-up lists attached
+chia2025-C12	GO BP: synapse development / synapse organisation	pathway named only (Fig. 2e / 4g; no enrichment table in supplement); resolve from MSigDB; microglia DEG-up lists attached
+chia2025-C12	GO BP: lipid metabolism and lipid transport	pathway named only (Fig. 2e / 4g; no enrichment table in supplement); resolve from MSigDB; microglia DEG-up lists attached
+chia2025-C12	GO BP: synaptic plasticity / learning or memory / cognition	pathway named only (Fig. 2e / 4g; no enrichment table in supplement); resolve from MSigDB; microglia DEG-up lists attached
+chia2025-C12	GO BP: antigen processing and presentation	pathway named only (Fig. 2e / 4g; no enrichment table in supplement); resolve from MSigDB; microglia DEG-up lists attached
+chia2025-C13	GO BP: synapse organisation	pathway named only (Fig. 3b); resolve from MSigDB; DLB-vs-PDD DEG lists attached
+chia2025-C13	GO BP: neuron projection development	pathway named only (Fig. 3b); resolve from MSigDB; DLB-vs-PDD DEG lists attached
+chia2025-C13	GO BP: cell adhesion	pathway named only (Fig. 3b); resolve from MSigDB; DLB-vs-PDD DEG lists attached
+chia2025-C13	GO BP: ion transport	pathway named only (Fig. 3b); resolve from MSigDB; DLB-vs-PDD DEG lists attached

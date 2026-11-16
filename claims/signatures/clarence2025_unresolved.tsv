@@ -1,0 +1,18 @@
+claim_id	term	reason
+clarence2025-C01	dreamlet DEGs per cell type (Supp. Table 4)	Supplementary Tables not in supplement folder (only a figures PDF)
+clarence2025-C02	full HSP DE lists for mural/endothelial/OPC (Supp. Table 4)	Supplementary Tables not in supplement folder (only a figures PDF); named genes emitted
+clarence2025-C03	GO:0006986 response to unfolded protein	pathway name only; resolve from MSigDB/GO
+clarence2025-C04	GO:0006974 DNA damage response	pathway name only; resolve from MSigDB/GO
+clarence2025-C05	GO:0090083 regulation of inclusion body assembly; autophagy	pathway name only; resolve from MSigDB/GO
+clarence2025-C06	CollecTRI regulon: HSF1	TF activity; resolve regulon centrally (decoupler CollecTRI)
+clarence2025-C07	CollecTRI regulon: FOXO3	TF activity; resolve regulon centrally (decoupler CollecTRI)
+clarence2025-C08	CollecTRI regulon: MYC	TF activity; resolve regulon centrally (decoupler CollecTRI)
+clarence2025-C09	CollecTRI regulon: AR	TF activity; resolve regulon centrally (decoupler CollecTRI)
+clarence2025-C12	84 GWAS genes with DE t-statistics (Supp. Table 6)	Supplementary Tables not in supplement folder (only a figures PDF); named genes emitted
+clarence2025-C19	EN_L6_CT, EN_L6B subtype markers	Supplementary Tables not in supplement folder (only a figures PDF); no marker genes named in text
+clarence2025-C20	microglia subtype markers (Supp. Table 12 / Fig. 7b)	Supplementary Tables not in supplement folder (only a figures PDF); text list emitted
+clarence2025-C21	microglia subtype markers	Supplementary Tables not in supplement folder (only a figures PDF); text list emitted
+clarence2025-C23	microglia subtype markers	Supplementary Tables not in supplement folder (only a figures PDF); subtype-name genes emitted
+clarence2025-C24	microglia subtype markers	Supplementary Tables not in supplement folder (only a figures PDF); subtype-name genes emitted
+clarence2025-C25	microglia subtype markers	Supplementary Tables not in supplement folder (only a figures PDF); subtype-name genes emitted
+clarence2025-C26	DAM markers and PVM_CD163 markers	Supplementary Tables not in supplement folder (only a figures PDF); only CD163 emitted, DAM unresolved

@@ -1,0 +1,482 @@
+- id: menon2026-C01
+  paper: menon2026
+  statement: The AGTR1-expressing dopaminergic neuron subcluster (Dopaminergic Subcluster 6) is reduced in PD compared with controls.
+  quote: "we observed an AGTR1-expressing subcluster (Dopaminergic Subcluster 6) that was reduced in PD compared with controls, providing additional evidence for the selective vulnerability"
+  location: "Fig. 1g-i; Results \"Single-nucleus multi-omic profiling of multiple brain regions...\""
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DA subcluster 6
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes: [AGTR1]
+  gene_source: "Fig. 1g (subcluster markers)"
+  reported_stat: "two-sided Wilcoxon rank-sum on per-donor proportion of AGTR1+ subcluster among DA neurons (P in Fig. 1i); up to 80 PD vs 21 control"
+  unit_of_analysis: donors
+  method: Wilcoxon rank-sum on donor proportions within DA neurons
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA neuron subclustering"
+  notes: "Proportion is within DA neurons (not of all nuclei). P value not stated in text; check figure. SN taken as 2 x 50 um cryosections, so DA neuron numbers per donor may be low."
+
+- id: menon2026-C02
+  paper: menon2026
+  statement: Oligodendrocytes are among the cell types with the greatest transcriptional changes in PD.
+  quote: "This analysis highlighted oligodendrocytes, MSNs, excitatory neurons, and astrocytes as the cell types with the greatest changes in transcriptional profile"
+  location: "Fig. 2a; Supplementary Fig. 6c; Supplementary Table 2"
+  centrality: main
+  modality: multiome-RNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 2 (DEGs per cell type)"
+  reported_stat: "DEG count vs permutation null (100,000 label permutations), empirical P < 0.05; 80 PD vs 21 control"
+  unit_of_analysis: donors
+  method: edgeR glmLRT on donor pseudobulk with data-driven covariates (age, sex, PMI if correlated with PCs); permutation of labels for DEG burden
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Burden claim (number of DEGs exceeds permuted background). Unclear whether pseudobulk pools across regions per donor or is per sample (donor x region). The Results text says 'from each individual within each cell type'."
+
+- id: menon2026-C03
+  paper: menon2026
+  statement: Medium spiny neurons are among the cell types with the greatest transcriptional changes in PD.
+  quote: "This analysis highlighted oligodendrocytes, MSNs, excitatory neurons, and astrocytes as the cell types with the greatest changes in transcriptional profile"
+  location: "Fig. 2a"
+  centrality: main
+  modality: multiome-RNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "DEG burden permutation empirical P < 0.05"
+  unit_of_analysis: donors
+  method: edgeR glmLRT on donor pseudobulk; label permutation
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "putamen data"
+  notes: "Split from C02."
+
+- id: menon2026-C04
+  paper: menon2026
+  statement: Excitatory neurons are among the cell types with the greatest transcriptional changes in PD.
+  quote: "This analysis highlighted oligodendrocytes, MSNs, excitatory neurons, and astrocytes as the cell types with the greatest changes in transcriptional profile"
+  location: "Fig. 2a"
+  centrality: main
+  modality: multiome-RNA
+  region: multiple
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "DEG burden permutation empirical P < 0.05"
+  unit_of_analysis: donors
+  method: edgeR glmLRT on donor pseudobulk; label permutation
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "cortical data (cingulate, MTG)"
+  notes: "Split from C02. Excitatory neuron DEGs enriched for monoamine and catecholamine response pathways (Supplementary Fig. 7a)."
+
+- id: menon2026-C05
+  paper: menon2026
+  statement: Astrocytes are among the cell types with the greatest transcriptional changes in PD.
+  quote: "This analysis highlighted oligodendrocytes, MSNs, excitatory neurons, and astrocytes as the cell types with the greatest changes in transcriptional profile"
+  location: "Fig. 2a"
+  centrality: main
+  modality: multiome-RNA
+  region: multiple
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "DEG burden permutation empirical P < 0.05"
+  unit_of_analysis: donors
+  method: edgeR glmLRT on donor pseudobulk; label permutation
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Split from C02."
+
+- id: menon2026-C06
+  paper: menon2026
+  statement: Genes altered in PD dopaminergic neurons converge on dopamine uptake and catecholamine transport, although DA neurons do not pass the DEG-burden permutation threshold.
+  quote: "Although dopaminergic neurons did not pass permutation-based thresholds, pathway analysis of the genes identified converged on dopamine uptake and catecholamine transport."
+  location: "Supplementary Fig. 7a; Supplementary Table 3"
+  centrality: secondary
+  modality: multiome-RNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 3 (pathway enrichment)"
+  reported_stat: "enrichR adjusted P"
+  unit_of_analysis: donors
+  method: edgeR pseudobulk DEGs; enrichR
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "DA neuron capture"
+  notes: "Direction not specified."
+
+- id: menon2026-C07
+  paper: menon2026
+  statement: Concordance between chromatin accessibility and gene expression changes in PD is most pronounced in MSNs, where over half of DEGs have at least one differentially accessible linked regulatory element; glia show fewer such changes.
+  quote: "Regulatory concordance between chromatin accessibility and gene expression was most pronounced in MSNs, where over half of the DEGs were associated with at least one differentially accessible regulatory element"
+  location: "Supplementary Table 4; Results \"Cell type-specific transcriptional and cellular alterations...\""
+  centrality: main
+  modality: multiome-ATAC
+  region: putamen
+  cell_type: MSNs
+  cell_state: ""
+  claim_type: chromatin
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 4 (DA peaks linked to DEGs)"
+  reported_stat: "fraction of DEGs with >=1 DA linked peak (>50% in MSNs); DESeq2 per-peak, FDR within gene"
+  unit_of_analysis: donors
+  method: DESeq2 on pseudobulk ATAC counts of DEG-linked peaks
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "multiome or snATAC in putamen; peak-gene links"
+  notes: ""
+
+- id: menon2026-C08
+  paper: menon2026
+  statement: The largest oligodendrocyte and astrocyte transcriptional changes in PD occur in the substantia nigra.
+  quote: "we found that the most drastic changes in oligodendrocytes and astrocytes occurred within the substantia nigra, the site of the most pronounced neurodegeneration in PD"
+  location: "Fig. 2b"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control (by region)
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "region-stratified DEG counts with permutation P (Fig. 2b)"
+  unit_of_analysis: samples
+  method: edgeR pseudobulk per region; label permutation
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "multi-region data from same donors"
+  notes: "Also applies to astrocytes. Comparison across regions confounded by nuclei counts per region."
+
+- id: menon2026-C09
+  paper: menon2026
+  statement: PD DEGs in astrocytes, oligodendrocytes and excitatory neurons overlap between brain regions more than expected by chance, with the strongest oligodendrocyte overlap between substantia nigra and putamen.
+  quote: "Across astrocytes, oligodendrocytes, and excitatory neurons, these DEGs showed greater overlap than expected by chance between brain regions based on permutation testing"
+  location: "Fig. 2b; Supplementary Fig. 7b-d"
+  centrality: secondary
+  modality: multiome-RNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control (cross-region)
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "permutation null of shared DEGs (10,000 permutations)"
+  unit_of_analysis: samples
+  method: overlap of region-specific edgeR DEGs vs permutation null
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "multi-region data"
+  notes: "Overlapping regional DEGs enriched for nitric oxide-cGMP signalling and perisynaptic ECM organisation (Supplementary Fig. 7f). Oligodendrocyte Subcluster 1 over-represented by SN oligodendrocytes."
+
+- id: menon2026-C10
+  paper: menon2026
+  statement: The cerebellum shows comparatively few PD gene expression changes.
+  quote: "the cerebellum, a region largely spared from neurodegenerative features of PD, showed comparatively fewer significant gene expression changes"
+  location: "Fig. 2b"
+  centrality: secondary
+  modality: multiome-RNA
+  region: cerebellum
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "DEG counts per cell type x region"
+  unit_of_analysis: samples
+  method: edgeR pseudobulk per region
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "cerebellum data"
+  notes: ""
+
+- id: menon2026-C11
+  paper: menon2026
+  statement: Multiple inhibitory neuron types show increased proportions in PD, more pronounced in the cingulate gyrus than in the middle temporal gyrus.
+  quote: "all of the cell populations that showed significant differences in cellular proportions were neuronal, including multiple types of inhibitory neurons showing increased proportion in PD"
+  location: "Fig. 2c; Supplementary Fig. 8a,b"
+  centrality: main
+  modality: multiome-RNA
+  region: cingulate
+  cell_type: Inhibitory neurons
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes: []
+  gene_source: "Fig. 2c (cell types with FDR < 0.05)"
+  reported_stat: "propeller FDR < 0.05 (Fig. 2c)"
+  unit_of_analysis: samples
+  method: speckle propeller on per-sample proportions
+  testable_with: rna
+  test_template: composition_donor
+  requires: "cortical data with inhibitory neuron subtypes"
+  notes: "Specific inhibitory subtypes named only in Fig. 2c / Supplementary Fig. 8 (PVALB shown in Fig. 2d). Relative increase may reflect loss of other neurons (compositional)."
+
+- id: menon2026-C12
+  paper: menon2026
+  statement: Glial cell types show no significant proportion differences between PD and controls; all significant composition changes are neuronal.
+  quote: "Whereas the majority of our differential expression results were identified in glial cells, all of the cell populations that showed significant differences in cellular proportions were neuronal"
+  location: "Fig. 2c"
+  centrality: secondary
+  modality: multiome-RNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "propeller FDR >= 0.05 for glia"
+  unit_of_analysis: samples
+  method: speckle propeller
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Null claim for glia (incl. microglia, astrocytes, oligodendrocytes)."
+
+- id: menon2026-C13
+  paper: menon2026
+  statement: Proportions of the cell types that differ between PD and controls in the cingulate gyrus (e.g. PVALB inhibitory neurons, excitatory neurons) also change progressively across Lewy body stages.
+  quote: "we observe that the same cell types showing changes in cell proportion between disease and control in the cingulate gyrus also show progressive changes across disease stages"
+  location: "Fig. 2d; Supplementary Fig. 8c"
+  centrality: main
+  modality: multiome-RNA
+  region: cingulate
+  cell_type: Inhibitory neurons
+  cell_state: PVALB interneurons
+  claim_type: pathology_association
+  direction: NA
+  comparison: across Unified LB stage (I, IIa, III, IV)
+  genes: [PVALB]
+  gene_source: text
+  reported_stat: "likelihood ratio test from linear regression of proportion on LB stage (Fig. 2d)"
+  unit_of_analysis: donors
+  method: linear regression of donor proportions on LB stage, LRT
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "Unified Staging System for Lewy Body Disorders stage (or Braak alpha-syn stage)"
+  notes: "Direction per cell type only in figure (presumably PVALB up and excitatory down given C11). Also applies to excitatory neurons."
+
+- id: menon2026-C14
+  paper: menon2026
+  statement: SERPINH1 (HSP47) expression in astrocytes increases at late Lewy body stages.
+  quote: "SERPINH1 (aka HSP47) ... and PRLR ... both demonstrated increased expression in astrocytes at late disease stages"
+  location: "Fig. 2e"
+  centrality: main
+  modality: multiome-RNA
+  region: multiple
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: across Unified LB stage
+  genes: [SERPINH1]
+  gene_source: "Supplementary Tables 5-6"
+  reported_stat: "LRT on LB stage adjusting for disease status, edgeR; FDR < 0.05"
+  unit_of_analysis: samples
+  method: edgeR NB GLM on pseudobulk with disease group + LB stage (continuous), LRT on stage
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "LB stage or Braak alpha-syn stage"
+  notes: "Astrocyte peaks mapping to SERPINH1 also show stage-associated accessibility (Supplementary Fig. 8d)."
+
+- id: menon2026-C15
+  paper: menon2026
+  statement: PRLR expression in astrocytes increases at late Lewy body stages.
+  quote: "PRLR, a gene encoding the prolactin receptor which is linked to dopaminergic signaling43, both demonstrated increased expression in astrocytes at late disease stages"
+  location: "Fig. 2e"
+  centrality: main
+  modality: multiome-RNA
+  region: multiple
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: across Unified LB stage
+  genes: [PRLR]
+  gene_source: "Supplementary Tables 5-6"
+  reported_stat: "LRT on LB stage adjusting for disease status; FDR < 0.05"
+  unit_of_analysis: samples
+  method: edgeR NB GLM, LRT on LB stage
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "LB stage or Braak alpha-syn stage"
+  notes: ""
+
+- id: menon2026-C16
+  paper: menon2026
+  statement: Chromatin accessibility at astrocyte peaks mapping to SERPINH1 changes with Lewy body stage.
+  quote: "We also identified chromatin accessibility peaks from astrocytes that mapped to SERPINH1 that showed stage-associated changes"
+  location: "Supplementary Fig. 8d"
+  centrality: secondary
+  modality: multiome-ATAC
+  region: multiple
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: chromatin
+  direction: NA
+  comparison: across Unified LB stage
+  genes: [SERPINH1]
+  gene_source: text
+  reported_stat: "not given in text"
+  unit_of_analysis: samples
+  method: not described in detail
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "snATAC/multiome; LB stage"
+  notes: ""
+
+- id: menon2026-C17
+  paper: menon2026
+  statement: MSNs are enriched for genes showing monotonic up-regulation across Lewy body stages.
+  quote: "MSNs were particularly enriched for genes showing monotonic upregulation across Lewy body stages"
+  location: "Supplementary Fig. 8e,f; Supplementary Tables 5-6"
+  centrality: secondary
+  modality: multiome-RNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: across Unified LB stage
+  genes: []
+  gene_source: "Supplementary Tables 5-6 (stage-associated genes and trajectory classes)"
+  reported_stat: "edgeR LRT on LB stage FDR < 0.05; trajectory class counts"
+  unit_of_analysis: samples
+  method: edgeR NB GLM on pseudobulk; classification of stage means
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "putamen data; LB stage"
+  notes: ""
+
+- id: menon2026-C18
+  paper: menon2026
+  statement: LRFN2 expression decreases across the neuropathological progression of PD.
+  quote: "we find a significant decrease in LRFN2 expression across the neuropathological progression of PD"
+  location: "Supplementary Fig. 12d"
+  centrality: secondary
+  modality: multiome-RNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_neg
+  comparison: across Unified LB stage
+  genes: [LRFN2]
+  gene_source: text
+  reported_stat: "not given in text"
+  unit_of_analysis: samples
+  method: edgeR LRT on LB stage (presumed)
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "LB stage"
+  notes: "Cell type not stated in text; assumed MSNs (rare-variant association was in DRD1/2 MSNs). Verify in Supplementary Fig. 12d."
+
+- id: menon2026-C19
+  paper: menon2026
+  statement: Rare noncoding variants in ML-prioritised cell-type-specific regulatory elements are associated with sporadic PD (46 genes significant in at least one cell type, 16 globally; 4 replicated in UK Biobank, including LRFN2 in MSNs).
+  quote: "We identify rare noncoding variants statistically associated with sporadic PD"
+  location: "Abstract; Fig. 5b; Supplementary Table 7"
+  centrality: headline
+  modality: multiome-ATAC
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: associated_pos
+  comparison: PD vs control (GP2 3,611 cases / 350 controls; UKB 3,070 / 30,700)
+  genes: [LRFN2, C4BPB, MKRN1, NREP, FAHD1, DICER1]
+  gene_source: "Supplementary Table 7"
+  reported_stat: "SKAT weighted by AF and ChromBPNet JSD; lambda 0.80-0.87; 46 cell-type-significant genes, 16 global; 4/78 replicated in UKB"
+  unit_of_analysis: donors
+  method: SKAT rare variant association using snATAC peaks + ChromBPNet effect weights
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "WGS of PD cases and controls"
+  notes: "Genetic association in external WGS cohorts; sc data only define the testing units. Not re-testable in sc datasets."
+
+- id: menon2026-C20
+  paper: menon2026
+  statement: Cell-type-specific eQTLs and caQTLs mapped in brain cell types are frequently novel relative to GTEx, including a caQTL (rs72836333) at the MAPT/KANSL1 PD risk locus active in astrocytes, granule cells, microglia and oligodendrocytes.
+  quote: "On average, 50% of the cell type-specific eQTLs we identified were novel compared to the tissue-level eQTLs called in the Genotype-Tissue Expression (GTEx) project"
+  location: "Abstract; Fig. 3"
+  centrality: headline
+  modality: multiome-ATAC
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: NA
+  comparison: NA
+  genes: [KANSL1]
+  gene_source: "Supplementary Data 1 (QTLs)"
+  reported_stat: "RASQUAL caQTL, TensorQTL eQTL"
+  unit_of_analysis: donors
+  method: RASQUAL / TensorQTL on pseudobulk per donor (>=50 nuclei)
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "donor genotypes"
+  notes: "Resource claim, not PD vs control. Testable only in datasets with genotypes."
+
+- id: menon2026-C21
+  paper: menon2026
+  statement: The putamen contains a third, 'eccentric' MSN population co-expressing DRD1 and DRD2, distinct from canonical D1 and D2 MSNs in both RNA and ATAC space.
+  quote: "we also identified a third population that expresses both DRD1 and DRD2 in addition to other previously unappreciated marker genes"
+  location: "Supplementary Fig. 4c-f"
+  centrality: secondary
+  modality: multiome-RNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: eccentric DRD1/DRD2 MSNs
+  claim_type: state_existence
+  direction: exists
+  comparison: NA
+  genes: [DRD1, DRD2]
+  gene_source: "Supplementary Fig. 4d-f"
+  reported_stat: "NA"
+  unit_of_analysis: cells
+  method: subclustering
+  testable_with: rna
+  test_template: state_signature
+  requires: "putamen/striatum data"
+  notes: "Not a PD claim; atlas observation (relevant to striatal datasets)."

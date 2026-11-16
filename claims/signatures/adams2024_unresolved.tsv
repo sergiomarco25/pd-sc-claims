@@ -1,0 +1,9 @@
+claim_id	term	reason
+adams2024-C14	UPR / chaperone-mediated autophagy module (Methods 'Protein Folding', 'Chaperone-Mediated Autophagy')	module member genes only in Methods (not in supplementary xlsx); resolve centrally from GO/MSigDB. ODC cPP-positive genes attached as proxy
+adams2024-C15	myelination / synapse-formation module (Methods 'myelin-forming', 'synaptic support ODC')	module member genes only in Methods; resolve centrally. ODC cPP-negative genes attached as proxy
+adams2024-C16	homeostatic MG / stage-1 DAM / aging MG modules (Keren-Shaul 2017 and others)	module gene lists not in supplementary xlsx; take from Keren-Shaul 2017 / Olah 2018 centrally. Only named genes emitted
+adams2024-C06	chromatin_da	no differential peak table in supplement (claim is a null result)
+adams2024-C07	chromatin_da	no promoter accessibility table in supplement
+adams2024-C08	chromatin_da peak-gene links (RASGRF1, MSRA)	peak-gene link tables not in supplement
+adams2024-C09	chromatin_da peak-gene links (NEAT1)	peak-gene link tables not in supplement
+adams2024-C23	chromatin_da peak-gene links (MAPT locus)	peak-gene link tables not in supplement

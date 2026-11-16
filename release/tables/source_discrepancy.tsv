@@ -1,0 +1,24 @@
+claim_id	finding	evidence	found_by
+chia2025-C07	AD part (HSPA1A in AD oligodendrocytes/microglia; MSR1) not in authors' final DEG set	supplementary DEG table: keep == False	signature extraction
+dehestani2024-C05	named GO terms partly non-significant in authors' table	Table S7: protein targeting to mitochondrion adj p 0.088	signature extraction
+dehestani2024-C06	named GO term non-significant in authors' table	Table S7: potassium ion transport adj p 0.16	signature extraction
+dehestani2024-C07	named GO term non-significant in authors' table	Table S7: protein polymerization adj p 0.13	signature extraction
+dehestani2024-C08	named GO term non-significant in authors' table	Table S7: cholesterol biosynthesis adj p 0.056	signature extraction
+xu2023-C12	TREM2 not among significant Micr-1 PD-vs-control genes	supplementary DEG table	signature extraction
+feleke2021-*	ci_high/ci_low columns have opposite sign to coef in every row (table error; direction taken from coef)	Supplementary Table 5	signature extraction
+martirosyan2024-C17	MCM3AP reported up in Microglia1, but down in authors' DE table	Table S7	signature extraction
+martirosyan2024-C04	AGTR1 and KCNJ6 named as Neurons0 markers, but not Neurons0 markers in Table S5 (KCNJ6 marks Neurons1)	Table S5	signature extraction
+martirosyan2024-C09	RAB8B not in authors' DEG table	Table S7	signature extraction
+smajic2022-C17	S100B reported up in PD oligodendrocytes, but down in DEGs (estimate -0.23) and trajectory-down list	Supp. Tables (DEG, trajectory)	signature extraction
+smajic2022-C11	IL1B and HSP90AA1 not among microglia DEGs or PD-up trajectory genes (only GPNMB is)	Supp. Tables	signature extraction
+smajic2022-C25	glial proliferation in abstract only; no supporting Results or genes	paper text	claim extraction + signatures
+adams2024-C22	NKAIN2 named as ODC change, but not an ODC DEG in Supp Table 3 (only in Supp Table 5; neuron DEG in Table 3)	Supp Tables 3, 5	signature extraction
+adams2024-C05	CARNS1 not an ODC DEG in Supp Table 3 (only in Supp Table 5)	Supp Tables 3, 5	signature extraction
+ma2025-C15	heightened activation of SN microglia, but antigen-presentation/Th17/TCR pathway genes mostly down (CD74, HLA-DRA, HLA-DPB1, B2M)	pathfindR / limma tables	signature extraction
+ma2025-C25	JAK-STAT reported in SN astrocytes, but absent from SN protoplasmic astrocyte pathway table (present only in cingulate myeloid and Visium surrounding tissue)	pathfindR tables	signature extraction
+ma2025-C11	CSTB absent; CTSD (adj.P 0.27) and CD14 (adj.P 0.32) not significant in SN activated microglia	limma tables	signature extraction
+ma2025-C08	named TRM genes (FOS, RGS1, RGS2, GADD45B) not in SN T-cell limma table; claim rests on Fig. S3C pseudobulk	limma tables	signature extraction
+ma2025-C06	TBX21 and ZNF683 rank >1000 in T-cell Factor 5	scHPF factor table	signature extraction
+ma2025-C07	GZMB ranks 78 and HLA-DRA 928 in Factor 1, whose top genes are hemoglobin/mitochondrial	scHPF factor table	signature extraction
+menon2026-C18	LRFN2 in neither SupTable2 nor SupTable5	SupTables 2, 5	signature extraction
+clarence2025-*	Supplementary Tables 4-12 referenced in text are not in the medRxiv supplement (figures PDF only)	medRxiv supplement	signature extraction

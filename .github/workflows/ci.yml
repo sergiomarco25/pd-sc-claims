@@ -1,0 +1,31 @@
+# Checks on every push and pull request (claims/COMMUNITY_PLAN.md, step 1.5). Runs on the committed test store
+# (tests/fixture/claim_store.sqlite), never on cluster data: the light parts of the pipeline only.
+name: ci
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test tools
+        run: pip install "snakemake==8.27.1" pytest pyyaml jsonschema "pandas==2.2.2" scipy
+      - name: Byte-compile all Python
+        run: python -m compileall -q scripts src tests
+      - name: Configuration resolves
+        env:
+          PDREP_DATA_ROOT: ${{ runner.temp }}/data
+        run: python -I src/pdrep/config.py --show
+      - name: Tests (claim schema, server, release rules, knowledge graph, portability)
+        run: pytest -q tests
+      - name: Workflow plans end to end
+        env:
+          PDREP_DATA_ROOT: ${{ runner.temp }}/data    # empty data folder: the dry run plans every step
+        run: snakemake -s workflow/Snakefile -n --forceall --quiet rules

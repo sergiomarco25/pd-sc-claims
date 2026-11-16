@@ -1,0 +1,20 @@
+claim_id	contrast	note
+barbareyes2025-C28	not_available	white vs grey matter: snRNA dissections are grey matter only
+chia2025-C05	PDD_vs_control	PDD vs control (also DLB, AD)
+kamath2022-C03	not_available	ventral vs dorsal tier needs spatial position (Slide-seq on controls only)
+kamath2022-C04	not_available	as C03
+lee2026-C03	LBDany_vs_control	NDD vs control: tested on its Lewy-body part (PD/PDD/DLB)
+lee2026-C04	LBDany_vs_control	as C03
+lee2026-C05	LBDany_vs_control	as C03
+lee2026-C07	LBDany_vs_control	meta-analysed disorders: tested on Lewy-body part
+lee2026-C08	LBDany_vs_control	as C07
+lee2026-C09	LBDany_vs_control	shared component: tested on Lewy-body part
+lee2026-C11	not_available	MAPT H1/H2 haplotype not in released metadata
+smajic2022-C12	within	trajectory branch genes (activated vs homeostatic)
+xu2023-C06	PD_AD_concordance	logFC concordance PD-vs-control and AD-vs-control
+xu2023-C10	PD_AD_concordance	as C06
+zhu2024-C25	PD_AD_concordance	needs AD vs control in the same tissue
+volpato2025-C21	within	DaN_1 -> DaN_3 pseudotime within controls
+zhu2024-C14	not_available	per-donor pS129 Lewy body + neurite score (IHC) not in deposited data
+zhu2024-C15	not_available	as C14
+zhu2024-C18	not_available	as C14

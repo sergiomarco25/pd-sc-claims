@@ -1,0 +1,154 @@
+dataset	file	bytes	remote_bytes	md5	check	status
+adams2024	adams2024/GSE193688_family.soft.gz	5129	5129	06d5d863d42f66854949d7a5e44d40d0	gzip ok: 0.1 MB uncompressed	ok
+adams2024	adams2024/GSM5818649_C16007_atac_peaks.bed.gz	1034619	1034619	21b19f9554f43989d0163b2f800f066a	gzip ok: 3.0 MB uncompressed	ok
+adams2024	adams2024/GSM5818649_C16007_filtered_feature_bc_matrix.h5	48196042	48196042	b69db18201bba2f5a862aadbacb7eb5d	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818650_C4176_atac_peaks.bed.gz	831799	831799	b30dadda0db32a83f8c943dd800fb0e9	gzip ok: 2.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818650_C4176_filtered_feature_bc_matrix.h5	32074359	32074359	fa86e0e2f9c04900120bc4591dc0d225	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818651_C4322_atac_peaks.bed.gz	956899	956899	c470ebc5bd666f33733ea92e68f4f867	gzip ok: 2.8 MB uncompressed	ok
+adams2024	adams2024/GSM5818651_C4322_filtered_feature_bc_matrix.h5	50160013	50160013	fa02b8691e18c9ffb0fa81d23f2520f1	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818652_C4361_atac_peaks.bed.gz	1012066	1012066	8d0c9c7a2ebeb08136c7da28b58742a5	gzip ok: 2.9 MB uncompressed	ok
+adams2024	adams2024/GSM5818652_C4361_filtered_feature_bc_matrix.h5	46226600	46226600	6b9eaddab08ea45ab139d8136601ac46	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818653_C4634_atac_peaks.bed.gz	746179	746179	a1c6f71b5f3569dafd8764fffe675178	gzip ok: 2.2 MB uncompressed	ok
+adams2024	adams2024/GSM5818653_C4634_filtered_feature_bc_matrix.h5	19490758	19490758	957da0c3d5e31fd22f845b5c86937c22	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818654_C4660_atac_peaks.bed.gz	788289	788289	b37a881d7651c5671ea46acd6b50eeb9	gzip ok: 2.3 MB uncompressed	ok
+adams2024	adams2024/GSM5818654_C4660_filtered_feature_bc_matrix.h5	34952027	34952027	0e16014e6abdea273f04113b0d768757	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818655_C4691_atac_peaks.bed.gz	1166794	1166794	2e3e33dfa1c2099d39abfe25777ebf04	gzip ok: 3.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818655_C4691_filtered_feature_bc_matrix.h5	40639524	40639524	d63ce8c3d1844645cc3b99bd0cf721be	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818656_C4814_atac_peaks.bed.gz	919648	919648	b77bc12311c6d32afbb9f879d0629097	gzip ok: 2.7 MB uncompressed	ok
+adams2024	adams2024/GSM5818656_C4814_filtered_feature_bc_matrix.h5	36091148	36091148	7afdb0f4b69a371b4b1c0f430083b5e2	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818657_C5410_atac_peaks.bed.gz	1091578	1091578	7aac108d5970283cdc88b3a5fa6afe40	gzip ok: 3.2 MB uncompressed	ok
+adams2024	adams2024/GSM5818657_C5410_filtered_feature_bc_matrix.h5	57320716	57320716	a213fdeedaafcbec9b1e8a7d1a17ce77	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818658_P02284_atac_peaks.bed.gz	774620	774620	74fa8d71f1b8cf779fbdf95eed2374a2	gzip ok: 2.2 MB uncompressed	ok
+adams2024	adams2024/GSM5818658_P02284_filtered_feature_bc_matrix.h5	35477363	35477363	3ca4eba21d0333e3e6888996e6a4243c	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818659_P4205_atac_peaks.bed.gz	858491	858491	bf348bc1d6e322481a5c4b72eba06b79	gzip ok: 2.5 MB uncompressed	ok
+adams2024	adams2024/GSM5818659_P4205_filtered_feature_bc_matrix.h5	35909348	35909348	67a932f8c065bd803cdfda0bce9f7600	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818660_P4560_atac_peaks.bed.gz	910579	910579	1b79179ad8cf74287ee9f92b3dfc8991	gzip ok: 2.6 MB uncompressed	ok
+adams2024	adams2024/GSM5818660_P4560_filtered_feature_bc_matrix.h5	46820618	46820618	2a21e7ab3906b030f89675c7bf6147fc	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818661_P4653_atac_peaks.bed.gz	902530	902530	bcd540ba3bb401586b4dfcdb7faecc4b	gzip ok: 2.6 MB uncompressed	ok
+adams2024	adams2024/GSM5818661_P4653_filtered_feature_bc_matrix.h5	53761490	53761490	abcf9f240f705a1f72ab2aea522e00db	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818662_P4772_atac_peaks.bed.gz	1053307	1053307	22723cceaa84107bb20635c2c09a6873	gzip ok: 3.1 MB uncompressed	ok
+adams2024	adams2024/GSM5818662_P4772_filtered_feature_bc_matrix.h5	55224334	55224334	c73b835a0c2eed0efd7560e3fb796bda	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818663_P4884_atac_peaks.bed.gz	952712	952712	819dfca44a5377c2681b574d9802b54d	gzip ok: 2.8 MB uncompressed	ok
+adams2024	adams2024/GSM5818663_P4884_filtered_feature_bc_matrix.h5	51906299	51906299	36fce8cfe6cf7757940fd90ae8a8d64d	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818664_P4919_atac_peaks.bed.gz	553434	553434	b7f6b19f97ba940943e6e010941d9cb9	gzip ok: 1.6 MB uncompressed	ok
+adams2024	adams2024/GSM5818664_P4919_filtered_feature_bc_matrix.h5	32536611	32536611	62c567a38c143c45924de74588b74360	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818665_P5318_atac_peaks.bed.gz	817611	817611	07d9abe4246d9adbb32185a5f95f0059	gzip ok: 2.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818665_P5318_filtered_feature_bc_matrix.h5	46203629	46203629	4b360f4d01b4e83cc51cf85ead38c3ea	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818666_P5331_atac_peaks.bed.gz	482507	482507	9df3c4d7ee308a23d488caa671ad3359	gzip ok: 1.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818666_P5331_filtered_feature_bc_matrix.h5	31086325	31086325	a1581f7bfccbd9742b3e94587220ee35	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818667_P5626_atac_peaks.bed.gz	956037	956037	dbe25b0389cce775978b7654f473531b	gzip ok: 2.8 MB uncompressed	ok
+adams2024	adams2024/GSM5818667_P5626_filtered_feature_bc_matrix.h5	37328106	37328106	e74e8af22ebb457424dca92edc28c1e6	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818668_P5662_atac_peaks.bed.gz	1006047	1006047	49d35ddbd4db8f66ae7f28860d38e7ca	gzip ok: 2.9 MB uncompressed	ok
+adams2024	adams2024/GSM5818668_P5662_filtered_feature_bc_matrix.h5	52476002	52476002	93185b401890a01ee481c3040787d4f6	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818669_P6259_atac_peaks.bed.gz	608055	608055	0e3c0086996868e3b1710bcdb1d217ca	gzip ok: 1.7 MB uncompressed	ok
+adams2024	adams2024/GSM5818669_P6259_filtered_feature_bc_matrix.h5	26658173	26658173	f482afc2f4c15f50f2455a67dfa1feef	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818670_P6320_atac_peaks.bed.gz	577556	577556	2cfd378735c9b6818c1c69dff003c7a7	gzip ok: 1.7 MB uncompressed	ok
+adams2024	adams2024/GSM5818670_P6320_filtered_feature_bc_matrix.h5	29749998	29749998	2faa4978df21773e062940bec45f2710	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818671_P6323_atac_peaks.bed.gz	802606	802606	f4026a9f59a91ecb9c9338386c877cf3	gzip ok: 2.3 MB uncompressed	ok
+adams2024	adams2024/GSM5818671_P6323_filtered_feature_bc_matrix.h5	37309034	37309034	efeb059c3a4693428ce5065bbe0d691e	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818672_P6326_atac_peaks.bed.gz	467401	467401	1b03eeef4632c55c679c5e77235ebd5f	gzip ok: 1.3 MB uncompressed	ok
+adams2024	adams2024/GSM5818672_P6326_filtered_feature_bc_matrix.h5	24596747	24596747	4e134674dbb06360a060d3ceba91a41f	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818673_YC4345_atac_peaks.bed.gz	1157670	1157670	aad6c3e554003165e63fd740578c2df9	gzip ok: 3.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818673_YC4345_filtered_feature_bc_matrix.h5	42024533	42024533	7d1cc597b7502a4435e43d35576c0d78	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818674_YC5276_atac_peaks.bed.gz	895489	895489	157871dac84cf4258d98cfc297a8131d	gzip ok: 2.6 MB uncompressed	ok
+adams2024	adams2024/GSM5818674_YC5276_filtered_feature_bc_matrix.h5	50253792	50253792	306df62f06750c70757880f092eb8d2d	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818675_YC5346_atac_peaks.bed.gz	797359	797359	da701b76079b42a28f8f2de3ab6faf82	gzip ok: 2.3 MB uncompressed	ok
+adams2024	adams2024/GSM5818675_YC5346_filtered_feature_bc_matrix.h5	44772593	44772593	adb13dff85eedde8406c1b918a169939	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818676_YC5442_atac_peaks.bed.gz	825040	825040	5317e16db5cc9206322b683f8a8bdad9	gzip ok: 2.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818676_YC5442_filtered_feature_bc_matrix.h5	33211417	33211417	a1300b66cc4314f605fd631217d4e791	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818677_YC5626_atac_peaks.bed.gz	1014100	1014100	c8b1b6b760082de0d148c6c2cb08b6ec	gzip ok: 2.9 MB uncompressed	ok
+adams2024	adams2024/GSM5818677_YC5626_filtered_feature_bc_matrix.h5	52424906	52424906	3147c7a470e27b04fed8b6740468bd12	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818678_YC5751_atac_peaks.bed.gz	1129204	1129204	6991de20475fbca48de125f29d76a80f	gzip ok: 3.3 MB uncompressed	ok
+adams2024	adams2024/GSM5818678_YC5751_filtered_feature_bc_matrix.h5	59034230	59034230	216821e7b9a2e94fece2afca76097f9c	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818679_YC5813_atac_peaks.bed.gz	1028655	1028655	4ba180bb1608060593918ab1a7f2842b	gzip ok: 3.0 MB uncompressed	ok
+adams2024	adams2024/GSM5818679_YC5813_filtered_feature_bc_matrix.h5	39498204	39498204	6c78fc9fb1792ec7ea3f21fa10f0e1f4	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818680_YC5928_atac_peaks.bed.gz	1165062	1165062	72d014479ccd24401d82b1b11dee1abc	gzip ok: 3.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818680_YC5928_filtered_feature_bc_matrix.h5	43105959	43105959	c2bebaa5255fbbfe5b85f51619393976	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818681_YC6235_atac_peaks.bed.gz	931117	931117	2c0267b9347ffabcf1688bbbdc7c724d	gzip ok: 2.7 MB uncompressed	ok
+adams2024	adams2024/GSM5818681_YC6235_filtered_feature_bc_matrix.h5	52704827	52704827	a6536c464ac426ab63161ae25ffb6a70	hdf5 keys: matrix	ok
+adams2024	adams2024/GSM5818682_YC914_atac_peaks.bed.gz	1179028	1179028	2d362e1a02e199fa90f527654846ad51	gzip ok: 3.4 MB uncompressed	ok
+adams2024	adams2024/GSM5818682_YC914_filtered_feature_bc_matrix.h5	57219418	57219418	66df9bc8446636073a520ecc51800b68	hdf5 keys: matrix	ok
+chia2025	chia2025/GSE303823_family.soft.gz	5014	5014	58d679db519732a33912f9db9f03b051	gzip ok: 0.1 MB uncompressed	ok
+chia2025	chia2025/GSE303823_rna_annotated.rds	14559472473	14559472473	2d71a00ba10cb01b730dd0d706578d4d	non-empty	ok
+dehestani2024	dehestani2024/GSE272760_all_new_SCT_harmony_res0.1_v1.rds.gz	6555438006	6555438006	c17e344215f9ec9ea2346ac6c13b2a92	gzip ok: 6572.1 MB uncompressed	ok
+dehestani2024	dehestani2024/GSE272760_family.soft.gz	4529	4529	a6423d5e3262d25e13eed4897edd3dfd	gzip ok: 0.1 MB uncompressed	ok
+feleke2021	feleke2021/GSE178146_RAW.tar	2429399040	2429399040	e1c63b8b1dea71e2a6eb95ef94643690	tar: 28 members	ok
+feleke2021	feleke2021/GSE178146_family.soft.gz	4967	4967	6e0e98a752022ef8662b9ece5911dcbb	gzip ok: 0.1 MB uncompressed	ok
+glock2026	glock2026/GSE295998_UmapCoordinatesAndClusterAssignments.txt.gz	24095911	24095911	1d2496b76dde335d6fdafd0569ad6cea	gzip ok: 81.2 MB uncompressed	ok
+glock2026	glock2026/GSE295998_family.soft.gz	4511	4511	7c6bbbce37c4b802d6d6bfc15bc908f6	gzip ok: 0.1 MB uncompressed	ok
+glock2026	glock2026/GSM8963184_L1_cellbender_filtered.h5	128429722	128429722	42343b0f17ef26c305f309d13c0c6d93	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963185_L2_cellbender_filtered.h5	163069894	163069894	4af5692fc65cb5d622e8c6dda89b5434	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963186_L3_cellbender_filtered.h5	207619798	207619798	1957d574a96f5d214b6e877c3555dd7a	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963187_L4_cellbender_filtered.h5	93304380	93304380	b8b02d3b8ead7933151b5a1e141642d9	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963188_L5_cellbender_filtered.h5	150718326	150718326	fadec6a91ead95d62c8f5b7093f1bed3	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963189_L6_cellbender_filtered.h5	100393396	100393396	29831cc51a2f2a9f7974d9006671a661	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963190_L7_cellbender_filtered.h5	105706382	105706382	4e7f8153ea2d1e87d8d1fcf296c45265	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963191_L8_cellbender_filtered.h5	159182542	159182542	e5abfd42f6c2106948dd48f1ddd02ca2	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963192_K1_cellbender_filtered.h5	143798100	143798100	727c673b3e5f0dc090d5f681b2b6f524	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963193_K2_cellbender_filtered.h5	136438528	136438528	27860086b9a2714602c9d9fb7b045594	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963194_K3_cellbender_filtered.h5	225606144	225606144	7d7beacc4b07f405fc24ca6c835bf1dd	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963195_K4_cellbender_filtered.h5	241750896	241750896	f7660d9dfd89e9e157a035b16d628935	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963196_K5_cellbender_filtered.h5	155001092	155001092	4ef38ee4416ff4d2dd2ed17650c6d0ee	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963197_K6_cellbender_filtered.h5	233000088	233000088	7415748744d80bcfd951025b64cb5717	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963198_K7_cellbender_filtered.h5	230284540	230284540	d8018fa1bad7fc46ab9efbb3b965faa1	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963199_K8_cellbender_filtered.h5	261031780	261031780	d3ee644778a15d3b686d824791395813	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963200_J1_cellbender_filtered.h5	94999460	94999460	48956e7aa4c8d8d6a78707ab29f309e6	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963201_J2_cellbender_filtered.h5	144959680	144959680	2e31d2948d0af58588b562046afc023c	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963202_J3_cellbender_filtered.h5	288643462	288643462	26e768ad5a7a7906a8b0a1574cb1cdf9	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963203_J4_cellbender_filtered.h5	246103318	246103318	33eb08977d18b38756cffaa57a05777a	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963204_J5_cellbender_filtered.h5	142746242	142746242	0ec285b0b9f8797350a8a62206b2a1f5	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963205_J6_cellbender_filtered.h5	126108716	126108716	bd8b08acffe5f6300174fa41b6eff92c	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963206_J7_cellbender_filtered.h5	202117184	202117184	802f403109fc2d34a6a5806343090e33	hdf5 keys: matrix	ok
+glock2026	glock2026/GSM8963207_J8_cellbender_filtered.h5	134293648	134293648	9c110a6a60c81e569920c1ab1e01e941	hdf5 keys: matrix	ok
+jin2024	jin2024/GSE235914_RAW.tar	2109931520	2109931520	7de1400c579bf22d079f23e01052d619	tar: 48 members	ok
+jin2024	jin2024/GSE235914_family.soft.gz	3879	3879	9674a69fd823d5154c5a6aaf1c4821d1	gzip ok: 0.0 MB uncompressed	ok
+lee2023	lee2023/GSE148434_RNA.log2TPM.combat.qq.txt.gz	1386899	1386899	8bd988742156a36978a7ddccc0335e86	gzip ok: 3.0 MB uncompressed	ok
+lee2023	lee2023/GSE148434_family.soft.gz	10780	10780	68d261914246928d1e806e7b1fea9308	gzip ok: 0.3 MB uncompressed	ok
+lee2023	lee2023/GSM6459689_NOSN01_snRNA.molecule_info.h5	75609035	75609035	c83e6d13a17f9fdee5955bfca18b1f4b	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459690_NOSN02_snRNA.molecule_info.h5	35638168	35638168	f4238abc044b75fcb1313770b2818b4f	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459691_NOSN03_snRNA.molecule_info.h5	381925270	381925270	73e2f8cdb4aaf297d073092b64d7cd7e	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459692_NOSN04_snRNA.molecule_info.h5	127784232	127784232	394c535f3fa4cd5460decad571ae4cf2	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459693_NOSN05_snRNA.molecule_info.h5	81558194	81558194	f375df0de6e41a8e2c5cc50c98c6b3f7	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459694_NOSN06_snRNA.molecule_info.h5	38551627	38551627	31f724f066a0da64872ac8386fb4fd1f	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459695_PDSN01_snRNA.molecule_info.h5	164872139	164872139	924ca9efe66c601238a6746362df3239	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459696_PDSN02_snRNA.molecule_info.h5	192114336	192114336	4aaf1c3fe0595aa22b7947553bc4d1bb	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459697_PDSN04_snRNA.molecule_info.h5	98906066	98906066	c3ec41cb5b8a5f5ee18b0466b9b802c4	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459698_PDSN06_snRNA.molecule_info.h5	85314302	85314302	aba97cac7abf8da89fd27266c9579530	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459699_PDSN07_snRNA.molecule_info.h5	40159081	40159081	091e83a2a0178b78cfe910496cab874c	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459700_PDSN09_snRNA.molecule_info.h5	190314863	190314863	256034705e6175381e2c92b02401e5a5	hdf5 keys: barcode_idx,barcode_info,barcodes,count,feature_idx,features	ok
+lee2023	lee2023/GSM6459701_NOSN01_snATAC.filtered_peak_bc_matrix.h5	118785453	118785453	5d327bced1764fc8e998c32254702711	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459701_NOSN01_snATAC.singlecell.csv.gz	5961088	5961088	b572aa34f2a11308cdfcb1cd9f1af164	gzip ok: 34.8 MB uncompressed	ok
+lee2023	lee2023/GSM6459702_NOSN03_snATAC.filtered_peak_bc_matrix.h5	21878326	21878326	22e8f191120fa440a2585368cbd6f42a	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459702_NOSN03_snATAC.singlecell.csv.gz	4268446	4268446	bfe1d162201825a2e4dde6dc4527f0a5	gzip ok: 27.9 MB uncompressed	ok
+lee2023	lee2023/GSM6459703_NOSN04_snATAC.filtered_peak_bc_matrix.h5	19423334	19423334	25233e624f5fd882d811c42b1db2ee1e	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459703_NOSN04_snATAC.singlecell.csv.gz	151818	151818	be1cdc21bb905d7edbcc23b0eb1f0c4f	gzip ok: 0.4 MB uncompressed	ok
+lee2023	lee2023/GSM6459704_NOSN05_snATAC.filtered_peak_bc_matrix.h5	22508809	22508809	46a9dbce90c44f357a97807523d1bbfd	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459704_NOSN05_snATAC.singlecell.csv.gz	157362	157362	051c3c504218271e0d48858520448c55	gzip ok: 0.4 MB uncompressed	ok
+lee2023	lee2023/GSM6459705_NOSN06_snATAC.filtered_peak_bc_matrix.h5	24598773	24598773	fef6cdf6a1927bbf8b015af3c34ec361	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459705_NOSN06_snATAC.singlecell.csv.gz	5613239	5613239	efab18c3f647847f2f98c5dee6fbd2d7	gzip ok: 33.3 MB uncompressed	ok
+lee2023	lee2023/GSM6459706_PDSN01_snATAC.filtered_peak_bc_matrix.h5	25220751	25220751	80fd58fd3c6c62e1191e8028106728da	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459706_PDSN01_snATAC.singlecell.csv.gz	183485	183485	352fe919422d58dbebf4823e0cb767e3	gzip ok: 0.4 MB uncompressed	ok
+lee2023	lee2023/GSM6459707_PDSN02_snATAC.filtered_peak_bc_matrix.h5	21868789	21868789	8e8b9eefc0c6f732693bc3606721b470	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459707_PDSN02_snATAC.singlecell.csv.gz	5348447	5348447	60fd40bfe0117a10f9e0cefcdc307c11	gzip ok: 33.2 MB uncompressed	ok
+lee2023	lee2023/GSM6459708_PDSN03_snATAC.filtered_peak_bc_matrix.h5	45794141	45794141	0028a8021ed438b36530e4110d91296d	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459708_PDSN03_snATAC.singlecell.csv.gz	194790	194790	bb30fb29f65fff7eb31aedfc2015402a	gzip ok: 0.5 MB uncompressed	ok
+lee2023	lee2023/GSM6459709_PDSN04_snATAC.filtered_peak_bc_matrix.h5	49970742	49970742	2c593c81b9540232c9e7ceaf16187221	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459709_PDSN04_snATAC.singlecell.csv.gz	4839436	4839436	71510bbf8616e8545843e6dd22cdd48e	gzip ok: 30.2 MB uncompressed	ok
+lee2023	lee2023/GSM6459710_PDSN05_snATAC.filtered_peak_bc_matrix.h5	17513879	17513879	3a515db6f244321f302790d27433eb89	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459710_PDSN05_snATAC.singlecell.csv.gz	60344	60344	ec3ab656a76cb7b394cd3074799f1cd6	gzip ok: 0.1 MB uncompressed	ok
+lee2023	lee2023/GSM6459711_PDSN06_snATAC.filtered_peak_bc_matrix.h5	44436629	44436629	97d80fdeb126af3371817c0acfbc43bf	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459711_PDSN06_snATAC.singlecell.csv.gz	4801772	4801772	7330efff0013202e150790fc19191582	gzip ok: 29.8 MB uncompressed	ok
+lee2023	lee2023/GSM6459712_PDSN07_snATAC.filtered_peak_bc_matrix.h5	172762921	172762921	5101fd558eaaf58e240da965ccde0d2e	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459712_PDSN07_snATAC.singlecell.csv.gz	5867359	5867359	4dc45f2ff0f06a38159ec2e9dbfc0b31	gzip ok: 34.3 MB uncompressed	ok
+lee2023	lee2023/GSM6459713_PDSN09_snATAC.filtered_peak_bc_matrix.h5	54193595	54193595	6f14c0701a991f846268b2f17b80b595	hdf5 keys: matrix	ok
+lee2023	lee2023/GSM6459713_PDSN09_snATAC.singlecell.csv.gz	314114	314114	8b6be9eb5867672e5137df6ccc8323dc	gzip ok: 0.8 MB uncompressed	ok
+ma2025	ma2025/GSE253462_RAW.tar	525137920	525137920	326f8afddb7186051f453d3eb3b18d06	tar: 41 members	ok
+ma2025	ma2025/GSE253462_family.soft.gz	6132	6132	aa890c8610aecd90904106a17d19386c	gzip ok: 0.2 MB uncompressed	ok
+ma2025	ma2025/visium/GSE253975_RAW.tar	21360640	21360640	c5018454ddf2e94557358e568a4daf7b	tar: 20 members	ok
+ma2025	ma2025/visium/GSE253975_family.soft.gz	3892	3892	e01171288563c9b63844bac11cf71bfc	gzip ok: 0.0 MB uncompressed	ok
+psychad_mssm	psychad_mssm/0e853475-e298-4b09-881a-ed0b60d5a8c9.h5ad	36092176654		88312a1e52d53e41d9a8ba74f7f759e1	hdf5 keys: X,layers,obs,obsm,obsp,uns	ok
+psychad_mssm	psychad_mssm/collection.json	70822		6330154d8425b963c2a2b117c93acf8a	non-empty	ok
+sigalova2026	sigalova2026/Key_Resource_Table-Sigalova.xlsx	22031		6a1e20a3cb87d825bce4bcb811934a99	non-empty	ok
+volpato2025	volpato2025/GSE329625_family.soft.gz	4892	4892	b30d567873f3ff35016bb650fa70963d	gzip ok: 0.1 MB uncompressed	ok
+volpato2025	volpato2025/GSE329625_full_metadata.csv.gz	571123	571123	8a2af5fb6b7986fed2997dfbe2f3c25f	gzip ok: 2.2 MB uncompressed	ok
+volpato2025	volpato2025/GSE329625_processed_gene_matrix.txt.gz	220413333	220413333	7bf03542e3afe0046de6a1f3e6e9f2c9	gzip ok: 982.8 MB uncompressed	ok

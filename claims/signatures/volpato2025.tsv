@@ -1,0 +1,53 @@
+signature_id	paper	claim_ids	kind	cell_type	cell_state	comparison	gene	rank	stat	padj	source	selection
+volpato2025__DaN_0_textmarkers	volpato2025	volpato2025-C01	state_markers	DA neurons	DaN_0		GRIA3	1			text	text list
+volpato2025__DaN_0_textmarkers	volpato2025	volpato2025-C01	state_markers	DA neurons	DaN_0		DCX	2			text	text list
+volpato2025__DaN_1_textmarkers	volpato2025	volpato2025-C01	state_markers	DA neurons	DaN_1		SLC6A3	1			text	text list
+volpato2025__DaN_1_textmarkers	volpato2025	volpato2025-C01	state_markers	DA neurons	DaN_1		GFRA2	2			text	text list
+volpato2025__DaN_1_textmarkers	volpato2025	volpato2025-C01	state_markers	DA neurons	DaN_1		RET	3			text	text list
+volpato2025__DaN_1_textmarkers	volpato2025	volpato2025-C01	state_markers	DA neurons	DaN_1		PITX3	4			text	text list
+volpato2025__DaN_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C12	state_markers	DA neurons	DaN_2		TMEFF2	1			text	text list
+volpato2025__DaN_3_textmarkers	volpato2025	volpato2025-C01;volpato2025-C06;volpato2025-C09;volpato2025-C20;volpato2025-C24;volpato2025-C25;volpato2025-C26	state_markers	DA neurons	AGTR1+ DaN_3		AGTR1	1			text	text list (DaN_3 = DaN_1 markers + AGTR1-high, per text)
+volpato2025__DaN_3_textmarkers	volpato2025	volpato2025-C01;volpato2025-C06;volpato2025-C09;volpato2025-C20;volpato2025-C24;volpato2025-C25;volpato2025-C26	state_markers	DA neurons	AGTR1+ DaN_3		SLC6A3	2			text	text list (DaN_3 = DaN_1 markers + AGTR1-high, per text)
+volpato2025__DaN_3_textmarkers	volpato2025	volpato2025-C01;volpato2025-C06;volpato2025-C09;volpato2025-C20;volpato2025-C24;volpato2025-C25;volpato2025-C26	state_markers	DA neurons	AGTR1+ DaN_3		GFRA2	3			text	text list (DaN_3 = DaN_1 markers + AGTR1-high, per text)
+volpato2025__DaN_3_textmarkers	volpato2025	volpato2025-C01;volpato2025-C06;volpato2025-C09;volpato2025-C20;volpato2025-C24;volpato2025-C25;volpato2025-C26	state_markers	DA neurons	AGTR1+ DaN_3		RET	4			text	text list (DaN_3 = DaN_1 markers + AGTR1-high, per text)
+volpato2025__DaN_3_textmarkers	volpato2025	volpato2025-C01;volpato2025-C06;volpato2025-C09;volpato2025-C20;volpato2025-C24;volpato2025-C25;volpato2025-C26	state_markers	DA neurons	AGTR1+ DaN_3		PITX3	5			text	text list (DaN_3 = DaN_1 markers + AGTR1-high, per text)
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		RBFOX1	1			text	text list
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		AFF3	2			text	text list
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		FMN1	3			text	text list
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		PDGFRA	4			text	text list
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		PDGFRB	5			text	text list
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		PDGFC	6			text	text list
+volpato2025__psODC_2_textmarkers	volpato2025	volpato2025-C01;volpato2025-C08	state_markers	Oligodendrocytes	psODC_2 (ODC_2)		CLDN10	7			text	text list
+volpato2025__Astrocyte_2_textmarkers	volpato2025	volpato2025-C07	state_markers	Astrocytes	Astrocyte_2		PTPRT	1			text	text list
+volpato2025__Astrocyte_2_textmarkers	volpato2025	volpato2025-C07	state_markers	Astrocytes	Astrocyte_2		ADGRV1	2			text	text list
+volpato2025__Astrocyte_2_textmarkers	volpato2025	volpato2025-C07	state_markers	Astrocytes	Astrocyte_2		EPHB1	3			text	text list
+volpato2025__Astrocyte_1_textmarkers	volpato2025	volpato2025-C14;volpato2025-C26	state_markers	Astrocytes	Astrocyte_1		GABRA2	1			text	text list
+volpato2025__Astrocyte_1_textmarkers	volpato2025	volpato2025-C14;volpato2025-C26	state_markers	Astrocytes	Astrocyte_1		EDNRB	2			text	text list
+volpato2025__Astrocyte_1_textmarkers	volpato2025	volpato2025-C14;volpato2025-C26	state_markers	Astrocytes	Astrocyte_1		SLC6A11	3			text	text list
+volpato2025__ODC_0_textmarkers	volpato2025	volpato2025-C15	state_markers	Oligodendrocytes	ODC_0		PLXDC2	1			text	text list
+volpato2025__ODC_0_textmarkers	volpato2025	volpato2025-C15	state_markers	Oligodendrocytes	ODC_0		PALM2	2			text	text list
+volpato2025__ODC_0_textmarkers	volpato2025	volpato2025-C15	state_markers	Oligodendrocytes	ODC_0		LAMA2	3			text	text list
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		LMX1A	1			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		LMX1B	2			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		GRIK3	3			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		OPALIN	4			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		PLP1	5			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		GPNMB	6			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		SPP1	7			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__C01_other_named	volpato2025	volpato2025-C01	named_genes	All	DaN / ODC / microglia subtypes		TREM2	8			text	text list (genes named in Fig. 1e,f text not assigned to one subtype above)
+volpato2025__AGTR1_named	volpato2025	volpato2025-C09	named_genes	DA neurons	AGTR1+	PD (Braak 5-6) vs control	AGTR1	1			text	text list (down in PD by RNAscope/IHC)
+volpato2025__DaN_3_dopamine_RAS_named	volpato2025	volpato2025-C20	named_genes	DA neurons	AGTR1+ DaN_3		AGTR1	1			text	text list
+volpato2025__DaN_3_dopamine_RAS_named	volpato2025	volpato2025-C20	named_genes	DA neurons	AGTR1+ DaN_3		TH	2			text	text list
+volpato2025__DaN_3_dopamine_RAS_named	volpato2025	volpato2025-C20	named_genes	DA neurons	AGTR1+ DaN_3		SLC6A3	3			text	text list
+volpato2025__DaN_3_T2D_targets_named	volpato2025	volpato2025-C24	named_genes	DA neurons	AGTR1+ DaN_3		GLP1R	1			text	text list (specific to DaN_3)
+volpato2025__DaN_3_T2D_targets_named	volpato2025	volpato2025-C24	named_genes	DA neurons	AGTR1+ DaN_3		GCGR	2			text	text list (specific to DaN_3)
+volpato2025__DaN_3_T2D_targets_named	volpato2025	volpato2025-C24	named_genes	DA neurons	AGTR1+ DaN_3		GIPR	3			text	text list (specific to DaN_3)
+volpato2025__PD_T2D_loci_named	volpato2025	volpato2025-C25	named_genes	DA neurons	AGTR1+ DaN_3		AGTR1	1			text	text list
+volpato2025__PD_T2D_loci_named	volpato2025	volpato2025-C25	named_genes	DA neurons	AGTR1+ DaN_3		TCF7L2	2			text	text list
+volpato2025__TCF7L2_regulon_named	volpato2025	volpato2025-C26	named_genes	DA neurons	AGTR1+ DaN_3; Astrocyte_1		TCF7L2	1			volpato2025_supplement_media-1.pdf|Fig. S16-S17	gene printed in Fig. S16 (expression) / S17 (SCENIC regulon AUC)
+volpato2025__OPC_differentiation_stage_named	volpato2025	volpato2025-C17	named_genes	OPCs	OPC -> psODC_2 / ODC_1		PDGFRA	1			volpato2025_supplement_media-1.pdf|Fig. S9	genes printed in Fig. S9 (OPC differentiation-stage markers)
+volpato2025__OPC_differentiation_stage_named	volpato2025	volpato2025-C17	named_genes	OPCs	OPC -> psODC_2 / ODC_1		PCDH15	2			volpato2025_supplement_media-1.pdf|Fig. S9	genes printed in Fig. S9 (OPC differentiation-stage markers)
+volpato2025__OPC_differentiation_stage_named	volpato2025	volpato2025-C17	named_genes	OPCs	OPC -> psODC_2 / ODC_1		PTPRZ1	3			volpato2025_supplement_media-1.pdf|Fig. S9	genes printed in Fig. S9 (OPC differentiation-stage markers)
+volpato2025__OPC_differentiation_stage_named	volpato2025	volpato2025-C17	named_genes	OPCs	OPC -> psODC_2 / ODC_1		VCAN	4			volpato2025_supplement_media-1.pdf|Fig. S9	genes printed in Fig. S9 (OPC differentiation-stage markers)
+volpato2025__OPC_differentiation_stage_named	volpato2025	volpato2025-C17	named_genes	OPCs	OPC -> psODC_2 / ODC_1		BMP4	5			volpato2025_supplement_media-1.pdf|Fig. S9	genes printed in Fig. S9 (OPC differentiation-stage markers)
+volpato2025__OPC_differentiation_stage_named	volpato2025	volpato2025-C17	named_genes	OPCs	OPC -> psODC_2 / ODC_1		SCN2A	6			volpato2025_supplement_media-1.pdf|Fig. S9	genes printed in Fig. S9 (OPC differentiation-stage markers)

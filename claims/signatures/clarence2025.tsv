@@ -1,0 +1,30 @@
+signature_id	paper	claim_ids	kind	cell_type	cell_state	comparison	gene	rank	stat	padj	source	selection
+clarence2025__C02_HSP_named	clarence2025	clarence2025-C02	named_genes	Endothelial		PD vs control	HSPA1A	1			text	genes named in claim text
+clarence2025__C02_HSP_named	clarence2025	clarence2025-C02	named_genes	Endothelial		PD vs control	HSPA1B	2			text	genes named in claim text
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	DDRGK1	1			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	CRLS1	2			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	SPPL2B	3			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	NOD2	4			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	RPS6KL1	5			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	CAB39L	6			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	RNF141	7			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	GBF1	8			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	BAG3	9			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	FGF20	10			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	HLA-DRB5	11			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	FAM47E-STBD1	12			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	BST1	13			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	TMEM175	14			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	FAM47E	15			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	SPTSSB	16			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	PMVK	17			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__C12_GWAS_DE_named	clarence2025	clarence2025-C12	named_genes	Microglia		PD vs control	FCGR2A	18			text	genes named in claim text (subset of Supp. Table 6 84 GWAS genes)
+clarence2025__homeostatic_microglia_markers	clarence2025	clarence2025-C20	state_markers	Microglia	homeostatic microglia		P2RY12	1			text	text list
+clarence2025__homeostatic_microglia_markers	clarence2025	clarence2025-C20	state_markers	Microglia	homeostatic microglia		CX3CR1	2			text	text list
+clarence2025__proliferative_microglia_markers	clarence2025	clarence2025-C21;clarence2025-C25	state_markers	Microglia	adaptive and proliferative microglia (Prolif_MKI67)		MKI67	1			text	text list (subtype name gene)
+clarence2025__Adapt_TMEM163_AIF1_markers	clarence2025	clarence2025-C23	state_markers	Microglia	Adapt_TMEM163, Adapt_AIF1		TMEM163	1			text	text list (subtype name genes)
+clarence2025__Adapt_TMEM163_AIF1_markers	clarence2025	clarence2025-C23	state_markers	Microglia	Adapt_TMEM163, Adapt_AIF1		AIF1	2			text	text list (subtype name genes)
+clarence2025__Adapt_IFI44L_CCL3_markers	clarence2025	clarence2025-C24	state_markers	Microglia	Adapt_IFI44L, Adapt_CCL3		IFI44L	1			text	text list (subtype name genes)
+clarence2025__Adapt_IFI44L_CCL3_markers	clarence2025	clarence2025-C24	state_markers	Microglia	Adapt_IFI44L, Adapt_CCL3		CCL3	2			text	text list (subtype name genes)
+clarence2025__Adapt_HSPA1A_markers	clarence2025	clarence2025-C25	state_markers	Microglia	Adapt_HSPA1A		HSPA1A	1			text	text list (subtype name gene)
+clarence2025__PVM_CD163_markers	clarence2025	clarence2025-C26	state_markers	Microglia	PVM_CD163		CD163	1			text	text list (subtype name gene; no DAM genes named)

@@ -1,0 +1,269 @@
+# Jin et al. 2024, Science Advances, "Modeling Lewy body disease with SNCA triplication iPSC-derived cortical organoids and identifying therapeutic drugs"
+# DOI 10.1126/sciadv.adk3700; PMID 39259788; PMC11389790
+# Post-mortem part only: superior temporal cortex grey matter snRNA-seq, 3 control / 5 LBD (incl. 1 SNCA dup, 1 SNCA trip), all male; 60,644 nuclei.
+# DE = MAST hurdle model with sample ID random effect, adjusted for gene detection rate, age, percent.mt, decontX, saturation, RIN; |log2FC|>=0.1, FDR<0.05.
+# Organoid, iPSC-neuron, RT-QuIC drug-screen results are not claims here (see notes).
+- id: jin2024-C01
+  paper: jin2024
+  statement: "Cell-type proportions in superior temporal cortex do not differ between LBD and control brains."
+  quote: "which populations did not differ between Ctrl and LBD brains (Fig. 3A and fig. S7, A and B)"
+  location: "Fig. 3A; fig. S7A,B"
+  centrality: secondary
+  modality: snRNA
+  region: temporal
+  cell_type: All
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: "LBD vs control"
+  genes: []
+  gene_source: text
+  reported_stat: "no difference; n=5 LBD vs 3 control; test not stated"
+  unit_of_analysis: samples
+  method: "not stated"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Null claim, very small n."
+- id: jin2024-C02
+  paper: jin2024
+  statement: "SNCA is expressed predominantly in excitatory neurons (about 90% of them), with the highest level in the SNCA-triplication LBD brain; a subset of microglia also expresses SNCA in the triplication brain."
+  quote: "SNCA gene expression was predominantly observed in about 90% of excitatory neurons, with the highest expression level detected in the brain of LBD (SNCA Tri)"
+  location: "Fig. 3C"
+  centrality: secondary
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: other
+  direction: NA
+  comparison: "cell-type expression pattern; SNCA-Tri case vs others"
+  genes: [SNCA]
+  gene_source: text
+  reported_stat: "descriptive ridge plot; n=1 triplication donor"
+  unit_of_analysis: cells
+  method: "descriptive"
+  testable_with: rna
+  test_template: state_signature
+  requires: "SNCA copy-number status for the dosage part"
+  notes: "Cell-type specificity part is testable; SNCA-dosage part only with multiplication carriers."
+- id: jin2024-C03
+  paper: jin2024
+  statement: "LBD excitatory neurons show many DEGs versus controls, predominantly downregulated (188 up, 966 down)."
+  quote: "The excitatory neuron cluster (EX) showed a significant number of DEGs, with 188 up-regulated genes and 966 down-regulated genes"
+  location: "Fig. 3D,E; table S5"
+  centrality: main
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "LBD vs control"
+  genes: []
+  gene_source: "table S5 (DEGs per cell type, LBD vs control)"
+  reported_stat: "188 up / 966 down; FDR<0.05, |log2FC|>=0.1"
+  unit_of_analysis: cells
+  method: "MAST hurdle model + sample random effect"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "LBD clinical subtype (PD/PDD/DLB) of the 5 cases not given in main text (table S4)."
+- id: jin2024-C04
+  paper: jin2024
+  statement: "Synaptic function genes GRIA4, PSD3, CACNB2, KCNMB2 and GRIN2B are upregulated in LBD excitatory neurons."
+  quote: "These DEGs included genes related to synaptic function (up-regulated: GRIA4, PSD3, CACNB2, KCNMB2, and GRIN2B; down-regulated: PCLO, NCALD, and ATP2B2)"
+  location: "Fig. 3E"
+  centrality: main
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "LBD vs control"
+  genes: [GRIA4, PSD3, CACNB2, KCNMB2, GRIN2B]
+  gene_source: "text; table S5"
+  reported_stat: "FDR<0.05"
+  unit_of_analysis: cells
+  method: "MAST + sample random effect"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: jin2024-C05
+  paper: jin2024
+  statement: "Synaptic function genes PCLO, NCALD and ATP2B2 are downregulated in LBD excitatory neurons."
+  quote: "down-regulated: PCLO, NCALD, and ATP2B2"
+  location: "Fig. 3E"
+  centrality: main
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "LBD vs control"
+  genes: [PCLO, NCALD, ATP2B2]
+  gene_source: "text; table S5"
+  reported_stat: "FDR<0.05"
+  unit_of_analysis: cells
+  method: "MAST + sample random effect"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: jin2024-C06
+  paper: jin2024
+  statement: "Mitochondrial function genes PRKN, ABCB10, MFN1 and COX15 are downregulated in LBD excitatory neurons, with PRKN and ABCB10 validated by qPCR and Parkin/ABCB10 protein by Western blot in independent brains."
+  quote: "mitochondrial function (down-regulated: PRKN, ABCB10, MFN1, and COX15)"
+  location: "Fig. 3E; Fig. 4I,J,N,O,R,W,X"
+  centrality: headline
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "LBD vs control"
+  genes: [PRKN, ABCB10, MFN1, COX15]
+  gene_source: "text; table S5"
+  reported_stat: "snRNA FDR<0.05; bulk qPCR n=11 vs 11, Western n=16 vs 16 (t-test)"
+  unit_of_analysis: cells
+  method: "MAST + sample random effect; bulk validations t-test on donors"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Abstract: 'synaptic and mitochondrial dysfunction in excitatory neurons ... aligning with observations in the cortex of autopsy-confirmed LBD human brains'. PRKN, ABCB10 also DE in SNCA-triplication organoid EX1."
+- id: jin2024-C07
+  paper: jin2024
+  statement: "Lipid metabolism genes FADS1 and PEX5L are downregulated in LBD excitatory neurons (FADS1 validated by bulk qPCR)."
+  quote: "lipid metabolism (down-regulated: FADS1 and PEX5L)"
+  location: "Fig. 3E; Fig. 4D,E"
+  centrality: main
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "LBD vs control"
+  genes: [FADS1, PEX5L]
+  gene_source: "text; table S5"
+  reported_stat: "snRNA FDR<0.05; qPCR n=11 vs 11"
+  unit_of_analysis: cells
+  method: "MAST + sample random effect; qPCR t-test"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "FADS1 shared with organoid DEGs."
+- id: jin2024-C08
+  paper: jin2024
+  statement: "Oxidative stress and energy metabolism genes are altered in LBD excitatory neurons: OXR1 and IDH2 down, PRKAR2B up."
+  quote: "oxidative stress (down-regulated: OXR1), and energetic metabolism (up-regulated: PRKAR2B; down-regulated: IDH2)"
+  location: "Fig. 3E"
+  centrality: secondary
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "LBD vs control"
+  genes: [OXR1, IDH2, PRKAR2B]
+  gene_source: "text; table S5"
+  reported_stat: "FDR<0.05"
+  unit_of_analysis: cells
+  method: "MAST + sample random effect"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Mixed direction: OXR1 down, IDH2 down, PRKAR2B up."
+- id: jin2024-C09
+  paper: jin2024
+  statement: "LBD excitatory neuron DEGs are enriched for synaptic pathways (calcium signalling, synaptic LTP, synaptogenesis, SNARE, clathrin-mediated endocytosis), RHOGDI, PKA, alpha-adrenergic and unfolded protein response signalling, plus glycogen degradation and protein ubiquitination."
+  quote: "These pathways were associated with synaptic function, including calcium signaling, synaptic long-term potentiation, synaptogenesis signaling pathway, SNARE signaling pathway, and clathrin-mediated endocytosis signaling."
+  location: "Fig. 3F; table S6"
+  centrality: main
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: "LBD vs control"
+  genes: []
+  gene_source: "table S6 (IPA canonical pathways)"
+  reported_stat: "IPA enrichment"
+  unit_of_analysis: cells
+  method: "IPA canonical pathways on MAST DEGs"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "IPA pathway gene sets are proprietary; use closest GO/Reactome equivalents. Direction (activation z-score) not stated in text."
+- id: jin2024-C10
+  paper: jin2024
+  statement: "IPA toxicity analysis of LBD excitatory neuron DEGs highlights mitochondrial dysfunction, lipid metabolism and oxidative stress."
+  quote: "prominent pathways in both clusters of excitatory neurons were shared and associated with mitochondrial dysfunction, lipid metabolism, and oxidative stress"
+  location: "Fig. 3G"
+  centrality: main
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "LBD vs control"
+  genes: []
+  gene_source: "Fig. 3G; table S5"
+  reported_stat: "IPA tox list enrichment"
+  unit_of_analysis: cells
+  method: "IPA toxicity lists"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Direction recorded as down because the named mitochondrial/lipid genes were downregulated; IPA tox lists are not directional."
+- id: jin2024-C11
+  paper: jin2024
+  statement: "Several pathways (RHOGDI, PKA, synaptogenesis, Rho-family GTPase, estrogen receptor signalling, protein ubiquitination) are perturbed across multiple cell types in LBD brains."
+  quote: "Several pathways consistently emerged across different cell clusters in human brains, such as RHOGDI signaling, protein kinase A signaling, synaptogenesis signaling pathway"
+  location: "Fig. 3F; fig. S7D-H; table S6"
+  centrality: secondary
+  modality: snRNA
+  region: temporal
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: "LBD vs control"
+  genes: []
+  gene_source: "table S6"
+  reported_stat: "IPA"
+  unit_of_analysis: cells
+  method: "IPA on MAST DEGs per cell type"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: ""
+- id: jin2024-C12
+  paper: jin2024
+  statement: "Excitatory neuron transcriptional changes in LBD are not specifically driven by SNCA multiplication (SNCA dup/trip cases not distinct in pseudobulk PCA)."
+  quote: "This indicates that the observed DEGs between LBD and control samples may not be specifically driven by SNCA multiplication."
+  location: "fig. S7C"
+  centrality: secondary
+  modality: snRNA
+  region: temporal
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: other
+  direction: NA
+  comparison: "SNCA-multiplication LBD vs sporadic LBD"
+  genes: []
+  gene_source: text
+  reported_stat: "qualitative PCA of pseudobulk"
+  unit_of_analysis: donors
+  method: "PCA on pseudobulk"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "SNCA copy-number carriers"
+  notes: "Only 2 multiplication cases."

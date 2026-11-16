@@ -1,0 +1,5 @@
+label	ontology	term	ontology_id	ontology_label	check
+human	ncbitaxon	Homo sapiens	NCBITaxon:9606	Homo sapiens	ok
+macaque	ncbitaxon	Macaca mulatta	NCBITaxon:9544	Macaca mulatta	ok
+mouse	ncbitaxon	Mus musculus	NCBITaxon:10090	Mus musculus	ok
+rat	ncbitaxon	Rattus norvegicus	NCBITaxon:10116	Rattus norvegicus	ok

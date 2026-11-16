@@ -1,0 +1,211 @@
+# Reference knowledge: established findings from other kinds of evidence (neuropathology, stereology, imaging,
+# genetics, clinical), stored with citations and linked to the consensus statements and claims they bear on.
+# Used by the atlas to show what is known beyond the single-cell data, and by the rating (scripts/52_rating.py) as
+# the triangulation upgrade for supported claims listed under `supports_claims`.
+# Fields: id, statement, evidence_type, references [{citation, pmid, doi, finding}], statements (consensus ids),
+# establishes (consensus ids the reference evidence establishes on its own), supports_claims (claim ids it directly supports), consistent_with (related claims, no upgrade),
+# contrasts_with (claims the reference evidence sits in tension with), regions (brain regions it concerns),
+# measurement_note (why the single-cell evidence may be weaker than the reference evidence), added (date).
+- id: BG-nigral-da-loss
+  statement: >-
+    Dopaminergic neurons of the substantia nigra pars compacta are lost in Parkinson's disease, most severely in the
+    ventrolateral tier and in calbindin-poor nigrosomes; loss of the dopaminergic phenotype precedes loss of the cells.
+  evidence_type: neuropathology and stereology (human post-mortem)
+  references:
+    - citation: "Fearnley JM, Lees AJ. Ageing and Parkinson's disease: substantia nigra regional selectivity. Brain 1991."
+      pmid: '1933245'
+      doi: 10.1093/brain/114.5.2283
+      finding: >-
+        Exponential loss of pigmented neurons in PD, 45% in the first decade; greatest in the lateral ventral tier
+        (average 91%), then medial ventral (71%) and dorsal tier (56%), the reverse of the pattern in normal ageing.
+    - citation: "Damier P, Hirsch EC, Agid Y, Graybiel AM. The substantia nigra of the human brain. II. Patterns of loss of dopamine-containing neurons in Parkinson's disease. Brain 1999."
+      pmid: '10430830'
+      doi: 10.1093/brain/122.8.1437
+      finding: >-
+        Loss follows a strict order across calbindin-defined compartments, maximal (98%) in nigrosome 1 and higher in
+        nigrosomes than in the nigral matrix; the degree of loss relates to disease duration.
+    - citation: "Kordower JH, Olanow CW, Dodiya HB, et al. Disease duration and the integrity of the nigrostriatal system in Parkinson's disease. Brain 2013."
+      pmid: '23884810'
+      doi: 10.1093/brain/awt192
+      finding: >-
+        50-90% loss of tyrosine-hydroxylase-positive nigral neurons from the earliest time points studied; dopaminergic
+        markers in the dorsal putamen virtually gone by 4 years after diagnosis; loss of melanised neurons lags behind
+        loss of dopaminergic markers.
+  statements: [CS10, CS11]
+  establishes: [CS10]
+  supports_claims: [F-comp-da-neurons, smajic2022-C03, ma2025-C04, kamath2022-C05]
+  consistent_with: [kamath2022-C06, kamath2022-C12, lee2023-C01, menon2026-C01, volpato2025-C06]
+  measurement_note: >-
+    Single-nucleus data are a weak instrument for counting neurons. They give each cell type's share of the nuclei
+    captured, not cell numbers, so the share depends on how much of the nigra, white matter and neighbouring
+    structures a dissection took: in control nigra the dopaminergic share of all nuclei ranges from 0.15% (Smajic
+    2022) to 35% (Volpato 2025) across datasets, and the case/control ratio from 0.14 (Kamath 2022) to 1.2 (Ma 2025).
+    Most datasets have 5-15 donors per group. Tissue is taken at death, when the most vulnerable neurons are long
+    gone, so cases are compared on their surviving neurons, and degenerating neuromelanin-laden neurons may not
+    survive nuclei isolation. Sorted or enriched nuclei (Kamath 2022) cannot measure tissue composition at all.
+    The single-cell data agree in direction (pooled across datasets, dopaminergic share of nigral neurons lower in
+    PD), but the size of the loss is established by stereology, not by these data.
+  added: '2026-11-13'
+
+- id: BG-braak-staging
+  statement: >-
+    Lewy pathology in sporadic PD follows a stereotyped ascending course: it begins in the dorsal motor nucleus of the
+    vagus and the anterior olfactory nucleus, ascends through the brainstem, then reaches the anteromedial temporal
+    mesocortex and finally the neocortex, prefrontal and high-order association areas before primary fields.
+  evidence_type: neuropathology (human post-mortem)
+  references:
+    - citation: "Braak H, Del Tredici K, Rub U, de Vos RA, Jansen Steur EN, Braak E. Staging of brain pathology related to sporadic Parkinson's disease. Neurobiol Aging 2003."
+      pmid: '12498954'
+      doi: 10.1016/s0197-4580(02)00065-9
+      finding: >-
+        Alpha-synuclein-positive Lewy neurites and Lewy bodies first appear in the dorsal motor nucleus of the
+        glossopharyngeal and vagal nerves and the anterior olfactory nucleus; the brainstem process ascends with little
+        variation between individuals; cortical involvement starts in the anteromedial temporal mesocortex, then
+        high-order sensory association and prefrontal areas, then premotor and primary sensory and motor fields.
+  statements: []
+  establishes: []
+  supports_claims: []
+  consistent_with: [F-heat-lewy-stage, F-heat-stage-mid, F-heat-dmnx, F-heat-sn]
+  regions: [vagal nucleus (DMNX), substantia nigra, amygdala, temporal cortex, cingulate cortex, prefrontal cortex, motor cortex, visual cortex]
+  measurement_note: >-
+    The atlas uses this sequence to label brain regions with the Braak stage at which Lewy pathology reaches them, and
+    to group donors by Lewy stage. The single-cell data do not measure Lewy pathology itself; staging comes from each
+    brain bank's neuropathology report, and is missing for several datasets.
+  added: '2026-11-13'
+
+- id: BG-alpha-synuclein
+  statement: >-
+    Alpha-synuclein is the main protein component of Lewy bodies, and mutations in its gene (SNCA) cause familial,
+    autosomal dominant PD.
+  evidence_type: neuropathology and human genetics
+  references:
+    - citation: "Spillantini MG, Schmidt ML, Lee VM, Trojanowski JQ, Jakes R, Goedert M. Alpha-synuclein in Lewy bodies. Nature 1997."
+      pmid: '9278044'
+      doi: 10.1038/42166
+      finding: Alpha-synuclein is present in Lewy bodies, the defining inclusions of PD and dementia with Lewy bodies.
+    - citation: "Polymeropoulos MH, Lavedan C, Leroy E, et al. Mutation in the alpha-synuclein gene identified in families with Parkinson's disease. Science 1997."
+      pmid: '9197268'
+      doi: 10.1126/science.276.5321.2045
+      finding: >-
+        A mutation in the alpha-synuclein gene segregates with PD in a large Italian kindred and three unrelated
+        families of Greek origin with autosomal dominant inheritance.
+  statements: [CS18, CS15]
+  establishes: []
+  supports_claims: []
+  consistent_with: []
+  measurement_note: >-
+    Single-nucleus RNA measures SNCA transcripts, not the aggregated protein that defines Lewy pathology, so SNCA
+    expression changes (statement CS18) need not mirror aggregation, and neurons carrying Lewy bodies cannot be
+    identified from RNA alone.
+  added: '2026-11-13'
+
+- id: BG-gwas-risk
+  statement: >-
+    Common genetic variation contributes to PD risk: 90 independent genome-wide significant signals at 78 genomic
+    regions explain 16-36% of heritable risk in people of European ancestry.
+  evidence_type: human genetics (genome-wide association)
+  references:
+    - citation: "Nalls MA, Blauwendraat C, Vallerga CL, et al. Identification of novel risk loci, causal insights, and heritable risk for Parkinson's disease: a meta-analysis of genome-wide association studies. Lancet Neurol 2019."
+      pmid: '31701892'
+      doi: 10.1016/s1474-4422(19)30320-5
+      finding: >-
+        37,688 cases, 18,618 UK Biobank proxy cases and 1.4 million controls of European ancestry; 90 independent risk
+        signals across 78 regions, 38 of them new; heritable risk explained 16-36%; loci brain-enriched, with neuronal
+        cell types implicated from single-cell data.
+  statements: [CS16, CS17]
+  establishes: []
+  supports_claims: []
+  consistent_with: []
+  measurement_note: >-
+    The atlas's genetic-enrichment tests use these summary statistics, so they inherit their European-ancestry
+    sample. Which cell types the risk acts through is a separate question: the cross-dataset re-analysis finds
+    enrichment in oligodendrocyte identity and in genes glia and vascular cells induce in PD rather than in
+    dopaminergic-neuron identity (statements CS16, CS17).
+  added: '2026-11-13'
+
+- id: BG-striatal-dopamine-loss
+  statement: >-
+    Striatal dopamine is lost unevenly in PD: almost completely in the putamen, most in its caudal part, while most of
+    the caudate keeps substantial dopamine; motor signs follow mainly from the putamen loss.
+  evidence_type: neurochemistry (human post-mortem)
+  references:
+    - citation: "Kish SJ, Shannak K, Hornykiewicz O. Uneven pattern of dopamine loss in the striatum of patients with idiopathic Parkinson's disease. N Engl J Med 1988."
+      pmid: '3352672'
+      doi: 10.1056/nejm198804073181402
+      finding: >-
+        In eight PD brains, nearly complete dopamine depletion in all putamen subdivisions (under 1% left caudally); in
+        the caudate only the dorsal rostral part was severely depleted (4% left), the rest kept up to about 40% of
+        control levels.
+  statements: []
+  establishes: []
+  supports_claims: []
+  consistent_with: []
+  regions: [putamen, caudate]
+  measurement_note: >-
+    The striatum contains the axon terminals of nigral dopaminergic neurons, not their cell bodies, so striatal
+    single-nucleus data cannot show the dopamine loss itself; they show how striatal neurons and glia respond to it.
+  added: '2026-11-13'
+
+- id: BG-complex-i
+  statement: Mitochondrial complex I activity is deficient in the PD brain.
+  evidence_type: biochemistry (human post-mortem)
+  references:
+    - citation: "Schapira AH, Cooper JM, Dexter D, Jenner P, Clark JB, Marsden CD. Mitochondrial complex I deficiency in Parkinson's disease. Lancet 1989."
+      pmid: '2566813'
+      doi: 10.1016/s0140-6736(89)92366-0
+      finding: Mitochondrial complex I deficiency in Parkinson's disease (reported as a short communication).
+  statements: [CS13]
+  establishes: []
+  supports_claims: []
+  consistent_with: []
+  contrasts_with: [F-q-complex1-odc]
+  measurement_note: >-
+    Complex I deficiency is a tissue-level enzyme activity. The single-cell data measure transcripts per cell type:
+    neurons show falling oxidative phosphorylation genes (statement CS13), while in oligodendrocytes complex I
+    biogenesis genes are slightly higher in PD (finding F-q-complex1-odc). Transcript levels and enzyme activity need
+    not move together.
+  added: '2026-11-13'
+
+- id: BG-reactive-microglia
+  statement: >-
+    HLA-DR-positive reactive microglia are abundant in the substantia nigra in PD, alongside Lewy bodies and free
+    melanin.
+  evidence_type: neuropathology (immunohistochemistry, human post-mortem)
+  references:
+    - citation: "McGeer PL, Itagaki S, Boyes BE, McGeer EG. Reactive microglia are positive for HLA-DR in the substantia nigra of Parkinson's and Alzheimer's disease brains. Neurology 1988."
+      pmid: '3399080'
+      doi: 10.1212/wnl.38.8.1285
+      finding: >-
+        Large numbers of HLA-DR-positive reactive microglia in the substantia nigra of all 5 PD and 5 parkinsonism
+        with dementia cases, in 6 of 9 Alzheimer's cases, and in 1 of 11 age-matched controls.
+  statements: [CS04, CS05, CS06]
+  establishes: []
+  supports_claims: []
+  consistent_with: [F-comp-microglia]
+  measurement_note: >-
+    Immunostaining sees activated microglia where they are, around degenerating neurons in the nigra. Single-nucleus
+    state scores average over all microglia of a sample and region, which can dilute focal activation; the
+    re-analysis finds more microglia in PD (CS04) and individual activation genes up (CS05) but no increase of the
+    published inflammatory transcriptional states (CS06). That says inflammatory programmes are not broadly raised
+    across microglia, not that no microglia are activated.
+  added: '2026-11-13'
+
+- id: BG-t-cells
+  statement: CD8-positive and CD4-positive T cells are found in the brain parenchyma in PD post-mortem tissue.
+  evidence_type: neuropathology (immunohistochemistry) with mouse experiments
+  references:
+    - citation: "Brochard V, Combadiere B, Prigent A, et al. Infiltration of CD4+ lymphocytes into the brain contributes to neurodegeneration in a mouse model of Parkinson disease. J Clin Invest 2009."
+      pmid: '19104149'
+      doi: 10.1172/jci36470
+      finding: >-
+        CD8+ and CD4+ T cells, but not B cells, had invaded the brain in post-mortem human PD specimens and in the MPTP
+        mouse model; in mice, dopaminergic cell death depended on CD4+ T cells and FasL.
+  statements: [CS12]
+  establishes: []
+  supports_claims: []
+  consistent_with: []
+  measurement_note: >-
+    T cells are a tiny fraction of brain nuclei, so single-nucleus datasets capture few of them and compare their
+    shares with little power. The re-analysis finds no consistent difference in T-cell shares (CS12), which leaves
+    open whether small numbers of T cells infiltrate, as immunostaining shows.
+  added: '2026-11-13'

@@ -1,0 +1,10 @@
+claim_id	term	reason
+lee2023-C03	GO: mitochondrion organization / mitochondrial function (fig. S6B)	GO term names only (fig. S6B); resolve members from MSigDB. DopaN down-DEGs attached
+lee2023-C04	GO: regulation of neurogenesis (fig. S6B)	GO term name only; Ast/OPC down-DEGs attached
+lee2023-C05	GO: immune response (fig. S6B)	GO term name only; Micro down-DEGs attached
+lee2023-C06	GO: macroautophagy (fig. S6B)	GO term name only; DopaN/Micro up-DEGs attached
+lee2023-C07	GO: protein folding / protein stabilization (fig. S6B)	GO term name only; Oligo/Endo up-DEGs attached
+lee2023-C11	chromatin_da	cREs are from bulk H3K27ac (no cell-type label in Table S4); regions given as All
+lee2023-C12	chromatin_da	uses Table S4 bulk cREs; regions given
+lee2023-C18	GO: myelination (target genes of Oligo down cREs)	GO term name only; Oligo DownPeak ABC regions + named genes given
+lee2023-C19	GO: autophagy / protein folding (target genes of up cREs)	GO term names only; ABC UpPeak regions + named genes given

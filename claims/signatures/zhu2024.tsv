@@ -1,0 +1,88 @@
+signature_id	paper	claim_ids	kind	cell_type	cell_state	comparison	gene	rank	stat	padj	source	selection
+zhu2024__Tcell_markers_named	zhu2024	zhu2024-C01	state_markers	T cells	brain-resident T cells		CD3E	1			text	text list
+zhu2024__Tcell_markers_named	zhu2024	zhu2024-C01	state_markers	T cells	brain-resident T cells		SKAP1	2			text	text list
+zhu2024__Tcell_markers_named	zhu2024	zhu2024-C01	state_markers	T cells	brain-resident T cells		GNLY	3			text	text list
+zhu2024__Tcell_markers_named	zhu2024	zhu2024-C01	state_markers	T cells	brain-resident T cells		CD96	4			text	text list
+zhu2024__Neuron_axonogenesis_up_named	zhu2024	zhu2024-C05	named_genes	Neurons (other)	ExN, InN	PD vs control	EPHA6	1			text	text list
+zhu2024__Neuron_axonogenesis_up_named	zhu2024	zhu2024-C05	named_genes	Neurons (other)	ExN, InN	PD vs control	ROBO1	2			text	text list
+zhu2024__Neuron_axonogenesis_up_named	zhu2024	zhu2024-C05	named_genes	Neurons (other)	ExN, InN	PD vs control	GAB1	3			text	text list
+zhu2024__Neuron_axonogenesis_up_named	zhu2024	zhu2024-C05	named_genes	Neurons (other)	ExN, InN	PD vs control	PARD3	4			text	text list
+zhu2024__Neuron_axonogenesis_up_named	zhu2024	zhu2024-C05	named_genes	Neurons (other)	ExN, InN	PD vs control	NLGN4Y	5			text	text list
+zhu2024__Neuron_axonogenesis_up_named	zhu2024	zhu2024-C05	named_genes	Neurons (other)	ExN, InN	PD vs control	CBLN2	6			text	text list
+zhu2024__Astro_metal_up_named	zhu2024	zhu2024-C06	named_genes	Astrocytes		PD vs control	MT1G	1			text	text list
+zhu2024__Astro_metal_up_named	zhu2024	zhu2024-C06	named_genes	Astrocytes		PD vs control	MT1F	2			text	text list
+zhu2024__Astro_metal_up_named	zhu2024	zhu2024-C06	named_genes	Astrocytes		PD vs control	MT3	3			text	text list
+zhu2024__Astro_coagulation_down_named	zhu2024	zhu2024-C07	named_genes	Astrocytes		PD vs control	VAV3	1			text	text list
+zhu2024__Astro_coagulation_down_named	zhu2024	zhu2024-C07	named_genes	Astrocytes		PD vs control	LYN	2			text	text list
+zhu2024__Astro_coagulation_down_named	zhu2024	zhu2024-C07	named_genes	Astrocytes		PD vs control	UBASH3B	3			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	FOS	1			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	STAT3	2			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	RUNX1	3			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	BCL6	4			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	IL4R	5			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	JAK3	6			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	NFKBIZ	7			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	IL15	8			text	text list
+zhu2024__Micro_activation_up_named	zhu2024	zhu2024-C08	named_genes	Microglia		PD vs control	NFKBID	9			text	text list
+zhu2024__Oligo_up_named	zhu2024	zhu2024-C09	named_genes	Oligodendrocytes		PD vs control	HSPA1A	1			text	text list
+zhu2024__Oligo_up_named	zhu2024	zhu2024-C09	named_genes	Oligodendrocytes		PD vs control	HSPA1B	2			text	text list
+zhu2024__Oligo_up_named	zhu2024	zhu2024-C09	named_genes	Oligodendrocytes		PD vs control	FMN1	3			text	text list
+zhu2024__Oligo_up_named	zhu2024	zhu2024-C09	named_genes	Oligodendrocytes		PD vs control	P2RX7	4			text	text list
+zhu2024__Oligo_up_named	zhu2024	zhu2024-C09	named_genes	Oligodendrocytes		PD vs control	RAPGEF3	5			text	text list
+zhu2024__Oligo_up_named	zhu2024	zhu2024-C09	named_genes	Oligodendrocytes		PD vs control	FCHSD2	6			text	text list
+zhu2024__OPC_up_named	zhu2024	zhu2024-C10	named_genes	OPCs		PD vs control	VEGFA	1			text	text list
+zhu2024__OPC_up_named	zhu2024	zhu2024-C10	named_genes	OPCs		PD vs control	HSPA1A	2			text	text list
+zhu2024__OPC_up_named	zhu2024	zhu2024-C10	named_genes	OPCs		PD vs control	HSPA1B	3			text	text list
+zhu2024__OPC_up_named	zhu2024	zhu2024-C10	named_genes	OPCs		PD vs control	ZNF365	4			text	text list
+zhu2024__OPC_up_named	zhu2024	zhu2024-C10	named_genes	OPCs		PD vs control	SYT1	5			text	text list
+zhu2024__OPC_up_named	zhu2024	zhu2024-C10	named_genes	OPCs		PD vs control	MAPT	6			text	text list
+zhu2024__Tcell_up_named	zhu2024	zhu2024-C11	named_genes	T cells		PD vs control	IL7R	1			text	text list
+zhu2024__Tcell_up_named	zhu2024	zhu2024-C11	named_genes	T cells		PD vs control	IL15	2			text	text list
+zhu2024__Tcell_up_named	zhu2024	zhu2024-C11	named_genes	T cells		PD vs control	MALT1	3			text	text list
+zhu2024__Tcell_up_named	zhu2024	zhu2024-C11	named_genes	T cells		PD vs control	CAMK4	4			text	text list
+zhu2024__Tcell_up_named	zhu2024	zhu2024-C11	named_genes	T cells		PD vs control	CD28	5			text	text list
+zhu2024__Tcell_up_named	zhu2024	zhu2024-C11	named_genes	T cells		PD vs control	ZAP70	6			text	text list
+zhu2024__ExN_chaperone_down_named	zhu2024	zhu2024-C12	named_genes	Excitatory neurons		PD vs control	HSPB1	1			text	text list
+zhu2024__ExN_chaperone_down_named	zhu2024	zhu2024-C12	named_genes	Excitatory neurons		PD vs control	HSP90AB1	2			text	text list
+zhu2024__ExN_chaperone_down_named	zhu2024	zhu2024-C12	named_genes	Excitatory neurons		PD vs control	DNAJB6	3			text	text list
+zhu2024__ExN_chaperone_down_named	zhu2024	zhu2024-C12	named_genes	Excitatory neurons		PD vs control	HSPA1A	4			text	text list
+zhu2024__ExN_chaperone_down_named	zhu2024	zhu2024-C12	named_genes	Excitatory neurons		PD vs control	HSPH1	5			text	text list
+zhu2024__ExN_chaperone_down_named	zhu2024	zhu2024-C12	named_genes	Excitatory neurons		PD vs control	DNAJA4	6			text	text list
+zhu2024__InN_UPR_down_named	zhu2024	zhu2024-C13	named_genes	Inhibitory neurons		PD vs control	HSPD1	1			text	text list
+zhu2024__InN_UPR_down_named	zhu2024	zhu2024-C13	named_genes	Inhibitory neurons		PD vs control	HSP90AA1	2			text	text list
+zhu2024__InN_UPR_down_named	zhu2024	zhu2024-C13	named_genes	Inhibitory neurons		PD vs control	HSPH1	3			text	text list
+zhu2024__InN_UPR_down_named	zhu2024	zhu2024-C13	named_genes	Inhibitory neurons		PD vs control	PLCG2	4			text	text list
+zhu2024__PD_genes_up_named	zhu2024	zhu2024-C16	named_genes	All		PD vs control	SNCA	1			text	text list
+zhu2024__PD_genes_up_named	zhu2024	zhu2024-C16	named_genes	All		PD vs control	LRRK2	2			text	text list
+zhu2024__ExN_PD_genes_down_named	zhu2024	zhu2024-C17	named_genes	Excitatory neurons		PD vs control	PRKN	1			text	text list
+zhu2024__ExN_PD_genes_down_named	zhu2024	zhu2024-C17	named_genes	Excitatory neurons		PD vs control	PINK1	2			text	text list
+zhu2024__ExN_PD_genes_down_named	zhu2024	zhu2024-C17	named_genes	Excitatory neurons		PD vs control	GBA	3			text	text list
+zhu2024__ExN_PD_genes_down_named	zhu2024	zhu2024-C17	named_genes	Excitatory neurons		PD vs control	PARK7	4			text	text list
+zhu2024__Oligo_UTMOST_up_named	zhu2024	zhu2024-C19	named_genes	Oligodendrocytes		PD vs control	MAPT	1			text	text list
+zhu2024__Oligo_UTMOST_up_named	zhu2024	zhu2024-C19	named_genes	Oligodendrocytes		PD vs control	TMEM163	2			text	text list
+zhu2024__Oligo_UTMOST_up_named	zhu2024	zhu2024-C19	named_genes	Oligodendrocytes		PD vs control	KAT8	3			text	text list
+zhu2024__ExN_UTMOST_down_named	zhu2024	zhu2024-C20	named_genes	Excitatory neurons		PD vs control	LRRC37A2	1			text	text list
+zhu2024__ExN_UTMOST_down_named	zhu2024	zhu2024-C20	named_genes	Excitatory neurons		PD vs control	BCL7C	2			text	text list
+zhu2024__ExN_UTMOST_down_named	zhu2024	zhu2024-C20	named_genes	Excitatory neurons		PD vs control	RNF40	3			text	text list
+zhu2024__ExN_UTMOST_down_named	zhu2024	zhu2024-C20	named_genes	Excitatory neurons		PD vs control	DCTPP1	4			text	text list
+zhu2024__ExN_UTMOST_down_named	zhu2024	zhu2024-C20	named_genes	Excitatory neurons		PD vs control	LRRC37A	5			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	MT2A	1			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	MT1E	2			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	MRAS	3			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	COL27A1	4			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	PLEC	5			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	MT1M	6			text	text list
+zhu2024__Astro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	MT1G	7			text	text list
+zhu2024__Astro_shared_AD_down_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	ALDH1A1	1			text	text list
+zhu2024__Astro_shared_AD_down_named	zhu2024	zhu2024-C25	named_genes	Astrocytes	shared PD/AD DEGs	PD vs control	BAALC	2			text	text list
+zhu2024__Micro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	SPP1	1			text	text list
+zhu2024__Micro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	APOE	2			text	text list
+zhu2024__Micro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	APOC1	3			text	text list
+zhu2024__Micro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	CACNA1A	4			text	text list
+zhu2024__Micro_shared_AD_up_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	IRF8	5			text	text list
+zhu2024__Micro_shared_AD_down_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	SYTL3	1			text	text list
+zhu2024__Micro_shared_AD_down_named	zhu2024	zhu2024-C25	named_genes	Microglia	shared PD/AD DEGs	PD vs control	IFI44L	2			text	text list
+zhu2024__Other_shared_AD_named	zhu2024	zhu2024-C25	named_genes	All	shared PD/AD DEGs (cell type / direction not resolved)	PD vs control	SLC38A2	1			text	text list
+zhu2024__Other_shared_AD_named	zhu2024	zhu2024-C25	named_genes	All	shared PD/AD DEGs (cell type / direction not resolved)	PD vs control	CA2	2			text	text list
+zhu2024__Other_shared_AD_named	zhu2024	zhu2024-C25	named_genes	All	shared PD/AD DEGs (cell type / direction not resolved)	PD vs control	UTY	3			text	text list
+zhu2024__Other_shared_AD_named	zhu2024	zhu2024-C25	named_genes	All	shared PD/AD DEGs (cell type / direction not resolved)	PD vs control	RASGRF2	4			text	text list

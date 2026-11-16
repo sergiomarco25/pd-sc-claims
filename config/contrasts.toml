@@ -1,0 +1,93 @@
+# Contrasts: which donor x region units are case and which are reference (read by src/pdrep/contrasts.py;
+# claims/COMMUNITY_PLAN.md step 2.2). Adding a contrast here needs no Python.
+#
+# Each side (case, ref) is a table of conditions on the unit metadata; a unit belongs to the side when all of them
+# hold, and to neither side when it matches both. Values are compared as text.
+#   column = "value"                  equal
+#   column = ["a", "b"]               one of
+#   column = { contains = "x" }       contains x, ignoring case
+#   lewy_stage = { min = 3, max = 4.9 }   Lewy-body stage (braak_lb, else the Unified LB stage; controls without a
+#                                     stage count as 0 when the dataset stages its cases), bounds inclusive
+# A column the dataset does not have matches nothing. `braak` (the stage as a continuous covariate) is not a group
+# contrast and is handled by the DE cache and the tests engine directly.
+
+# Lewy-body diagnoses (pdrep.contrasts.LEWY)
+lewy_body = ["PD", "PDD", "DLB", "LBD"]
+
+[contrasts.PDany_vs_control]
+case = { disease = ["PD", "PDD"] }
+ref = { disease = "control" }
+
+[contrasts.PD_vs_control]
+case = { disease = "PD" }
+ref = { disease = "control" }
+
+[contrasts.PDD_vs_control]
+case = { disease = "PDD" }
+ref = { disease = "control" }
+
+[contrasts.DLB_vs_control]
+case = { disease = "DLB" }
+ref = { disease = "control" }
+
+[contrasts.LBDany_vs_control]
+case = { disease = ["PD", "PDD", "DLB", "LBD"] }
+ref = { disease = "control" }
+
+[contrasts.AD_vs_control]
+case = { disease = "AD" }
+ref = { disease = "control" }
+
+[contrasts.iLBD_vs_control]
+case = { disease = "iLBD" }
+ref = { disease = "control" }
+
+# Lewy-body stage groups (iLBD and PD/PDD/DLB/LBD cases alike) vs pathology-free controls
+[contrasts.LBearly_vs_control]
+case = { disease = ["PD", "PDD", "DLB", "LBD", "iLBD"], lewy_stage = { min = 1, max = 2.9 } }
+ref = { disease = "control" }
+
+[contrasts.LBmid_vs_control]
+case = { disease = ["PD", "PDD", "DLB", "LBD", "iLBD"], lewy_stage = { min = 3, max = 4.9 } }
+ref = { disease = "control" }
+
+[contrasts.LBlate_vs_control]
+case = { disease = ["PD", "PDD", "DLB", "LBD", "iLBD"], lewy_stage = { min = 5 } }
+ref = { disease = "control" }
+
+[contrasts.PDD_vs_PD]
+case = { disease = "PDD" }
+ref = { disease = "PD" }
+
+[contrasts.DLB_vs_PD]
+case = { disease = "DLB" }
+ref = { disease = "PD" }
+
+[contrasts.DLB_vs_PDD]
+case = { disease = "DLB" }
+ref = { disease = "PDD" }
+
+[contrasts.PD_vs_agedcontrol]
+case = { disease = ["PD", "PDD"] }
+ref = { disease = "control", age_group = { contains = "aged" } }
+
+[contrasts.aged_vs_youngcontrol]
+case = { disease = "control", age_group = { contains = "aged" } }
+ref = { disease = "control", age_group = { contains = "young" } }
+
+# GLIAD donor groups (barbareyes2026 `gliad_donor_group`; as revision 05d: group vs Other, all diagnoses)
+[contrasts.UPR_vs_other]
+case = { gliad_donor_group = "UPR" }
+ref = { gliad_donor_group = "Other" }
+
+[contrasts.Reactive_vs_other]
+case = { gliad_donor_group = "Reactive" }
+ref = { gliad_donor_group = "Other" }
+
+[contrasts.GBA_vs_control]
+case = { disease = ["PD", "PDD"], genotype = { contains = "GBA" } }
+ref = { disease = "control" }
+
+[contrasts.LRRK2_vs_control]
+case = { disease = ["PD", "PDD"], genotype = { contains = "LRRK2" } }
+ref = { disease = "control" }

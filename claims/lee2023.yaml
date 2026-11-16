@@ -1,0 +1,505 @@
+- id: lee2023-C01
+  paper: lee2023
+  statement: AGTR1-positive dopaminergic neurons are reduced in PD substantia nigra.
+  quote: "PD cases present a more prominent reduction in AGTR+ DopaNs (one-sided Welch t test, P = 0.035) compared to the AGTR− population"
+  location: "Fig. 1D; fig. S4C,D; Results \"Single-nucleus profiling of transcriptome and chromatin accessibility...\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DopaN
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes: [AGTR1, TH, SLC6A3]
+  gene_source: text
+  reported_stat: "one-sided Welch t-test on normalized nucleus proportions, P = 0.035; snRNA n = 6 PD (late stage) vs 13 controls (6 in-house + 7 GSE140231)"
+  unit_of_analysis: donors
+  method: one-sided Welch t-test on per-donor normalized proportions
+  testable_with: rna
+  test_template: composition_donor
+  requires: "sufficient DA neuron capture"
+  notes: "Replicates Kamath et al. 2022 SOX6_AGTR1. Proportion normalisation not described in detail. Controls partly from an external dataset (Agarwal 2020)."
+
+- id: lee2023-C02
+  paper: lee2023
+  statement: AGTR1-negative dopaminergic neurons are not significantly reduced in PD.
+  quote: "compared to the AGTR− population (one-sided Welch t test, P = 0.104)"
+  location: "Fig. 1D; fig. S4C,D"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1- DopaN
+  claim_type: composition
+  direction: NA
+  comparison: PD vs control
+  genes: [AGTR1]
+  gene_source: text
+  reported_stat: "one-sided Welch t-test, P = 0.104"
+  unit_of_analysis: donors
+  method: one-sided Welch t-test on per-donor proportions
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Null/relative claim; split from C01."
+
+- id: lee2023-C03
+  paper: lee2023
+  statement: Genes down-regulated in PD dopaminergic neurons are enriched for mitochondrial function.
+  quote: "Down-regulated DEGs were overrepresented by cell type–specific Gene Ontology (GO) pathways relevant to PD, as exemplified by mitochondrial function in DopaNs"
+  location: "fig. S6B; Fig. 1E; table S3"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S3 (cell-type DEGs); fig. S6B (GO terms)"
+  reported_stat: "3830 DEGs total across cell types (1876 down, 1954 up); edgeR LRT BH P<0.05, |log2FC|>0.5, pct>0.1"
+  unit_of_analysis: donors
+  method: donor pseudobulk, ComBat batch correction, edgeR likelihood ratio test; EnrichR GO
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "DopaN numbers per donor likely small. ComBat applied to pseudobulk to remove source batch (in-house vs GSE140231) which is confounded with diagnosis for 7 control donors."
+
+- id: lee2023-C04
+  paper: lee2023
+  statement: Genes down-regulated in PD OPCs and astrocytes are enriched for regulation of neurogenesis.
+  quote: "neurogenesis regulation in OPCs and astrocytes"
+  location: "fig. S6B"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S3; fig. S6B"
+  reported_stat: "EnrichR GO on edgeR pseudobulk DEGs"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT; EnrichR GO
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Applies to both OPCs and astrocytes; cell_type set to Astrocytes, OPCs equally claimed."
+
+- id: lee2023-C05
+  paper: lee2023
+  statement: Genes down-regulated in PD microglia are enriched for immune responses.
+  quote: "and immune responses in microglia"
+  location: "fig. S6B"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S3; fig. S6B"
+  reported_stat: "EnrichR GO on edgeR pseudobulk DEGs"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT; EnrichR GO
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Counter to the usual 'microglial activation' narrative; worth testing."
+
+- id: lee2023-C06
+  paper: lee2023
+  statement: Genes up-regulated in PD dopaminergic neurons and microglia are enriched for macroautophagy.
+  quote: "including macroautophagy (DopaN and Micro), protein folding and stabilization (Oligo and Endo)"
+  location: "fig. S6B"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S3; fig. S6B"
+  reported_stat: "EnrichR GO on edgeR pseudobulk DEGs"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT; EnrichR GO
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Applies to DopaN and microglia."
+
+- id: lee2023-C07
+  paper: lee2023
+  statement: Genes up-regulated in PD oligodendrocytes and endothelial cells are enriched for protein folding and stabilization.
+  quote: "protein folding and stabilization (Oligo and Endo)"
+  location: "fig. S6B"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S3; fig. S6B"
+  reported_stat: "EnrichR GO on edgeR pseudobulk DEGs"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT; EnrichR GO
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Applies to oligodendrocytes and endothelial cells. Also: OPC and astrocyte up-DEGs enriched for cellular differentiation."
+
+- id: lee2023-C08
+  paper: lee2023
+  statement: Known PD risk genes UCHL1, PARK7, CHCHD2, VPS13C and GAK are differentially expressed in PD dopaminergic neurons.
+  quote: "12 of 20 well-known PD risk genes (24) were included in DEGs, which were concentrated in DopaNs (UCHL1, PARK7, CHCHD2, VPS13C, and GAK)"
+  location: "Fig. 1E; fig. S6C"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: [UCHL1, PARK7, CHCHD2, VPS13C, GAK]
+  gene_source: "table S3"
+  reported_stat: "edgeR LRT BH P<0.05, |log2FC|>0.5"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Direction per gene only in Fig. 1E heatmap / table S3, not in text."
+
+- id: lee2023-C09
+  paper: lee2023
+  statement: Known PD risk genes SNCA, LRRK2, VPS13C and GAK are differentially expressed in PD microglia.
+  quote: "microglia (SNCA, LRRK2, VPS13C, and GAK)"
+  location: "Fig. 1E; fig. S6C"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: [SNCA, LRRK2, VPS13C, GAK]
+  gene_source: "table S3"
+  reported_stat: "edgeR LRT BH P<0.05, |log2FC|>0.5"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Direction in table S3 only."
+
+- id: lee2023-C10
+  paper: lee2023
+  statement: Known PD risk genes MAPT and FBXO7 are differentially expressed in PD oligodendrocytes.
+  quote: "and oligodendrocytes (MAPT and FBXO7)"
+  location: "Fig. 1E; fig. S6C"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: [MAPT, FBXO7]
+  gene_source: "table S3"
+  reported_stat: "edgeR LRT BH P<0.05, |log2FC|>0.5"
+  unit_of_analysis: donors
+  method: donor pseudobulk edgeR LRT
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Direction in table S3 only."
+
+- id: lee2023-C11
+  paper: lee2023
+  statement: PD shows cell-type-specific dysregulation of cis-regulatory elements (2,770 down, 2,910 up), with down-regulated cREs mainly annotated to oligodendrocytes, OPCs and astrocytes.
+  quote: "Down-regulated cREs (0.93%) were found to be cell type–common ... with the cell types dominantly annotated in oligodendrocytes, OPCs, and astrocytes."
+  location: "Abstract; Fig. 2A; table S4"
+  centrality: headline
+  modality: snATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: chromatin
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S4 (dysregulated cREs)"
+  reported_stat: "edgeR quasi-likelihood F test, BH Q<0.05; bulk H3K27ac n = 9 PD vs 9 control"
+  unit_of_analysis: samples
+  method: cellularity-corrected bulk H3K27ac ChIP-seq, edgeR QL F-test; cell-type annotation from pseudobulk snATAC
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "snATAC or multiome; cRE coordinates from table S4 (hg19)"
+  notes: "Differential activity comes from BULK H3K27ac ChIP-seq, only the cell-type assignment is single-nucleus. A replication would test differential accessibility of the table S4 cREs in pseudobulk snATAC per cell type."
+
+- id: lee2023-C12
+  paper: lee2023
+  statement: PD DEGs are preferentially located near (within 100 kb of) dysregulated cREs in the matching cell type.
+  quote: "the PD-specific DEGs compared to controls were preferentially colocalized with dysregulated cREs in PD cases in a 100-kb genomic window compared to random expectations"
+  location: "Fig. 2B"
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: chromatin
+  direction: enriched
+  comparison: PD vs control
+  genes: []
+  gene_source: "table S3 (DEGs), table S4 (cREs)"
+  reported_stat: "empirical P from 10,000 permutations (** P<0.01, *** P<0.001)"
+  unit_of_analysis: samples
+  method: permutation test of DEG/cRE colocalization
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "paired RNA and ATAC data from the same cohort"
+  notes: "Combines snRNA DEGs and bulk-derived cREs."
+
+- id: lee2023-C13
+  paper: lee2023
+  statement: Oligodendrocyte cREs are strongly enriched for PD GWAS heritability (in three of four PD GWAS).
+  quote: "Oligodendrocyte cREs showed a strong association in three PD GWAS studies"
+  location: "Fig. 4A; Results \"Association of PD susceptibility with cell type–resolved cis-regulatory landscape\""
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes: []
+  gene_source: text
+  reported_stat: "S-LDSC enrichment P (Fig. 4A)"
+  unit_of_analysis: cells
+  method: stratified LD score regression on cell-type pseudobulk snATAC cREs (full baseline model)
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics (Nalls 2014, Chang 2017, Foo 2020, Nalls 2019)"
+  notes: "unit = peak sets; no case/control contrast."
+
+- id: lee2023-C14
+  paper: lee2023
+  statement: Microglia and endothelial cREs are enriched for PD GWAS heritability in two PD GWAS.
+  quote: "Microglia and endothelial cREs indicated enrichment in two PD GWAS studies"
+  location: "Fig. 4A"
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes: []
+  gene_source: text
+  reported_stat: "S-LDSC enrichment P"
+  unit_of_analysis: cells
+  method: stratified LD score regression
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: "Also applies to endothelial cells."
+
+- id: lee2023-C15
+  paper: lee2023
+  statement: Dopaminergic neuron cREs are enriched for PD heritability only in the East Asian PD GWAS.
+  quote: "DopaN cREs were exclusively enriched in the PD GWAS conducted in East Asian cases"
+  location: "Fig. 4A"
+  centrality: secondary
+  modality: snATAC
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes: []
+  gene_source: text
+  reported_stat: "S-LDSC enrichment P"
+  unit_of_analysis: cells
+  method: stratified LD score regression
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "East Asian PD GWAS (Foo et al. 2020)"
+  notes: ""
+
+- id: lee2023-C16
+  paper: lee2023
+  statement: PD risk variants are specifically enriched in cREs down-regulated in PD (e.g. a down-regulated cRE near SNCA).
+  quote: "the PD risk variants were specifically enriched in down-regulated cREs (Fig. 4B), which is well illustrated by a down-regulated cRE located in the vicinity of SNCA"
+  location: "Fig. 4B,C"
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: PD vs control
+  genes: [SNCA]
+  gene_source: "table S4"
+  reported_stat: "S-LDSC enrichment P (Fig. 4B)"
+  unit_of_analysis: samples
+  method: S-LDSC on dysregulated cREs (from bulk H3K27ac)
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics; differential accessibility per cell type"
+  notes: "Down-regulated cREs defined by bulk ChIP-seq; replication would define down-regulated peaks from snATAC DA and run S-LDSC."
+
+- id: lee2023-C17
+  paper: lee2023
+  statement: Integrating Hi-C contact maps with cell-type cREs (ABC model) identifies 656 putative target genes of PD-dysregulated cREs and PD GWAS SNPs, which are highly cell-type-specific.
+  quote: "A total of 656 target genes of dysregulated cREs and PD GWAS-SNPs were identified in a cell type–specific manner"
+  location: "Abstract; Fig. 3; table S5"
+  centrality: headline
+  modality: snATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: other
+  direction: exists
+  comparison: NA
+  genes: []
+  gene_source: "table S5 (656 putative PD genes by cell type)"
+  reported_stat: "ABC score >10; DopaN 165, GabaN 191, Oligo 300, OPC 231, Ast 233, Micro 223, Endo 235, Peri 201"
+  unit_of_analysis: samples
+  method: activity-by-contact model (snATAC activity x bulk Hi-C contact, n Hi-C = 5 PD + 6 control)
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "Hi-C"
+  notes: "Resource/annotation claim. table S5 gene list could be used as a gene set in other datasets (e.g. test whether these genes are enriched among PD DEGs), but that is not the authors' claim."
+
+- id: lee2023-C18
+  paper: lee2023
+  statement: Target genes of down-regulated cREs in oligodendrocytes are enriched for myelination (DEGS1, MTMR2, ACER3).
+  quote: "cell type–specific biological pathways implicated in PD pathogenesis were enriched by the target genes of down-regulated cREs, including ... myelination (Oligo; DEGS1, MTMR2, and ACER3)"
+  location: "Fig. 3E; fig. S12B,C"
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: chromatin
+  direction: down
+  comparison: PD vs control
+  genes: [DEGS1, MTMR2, ACER3]
+  gene_source: "table S5"
+  reported_stat: "GO enrichment (fig. S12)"
+  unit_of_analysis: samples
+  method: ABC target genes of bulk-defined down-regulated cREs; GO enrichment
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "snATAC; Hi-C-derived target links"
+  notes: "Other examples in same sentence: DopaN learning/memory (ATP8A1, ARL6IP5), microglia protein lipidation (MPPE1, ATG10, ZDHHC20). Testable at RNA level as down-regulation of these genes in oligodendrocytes (de_pseudobulk) as a weaker proxy."
+
+- id: lee2023-C19
+  paper: lee2023
+  statement: Target genes of up-regulated cREs are recurrently enriched for autophagy and protein folding across dopaminergic neurons, oligodendrocytes and microglia.
+  quote: "The enriched biological pathways of up-regulated cREs indicated a recurrent representation of autophagy ... and protein folding ... in multiple cell types"
+  location: "Fig. 3E; fig. S12B,C"
+  centrality: secondary
+  modality: snATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: chromatin
+  direction: up
+  comparison: PD vs control
+  genes: [SBF2, KLHL22, MARK2, ATG2A, TOMM7, PTGES3, RUVBL2, ABCA7, PFDN6, DNAJB4]
+  gene_source: "table S5"
+  reported_stat: "GO enrichment"
+  unit_of_analysis: samples
+  method: ABC target genes of bulk-defined up-regulated cREs; GO enrichment
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "snATAC; Hi-C-derived links"
+  notes: "Gene-cell type mapping: DopaN SBF2, KLHL22, ABCA7; Oligo MARK2, ATG2A, TOMM7, PFDN6, DNAJB4; Micro PTGES3, RUVBL2."
+
+- id: lee2023-C20
+  paper: lee2023
+  statement: PD GWAS SNPs in cREs predominantly disrupt rather than create transcription factor binding motifs (e.g. NRF1, TCF4, PBX3, ZNF148), and target genes of disrupted motifs are down-regulated in PD donors.
+  quote: "GWAS variants on cis-regulatory regions most often act toward TF binding disruption, as 23 of the 60 enriched motifs exhibited an overall reduction in TF binding affinity"
+  location: "Fig. 5D-F; Results \"TF binding alterations induced by PD GWAS variants\""
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: down
+  comparison: risk vs non-risk allele
+  genes: [NRF1, TFDP1, TCF4, PBX3, ZNF148, KLF2]
+  gene_source: "table S9"
+  reported_stat: "23 of 60 motifs lose vs 1 gain, exact binomial P = 2.98e-6"
+  unit_of_analysis: samples
+  method: FIMO motif scoring on risk vs reference allele; target-gene log2FC per PD donor vs control mean (bulk RNA)
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "donor genotypes"
+  notes: "Sequence-based; target gene down-regulation uses bulk RNA-seq. Not re-testable without genotypes."
+
+- id: lee2023-C21
+  paper: lee2023
+  statement: PD GWAS SNP-target gene links are cell-type-specific; SH3GL2 and GCH1 are DopaN-specific, MAPT is linked in oligodendrocytes, OPCs and astrocytes, GPNMB in OPCs, astrocytes and microglia, and SNCA in most cell types.
+  quote: "the association of PD GWAS-SNPs to SH3GL2 and GCH1 was highly specific to DopaNs, while SNCA was prominent in most cell types"
+  location: "Fig. 4G"
+  centrality: main
+  modality: snATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: NA
+  comparison: across cell types
+  genes: [SH3GL2, GCH1, SNCA, MAPT, GPNMB, SCARB2]
+  gene_source: "table S5"
+  reported_stat: "ABC score sum > 20"
+  unit_of_analysis: cells
+  method: ABC model
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "Hi-C or peak-gene links (multiome)"
+  notes: "Not a PD vs control claim; peak-gene links could be checked in multiome datasets. SCARB2 linked to neurons and astrocytes."
+
+- id: lee2023-C22
+  paper: lee2023
+  statement: Oligodendrocytes and microglia are the key cell types linked to PD, based on PD risk-gene DEGs, GWAS heritability and co-expression modules.
+  quote: "Overall, our analysis suggests that oligodendrocytes and microglia are closely linked to PD pathogenesis."
+  location: "Abstract; Discussion"
+  centrality: headline
+  modality: snATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: other
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "synthesis of C09, C10, C13, C14"
+  unit_of_analysis: donors
+  method: synthesis
+  testable_with: not_testable
+  test_template: not_testable
+  requires: ""
+  notes: "Synthesis claim; component claims are C09/C10 (DEGs), C13/C14 (LDSC). Kept for completeness; do not test separately."

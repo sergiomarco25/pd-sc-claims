@@ -1,0 +1,12 @@
+claim_id	term	reason
+volpato2025-C01	full subtype marker lists (Table S2)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used
+volpato2025-C06	DaN_3 marker list (Table S2)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used
+volpato2025-C07	Astrocyte_2 marker list (Table S2)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used
+volpato2025-C08	psODC_2 marker list (Table S2)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used
+volpato2025-C12	per-subtype PD/iLBD-vs-control DEGs (Table S4)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only)
+volpato2025-C13	DaN_1 PD DEGs (Table S4) and GO terms: cell-cell signalling, cell communication, mitochondrial processes / oxidative phosphorylation (Table S6)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); resolve GO/Hallmark terms centrally
+volpato2025-C14	GO response to cytokine (GO:0034097) among Astrocyte_1 PD DEGs (Table S4)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); resolve GO term centrally
+volpato2025-C15	GO response to unfolded protein (GO:0006986), cell activation, regulation of cell death among ODC_0 PD DEGs; stress response signalling in ODC_1 (Table S4)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); resolve GO terms centrally
+volpato2025-C24	DaN_3 specificity statistics for GLP1R/GCGR/GIPR (Table S8)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only)
+volpato2025-C26	SCENIC regulon target genes of TCF7L2 (Table S9)	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); regulon members not given
+volpato2025-C27	KEGG PI3K-Akt signalling pathway (hsa04151) / insulin resistance in perineuronal ODCs	claim from medRxiv v2 abstract only; v2 full text and tables not accessed; resolve KEGG term centrally

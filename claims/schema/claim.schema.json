@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/sergiomarco25/pd-sc-claims/blob/main/claims/schema/claim.schema.json",
+  "title": "Published claim",
+  "description": "One conclusion of a published study, as extracted for re-testing (schema 1.0.0). Field meanings: claims/SCHEMA.md.",
+  "version": "1.0.0",
+  "type": "object",
+  "required": [
+    "id",
+    "paper",
+    "statement",
+    "location",
+    "centrality",
+    "modality",
+    "region",
+    "cell_type",
+    "claim_type",
+    "direction",
+    "comparison",
+    "unit_of_analysis",
+    "testable_with",
+    "test_template"
+  ],
+  "properties": {
+    "id": {
+      "description": "<paper_id>-C<nn>, numbered in order of appearance",
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z][a-z0-9]*-C[0-9]{2}$"
+    },
+    "paper": {
+      "description": "paper id (inventory/papers.tsv); the file name without .yaml",
+      "type": "string",
+      "minLength": 1
+    },
+    "statement": {
+      "description": "the conclusion in one sentence, close to the authors' wording",
+      "type": "string",
+      "minLength": 1
+    },
+    "quote": {
+      "description": "short verbatim quote supporting it (at most 40 words)",
+      "type": "string"
+    },
+    "location": {
+      "description": "figure / panel / section",
+      "type": "string",
+      "minLength": 1
+    },
+    "centrality": {
+      "description": "headline (abstract or title) / main (Results heading or main figure) / secondary",
+      "type": "string",
+      "enum": [
+        "headline",
+        "main",
+        "secondary"
+      ]
+    },
+    "modality": {
+      "description": "assay(s) the claim rests on",
+      "type": "string",
+      "pattern": "^(snRNA|scRNA|multiome\\-RNA|snATAC|multiome\\-ATAC|spatial\\-Visium|spatial\\-Xenium|spatial\\-GeoMx|spatial\\-other|imaging)(\\s*[;,]\\s*(snRNA|scRNA|multiome\\-RNA|snATAC|multiome\\-ATAC|spatial\\-Visium|spatial\\-Xenium|spatial\\-GeoMx|spatial\\-other|imaging))*$"
+    },
+    "region": {
+      "description": "brain region(s) the claim is about",
+      "type": "string",
+      "pattern": "^(SN|VTA|midbrain|putamen|caudate|striatum|PFC|DLPFC|cingulate|temporal|MTG|motor|visual|parietal|amygdala|hippocampus|cerebellum|DMNX|GPi|multiple)(\\s*[;,]\\s*(SN|VTA|midbrain|putamen|caudate|striatum|PFC|DLPFC|cingulate|temporal|MTG|motor|visual|parietal|amygdala|hippocampus|cerebellum|DMNX|GPi|multiple))*$"
+    },
+    "cell_type": {
+      "description": "broad cell class(es)",
+      "type": "string",
+      "pattern": "^(DA\\ neurons|Neurons\\ \\(other\\)|Excitatory\\ neurons|Inhibitory\\ neurons|MSNs|Astrocytes|Microglia|Oligodendrocytes|OPCs|Endothelial|Pericytes|Fibroblasts|T\\ cells|Immune\\ \\(other\\)|All)(\\s*[;,]\\s*(DA\\ neurons|Neurons\\ \\(other\\)|Excitatory\\ neurons|Inhibitory\\ neurons|MSNs|Astrocytes|Microglia|Oligodendrocytes|OPCs|Endothelial|Pericytes|Fibroblasts|T\\ cells|Immune\\ \\(other\\)|All))*$"
+    },
+    "cell_state": {
+      "description": "named subpopulation or signature, or empty",
+      "type": "string"
+    },
+    "claim_type": {
+      "description": "kind of claim; decides the test",
+      "type": "string",
+      "enum": [
+        "composition",
+        "de_gene",
+        "de_pathway",
+        "state_existence",
+        "state_enrichment",
+        "genetic_enrichment",
+        "communication",
+        "pathology_association",
+        "trajectory",
+        "chromatin",
+        "spatial_colocalisation",
+        "clinical_association",
+        "other"
+      ]
+    },
+    "direction": {
+      "description": "direction asserted",
+      "type": "string",
+      "enum": [
+        "up",
+        "down",
+        "enriched",
+        "depleted",
+        "exists",
+        "associated_pos",
+        "associated_neg",
+        "NA"
+      ]
+    },
+    "comparison": {
+      "description": "groups compared, e.g. 'PD vs control', 'Braak 5-6 vs 3-4', 'within PD'",
+      "type": "string",
+      "minLength": 1
+    },
+    "genes": {
+      "description": "genes needed to test the claim, as reported",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "gene_source": {
+      "description": "where the full gene list is, or 'text'",
+      "type": "string"
+    },
+    "reported_stat": {
+      "description": "effect size / statistic / p or FDR as reported, and n",
+      "type": "string"
+    },
+    "unit_of_analysis": {
+      "description": "what the authors' test treated as independent (cells, donors, samples, ROIs)",
+      "type": "string",
+      "minLength": 1
+    },
+    "method": {
+      "description": "test used by the authors",
+      "type": "string"
+    },
+    "testable_with": {
+      "description": "data type needed to re-test",
+      "type": "string",
+      "enum": [
+        "rna",
+        "atac",
+        "spatial",
+        "metadata",
+        "not_testable"
+      ]
+    },
+    "test_template": {
+      "description": "re-test template (src/pdrep/tests/engine.py)",
+      "type": "string",
+      "enum": [
+        "composition_donor",
+        "de_pseudobulk",
+        "geneset_shift",
+        "state_signature",
+        "genetic_enrichment",
+        "communication_liana",
+        "pathology_correlation",
+        "trajectory",
+        "chromatin_da",
+        "spatial_neighbourhood",
+        "not_testable"
+      ]
+    },
+    "requires": {
+      "description": "metadata or features needed beyond disease labels",
+      "type": "string"
+    },
+    "notes": {
+      "description": "caveats, ambiguities",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

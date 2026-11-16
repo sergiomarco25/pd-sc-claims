@@ -1,0 +1,597 @@
+- id: adams2024-C01
+  paper: adams2024
+  statement: All glial cell types of the substantia nigra are altered by aging, shown by higher combined pseudopathogenesis (cPP) scores in aged than in young donors.
+  quote: "Combined multiomic analysis along a pseudopathogenesis trajectory reveals that all glial cell types are affected by age"
+  location: "Abstract; Fig. 4c, Fig. 5d, Extended Data Fig. 5c, Supplementary Fig. 8"
+  centrality: headline
+  modality: multiome-RNA
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: trajectory
+  direction: up
+  comparison: aged control vs young control
+  genes: []
+  gene_source: "Supplementary Table 4 (cPP-correlated genes per cell type)"
+  reported_stat: "cPP one-way ANOVA + Tukey on nuclei; ODC P(Y/A)=1e-199; MG P(Y/A)=1.71e-8; AS P(Y/A)=0.002; n = 9 young, 8 aged donors"
+  unit_of_analysis: cells
+  method: Monocle3 pseudotime (RNA + ATAC combined), one-way ANOVA with Tukey on nuclei
+  testable_with: rna
+  test_template: trajectory
+  requires: "young (<40 y) control donors; age"
+  notes: "Aging claim, not PD vs control. Testable only in datasets that include young controls. cPP is a dataset-specific Monocle3 score; replication would need a transferable signature (Supplementary Table 4 genes)."
+
+- id: adams2024-C02
+  paper: adams2024
+  statement: Microglia are further altered in PD beyond aging, with higher cPP scores in PD than in aged controls.
+  quote: "all glial cell types are affected by age, but microglia and oligodendrocytes are further altered in PD"
+  location: "Abstract; Fig. 5d; Results \"Pseudopathogenesis analysis shows distinct microglial changes\""
+  centrality: headline
+  modality: multiome-RNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: trajectory
+  direction: up
+  comparison: PD vs aged control
+  genes: []
+  gene_source: "Supplementary Table 4 (894 increased / 254 decreased MG cPP genes)"
+  reported_stat: "one-way ANOVA + Tukey, P(A/P)=1.71e-8; n nuclei = 1,930 young, 460 aged, 2,092 PD"
+  unit_of_analysis: cells
+  method: Monocle3 pseudotime (RNA + ATAC combined), one-way ANOVA with Tukey on nuclei
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Nuclei treated as independent (pseudoreplication). Score could be re-tested as a signature score of the cPP-correlated genes aggregated per donor."
+
+- id: adams2024-C03
+  paper: adams2024
+  statement: Oligodendrocytes are further altered in PD beyond aging, with cPP scores increasing from young to aged and from aged to PD.
+  quote: "Comparison of the cPP scores between groups showed significant increases from young to aged and from aged to PD"
+  location: "Abstract; Fig. 4a-c; Results \"Defining pseudopathogenesis trajectory in ODC\""
+  centrality: headline
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: trajectory
+  direction: up
+  comparison: PD vs aged control
+  genes: []
+  gene_source: "Supplementary Table 4 (299 increased / 474 decreased ODC cPP genes)"
+  reported_stat: "one-way ANOVA + Tukey, P(A/P)=1e-199; n nuclei = 15,192 young, 11,973 aged, 18,415 PD"
+  unit_of_analysis: cells
+  method: Monocle3 pseudotime (RNA + ATAC combined), one-way ANOVA with Tukey on nuclei
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Nuclei as unit. Replicate as donor-level signature score of cPP genes."
+
+- id: adams2024-C04
+  paper: adams2024
+  statement: A disease-associated oligodendrocyte subpopulation (high cPP, loss of canonical ODC functions, increased stress-response genes) exists and is enriched in PD, where only 48% of ODC nuclei are 'healthy' versus 89% in aged controls.
+  quote: "We present evidence for a disease-associated oligodendrocyte subtype"
+  location: "Abstract; Fig. 6a; Extended Data Fig. 6b; Results \"In-depth analysis of high cPP ODCs\""
+  centrality: headline
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated ODC (high cPP)
+  claim_type: state_enrichment
+  direction: enriched
+  comparison: PD vs aged control
+  genes: [HSP90AA1, FKBP5, MAPT, SELENOP, QDPR, SLC38A2, IGF1R]
+  gene_source: "Supplementary Table 5 (DEGs among healthy / intermediate / disease-associated ODCs)"
+  reported_stat: "89% of aged-control ODC nuclei vs 48% of PD ODC nuclei in 'healthy' population; no formal test reported"
+  unit_of_analysis: cells
+  method: kernel density estimation (multimode::locmodes) on cPP scores; proportions of nuclei per cohort
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "States defined by antimodes of cPP distribution; no donor-level test reported. Authors report the population also appears in Smajic et al. 2022 (Extended Data Fig. 6c,d). Signature genes are those up in disease-associated ODC (Fig. 6b)."
+
+- id: adams2024-C05
+  paper: adams2024
+  statement: CARNS1 expression in oligodendrocytes is lost progressively over aging and further reduced in PD.
+  quote: "We also observed an age-dependent loss of several genes that are further reduced in disease (CARNS1 and NKAIN2)."
+  location: "Abstract; Fig. 6b (right); Fig. 7a,b (RNA-FISH)"
+  centrality: headline
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs aged control
+  genes: [CARNS1]
+  gene_source: "Supplementary Table 5; Fig. 6b"
+  reported_stat: "RNA-FISH puncta around MBP+ nuclei: P(A/P)=2.78e-4, P(Y/P)=1.49e-11 (fields from 3 donors per cohort; n fields Y=26, A=18, PD=18)"
+  unit_of_analysis: cells
+  method: "DE: two-sided unpaired t-test on nuclei (FC>1.25, P<0.05); FISH: one-way ANOVA on imaging fields"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Validation by RNAscope uses fields (3-5 per donor, 3 donors per group) as unit. Also claims age-related decline (young vs aged)."
+
+- id: adams2024-C06
+  paper: adams2024
+  statement: Chromatin accessibility within a given cell type changes little between young, aged and PD donors.
+  quote: "Surprisingly, we found that chromatin accessibility changed little over aging or PD within the same cell types."
+  location: "Abstract; Supplementary Fig. 3a-c; Results \"Multiomic analysis of peak-gene associations\""
+  centrality: headline
+  modality: multiome-ATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: chromatin
+  direction: NA
+  comparison: PD vs aged control
+  genes: []
+  gene_source: text
+  reported_stat: "few differential peaks (counts in Supplementary Fig. 3); FC>1.25, P<0.05 unpaired t-test"
+  unit_of_analysis: cells
+  method: unpaired t-test on nuclei (FC>1.25, P<0.05)
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "snATAC or multiome ATAC data"
+  notes: "Null-type claim (absence of differential accessibility)."
+
+- id: adams2024-C07
+  paper: adams2024
+  statement: Differential gene expression within cell types in aging or PD is not correlated with promoter chromatin accessibility.
+  quote: "differential gene expression within cell types during aging or PD pathogenesis was not correlated with the chromatin accessibility of the promoters"
+  location: "Supplementary Fig. 4b-e; Results \"Multiomic analysis of peak-gene associations\""
+  centrality: secondary
+  modality: multiome-ATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: chromatin
+  direction: NA
+  comparison: PD vs aged control
+  genes: []
+  gene_source: text
+  reported_stat: "not reported in text"
+  unit_of_analysis: cells
+  method: correlation of DEG fold change with promoter accessibility change
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "paired RNA + ATAC (multiome)"
+  notes: ""
+
+- id: adams2024-C08
+  paper: adams2024
+  statement: Peak-gene associations in oligodendrocytes are substantially altered in PD; some (e.g. RASGRF1, MSRA) are unchanged between young and aged but lost only in PD.
+  quote: "some associations were unchanged between young and aged but decreased only in the PD cohort, including genes previously linked with longevity, such as RASGRF1"
+  location: "Abstract; Fig. 2b,d; Extended Data Fig. 2b"
+  centrality: headline
+  modality: multiome-ATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: chromatin
+  direction: down
+  comparison: PD vs aged control
+  genes: [RASGRF1, MSRA]
+  gene_source: "Fig. 2b (blue dots)"
+  reported_stat: "61 shared significant RASGRF1-linked peaks in young + aged controls, much fewer in PD"
+  unit_of_analysis: cells
+  method: "peak-gene Spearman correlation across nuclei vs 100 GC/accessibility-matched background peaks (Ma et al. 2020), P<0.05"
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "paired multiome RNA + ATAC in same nuclei"
+  notes: "Only testable in multiome datasets. Peak-gene link counts depend strongly on nuclei number per group (PD has more ODC nuclei)."
+
+- id: adams2024-C09
+  paper: adams2024
+  statement: Peak-gene associations for NEAT1 in oligodendrocytes are gained with aging and shared between aged controls and PD.
+  quote: "Increased peak–gene associations in both aged and PD groups compared to young (Fig. 2b, red dots) may indicate aging-specific changes, including the aging marker NEAT1."
+  location: "Fig. 2b,c; Extended Data Fig. 2a"
+  centrality: main
+  modality: multiome-ATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: chromatin
+  direction: up
+  comparison: aged control and PD vs young control
+  genes: [NEAT1]
+  gene_source: text
+  reported_stat: "43 correlated NEAT1 peaks specific to aged + PD groups"
+  unit_of_analysis: cells
+  method: peak-gene Spearman correlation across nuclei vs background peaks
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "paired multiome; young controls"
+  notes: "Aging claim."
+
+- id: adams2024-C10
+  paper: adams2024
+  statement: Cell-type-exclusive ATAC peaks show no significant enrichment of PD SNP heritability in any midbrain cell type, whereas microglia-specific peaks are enriched for AD heritability.
+  quote: "significantly associated with SNPs related to Alzheimer’s disease (AD) in MG but displayed no significant enrichment of SNP heritability of PD"
+  location: "Fig. 3a,b"
+  centrality: main
+  modality: multiome-ATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: NA
+  comparison: across cell types
+  genes: []
+  gene_source: text
+  reported_stat: "LDSC heritability enrichment P, not significant for PD in any cell type"
+  unit_of_analysis: cells
+  method: stratified LD score regression on cell-type-specific peaks (Corces et al. criteria)
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "PD and AD GWAS summary statistics"
+  notes: "Not a PD vs control comparison."
+
+- id: adams2024-C11
+  paper: adams2024
+  statement: Highly accessible ATAC peaks (detected in >10% of cells, including shared peaks) are significantly enriched for PD and AD GWAS heritability but less for other diseases.
+  quote: "these ATAC peaks are significantly associated with SNPs related to neurodegenerative diseases (PD and AD) but less enriched with other neuronal and non-neuronal diseases"
+  location: "Fig. 3c,d"
+  centrality: main
+  modality: multiome-ATAC
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes: []
+  gene_source: text
+  reported_stat: "LDSC -log10 P shown per cell type (Fig. 3d)"
+  unit_of_analysis: cells
+  method: stratified LD score regression
+  testable_with: atac
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: ""
+
+- id: adams2024-C12
+  paper: adams2024
+  statement: Oligodendrocyte and microglia proportions differ significantly between aged controls and PD.
+  quote: "we did note a statistical difference in MG and ODC populations between groups (P < 0.01 for ODCs and MG between young and aged and P < 0.05 for ODCs and MG between aged and PD"
+  location: "Fig. 1f; Supplementary Table 2"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: PD vs aged control
+  genes: []
+  gene_source: text
+  reported_stat: "two-sided t-test, ODC P(A/P)=0.023, MG P(A/P)=0.042; ODC P(Y/A)=0.002, MG P(Y/A)=0.007"
+  unit_of_analysis: donors
+  method: two-sided Student's t-test on proportions
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Direction not stated in text (likely ODC shift with reciprocal MG change; check Fig. 1f / Supplementary Table 2). Unit of t-test probably donor proportions but not stated explicitly. Covers both ODC and MG; consider splitting when direction is extracted (MG claim = same statistic). Neurons heavily under-recovered due to digitonin artefact."
+
+- id: adams2024-C13
+  paper: adams2024
+  statement: Microglia proportion differs significantly between aged controls and PD.
+  quote: "P < 0.05 for ODCs and MG between aged and PD"
+  location: "Fig. 1f; Supplementary Table 2"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: PD vs aged control
+  genes: []
+  gene_source: text
+  reported_stat: "two-sided t-test, MG P(A/P)=0.042"
+  unit_of_analysis: donors
+  method: two-sided Student's t-test on proportions
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Split from C12. Direction not given in text."
+
+- id: adams2024-C14
+  paper: adams2024
+  statement: Along the oligodendrocyte pseudopathogenesis trajectory, unfolded protein response and chaperone-mediated autophagy genes increase.
+  quote: "pathways related to Response to Unfolded Protein, Chaperone-Mediated Autophagy (CMA) and Negative Regulation of Cell Death were increased"
+  location: "Fig. 4d,e"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: UPR / CMA module
+  claim_type: de_pathway
+  direction: up
+  comparison: along cPP (young -> aged -> PD)
+  genes: [HSP90AA1]
+  gene_source: "Supplementary Table 4; Methods module lists (Protein Folding, Chaperone-Mediated Autophagy)"
+  reported_stat: "Spearman rho > 0.1 with cPP across nuclei; 299 genes increased"
+  unit_of_analysis: cells
+  method: Spearman correlation of gene expression with cPP across nuclei; GOstats enrichment
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Module gene names were stripped from the PMC text of the Methods; retrieve from the publisher PDF. Re-test as PD vs control module score per donor."
+
+- id: adams2024-C15
+  paper: adams2024
+  statement: Along the oligodendrocyte pseudopathogenesis trajectory, myelination and synapse-formation genes decrease.
+  quote: "genes related to normal ODC functions, such as myelination and synapse formation, decrease at high cPP"
+  location: "Fig. 4d,e"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: myelination module
+  claim_type: de_pathway
+  direction: down
+  comparison: along cPP (young -> aged -> PD)
+  genes: [CTNNA3]
+  gene_source: "Supplementary Table 4; Methods module lists (myelin-forming, synaptic support ODC)"
+  reported_stat: "Spearman rho < -0.1 with cPP; 474 genes decreased"
+  unit_of_analysis: cells
+  method: Spearman correlation with cPP across nuclei; GOstats
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: ""
+
+- id: adams2024-C16
+  paper: adams2024
+  statement: In microglia, homeostatic signatures decrease while aging and stage-1 (TREM2-independent) disease-associated microglia signatures increase along the pseudopathogenesis trajectory.
+  quote: "Combined gene module analysis showed a decrease in homeostatic gene signatures and increases in aging and stage1 (TREM2-independent) disease-associated MG"
+  location: "Fig. 5e; Results \"Pseudopathogenesis analysis shows distinct microglial changes\""
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Microglia
+  cell_state: stage 1 DAM / aging MG vs homeostatic MG
+  claim_type: state_enrichment
+  direction: up
+  comparison: along cPP (young -> aged -> PD)
+  genes: [P2RY12, APOE, DOCK5]
+  gene_source: "Methods 'Functional subtype gene modules' (homeostatic, stage 1 DAM, aging MG; from Keren-Shaul 2017 and others)"
+  reported_stat: "LOESS of module scores vs cPP; no test reported"
+  unit_of_analysis: cells
+  method: Seurat AddModuleScore vs cPP
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Could be split (homeostatic down / DAM up / aging up); kept together because derived from one figure panel of module trends. Immune activation and cytokine signalling GO terms increase, adhesion/chemotaxis decrease."
+
+- id: adams2024-C17
+  paper: adams2024
+  statement: Astrocyte cPP scores increase from young to aged but do not differ between aged controls and PD.
+  quote: "found a statistically significant increase in cPP score from young to aged samples but no difference between aged and PD nuclei"
+  location: "Extended Data Fig. 5a-d"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: trajectory
+  direction: NA
+  comparison: PD vs aged control
+  genes: []
+  gene_source: "Supplementary Table 4"
+  reported_stat: "ANOVA + Tukey, P(A/P)=0.24, P(Y/A)=0.002; n nuclei 999 Y, 397 A, 1,032 PD"
+  unit_of_analysis: cells
+  method: one-way ANOVA with Tukey on nuclei
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Null claim for PD."
+
+- id: adams2024-C18
+  paper: adams2024
+  statement: OPC cPP scores increase from young to aged but do not differ in PD.
+  quote: "OPCs exhibited similar results to ASs (Supplementary Fig. 8b–d) with a significant increase in cPP scores from young to aged nuclei but no difference in PD samples."
+  location: "Supplementary Fig. 8b-d"
+  centrality: secondary
+  modality: multiome-RNA
+  region: SN
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: trajectory
+  direction: NA
+  comparison: PD vs aged control
+  genes: []
+  gene_source: "Supplementary Table 4"
+  reported_stat: "not given in text"
+  unit_of_analysis: cells
+  method: one-way ANOVA with Tukey on nuclei
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Null claim."
+
+- id: adams2024-C19
+  paper: adams2024
+  statement: PD-specific (not age-related) changes in disease-associated oligodendrocytes include reduced myelination genes (MBP, MOBP) and glial-neuron adhesion genes (CTNNA3, NRXN3).
+  quote: "The list includes reductions in multiple genes involved in the myelination pathway (MBP and MOBP) and several glial–neuron adhesion genes (CTNNA3 and NRXN3)"
+  location: "Fig. 6b (left); Supplementary Table 5"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated ODC
+  claim_type: de_gene
+  direction: down
+  comparison: disease-associated vs healthy ODC (PD-specific, not changed young vs aged)
+  genes: [MBP, MOBP, CTNNA3, NRXN3]
+  gene_source: "Supplementary Table 5"
+  reported_stat: "two-sided t-test on nuclei, FC>1.25, P<0.05"
+  unit_of_analysis: cells
+  method: unpaired t-test on nuclei
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Comparison is between cPP-defined states, not donors; re-test as PD vs control pseudobulk in ODCs. MBP reduction over aging/PD supported by RNA-FISH (Fig. 7a,b)."
+
+- id: adams2024-C20
+  paper: adams2024
+  statement: PD-specific changes in disease-associated oligodendrocytes include increased SELENOP, QDPR, SLC38A2 and IGF1R.
+  quote: "as well as increases in genes not widely explored in PD, such as SELENOP, QDPR, SLC38A2 and IGF1R"
+  location: "Fig. 6b (left); Fig. 7g-j (RNA-FISH)"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated ODC
+  claim_type: de_gene
+  direction: up
+  comparison: disease-associated vs healthy ODC; PD vs aged control (FISH)
+  genes: [SELENOP, QDPR, SLC38A2, IGF1R]
+  gene_source: "Supplementary Table 5"
+  reported_stat: "RNA-FISH PD vs aged: SELENOP P=0.0231, QDPR P=0.0021 (fields from 3 donors per group, n fields A=22, PD=27)"
+  unit_of_analysis: cells
+  method: "unpaired t-test on nuclei; FISH t-test on imaging fields"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "FISH unit is imaging field (pseudoreplication of 3 donors)."
+
+- id: adams2024-C21
+  paper: adams2024
+  statement: Genes changed over aging and further in disease-associated oligodendrocytes include increased stress-response genes HSP90AA1 and FKBP5 and the neurodegeneration marker MAPT.
+  quote: "They include increases in stress response genes (HSP90AA1 and FKBP5) and well-known neurodegenerative markers, such as MAPT."
+  location: "Fig. 6b (right)"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated ODC
+  claim_type: de_gene
+  direction: up
+  comparison: aged vs young and disease-associated vs healthy ODC
+  genes: [HSP90AA1, FKBP5, MAPT]
+  gene_source: "Supplementary Table 5"
+  reported_stat: "two-sided t-test on nuclei, FC>1.25, P<0.05"
+  unit_of_analysis: cells
+  method: unpaired t-test on nuclei
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+
+- id: adams2024-C22
+  paper: adams2024
+  statement: NKAIN2 is lost with age in oligodendrocytes and further reduced in disease.
+  quote: "We also observed an age-dependent loss of several genes that are further reduced in disease (CARNS1 and NKAIN2)."
+  location: "Fig. 6b (right)"
+  centrality: main
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated ODC
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs aged control
+  genes: [NKAIN2]
+  gene_source: "Supplementary Table 5"
+  reported_stat: "two-sided t-test on nuclei, FC>1.25, P<0.05"
+  unit_of_analysis: cells
+  method: unpaired t-test on nuclei
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Split from the CARNS1 sentence (CARNS1 = C05)."
+
+- id: adams2024-C23
+  paper: adams2024
+  statement: PD-SNP-containing peaks at the MAPT locus are not linked to MAPT expression in healthy oligodendrocytes but are all linked to MAPT expression in disease-associated oligodendrocytes.
+  quote: "Five of these peaks, containing 17 individual PD-associated SNPs, have no association with MAPT expression in healthy cells, but all five peaks were associated with expression in disease-associated ODCs"
+  location: "Fig. 6c,d"
+  centrality: main
+  modality: multiome-ATAC
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated ODC
+  claim_type: chromatin
+  direction: up
+  comparison: disease-associated vs healthy ODC
+  genes: [MAPT]
+  gene_source: text
+  reported_stat: "PD-SNP peak-gene association change P(H/D)=8.28e-4 (t-test across peaks); peak intensity not different"
+  unit_of_analysis: cells
+  method: peak-gene Spearman correlation across nuclei; t-test across peaks
+  testable_with: atac
+  test_template: chromatin_da
+  requires: "paired multiome; cPP-defined ODC states"
+  notes: "Also: ODC PD-SNP peaks show no change in accessibility among states but changed peak-gene association."
+
+- id: adams2024-C24
+  paper: adams2024
+  statement: PDE1A expression in oligodendrocytes is decreased in PD compared with aged controls.
+  quote: "We also confirmed a significant decrease in PDE1A expression"
+  location: "Fig. 7e,f"
+  centrality: secondary
+  modality: imaging
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs aged control
+  genes: [PDE1A]
+  gene_source: text
+  reported_stat: "two-sided t-test, P=0.0106, n fields A=13, PD=13 (3 donors per group)"
+  unit_of_analysis: ROIs
+  method: RNAscope puncta per MBP+ nucleus field, t-test on fields
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Framed as validation ('confirmed') of a sequencing result not described in main text; PDE1A sequencing evidence presumably in Supplementary Table 5."
+
+- id: adams2024-C25
+  paper: adams2024
+  statement: RBFOX1 and OPALIN expression in oligodendrocytes peaks at low cPP and is lower in PD than in young donors.
+  quote: "both RBFOX1 and OPALIN expression levels peaked at lower cPP scores and then were reduced in high cPP and were lower in PD compared to young donors"
+  location: "Extended Data Fig. 4f-h; Fig. 7c,d"
+  centrality: secondary
+  modality: multiome-RNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: RBFOX1+ / OPALIN+ ODC
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs young control
+  genes: [RBFOX1, OPALIN]
+  gene_source: text
+  reported_stat: "dot plot only; FISH RBFOX1 aged vs young P=0.0001"
+  unit_of_analysis: cells
+  method: descriptive (dot plot by cohort)
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "young controls"
+  notes: "Comparison is to young, not aged controls."
+
+- id: adams2024-C26
+  paper: adams2024
+  statement: NEAT1, FKBP5 and SLC38A2 are differentially expressed between groups in multiple cell types.
+  quote: "Several genes that have been previously associated with neurological disorders, such as NEAT1, FKBP5 and SLC38A2, were differentially expressed in multiple cell types"
+  location: "Supplementary Fig. 2a,b; Supplementary Table 3"
+  centrality: secondary
+  modality: multiome-RNA
+  region: SN
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: aged vs young and PD vs aged control
+  genes: [NEAT1, FKBP5, SLC38A2]
+  gene_source: "Supplementary Table 3"
+  reported_stat: "FC>1.25, P<0.05, two-sided t-test on nuclei"
+  unit_of_analysis: cells
+  method: unpaired t-test on nuclei
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Direction and comparison per cell type are only in Supplementary Table 3 / Supplementary Fig. 2."

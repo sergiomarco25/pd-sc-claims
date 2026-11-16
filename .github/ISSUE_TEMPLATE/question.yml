@@ -1,0 +1,57 @@
+name: Ask the evidence base
+description: Ask a question about Parkinson's disease single-cell evidence. We answer from the rated claims, or run a new analysis across the harmonised datasets and add the result as a finding.
+title: "[Question] "
+labels: ["atlas-question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Questions and answers are public. Please don't include personal or patient-identifying information.
+        Before asking, you can search the claims in the atlas or through the MCP/REST server (see the README).
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: One question, as specific as you can (cell type, region, comparison).
+      placeholder: "Is CIRBP lower in PD astrocytes in the putamen than in controls?"
+    validations:
+      required: true
+  - type: input
+    id: cell_types
+    attributes:
+      label: Cell type(s)
+      placeholder: "Astrocytes; Microglia (or: any)"
+  - type: input
+    id: regions
+    attributes:
+      label: Brain region(s)
+      placeholder: "putamen; SN (or: any)"
+  - type: dropdown
+    id: comparison
+    attributes:
+      label: Comparison
+      options:
+        - PD vs control
+        - Lewy-body disease (PD, PDD, DLB) vs control
+        - Along Braak / Lewy-body stage
+        - Within PD (e.g. by disease duration)
+        - Other (describe in the question)
+    validations:
+      required: true
+  - type: textarea
+    id: genes
+    attributes:
+      label: Genes or gene set (optional)
+      description: Gene symbols, a named pathway, or a published signature.
+  - type: textarea
+    id: answer_criterion
+    attributes:
+      label: What would answer it? (optional)
+      description: The result that would mean "yes" and the one that would mean "no", stated before the analysis.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before you submit
+      options:
+        - label: I understand the question, any analysis and its answer are public, and results enter the evidence base as rated findings (CC BY 4.0).
+          required: true

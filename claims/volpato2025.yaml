@@ -1,0 +1,662 @@
+- id: volpato2025-C01
+  paper: volpato2025
+  statement: The ventral SNpc contains four DaN subtypes (DaN_0 GRIA3/DCX; DaN_1 SLC6A3/GFRA2/RET/PITX3; DaN_2 TMEFF2; DaN_3 like DaN_1 but AGTR1-high) and a perineuronal satellite oligodendrocyte population psODC_2 (RBFOX1, AFF3, FMN1, PDGFRA/B, PDGFC, CLDN10).
+  quote: DaN_1 showing high similarity to DaN_3 in expression of marker genes (SLC6A3, GFRA2, RET, PITX3) except for AGTR1 that was specifically more expressed in DaN_3
+  location: Fig. 1b,e,f; Results "Deep single nuclei sequencing of the human postmortem ventral SNpc"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: DaN_0-3; ODC_0-2 (psODC_2); Astrocyte_0-3; Microglia_0-2
+  claim_type: state_existence
+  direction: exists
+  comparison: within dataset
+  genes:
+  - LMX1A
+  - LMX1B
+  - GFRA2
+  - GRIK3
+  - GRIA3
+  - DCX
+  - SLC6A3
+  - RET
+  - PITX3
+  - AGTR1
+  - TMEFF2
+  - RBFOX1
+  - AFF3
+  - FMN1
+  - PDGFRA
+  - PDGFRB
+  - PDGFC
+  - CLDN10
+  - OPALIN
+  - PLP1
+  - GPNMB
+  - SPP1
+  - TREM2
+  gene_source: Fig. 1e,f; Table S2
+  reported_stat: 23,034 nuclei, 20 donors
+  unit_of_analysis: cells
+  method: Seurat clustering of SMART-seq nuclei
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Subtype annotations needed for most other claims; transfer labels via marker genes.
+- id: volpato2025-C02
+  paper: volpato2025
+  statement: Common-variant PD risk is enriched in OPC-specific genes (Bonferroni) and DaN-specific genes (nominal) among ventral SNpc major cell types.
+  quote: observed significant enrichment in OPCs (Bonferroni-corrected P<0.05) and in DaNs (nominal P<0.05)
+  location: Fig. 2a; Table S3; Results "PD genetic risk is associated with AGTR1+ DaNs, perineuronal satellite ODCs and OPCs"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: OPCs
+  cell_state: ''
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across major cell types (controls)
+  genes: []
+  gene_source: Table S3; cell-type-specific genes = top 2-10% Mann-Whitney specificity
+  reported_stat: MAGMA, OPC Bonferroni P < 0.05; DaN nominal P < 0.05
+  unit_of_analysis: cells
+  method: MAGMA gene-set analysis with conditional analysis
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: PD GWAS summary statistics
+  notes: Compound (OPCs + DaNs at different thresholds).
+- id: volpato2025-C03
+  paper: volpato2025
+  statement: Among cell subtypes, PD heritable risk is significantly enriched in AGTR1+ DaN_3-specific genes.
+  quote: significant enrichments of PD heritable risk was found among cell-type-specific genes of AGTR1+ DaN_3 (Bonferroni-corrected P<0.05)
+  location: Fig. 2b; Table S3
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across subtypes (controls)
+  genes:
+  - AGTR1
+  gene_source: Table S3
+  reported_stat: MAGMA Bonferroni P < 0.05; DaN_1 nominal, lost when conditioned on DaN_3
+  unit_of_analysis: cells
+  method: MAGMA with conditional analysis
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: DaN subtype annotation; PD GWAS
+  notes: Replicates Kamath 2022 SOX6_AGTR1 enrichment.
+- id: volpato2025-C04
+  paper: volpato2025
+  statement: PD heritable risk is significantly enriched in perineuronal satellite oligodendrocyte (psODC_2)-specific genes, independently of the DaN_3 signal.
+  quote: and in psODC_2 (Bonferroni-corrected P<0.05) ... the fraction of PD genetic risk contributing to the psODC_2 association was distinct to that fraction associated with AGTR1+ DaN_3
+  location: Fig. 2b; Fig. S2
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: psODC_2 (perineuronal satellite ODCs)
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across subtypes (controls)
+  genes:
+  - RBFOX1
+  - PDGFRA
+  - PDGFC
+  - CLDN10
+  gene_source: Table S3
+  reported_stat: MAGMA Bonferroni P < 0.05
+  unit_of_analysis: cells
+  method: MAGMA with conditional analysis
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: psODC_2 annotation; PD GWAS
+  notes: ''
+- id: volpato2025-C05
+  paper: volpato2025
+  statement: PD risk converges on four AGTR1+ DaN_3-specific PPI modules (neurotransmitter transport, dopamine secretion, cell communication, autophagy, gene regulation), one psODC_2 module (ion homeostasis, synaptic signalling) and one OPC module (cellular respiration, oxidative processes).
+  quote: MAGMA gene set analyses of each module found PD risk to be associated with four AGTR1+ DaN_3-specific gene modules
+  location: Fig. 2c
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3; psODC_2; OPC
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across PPI modules
+  genes: []
+  gene_source: Fig. 2c (module genes in supplementary)
+  reported_stat: MAGMA per module
+  unit_of_analysis: cells
+  method: Louvain PPI modules of top 10,000 specific genes + MAGMA
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: PPI network
+  notes: Compound; low priority.
+- id: volpato2025-C06
+  paper: volpato2025
+  statement: AGTR1+ DaN_3 shows the largest significant reduction in PD (Braak 5-6) ventral SNpc.
+  quote: The largest statistically significant reduction was for the AGTR1+ DaN_3 confirming the loss reported
+  location: Fig. 3a; Results "Altered cellular landscape of DaNs and ODCs in the ventral SNpc of PD"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: composition
+  direction: depleted
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - AGTR1
+  - SLC6A3
+  - GFRA2
+  gene_source: Table S2
+  reported_stat: significant in scProportionTest and propeller; 6 PD Braak 5-6 vs 7 controls
+  unit_of_analysis: cells
+  method: scProportionTest (cell-label permutation, FDR) intersected with propeller (speckle; donors as replicates)
+  testable_with: rna
+  test_template: composition_donor
+  requires: DaN subtype annotation
+  notes: 'Text later says DaN_3 shows ''complete loss/absence in the disease samples'' (no DE possible). Unit: permutation on cells, cross-checked with donor-level propeller.'
+- id: volpato2025-C07
+  paper: volpato2025
+  statement: Astrocyte_2 (PTPRT, ADGRV1, EPHB1; neuronal-support genes) is reduced in PD (Braak 5-6).
+  quote: but reductions were also found for the Astrocyte_2 and psODC_2
+  location: Fig. 3a
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocyte_2
+  claim_type: composition
+  direction: depleted
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - PTPRT
+  - ADGRV1
+  - EPHB1
+  gene_source: Table S2
+  reported_stat: scProportionTest + propeller
+  unit_of_analysis: cells
+  method: scProportionTest (cell-label permutation, FDR) intersected with propeller (speckle; donors as replicates)
+  testable_with: rna
+  test_template: composition_donor
+  requires: astrocyte subtype annotation
+  notes: 'Text: Astrocyte_2 absent in PD samples. Marker ''APHA6'' in PDF likely a typo.'
+- id: volpato2025-C08
+  paper: volpato2025
+  statement: Perineuronal satellite oligodendrocytes (psODC_2) are reduced in PD (Braak 5-6) ventral SNpc.
+  quote: but reductions were also found for the Astrocyte_2 and psODC_2
+  location: Fig. 3a; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: psODC_2 (perineuronal satellite ODCs)
+  claim_type: composition
+  direction: depleted
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - RBFOX1
+  - AFF3
+  - FMN1
+  - PDGFRA
+  - PDGFC
+  - CLDN10
+  gene_source: Table S2
+  reported_stat: scProportionTest + propeller
+  unit_of_analysis: cells
+  method: scProportionTest (cell-label permutation, FDR) intersected with propeller (speckle; donors as replicates)
+  testable_with: rna
+  test_template: composition_donor
+  requires: psODC_2 annotation
+  notes: ''
+- id: volpato2025-C09
+  paper: volpato2025
+  statement: AGTR1 transcripts (RNAscope) and AGTR1 protein coverage are reduced in PD SNpc.
+  quote: AGTR1 transcripts were significantly reduced in PD Braak stage 5-6 compared to healthy controls (p<0.05) ... AGTR1 coverage was significantly reduced in PD versus controls and iLBD groups
+  location: Fig. 3b,c
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+
+  claim_type: composition
+  direction: down
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - AGTR1
+  gene_source: text
+  reported_stat: p < 0.05; histology cohort 4 PD, 4 iLBD, 5 controls
+  unit_of_analysis: donors
+  method: RNAscope / IHC quantification (QuPath)
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: ''
+- id: volpato2025-C10
+  paper: volpato2025
+  statement: Perineuronal oligodendrocytes per neuron, corrected for neuronal loss, are reduced in PD SNpc.
+  quote: After correction for neuronal loss (Methods), perineuronal oligodendrocytes are significantly decreased in PD versus healthy controls
+  location: Fig. 3d
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: perineuronal oligodendrocytes
+  claim_type: composition
+  direction: depleted
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - OLIG2
+  gene_source: text
+  reported_stat: significant; ~2,000 neurons counted, 4 PD, 4 iLBD, 5 controls
+  unit_of_analysis: donors
+  method: cresyl violet/OLIG2 histology counts
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: single-cell spatial data with neuron segmentation
+  notes: Spatial definition (within 5 μm of a neuron); in snRNA only via psODC_2 proportion (C08).
+- id: volpato2025-C11
+  paper: volpato2025
+  statement: AGTR1-expressing neurons are already reduced at Braak stages I-IV, whereas psODC loss occurs only at Braak 5-6, indicating that neuronal loss precedes psODC loss.
+  quote: our neuropathological counts reveal that AGTR1-expressing neurons are already significantly reduced in Braak stages I-IV while psODC_2 are only reduced in PD Braak stage 5-6
+  location: Fig. 3c,d
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3; psODC_2
+  claim_type: pathology_association
+  direction: depleted
+  comparison: iLBD/PD Braak I-IV vs control, PD Braak 5-6 vs control
+  genes:
+  - AGTR1
+  gene_source: text
+  reported_stat: p < 0.05
+  unit_of_analysis: donors
+  method: histology counts
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: Braak stage; early-stage (iLBD) donors
+  notes: snRNA-seq is not powered for stage comparisons (authors). Compound across two cell types.
+- id: volpato2025-C12
+  paper: volpato2025
+  statement: DaN_0 and DaN_1 show the most PD DEGs across stages, whereas DaN_2 (TMEFF2+) shows few DEGs and appears disease-resistant; OPCs, microglia, GABAergic neurons, T cells and most astrocytes show little disease effect.
+  quote: DaN_0 and DaN_1 showed the highest number of DEGs across all disease stages. DaN_2 exhibited few DEGs appearing relatively disease-resistant
+  location: Fig. 3e
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: DaN_0, DaN_1, DaN_2
+  claim_type: de_gene
+  direction: NA
+  comparison: PD/iLBD stages vs control
+  genes:
+  - TMEFF2
+  gene_source: Table S4
+  reported_stat: DEG counts
+  unit_of_analysis: cells
+  method: Seurat FindMarkers Wilcoxon on cells; adj p < 0.05, |logFC| > 1
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: DaN subtype annotation
+  notes: DEG counts depend on cell numbers; compound.
+- id: volpato2025-C13
+  paper: volpato2025
+  statement: In PD, DaN_1 shows downregulation of cell-cell signalling, communication and neuronal support genes and upregulation of mitochondrial processes (oxidative phosphorylation up along disease trajectory).
+  quote: an overall downregulation of cell-cell signalling, cell communication and neuronal support, and upregulation of mitochondrial-related processes specifically in the DaN_1 population
+  location: Fig. 3e; Fig. S4; Table S4
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: DaN_1
+  claim_type: de_pathway
+  direction: NA
+  comparison: PD (Braak 5-6) vs control
+  genes: []
+  gene_source: Table S4; Table S6
+  reported_stat: GO enrichment (topGO)
+  unit_of_analysis: cells
+  method: Seurat FindMarkers Wilcoxon on cells; adj p < 0.05, |logFC| > 1 + topGO
+  testable_with: rna
+  test_template: geneset_shift
+  requires: DaN subtype annotation; OXPHOS and synaptic gene sets
+  notes: 'Mixed direction: synaptic/communication down, mitochondrial/OXPHOS up.'
+- id: volpato2025-C14
+  paper: volpato2025
+  statement: In PD, Astrocyte_1 is specifically enriched for response-to-cytokine genes among DEGs.
+  quote: Astrocyte_1 showed a specific enrichment in response to cytokine
+  location: Table S4
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocyte_1 (GABRA2, EDNRB, SLC6A11)
+  claim_type: de_pathway
+  direction: up
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - GABRA2
+  - EDNRB
+  - SLC6A11
+  gene_source: Table S4
+  reported_stat: GO enrichment
+  unit_of_analysis: cells
+  method: Seurat FindMarkers Wilcoxon on cells; adj p < 0.05, |logFC| > 1
+  testable_with: rna
+  test_template: geneset_shift
+  requires: astrocyte subtype annotation
+  notes: Direction of the DEGs not stated.
+- id: volpato2025-C15
+  paper: volpato2025
+  statement: In PD, ODC_0 DEGs are enriched for response to unfolded protein, cell activation and regulation of cell death (ODC_1 for stress response signalling).
+  quote: ODC_0 in response to unfolded protein, cell activation and regulation of cell death, and ODC_1 in stress response signalling
+  location: Table S4
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: ODC_0 (PLXDC2, PALM2, LAMA2)
+  claim_type: de_pathway
+  direction: up
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - PLXDC2
+  - PALM2
+  - LAMA2
+  gene_source: Table S4
+  reported_stat: GO enrichment
+  unit_of_analysis: cells
+  method: Seurat FindMarkers Wilcoxon on cells; adj p < 0.05, |logFC| > 1
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ODC subtype annotation
+  notes: Direction not explicit.
+- id: volpato2025-C16
+  paper: volpato2025
+  statement: Differential transcript usage in PD exceeds differential gene expression in OPCs and ODC_1, with little overlap; ANOS1 is the top OPC gDTU.
+  quote: We observed a significantly higher number of genes with differential transcript usage (gDTU) than DEGs in OPCs and ODC_1 ... with the top gDTU being anosmin-1 (ANOS1)
+  location: Fig. 3e; Fig. S5
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: OPCs
+  cell_state: ''
+  claim_type: other
+  direction: NA
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - ANOS1
+  gene_source: Table S4
+  reported_stat: 1% (OPC) and 13% (ODC_1) gDTU-DEG overlap
+  unit_of_analysis: cells
+  method: DTU analysis (q < 0.05) on full-length transcripts
+  testable_with: not_testable
+  test_template: not_testable
+  requires: full-length (isoform-resolved) data
+  notes: Not testable in 3' 10x datasets.
+- id: volpato2025-C17
+  paper: volpato2025
+  statement: 'OPC-to-oligodendrocyte differentiation ordering is altered in PD: psODC_2 lies adjacent to OPCs in controls but ODC_1 does in PD.'
+  quote: We observed altered ordering in PD, with psODC_2 adjacent to OPCs in healthy controls but ODC_1 adjacent to OPCs in PD suggesting altered OPC-ODC differentiation
+  location: Fig. 3f,g; Fig. S7
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: OPCs
+  cell_state: OPC -> psODC_2 / ODC_1
+  claim_type: trajectory
+  direction: NA
+  comparison: PD (Braak 5-6) vs control
+  genes:
+  - PDGFRA
+  - PCDH15
+  - PTPRZ1
+  - VCAN
+  - BMP4
+  - SCN2A
+  gene_source: Table S5
+  reported_stat: qualitative (isoform-based slingshot)
+  unit_of_analysis: cells
+  method: isoform-based slingshot pseudotime, separately per condition
+  testable_with: rna
+  test_template: trajectory
+  requires: ''
+  notes: Isoform-based in source; gene-level trajectory is an approximation.
+- id: volpato2025-C18
+  paper: volpato2025
+  statement: PD-risk genes are enriched in ligand-receptor interactions among AGTR1+ DaN_3, OPCs, psODC_2, Microglia_2 and Astrocyte_1 in control tissue; DaN_3-psODC_2 crosstalk involves laminin, plexin, EPHA and CDH signalling.
+  quote: we found significant enrichments for MAGMA PD genetic risk-associated genes in LR interactions between AGTR1+ DaN_3, OPC and psODC_2
+  location: Fig. 4a,b,f
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3; psODC_2; OPC
+  claim_type: communication
+  direction: enriched
+  comparison: within controls
+  genes: []
+  gene_source: CellChat DB; top 100 MAGMA genes
+  reported_stat: permutation (10,000)
+  unit_of_analysis: cells
+  method: CellChat + permutation enrichment of MAGMA genes in LR pairs
+  testable_with: rna
+  test_template: communication_liana
+  requires: PD GWAS
+  notes: 'Abstract: OPCs ''enriched among disease-disrupted intercellular interactions''.'
+- id: volpato2025-C19
+  paper: volpato2025
+  statement: Cell-cell communication is globally decreased in PD, mainly through loss of AGTR1+ DaN_3, whose incoming pathways (CDH, EPHA, EPHB, APELIN, VEGF, Semaphorin, Wnt, Reelin, CXCL) relate to neuronal survival.
+  quote: we observe global decrease of cell communications in PD mainly caused by the loss of AGTR1+ DaN_3 as the core cell population in the identified networks
+  location: Fig. 4d-f; Fig. S9
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: communication
+  direction: down
+  comparison: PD (Braak 5-6) vs control
+  genes: []
+  gene_source: CellChat
+  reported_stat: CellChat interaction number/strength
+  unit_of_analysis: cells
+  method: CellChat PD Braak 5-6 vs control
+  testable_with: rna
+  test_template: communication_liana
+  requires: DaN subtype annotation
+  notes: ''
+- id: volpato2025-C20
+  paper: volpato2025
+  statement: AGTR1+ DaN_3 has the highest expression of dopamine signalling genes and of renin-angiotensin system effectors among DaN subtypes.
+  quote: AGTR1+ DaN_3 showed the highest expression of genes involved in dopamine signalling (Fig. 5a) and of the main effectors of the renin-angiotensin system (RAS)
+  location: Fig. 5a,b; Results "A metabolic stress state underlies DaN-specific vulnerability"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: state_existence
+  direction: up
+  comparison: DaN_3 vs other DaN subtypes
+  genes:
+  - AGTR1
+  - TH
+  - SLC6A3
+  gene_source: Fig. 5a,b
+  reported_stat: descriptive
+  unit_of_analysis: cells
+  method: expression comparison
+  testable_with: rna
+  test_template: state_signature
+  requires: DaN subtype annotation
+  notes: RAS gene list in Fig. 5b (not in text).
+- id: volpato2025-C21
+  paper: volpato2025
+  statement: 'AGTR1+ DaN_3 is a metabolically stressed cell state rather than a distinct type: a DaN_1-to-DaN_3 pseudotime trajectory upregulates RAS genes, synaptic/dopamine transport and stress-activated MAPK/JNK cascades.'
+  quote: AGTR1+ neurons represent a metabolically stressed state, characterised by renin-angiotensin system (RAS) and MAPK activation, oxidative stress, and mitochondrial dysfunction, rather than a distinct subtype
+  location: Abstract; Fig. 5d,e; Fig. S11; Table S5-S6
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: trajectory
+  direction: up
+  comparison: within controls (DaN_1 -> DaN_3 pseudotime)
+  genes:
+  - AGTR1
+  gene_source: Fig. S11; Table S5, S6
+  reported_stat: switchde / tradeSeq q < 0.05
+  unit_of_analysis: cells
+  method: slingshot + switchde/tradeSeq
+  testable_with: rna
+  test_template: trajectory
+  requires: DaN subtype annotation
+  notes: 'Supported in vitro: MPP+ and 6-OHDA increased AGTR1 protein in iPSC DA neurons (Fig. 5c). ''State not type'' is interpretive.'
+- id: volpato2025-C22
+  paper: volpato2025
+  statement: Type 2 diabetes genetic risk is enriched in AGTR1+ DaN_3-specific genes, via gene sets distinct from those carrying PD risk.
+  quote: We observed a significant MAGMA T2D genetic risk enrichment in AGTR1 DaN_3 (Fig. 6a) involving distinct sets of AGTR1+ DaN_3 specific genes from those identified by PD risk
+  location: Fig. 6a,b; Table S7
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across subtypes
+  genes: []
+  gene_source: Table S7
+  reported_stat: MAGMA; conditional PD|T2D p = 5e-5, T2D|PD p = 0.005
+  unit_of_analysis: cells
+  method: MAGMA with conditional analysis
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: T2D GWAS summary statistics
+  notes: ''
+- id: volpato2025-C23
+  paper: volpato2025
+  statement: After conditioning on T2D genetic risk, PD risk is also significantly enriched in reactive Astrocyte_1, which upregulates angiotensinogen (AGT).
+  quote: When conditioning on T2D genetic risk, we observed not only a stronger MAGMA PD risk enrichment in AGTR1+ DaN_3 but now also a significant MAGMA PD risk enrichment in the reactive Astrocyte_1 population
+  location: Fig. 6a; Fig. S12
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocyte_1
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across subtypes
+  genes:
+  - AGT
+  gene_source: Fig. S12
+  reported_stat: MAGMA conditional
+  unit_of_analysis: cells
+  method: MAGMA conditional on T2D
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: PD and T2D GWAS
+  notes: AGT upregulation in Astrocyte_1 is a marker property (Fig. S12), not PD vs control.
+- id: volpato2025-C24
+  paper: volpato2025
+  statement: T2D therapeutic targets GLP1R, GCGR and GIPR are specifically upregulated in AGTR1+ DaN_3.
+  quote: We found GLP1R upregulated along with other T2D therapeutic targets like GCGR and GIPR specifically in the AGTR1 DaN_3 population
+  location: Fig. 6c,d; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: de_gene
+  direction: up
+  comparison: DaN_3 vs other cell populations
+  genes:
+  - GLP1R
+  - GCGR
+  - GIPR
+  gene_source: Fig. 6c; Table S8
+  reported_stat: not given in text
+  unit_of_analysis: cells
+  method: marker expression (Wilcoxon)
+  testable_with: rna
+  test_template: state_signature
+  requires: DaN subtype annotation
+  notes: Ambiguous whether 'upregulated' means DaN_3-specific marker or PD vs control; text reads as cell-type specificity. GLP1R/GIPR are low-abundance and may be undetectable in 3' data.
+- id: volpato2025-C25
+  paper: volpato2025
+  statement: Genes at the PD+T2D comorbidity loci (RAS pathway genes including AGTR1) show higher expression in AGTR1+ DaN_3 than in other cell types.
+  quote: MAGMA associated PD+T2D risk genes were enriched in the RAS pathway (p-value =0.000012) with these RAS genes showing higher expression in AGTR1+ DaN_3 than other cell types
+  location: Fig. 6e-g
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes:
+  - AGTR1
+  - TCF7L2
+  gene_source: Fig. 6g
+  reported_stat: RAS pathway enrichment p = 1.2e-5
+  unit_of_analysis: cells
+  method: novel GWAS (PD with vs without T2D; OPDC, Tracking Parkinson's, UK Biobank) + MAGMA + expression
+  testable_with: rna
+  test_template: state_signature
+  requires: RAS gene set
+  notes: The GWAS itself (genome-wide significant AGTR1 and TCF7L2 loci) is not a single-cell claim; only the expression part is testable.
+- id: volpato2025-C26
+  paper: volpato2025
+  statement: TCF7L2 is among the most active transcription factors (SCENIC regulons) specifically in AGTR1+ DaN_3 and in Astrocyte_1.
+  quote: SCENIC revealed that TCF7L2 was among the top most active TFs ranked by AUC specifically in the AGTR1+ DaN_3 and in Astrocyte_1
+  location: Fig. 6g,h; Fig. S14, S15; Table S9
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: AGTR1+ DaN_3; Astrocyte_1
+  claim_type: state_existence
+  direction: up
+  comparison: across subtypes
+  genes:
+  - TCF7L2
+  gene_source: Table S9
+  reported_stat: SCENIC AUC
+  unit_of_analysis: cells
+  method: SCENIC
+  testable_with: rna
+  test_template: state_signature
+  requires: subtype annotation
+  notes: ''
+- id: volpato2025-C27
+  paper: volpato2025
+  statement: In perineuronal oligodendrocytes, the PD-metabolic trait association reflects insulin resistance with downregulated PI3K-AKT signalling.
+  quote: in pODCs, this association reflects insulin resistance with downregulated PI3K-AKT signalling
+  location: Abstract (medRxiv v2, 2025-11-14)
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: psODC_2 (perineuronal ODCs)
+  claim_type: de_pathway
+  direction: down
+  comparison: PD (Braak 5-6) vs control
+  genes: []
+  gene_source: not available (v2 full text not accessed)
+  reported_stat: not available
+  unit_of_analysis: cells
+  method: unknown
+  testable_with: rna
+  test_template: geneset_shift
+  requires: psODC annotation; PI3K-AKT / insulin signalling gene set
+  notes: Only in the v2 abstract; the v1 full text read here does not contain this analysis. Comparison (PD vs control?) unverified.

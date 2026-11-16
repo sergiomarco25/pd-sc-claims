@@ -1,0 +1,7 @@
+claim_id	term	reason
+kamath2022-C10	MG_GPNMB_SULT1C2 marker table	marker table not in supplement (only DA subtype markers given); state-name genes used
+kamath2022-C11	Astro_VIM_LHX2 marker table	marker table not in supplement (only DA subtype markers given); state-name genes used
+kamath2022-C22	SOX6_AGTR1 PD-vs-control DE table	DE table not in supplement (Supp. Table 10 gives DEG counts only); TP53 from text used
+kamath2022-C19	TP53 targets (enrichR TRRUST/ENCODE/ARCHS4 TF target sets; up in SOX6_AGTR1)	only TF name given; resolve target set centrally (TRRUST / ENCODE / ARCHS4 libraries)
+kamath2022-C20	NR2F2 targets (enrichR TRRUST/ENCODE/ARCHS4 TF target sets; up in SOX6_AGTR1)	only TF name given; resolve target set centrally (TRRUST / ENCODE / ARCHS4 libraries)
+kamath2022-C21	LMX1A targets (enrichR TRRUST/ENCODE/ARCHS4 TF target sets; down in SOX6_AGTR1)	only TF name given; resolve target set centrally (TRRUST / ENCODE / ARCHS4 libraries)

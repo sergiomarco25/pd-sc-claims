@@ -1,0 +1,8 @@
+label	ontology	term	definition	ontology_id	ontology_label	check
+control			no neurological diagnosis and no Lewy pathology reported by the source			no term
+PD	mondo	Parkinson disease	Parkinson's disease without recorded dementia (or dementia status not given)	MONDO:0005180	Parkinson disease	ok
+PDD	mondo	Parkinson disease	Parkinson's disease with dementia, as stated by the source [broader term]	MONDO:0005180	Parkinson disease	ok
+DLB	mondo	Lewy body dementia	dementia with Lewy bodies	MONDO:0007488	Lewy body dementia	ok
+LBD	mondo	synucleinopathy	Lewy body disease, subtype not given by the source [broader term]	MONDO:0000510	synucleinopathy	ok
+iLBD	mondo	synucleinopathy	Lewy pathology without clinical parkinsonism or dementia [broader term]	MONDO:0000510	synucleinopathy	ok
+AD	mondo	Alzheimer disease	Alzheimer's disease	MONDO:0004975	Alzheimer disease	ok

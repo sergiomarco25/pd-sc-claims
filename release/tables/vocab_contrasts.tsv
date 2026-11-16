@@ -1,0 +1,30 @@
+code	kind	case_group	reference_group
+PDany_vs_control	case_control	PD or PDD	control
+PD_vs_control	case_control	PD	control
+PDD_vs_control	case_control	PDD	control
+DLB_vs_control	case_control	DLB	control
+LBDany_vs_control	case_control	any Lewy body disease (PD, PDD, DLB, LBD)	control
+AD_vs_control	case_control	AD	control
+iLBD_vs_control	case_control	iLBD	control
+LBearly_vs_control	stage	Lewy body stage 1-2 (iLBD or Lewy body disease)	control
+LBmid_vs_control	stage	Lewy body stage 3-4	control
+LBlate_vs_control	stage	Lewy body stage 5-6	control
+PDD_vs_PD	between_disease	PDD	PD
+DLB_vs_PD	between_disease	DLB	PD
+DLB_vs_PDD	between_disease	DLB	PDD
+PD_vs_agedcontrol	case_control	PD or PDD	aged control
+aged_vs_youngcontrol	ageing	aged control	young control
+UPR_vs_other	donor_group	GLIAD UPR-high donors	other donors
+Reactive_vs_other	donor_group	GLIAD Reactive donors	other donors
+UPR_vs_other+Reactive_vs_other	donor_group	GLIAD UPR-high and Reactive donors	other donors
+GBA_vs_control	genotype	GBA1-PD	control
+LRRK2_vs_control	genotype	LRRK2-PD	control
+braak	continuous	higher Lewy body stage	lower Lewy body stage
+sex	covariate	male	female
+PD_AD_concordance	cross_disease	PD vs control	AD vs control (concordance)
+within	within		
+pmi	covariate	longer post-mortem interval	shorter post-mortem interval
+age	covariate	older age	younger age
+SCZ_vs_control	case_control	schizophrenia	control
+not_available	not_available		
+	unassigned		

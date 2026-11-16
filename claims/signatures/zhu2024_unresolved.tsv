@@ -1,0 +1,18 @@
+claim_id	term	reason
+zhu2024-C01	brain-resident T cell markers beyond the 4 named genes (fig. S1/S3)	supplement not obtainable; named genes from text emitted
+zhu2024-C04	table S3 cell-type DEGs (ExN / InN up and down lists)	supplement not obtainable; no genes named in text
+zhu2024-C05	table S3 neuron DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C06	table S3 astrocyte DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C07	table S3 astrocyte DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C08	table S3 microglia DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C09	table S3 oligodendrocyte DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C10	table S3 OPC DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C11	table S3 T cell DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C12	table S3 excitatory neuron DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C13	table S3 inhibitory neuron DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C16	table S3 DEGs (cell types with SNCA up not named in text)	supplement not obtainable; named genes from text emitted
+zhu2024-C17	table S3 excitatory neuron DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C19	UTMOST PD GWAS gene list (Fig. 3C) and oligodendrocyte DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C20	UTMOST PD GWAS gene list (Fig. 3E) and ExN DEGs	supplement not obtainable; named genes from text emitted
+zhu2024-C25	PD/AD shared DEG list (Fig. 6A)	supplement not obtainable; named genes from text emitted
+zhu2024-C12	GO BP: protein folding / response to unfolded protein (Fig. 1H, 2C)	pathway named only; resolve from MSigDB (GO:0006457 protein folding, GO:0006986 response to unfolded protein)

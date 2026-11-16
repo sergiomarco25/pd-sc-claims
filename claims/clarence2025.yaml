@@ -1,0 +1,666 @@
+- id: clarence2025-C01
+  paper: clarence2025
+  statement: PD is associated with widespread cell-type-specific gene expression changes across neurons, glia and vascular cells, with the most DEGs in excitatory neurons and astrocytes, followed by oligodendrocytes.
+  quote: "The largest number of significant DEGs (FDR < 0.05, |log2FC| > 0.2) was observed in ENs and Astros, followed by Oligos."
+  location: "Abstract; Fig. 2a; Supplementary Fig. 5d-e, 6c; Supplementary Table 4"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 4 (dreamlet DEGs per cell type)"
+  reported_stat: "11,276 unique DEGs (26,721 total) at FDR < 0.05 across cell types; 64% shared across cell types"
+  unit_of_analysis: samples
+  method: dreamlet pseudobulk linear mixed model (age, sex RE, PMI, QC covariates; brain region RE in Braak model)
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "DEG-burden claim (EN, Astro > Oligo). Burden depends on cell numbers (authors acknowledge)."
+
+- id: clarence2025-C02
+  paper: clarence2025
+  statement: HSPA1A and related heat shock protein genes are up-regulated in PD mural cells, endothelial cells and OPCs.
+  quote: "HSPA1A and its related heat shock protein (HSP) family genes are found to be upregulated in Mural, Endo, and OPC cells"
+  location: "Fig. 2a"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Endothelial
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [HSPA1A, HSPA1B]
+  gene_source: "Supplementary Table 4; Fig. 2a"
+  reported_stat: "dreamlet FDR < 0.05"
+  unit_of_analysis: samples
+  method: dreamlet pseudobulk LMM
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Also applies to Pericytes (mural) and OPCs. HSPA1B not named in text (HSP family); verify in Fig. 2a."
+
+- id: clarence2025-C03
+  paper: clarence2025
+  statement: Unfolded protein response genes are convergently up-regulated across multiple PD cell types, with neurons predominantly engaging this program.
+  quote: "We identify convergent upregulation of stress-responsive transcriptional programs - such as unfolded protein response, DNA damage repair, and autophagy - across multiple cell types"
+  location: "Abstract; Fig. 2b,c; Supplementary Table 5"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: UPR program
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "GO:0006986 response to unfolded protein; Supplementary Table 5"
+  reported_stat: "GSEA FDR < 0.05; 'response to unfolded protein' dysregulated in the largest number of cell types"
+  unit_of_analysis: samples
+  method: dreamlet DEGs (|log2FC| > 0.2, FDR < 0.05); enrichR / clusterProfiler GO BP; rrvgo themes
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Neurons (EN, IN) predominantly enriched for UPR."
+
+- id: clarence2025-C04
+  paper: clarence2025
+  statement: DNA damage response/repair genes are up-regulated across multiple PD cell types.
+  quote: "Other pathology-related themes included “cellular response to DNA damage stimulus” (GO:0006974)"
+  location: "Abstract; Fig. 2b,c"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "GO:0006974; Supplementary Table 5"
+  reported_stat: "GSEA FDR < 0.05"
+  unit_of_analysis: samples
+  method: dreamlet DEGs; GO BP enrichment
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: ""
+
+- id: clarence2025-C05
+  paper: clarence2025
+  statement: Autophagy and regulation of inclusion body assembly genes are up-regulated across many PD cell types.
+  quote: "processes such as “response to unfolded protein” and “regulation of inclusion body assembly” were dysregulated across the largest number of cell types"
+  location: "Abstract; Fig. 2b,c"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "GO:0090083 regulation of inclusion body assembly; Supplementary Table 5"
+  reported_stat: "GSEA FDR < 0.05"
+  unit_of_analysis: samples
+  method: dreamlet DEGs; GO BP enrichment
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Abstract says 'autophagy'; Results name 'regulation of inclusion body assembly'."
+
+- id: clarence2025-C06
+  paper: clarence2025
+  statement: Inferred HSF1 transcription factor activity is up-regulated in PD across multiple cell types.
+  quote: "A subset of TFs, HSF1, FOXO3, MYC, and AR, were consistently upregulated across multiple cell types and exhibited strong connectivity within TF-TF PPI networks"
+  location: "Abstract; Fig. 3b,c; Supplementary Table 7"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: [HSF1]
+  gene_source: "CollecTRI regulon of HSF1; Supplementary Table 7"
+  reported_stat: "decoupleR ULM TF activity score, FDR < 0.05 (Fig. 3b)"
+  unit_of_analysis: samples
+  method: decoupleR univariate linear model on dreamlet DE statistics with CollecTRI
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "HSF1 networks include GWAS genes BAG3 and MAP3K14 across Myeloid, Astro, OPC and neurons."
+
+- id: clarence2025-C07
+  paper: clarence2025
+  statement: Inferred FOXO3 transcription factor activity is up-regulated in PD across multiple cell types.
+  quote: "A subset of TFs, HSF1, FOXO3, MYC, and AR, were consistently upregulated across multiple cell types"
+  location: "Abstract; Fig. 3b,c"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: [FOXO3]
+  gene_source: "CollecTRI regulon; Supplementary Table 7"
+  reported_stat: "decoupleR ULM, FDR < 0.05"
+  unit_of_analysis: samples
+  method: decoupleR ULM with CollecTRI
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: ""
+
+- id: clarence2025-C08
+  paper: clarence2025
+  statement: Inferred MYC transcription factor activity is up-regulated in PD across multiple cell types.
+  quote: "A subset of TFs, HSF1, FOXO3, MYC, and AR, were consistently upregulated across multiple cell types"
+  location: "Abstract; Fig. 3b-d"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: [MYC]
+  gene_source: "CollecTRI regulon; Supplementary Table 7"
+  reported_stat: "decoupleR ULM, FDR < 0.05"
+  unit_of_analysis: samples
+  method: decoupleR ULM with CollecTRI
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "MYC network in EN shown in Fig. 3d (RPS12)."
+
+- id: clarence2025-C09
+  paper: clarence2025
+  statement: Inferred AR transcription factor activity is up-regulated in PD across multiple cell types.
+  quote: "A subset of TFs, HSF1, FOXO3, MYC, and AR, were consistently upregulated across multiple cell types"
+  location: "Fig. 3b-d"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: [AR]
+  gene_source: "CollecTRI regulon; Supplementary Table 7"
+  reported_stat: "decoupleR ULM, FDR < 0.05"
+  unit_of_analysis: samples
+  method: decoupleR ULM with CollecTRI
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "AR network in IN shown in Fig. 3d (ASXL3)."
+
+- id: clarence2025-C10
+  paper: clarence2025
+  statement: TF-target networks of PD-upregulated TFs contain PD GWAS genes (BAG3, MAP3K14, FCGR2A, UBTF, ASXL3, IP6K2, RPS12, GCH1, CAMK2D) in microglia and neuronal subpopulations, mostly in the cell type prioritised by DE.
+  quote: "revealing transcription factor to target gene networks enriched for PD GWAS loci in microglia and neuronal subpopulations"
+  location: "Abstract; Fig. 3c,d; Supplementary Fig. 8d; Supplementary Table 8"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: PD vs control
+  genes: [BAG3, MAP3K14, FCGR2A, UBTF, ASXL3, IP6K2, RPS12, GCH1, CAMK2D]
+  gene_source: "Supplementary Table 8"
+  reported_stat: "9 GWAS genes recovered; no formal enrichment statistic given in text"
+  unit_of_analysis: samples
+  method: intersection of PD GWAS-prioritised genes with CollecTRI targets of up-regulated TFs
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS gene list (Nalls 2019 / recent GWAS)"
+  notes: "Abstract says 'enriched' but text reports overlap counts only."
+
+- id: clarence2025-C11
+  paper: clarence2025
+  statement: PD GWAS risk shows strong, selective scDRS enrichment in multiple microglia subclasses (Mg_DAM, Mg_Adapt, Mg_Homeo, Mg_Prolif).
+  quote: "PD exhibited strong and selective enrichment within multiple Micro subclasses, including Mg_DAM, Mg_Adapt, Mg_Homeo, and Mg_Prolif"
+  location: "Extended Data Fig. 3; Supplementary Table 3"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: Mg_DAM, Mg_Adapt, Mg_Homeo, Mg_Prolif
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes: []
+  gene_source: "PD GWAS (MAGMA gene scores via scDRS)"
+  reported_stat: "scDRS z-score, FDR < 0.05"
+  unit_of_analysis: cells
+  method: scDRS
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: ""
+
+- id: clarence2025-C12
+  paper: clarence2025
+  statement: PD GWAS genes prioritised by DE in myeloid cells and oligodendrocytes are predominantly up-regulated in PD.
+  quote: "Genes prioritized for Myeloid and Oligo cells were predominantly upregulated"
+  location: "Extended Data Fig. 4; Supplementary Table 6"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [DDRGK1, CRLS1, SPPL2B, NOD2, RPS6KL1, CAB39L, RNF141, GBF1, BAG3, FGF20, HLA-DRB5, FAM47E-STBD1, BST1, TMEM175, FAM47E, SPTSSB, PMVK, FCGR2A]
+  gene_source: "Supplementary Table 6 (84 GWAS genes with DE t-statistics per class)"
+  reported_stat: "dreamlet t-statistics; 18 of 84 genes with consistent direction across cell types"
+  unit_of_analysis: samples
+  method: dreamlet; assignment of each GWAS gene to class with max |t|
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "PD GWAS gene list"
+  notes: "Gene list = the 18 genes with consistent direction across cell types (direction per gene in Extended Data Fig. 4). Also applies to oligodendrocytes."
+
+- id: clarence2025-C13
+  paper: clarence2025
+  statement: The donor-level transcriptomic pathology score (TPS) increases with Braak Lewy body stage, with significant elevation in medium and late stages and a plateau between them.
+  quote: "TPS increased progressively with advancing disease stage (Supplementary Fig. 9d); statistical comparison revealed significant elevations in Medium and Late Braak LB groups"
+  location: "Fig. 4a,b; Supplementary Fig. 9a,d"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: TPS
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: Braak LB medium (3-4) and late (5-6) vs control/early
+  genes: []
+  gene_source: "Supplementary Table 4 (PD vs control DE profile defining TPS)"
+  reported_stat: "t-test P < 2.3e-8 (medium) and P < 7.6e-7 (late) vs control/early"
+  unit_of_analysis: donors
+  method: partial Pearson correlation of donor pseudobulk with PD DE profile; t-test across groups
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "Braak LB stage"
+  notes: "Circular in source data (signature derived from same donors). Across datasets, TPS = correlation with the clarence DE profile. Higher TPS also linked to rare coding variant burden (rho = 0.309)."
+
+- id: clarence2025-C14
+  paper: clarence2025
+  statement: Transcriptomic pathology engages neurons and myeloid cells early, with neurons declining in relative ranking as disease progresses, while vascular (mural and endothelial) cells rank highest in late Braak LB stages.
+  quote: "we introduce a transcriptomic pathology score, revealing early-stage activation in neurons and myeloid cells, followed by delayed engagement of vascular populations"
+  location: "Abstract; Fig. 4b,c"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Endothelial
+  cell_state: TPS
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: across Braak LB groups (control+early, medium, late)
+  genes: []
+  gene_source: "Supplementary Table 4"
+  reported_stat: "ranking of mean cell-type TPS per stage (alluvial plot); no formal test"
+  unit_of_analysis: donors
+  method: cell-type TPS ranking per Braak LB group
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "Braak LB stage"
+  notes: "Descriptive ranking; also applies to mural cells (pericytes), neurons (EN, IN). Note: Results text says IN, EN and Endo have highest average TPS overall, myeloid the lowest."
+
+- id: clarence2025-C15
+  paper: clarence2025
+  statement: Myeloid cells show moderate transcriptomic pathology in early Braak LB stages (0-2) but a diminished response in later stages.
+  quote: "myeloid cells showed moderate transcriptional activation in early PD stages (Braak LB 0–2) but a diminished response in later stages (Medium, Late)"
+  location: "Fig. 4c"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: TPS
+  claim_type: pathology_association
+  direction: associated_neg
+  comparison: across Braak LB groups
+  genes: []
+  gene_source: "Supplementary Table 4"
+  reported_stat: "TPS ranking; no formal test"
+  unit_of_analysis: donors
+  method: cell-type TPS ranking per stage
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "Braak LB stage"
+  notes: ""
+
+- id: clarence2025-C16
+  paper: clarence2025
+  statement: Myeloid cells show a pronounced shift toward up-regulated ligand-receptor signalling in PD, as both senders and receivers, with neurons and myeloid cells as major hubs of dysregulated interactions.
+  quote: "we observed a pronounced shift toward upregulated signaling in myeloid cells, with a positive-to-negative interaction ratio exceeding that of any other class"
+  location: "Abstract; Fig. 5c-e"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: communication
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Table 9 (differential LR pairs)"
+  reported_stat: "dream LMM on per-donor LIANA magnitude scores, FDR < 0.05; EN and IN have most significant interactions"
+  unit_of_analysis: donors
+  method: LIANA rank_aggregate per donor; dream linear mixed model on interaction scores
+  testable_with: rna
+  test_template: communication_liana
+  requires: ""
+  notes: "LIANA run per donor; the differential test is donor-level. Check consensus magnitude rank direction (lower = stronger) when re-implementing."
+
+- id: clarence2025-C17
+  paper: clarence2025
+  statement: Immune and lipid-related ligand-receptor interactions such as APOE-LRP and SPP1-integrin, and FSTL5-CNTN5 and EFNA5-EPHA6, are up-regulated in PD.
+  quote: "Notably, increased APOE-LRP and SPP1-integrin interactions implicate enhanced microglial activation and dysregulated lipid clearance"
+  location: "Fig. 5a; Supplementary Fig. 10a,b"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: communication
+  direction: up
+  comparison: PD vs control
+  genes: [APOE, LRP1, SPP1, FSTL5, CNTN5, EFNA5, EPHA6, NTNG1, LRRC4C]
+  gene_source: "Supplementary Table 9"
+  reported_stat: "dream LMM FDR < 0.05, |log2FC| > 0.2"
+  unit_of_analysis: donors
+  method: LIANA per donor + dream LMM
+  testable_with: rna
+  test_template: communication_liana
+  requires: ""
+  notes: "Exact LRP family member and integrin subunits not specified in text; LRP1 assumed."
+
+- id: clarence2025-C18
+  paper: clarence2025
+  statement: Neuronal connectivity and matrix-integrin ligand-receptor interactions such as TNC-CNTN1, FGF12-FGFR2 and SLIT3-ROBO1 are down-regulated in PD.
+  quote: "downregulation of neuronal connectivity-associated pairs, including TNC-CNTN1 and FGF12-FGFR2"
+  location: "Fig. 5a; Supplementary Fig. 10c,d"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: communication
+  direction: down
+  comparison: PD vs control
+  genes: [TNC, CNTN1, FGF12, FGFR2, SLIT3, ROBO1]
+  gene_source: "Supplementary Table 9"
+  reported_stat: "dream LMM FDR < 0.05, |log2FC| > 0.2"
+  unit_of_analysis: donors
+  method: LIANA per donor + dream LMM
+  testable_with: rna
+  test_template: communication_liana
+  requires: ""
+  notes: ""
+
+- id: clarence2025-C19
+  paper: clarence2025
+  statement: Deep-layer excitatory neurons EN_L6_CT and EN_L6B decline from early Braak LB stages, with progressively greater reductions at later stages.
+  quote: "EN_L6_CT and EN_L6B neurons exhibit a consistent decline starting in the early Braak LB group, with progressively greater reductions observed in later stages of PD"
+  location: "Fig. 6a; Supplementary Table 10"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Excitatory neurons
+  cell_state: EN_L6_CT, EN_L6B
+  claim_type: composition
+  direction: depleted
+  comparison: Braak LB early/medium/late vs control
+  genes: []
+  gene_source: text
+  reported_stat: "crumblr FDR (Fig. 6a)"
+  unit_of_analysis: samples
+  method: crumblr (CLR + precision-weighted LMM, brain region and source as RE)
+  testable_with: rna
+  test_template: composition_donor
+  requires: "Braak LB stage; cortical data"
+  notes: "Cortical regions only (motor, PFC, visual)."
+
+- id: clarence2025-C20
+  paper: clarence2025
+  statement: Homeostatic microglia decrease in PD, with the decline apparent in mid-to-late Braak LB stages.
+  quote: "homeostatic microglia decreased, whereas adaptive and proliferative microglia expanded, suggesting a shift toward a reactive microglial state as PD progresses"
+  location: "Fig. 6a; Fig. 7c"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: homeostatic microglia
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control; Braak LB stages
+  genes: [P2RY12, CX3CR1]
+  gene_source: "Fig. 7b (subtype markers, Lee et al. 2023 reference)"
+  reported_stat: "crumblr FDR"
+  unit_of_analysis: samples
+  method: crumblr
+  testable_with: rna
+  test_template: composition_donor
+  requires: "microglia subtype annotation; Braak LB stage"
+  notes: "Marker genes are generic homeostatic markers, not taken from the text."
+
+- id: clarence2025-C21
+  paper: clarence2025
+  statement: Adaptive and proliferative microglia expand in PD.
+  quote: "whereas adaptive and proliferative microglia expanded, suggesting a shift toward a reactive microglial state as PD progresses"
+  location: "Fig. 6a"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: adaptive and proliferative microglia
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control; Braak LB stages
+  genes: [MKI67]
+  gene_source: "Fig. 7b"
+  reported_stat: "crumblr FDR"
+  unit_of_analysis: samples
+  method: crumblr
+  testable_with: rna
+  test_template: composition_donor
+  requires: "microglia subtype annotation"
+  notes: "Proliferative and adaptive microglia are also the most divergent between PD and aging (Fig. 6b)."
+
+- id: clarence2025-C22
+  paper: clarence2025
+  statement: Endothelial and mural cell proportions increase subtly in early PD (Braak LB 1-2 vs control).
+  quote: "we observed a subtle increase in the proportion of endothelial and mural cells in the early stages of PD (early group vs. control)"
+  location: "Fig. 6a"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Endothelial
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: Braak LB 1-2 vs control
+  genes: []
+  gene_source: text
+  reported_stat: "crumblr FDR"
+  unit_of_analysis: samples
+  method: crumblr
+  testable_with: rna
+  test_template: composition_donor
+  requires: "Braak LB stage"
+  notes: "Also applies to mural cells (pericytes/SMC)."
+
+- id: clarence2025-C23
+  paper: clarence2025
+  statement: Microglial subtypes Adapt_TMEM163 and Adapt_AIF1 increase sharply in early PD and remain elevated.
+  quote: "adaptive subtypes such as Adapt_TMEM163 and Adapt_AIF1 were sharply upregulated in early PD, and this elevated state was maintained through later stages"
+  location: "Fig. 7c; Supplementary Fig. 11; Supplementary Table 12"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: Adapt_TMEM163, Adapt_AIF1
+  claim_type: composition
+  direction: enriched
+  comparison: Braak LB early/medium/late vs control
+  genes: [TMEM163, AIF1]
+  gene_source: "Supplementary Table 12; Fig. 7b"
+  reported_stat: "crumblr log2FC / FDR (Fig. 7c)"
+  unit_of_analysis: samples
+  method: crumblr on myeloid subtypes
+  testable_with: rna
+  test_template: composition_donor
+  requires: "microglia subtype annotation (Lee et al. 2023 reference); Braak LB stage"
+  notes: ""
+
+- id: clarence2025-C24
+  paper: clarence2025
+  statement: Microglial subtypes Adapt_IFI44L and Adapt_CCL3 decrease in early PD and stay suppressed.
+  quote: "other adaptive populations, including Adapt_IFI44L and Adapt_CCL3, displayed early downregulation and remained suppressed throughout the disease course"
+  location: "Fig. 7c"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: Adapt_IFI44L, Adapt_CCL3
+  claim_type: composition
+  direction: depleted
+  comparison: Braak LB early/medium/late vs control
+  genes: [IFI44L, CCL3]
+  gene_source: "Supplementary Table 12"
+  reported_stat: "crumblr FDR"
+  unit_of_analysis: samples
+  method: crumblr
+  testable_with: rna
+  test_template: composition_donor
+  requires: "microglia subtype annotation; Braak LB stage"
+  notes: "Opposite trend to aging."
+
+- id: clarence2025-C25
+  paper: clarence2025
+  statement: The stress-responsive Adapt_HSPA1A and proliferative Prolif_MKI67 microglia show a biphasic pattern, decreased in early PD but increased in mid-to-late stages.
+  quote: "the Adapt_HSPA1A subtype, associated with stress responses and unfolded protein detection, showed a biphasic pattern -downregulated in early PD but upregulated in mid- to late stages"
+  location: "Fig. 7c; Supplementary Fig. 11"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: Adapt_HSPA1A, Prolif_MKI67
+  claim_type: composition
+  direction: enriched
+  comparison: Braak LB 3-6 vs control (depleted at Braak 1-2)
+  genes: [HSPA1A, MKI67]
+  gene_source: "Supplementary Table 12"
+  reported_stat: "crumblr log2FC per stage"
+  unit_of_analysis: samples
+  method: crumblr
+  testable_with: rna
+  test_template: composition_donor
+  requires: "microglia subtype annotation; Braak LB stage"
+  notes: "Direction field records late-stage enrichment; early-stage depletion is part of the claim."
+
+- id: clarence2025-C26
+  paper: clarence2025
+  statement: Disease-associated microglia (DAM) and CD163+ perivascular macrophages increase modestly in early PD and then decline in later stages.
+  quote: "both PVM_CD163 and disease associated microglia (DAM) exhibited a biphasic transition, however with the opposite trend, showing a modest increase in early PD followed by a subtle decline in later stages"
+  location: "Fig. 7c"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: DAM, PVM_CD163
+  claim_type: composition
+  direction: enriched
+  comparison: Braak LB 1-2 vs control (declines later)
+  genes: [CD163]
+  gene_source: "Supplementary Table 12"
+  reported_stat: "crumblr log2FC per stage"
+  unit_of_analysis: samples
+  method: crumblr
+  testable_with: rna
+  test_template: composition_donor
+  requires: "microglia subtype annotation; Braak LB stage"
+  notes: "Authors contrast with AD-associated microglia behaviour."
+
+- id: clarence2025-C27
+  paper: clarence2025
+  statement: In microglia, a stress response and unfolded-protein module (Hotspot Mod. 2) increases markedly in late stages along inferred Braak LB pseudotime.
+  quote: "stress response and proteostasis-related programs, including response to unfolded proteins (Mod. 2), show a marked increase in late stages of predicted Braak LB"
+  location: "Abstract; Fig. 7f-h; Supplementary Table 11"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: Hotspot module 2 (stress / UPR)
+  claim_type: trajectory
+  direction: up
+  comparison: along predicted Braak LB pseudotime
+  genes: []
+  gene_source: "Supplementary Table 11 (Hotspot module genes)"
+  reported_stat: "pseudotime model r = 0.35 (cell) / 0.41 (donor) with true Braak LB; module trends descriptive"
+  unit_of_analysis: cells
+  method: neural network Braak LB pseudotime on myeloid nuclei; Hotspot modules
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "Braak LB stage; module gene list"
+  notes: "Re-test as donor-level module score vs Braak LB stage. The module diverges from AD (flat in AD)."
+
+- id: clarence2025-C28
+  paper: clarence2025
+  statement: In microglia, a proliferation and cell division module (Hotspot Mod. 3) rises from early stages and increases progressively along Braak LB pseudotime.
+  quote: "Proliferation and cell division-related genes (Mod. 3) begin to rise in early stages and continue to increase progressively along the predicted Braak LB trajectory"
+  location: "Abstract; Fig. 7f-h"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: Hotspot module 3 (proliferation)
+  claim_type: trajectory
+  direction: up
+  comparison: along predicted Braak LB pseudotime
+  genes: [MKI67]
+  gene_source: "Supplementary Table 11"
+  reported_stat: "descriptive trend"
+  unit_of_analysis: cells
+  method: NN pseudotime + Hotspot modules
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "Braak LB stage; module gene list"
+  notes: "Module 7 (activation) elevated early and stable; Module 8 (neuronal migration/signal transduction) declines; Module 10 (cytokine) biphasic."
+
+- id: clarence2025-C29
+  paper: clarence2025
+  statement: PD-associated composition changes correlate only weakly with aging-associated changes (r = 0.16).
+  quote: "Correlation analysis comparing cell-type compositional changes in PD (PD vs. control) with those associated with normal aging revealed a weak correlation (Pearson r = 0.16)"
+  location: "Fig. 6b"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: PD effect vs age effect
+  genes: []
+  gene_source: text
+  reported_stat: "Pearson r = 0.16 across cell types"
+  unit_of_analysis: samples
+  method: correlation of crumblr effect sizes
+  testable_with: rna
+  test_template: composition_donor
+  requires: "age"
+  notes: "PsychAD replication of PD composition effects: r = 0.51, P = 0.16 (not significant)."

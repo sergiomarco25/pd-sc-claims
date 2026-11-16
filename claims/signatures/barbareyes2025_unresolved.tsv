@@ -1,0 +1,7 @@
+claim_id	term	reason
+barbareyes2025-C09	all 15 oligodendroglia subpopulations	composition null claim (sex independence) over all 15 subclasses; needs label transfer of every subclass; marker signatures emitted only for PDAOPCs, OPCs-A, PDAO-1/2/3, MOL-A/F/G
+barbareyes2025-C11	GO: response to cytokine; antigen processing and presentation (Hotspot modules 6, 13)	module gene lists only in Supplementary Fig. 5 (not tabulated); named genes used
+barbareyes2025-C10	Hotspot modules 1 and 2 (PDAO-1)	full module lists only in Supplementary Fig. 5; named genes used
+barbareyes2025-C29	Xenium Hotspot modules 2 (HSPR) and 3 (myelination)	full module lists not in the supplement; genes named in Fig. 6d used
+barbareyes2025-C30	Xenium Hotspot modules 2 (HSPR) and 3 (myelination)	full module lists not in the supplement; genes named in Fig. 6d used
+barbareyes2025-C32	Xenium Hotspot modules 2 (HSPR) and 3 (myelination)	full module lists not in the supplement; genes named in Fig. 6d used

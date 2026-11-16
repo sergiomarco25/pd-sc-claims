@@ -1,0 +1,379 @@
+# Feleke et al. 2021, Acta Neuropathologica, "Cross-platform transcriptional profiling identifies common and distinct molecular pathologies in Lewy body diseases"
+# DOI 10.1007/s00401-021-02343-x; PMID 34309761; PMC8357687
+# Anterior cingulate cortex; 7 control / 7 PD / 7 PDD / 7 DLB; paired snRNA-seq (205,948 nuclei) + bulk RNA-seq.
+# snRNA DE = MAST per cell type, LRT with age, PMI, sex covariates (no donor random effect), |FC|>1.5, FDR<0.05.
+# Bulk-only claims (differential splicing, RBP motifs) are excluded per schema and described in notes.
+- id: feleke2021-C01
+  paper: feleke2021
+  statement: "The proportion of microglia is increased in PD anterior cingulate cortex compared with controls."
+  quote: "we identified a significantly increased proportion of microglia in all disease groups compared with the control group"
+  location: "Fig. 2b; Results 'Increased proportions of microglia and vascular cells across Lewy body diseases'"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 2 (Scaden proportions)"
+  reported_stat: "Wilcoxon rank-sum FDR<0.05; n=7 vs 7; replicated in external bulk PD dataset (Supplementary Fig. 5)"
+  unit_of_analysis: donors
+  method: "Scaden deconvolution of bulk RNA-seq (trained on matched snRNA) + Wilcoxon on donor proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Proportions come from bulk-tissue deconvolution, not snRNA nucleus counts (snRNA vs Scaden proportions correlated poorly overall, rho=0.25, but rho=0.79 for microglia). Modality recorded as snRNA because deconvolution reference is snRNA; replication would use snRNA proportions."
+- id: feleke2021-C02
+  paper: feleke2021
+  statement: "The proportion of microglia is increased in PDD anterior cingulate cortex compared with controls."
+  quote: "we identified a significantly increased proportion of microglia in all disease groups compared with the control group"
+  location: "Fig. 2b"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "PDD vs control"
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "Wilcoxon FDR<0.05; n=7 vs 7"
+  unit_of_analysis: donors
+  method: "Scaden deconvolution + Wilcoxon on donor proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "PDD / dementia status"
+  notes: "See C01."
+- id: feleke2021-C03
+  paper: feleke2021
+  statement: "The proportion of microglia is increased in DLB anterior cingulate cortex compared with controls."
+  quote: "we identified a significantly increased proportion of microglia in all disease groups compared with the control group"
+  location: "Fig. 2b"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "DLB vs control"
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "Wilcoxon FDR<0.05; n=7 vs 7"
+  unit_of_analysis: donors
+  method: "Scaden deconvolution + Wilcoxon on donor proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DLB diagnosis"
+  notes: "Discussion: microglial and vascular increases are a feature of LBDs but 'did not distinguish among the LBDs'."
+- id: feleke2021-C04
+  paper: feleke2021
+  statement: "OPC and vascular cell proportions are significantly increased in DLB compared with controls."
+  quote: "a significantly increased proportion of OPCs and vascular cells in DLB cases compared with controls"
+  location: "Fig. 2b"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "DLB vs control"
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "Wilcoxon FDR<0.05"
+  unit_of_analysis: donors
+  method: "Scaden deconvolution + Wilcoxon"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DLB diagnosis"
+  notes: "Compound (OPCs + vascular cells); vascular part is listed as cell_type Endothelial/Pericytes in C05."
+- id: feleke2021-C05
+  paper: feleke2021
+  statement: "Vascular cell (endothelial + pericyte) proportions are increased in PD (nominally, FDR<0.1) and in DLB (FDR<0.05) compared with controls, replicated in an external PD bulk dataset."
+  quote: "we observed a nominally significant increase in vascular proportions in PDD and PD cases compared with controls (FDR-corrected p < 0.1"
+  location: "Fig. 2b; Supplementary Fig. 5"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Endothelial
+  cell_state: "vascular cells (endothelial + pericytes merged)"
+  claim_type: composition
+  direction: enriched
+  comparison: "PD vs control (also PDD, DLB)"
+  genes: []
+  gene_source: "Supplementary Table 2"
+  reported_stat: "PD and PDD FDR<0.1; DLB FDR<0.05; external PD bulk replication FDR<0.05"
+  unit_of_analysis: donors
+  method: "Scaden deconvolution + Wilcoxon"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Results heading claims increased vascular proportions across LBDs."
+- id: feleke2021-C06
+  paper: feleke2021
+  statement: "PD vs control differential expression is widespread across glia and neurons, with the largest number of DE genes in excitatory neurons followed by oligodendrocytes (oligodendrocyte DEGs exceeding inhibitory neuron DEGs up to 11.4-fold)."
+  quote: "the largest numbers of DE genes were observed in excitatory neurons, followed by oligodendrocytes"
+  location: "Fig. 3a; Supplementary Table 5"
+  centrality: headline
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "PD vs control (also PDD, DLB vs control)"
+  genes: []
+  gene_source: "Supplementary Table 5 (cell-type DEGs, all pairwise comparisons)"
+  reported_stat: "9,242 unique DE genes across all comparisons; PD vs control 1,131 down DEGs"
+  unit_of_analysis: cells
+  method: "MAST LRT on cells with age, PMI, sex covariates; |FC|>1.5, FDR<0.05"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Ranking of DEG counts across cell types depends on nuclei numbers per type (ExN most abundant) under cell-level testing."
+- id: feleke2021-C07
+  paper: feleke2021
+  statement: "Disease-associated DE genes are commonly specific to a single cell type (79% of PD-vs-control downregulated DEGs in only one cell type)."
+  quote: "of the 1131, 2535 and 4816 down-regulated DE genes identified across comparisons of PD, PDD and DLB with control, 79%, 66% and 67%, respectively, were DE in only one cell type"
+  location: "Fig. 3b"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "PD vs control (also PDD, DLB vs control)"
+  genes: []
+  gene_source: "Supplementary Table 5"
+  reported_stat: "79% / 66% / 67% (down); 74-76% (up) cell-type-specific"
+  unit_of_analysis: cells
+  method: "MAST"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: feleke2021-C08
+  paper: feleke2021
+  statement: "The Lewy body dementias (PDD and DLB), unlike PD, are characterised by predominant downregulation of gene expression relative to controls in most cell types (except PDD inhibitory neurons)."
+  quote: "the Lewy body dementias, as distinct from PD, were characterised by the predominant down-regulation of gene expression relative to control in most cell types"
+  location: "Fig. 3a,b"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "PDD vs control; DLB vs control (contrasted with PD vs control)"
+  genes: []
+  gene_source: "Supplementary Table 5"
+  reported_stat: "down DEGs: PD 1,131, PDD 2,535, DLB 4,816"
+  unit_of_analysis: cells
+  method: "MAST"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "dementia status (PDD/DLB)"
+  notes: "Exception: PDD inhibitory neurons with more up than down DEGs."
+- id: feleke2021-C09
+  paper: feleke2021
+  statement: "PD is transcriptionally distinct from the Lewy body dementias, whereas PDD and DLB are transcriptionally very similar (few PDD-vs-DLB DEGs, >3,000 PDD/DLB-vs-PD DEGs), with the largest differences in excitatory neurons and oligodendrocytes."
+  quote: "suggesting that while there are transcriptional commonalities between PDD and DLB, PD is transcriptionally distinct from the Lewy body dementias in the anterior cingulate cortex"
+  location: "Fig. 3; Supplementary Fig. 7, 8; Results heading 'Differential gene expression analysis ... differentiates Lewy body dementias from PD'"
+  centrality: headline
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "PDD vs PD; DLB vs PD; DLB vs PDD"
+  genes: []
+  gene_source: "Supplementary Table 5"
+  reported_stat: "DLB vs PDD: 303 down, 87 up; PDD or DLB vs PD: >2,000 down, >1,000 up"
+  unit_of_analysis: cells
+  method: "MAST"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "PD, PDD and DLB diagnoses in the same dataset"
+  notes: "Abstract item (iv). Interpretation of DEG counts confounded by cells per group; testable only where PD with and without dementia are distinguished."
+- id: feleke2021-C10
+  paper: feleke2021
+  statement: "In PD vs control, glutamatergic synapse, mitochondrial inner membrane and post-translational protein modification GO terms are perturbed across at least five cell types."
+  quote: "in comparisons of PD with control, terms related to glutamatergic synapses, the mitochondrial inner membrane, and post-translational protein modification were enriched across ≥ 5 cell types"
+  location: "Fig. 3c; Supplementary Table 6"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 6 (GO enrichments)"
+  reported_stat: "GO ORA FDR<0.05"
+  unit_of_analysis: cells
+  method: "MAST DEGs + GO enrichment (WebGestaltR), semantic reduction"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Direction (up vs down) not stated per term; both up and down sets contributed."
+- id: feleke2021-C11
+  paper: feleke2021
+  statement: "SNCA is upregulated in PD versus controls in excitatory neurons, inhibitory neurons, astrocytes and oligodendrocytes."
+  quote: "excitatory neurons, inhibitory neurons, astrocytes and oligodendrocytes all showed significant up-regulation of SNCA in PD cases when compared with controls"
+  location: "Fig. 4a; Results 'Genes and pathways genetically associated with PD...'"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: "ExN, InN, astrocytes, oligodendrocytes"
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [SNCA]
+  gene_source: "text; Fig. 4a"
+  reported_stat: "fold change 0.64-1.30 (log2); FDR 2.6e-7 to 7.2e-157"
+  unit_of_analysis: cells
+  method: "MAST on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Could be split by cell type (4 claims) at test time. 13/21 Mendelian PD genes were DE in at least one cell type/comparison (Fig. 4a)."
+- id: feleke2021-C12
+  paper: feleke2021
+  statement: "In excitatory neurons of the Lewy body dementias, SNCA expression shows a reduced proportion of SNCA-expressing nuclei (PDD) and a downward shift of the top 10% expressing nuclei, whereas PD keeps a control-like distribution."
+  quote: "SNCA expression in excitatory neurons from the Lewy body dementias, as compared with the control group, was marked by (i) a decrease in the proportion of SNCA-expressing nuclei in PDD and (ii) a shift in the expression range of the top 10% highest expressing nuclei"
+  location: "Fig. 4b,c"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Excitatory neurons
+  cell_state: "SNCA-high excitatory neurons"
+  claim_type: state_enrichment
+  direction: depleted
+  comparison: "PDD vs control; DLB vs control"
+  genes: [SNCA]
+  gene_source: text
+  reported_stat: "descriptive (ridgeline plot quantiles); 61% of control ExN express SNCA vs <22% other types"
+  unit_of_analysis: cells
+  method: "descriptive distribution comparison, no formal test"
+  testable_with: rna
+  test_template: state_signature
+  requires: "dementia status (PDD/DLB)"
+  notes: "Authors' interpretation: loss of high-SNCA excitatory neurons may reflect selective vulnerability. No statistical test."
+- id: feleke2021-C13
+  paper: feleke2021
+  statement: "PD genetically associated pathways (46 PRS-derived pathways, e.g. synaptic transmission, vesicle-mediated transport) are dysregulated in all major cell types except vascular cells, and the number increases with clinical severity (PD < PDD < DLB) in excitatory neurons and glia."
+  quote: "the number of dysregulated pathways tended to increase with increasing clinical disease severity (i.e. PD < PDD < DLB) in excitatory neurons and glia"
+  location: "Fig. 4d; Supplementary Fig. 10; Supplementary Table 7"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: All
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: "PD, PDD, DLB vs control"
+  genes: []
+  gene_source: "Supplementary Table 7; pathway list from Bandres-Ciga et al. 2020 (ref 12)"
+  reported_stat: "ExN/astro/oligo 23-27 of 46 pathways; InN 12 of 46"
+  unit_of_analysis: cells
+  method: "enrichment of MAST DEGs in 46 PD pathways"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "dementia status for severity ordering"
+  notes: "'tended to' — no formal trend test."
+- id: feleke2021-C14
+  paper: feleke2021
+  statement: "Genes upregulated in astrocytes and OPCs in PD vs control are enriched for heritability of PD age of onset."
+  quote: "we identified a significant association between genetic determinants of PD age of onset and genes found DE in astrocytes and OPCs from comparisons of PD with control"
+  location: "Fig. 5b; Supplementary Fig. 11; Results 'Differentially expressed genes in glia enrich for heritability of PD age of onset and risk'"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Astrocytes
+  cell_state: "astrocytes and OPCs"
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "PD vs control DEGs"
+  genes: []
+  gene_source: "Supplementary Table 5 (DEGs); Supplementary Table 8 (H-MAGMA/sLDSC)"
+  reported_stat: "astrocytes FDR_LDSC=0.0085; OPCs FDR_LDSC=0.0085; driven by up-regulated genes"
+  unit_of_analysis: cells
+  method: "sLDSC and H-MAGMA on cell-type DEG annotations (PD AOO GWAS, Blauwendraat 2019)"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD age-of-onset GWAS summary statistics"
+  notes: "Compound (astrocytes + OPCs); split at test time if needed."
+- id: feleke2021-C15
+  paper: feleke2021
+  statement: "Genes upregulated in oligodendrocytes in PD vs control are (nominally) associated with PD genetic risk."
+  quote: "we identified a nominal association using both methods between PD genetic risk and genes found DE in oligodendrocytes from comparisons of PD with control"
+  location: "Fig. 5b; Supplementary Fig. 11"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "PD vs control DEGs"
+  genes: []
+  gene_source: "Supplementary Tables 5 and 8"
+  reported_stat: "P_HMAGMA=0.011, P_LDSC=0.041; up-regulated FDR_HMAGMA=0.013, P_LDSC=0.044"
+  unit_of_analysis: cells
+  method: "H-MAGMA + sLDSC (PD risk GWAS, Nalls 2019)"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD risk GWAS summary statistics"
+  notes: ""
+- id: feleke2021-C16
+  paper: feleke2021
+  statement: "Genes upregulated in excitatory neurons in PDD vs control are enriched for PD genetic risk."
+  quote: "genes up-regulated in excitatory neurons from comparisons of PDD with control were significantly associated with PD genetic risk"
+  location: "Supplementary Fig. 11"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "PDD vs control DEGs"
+  genes: []
+  gene_source: "Supplementary Tables 5 and 8"
+  reported_stat: "FDR_LDSC=0.040"
+  unit_of_analysis: cells
+  method: "sLDSC"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD risk GWAS; PDD status"
+  notes: ""
+- id: feleke2021-C17
+  paper: feleke2021
+  statement: "Genes highly specific to microglia (from control, PD and PDD donors) are enriched for AD genetic risk; oligodendrocyte-specific genes (control) for PD risk."
+  quote: "we observed a significant association between AD genetic risk and genes highly expressed in microglia derived from control, PD and PDD groups"
+  location: "Fig. 5a; Supplementary Table 8"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "within group (cell-type specificity, not disease contrast)"
+  genes: []
+  gene_source: "Supplementary Table 8"
+  reported_stat: "AD: control FDR_LDSC=0.038, PD 0.019, PDD 0.035; PD risk-oligodendrocytes (control) FDR_HMAGMA=0.013; PD AOO-OPC (DLB) FDR_HMAGMA=0.022"
+  unit_of_analysis: cells
+  method: "sLDSC / H-MAGMA on top 10% cell-type-specific genes"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "AD and PD GWAS summary statistics"
+  notes: "Not a disease contrast; replicates prior literature."

@@ -1,0 +1,14 @@
+# Hand corrections to claims/store/claim_structure.tsv (derived by scripts/51b_claim_store.py).
+# One row per claim x field. `resolves` removes that text from needs_review.
+claim_id	field	value	resolves	note
+xu2023-C11	organisms	human	non-human evidence	data are human; murine DAM signature only used as a reference
+xu2023-C11	organism_ids	NCBITaxon:9606	non-human evidence	
+xu2023-C11	sample_type	post-mortem brain	non-human evidence	
+xu2023-C11	organism_note	compared with a mouse-derived (DAM) signature	non-human evidence	
+ma2025-C17	organisms	human	non-human evidence	data are human; BAM signatures from an alpha-synuclein mouse model are the reference
+ma2025-C17	organism_ids	NCBITaxon:9606	non-human evidence	
+ma2025-C17	sample_type	post-mortem brain	non-human evidence	
+ma2025-C17	organism_note	compared with mouse-model (alpha-synuclein) BAM signatures	non-human evidence	
+kamath2022-C02	organism_note	cross-species integration (human, macaque, mouse, rat, tree shrew); only existence in human SN testable	non-human evidence	
+kamath2022-C03	organism_note	localisation from macaque Slide-seq, human smFISH	non-human evidence	
+kamath2022-C04	organism_note	localisation from macaque Slide-seq, human smFISH	non-human evidence	

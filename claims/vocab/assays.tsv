@@ -1,0 +1,11 @@
+label	ontology	term	ontology_id	ontology_label	check
+snRNA	efo	single nucleus RNA sequencing	EFO:0009809	single nucleus RNA sequencing	ok
+scRNA	efo	single-cell RNA sequencing	EFO:0008913	single-cell RNA sequencing	ok
+multiome-RNA	efo	10x multiome	EFO:0030059	10x multiome	ok
+multiome-ATAC	efo	10x multiome	EFO:0030059	10x multiome	ok
+snATAC	efo	sc/snATAC-seq	EFO:0920117	sc/snATAC-seq	ok
+spatial-Visium	efo	Visium Spatial Gene Expression	EFO:0010961	Visium Spatial Gene Expression	ok
+spatial-Xenium	efo	Xenium	EFO:0920126	Xenium	ok
+spatial-GeoMx	efo	GeoMx	EFO:0920109	GeoMx	ok
+spatial-other	efo	spatial transcriptomics	EFO:0008994	spatial transcriptomics	ok
+imaging	efo	immunohistochemistry	EFO:0022943	immunohistochemistry	ok

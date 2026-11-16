@@ -1,0 +1,9 @@
+claim_id	term	reason
+dehestani2024-C05	GO:0090084 negative regulation of inclusion body assembly	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7)
+dehestani2024-C05	GO:0006627 protein processing involved in protein targeting to mitochondrion	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.0882 in Table S7
+dehestani2024-C06	GO:1902949 positive regulation of tau-protein kinase activity	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7)
+dehestani2024-C06	GO:0050804 modulation of chemical synaptic transmission	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7)
+dehestani2024-C07	GO:0010968 regulation of microtubule nucleation	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7)
+dehestani2024-C07	GO:0043266 regulation of potassium ion transport	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.159 in Table S7
+dehestani2024-C08	GO:0032271 regulation of protein polymerization	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.129 in Table S7
+dehestani2024-C08	GO:0006695 cholesterol biosynthetic process	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.0562 in Table S7

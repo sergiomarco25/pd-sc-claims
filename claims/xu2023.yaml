@@ -1,0 +1,465 @@
+# Xu et al. 2023, Nature Aging, "Human striatal glia differentially contribute to AD- and PD-specific neurodegeneration"
+# DOI 10.1038/s43587-023-00363-8; PMID 36993867; PMC10046522
+# Putamen snRNA-seq, 4 control / 4 AD / 4 PD. All DE = Seurat FindMarkers Wilcoxon on cells (FDR<0.05, |lnFC|>0.25).
+- id: xu2023-C01
+  paper: xu2023
+  statement: "Three astrocyte subpopulations exist in the human putamen regardless of disease status: homeostatic Ast-0 (GPC5, NRXN1), reactive Ast-1 (APOE, CLU, APOC1) and GFAP/CD44/TNC-high Ast-2."
+  quote: "The conservation of these marker genes among all groups suggested there are three distinct astrocyte subpopulations regardless of disease status."
+  location: "Fig. 1c,f,i-o; Results 'Conserved existence of three distinct astrocyte subtypes'"
+  centrality: headline
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: "Ast-0 / Ast-1 / Ast-2"
+  claim_type: state_existence
+  direction: exists
+  comparison: "control, AD and PD (conserved across groups)"
+  genes: [GPC5, NRXN1, APOE, CLU, APOC1, DPP10, GFAP, CD44, TNC]
+  gene_source: "Supplementary Tables 2-4 (conserved markers Ast-0/1/2)"
+  reported_stat: "Ast-0 n=2,301, Ast-1 n=1,338, Ast-2 n=638 nuclei; 24/261/160 conserved markers; RNAscope validation of CD44/TNC in one case per group"
+  unit_of_analysis: cells
+  method: "Seurat subclustering; FindConservedMarkers (Wilcoxon per group, metap minimump)"
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Abstract also claims these states are shared across brain regions (ec, pfc, acc) and conserved with mouse Gfap-low / DAA / Gfap-high astrocytes; cross-species part not testable here."
+- id: xu2023-C02
+  paper: xu2023
+  statement: "Ast-1 and Ast-2 represent distinct activated astrocyte states: reactive markers S100B, VIM, MT2A, MT1E, CRYAB, MT1G are higher in Ast-1, and GFAP, CD44, C3, SYNM, MAOB are higher in Ast-2, in all diagnostic groups."
+  quote: "These observations suggested that Ast-1 and Ast-2 both represented activated astrocytes with distinct activation states whereas Ast-0 represented homeostatic astrocytes."
+  location: "Fig. 1i,l; Extended Data Fig. 4b,d; Results 'Three astrocyte subsets represent distinct activation states'"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: "Ast-1 (reactive), Ast-2 (GFAP-high)"
+  claim_type: state_existence
+  direction: exists
+  comparison: "Ast-1/Ast-2 vs other astrocyte subclusters, within each group"
+  genes: [S100B, VIM, MT2A, MT1E, CRYAB, MT1G, GFAP, CD44, C3, SYNM, MAOB]
+  gene_source: "text; Supplementary Table 3"
+  reported_stat: "conserved markers, metap combined P<0.05"
+  unit_of_analysis: cells
+  method: "FindConservedMarkers (Wilcoxon, metap)"
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Also states Ast-1/Ast-2 are distinct from murine A1/A2 states (no consistent A1/A2 marker differences)."
+- id: xu2023-C03
+  paper: xu2023
+  statement: "In all putamen astrocyte subpopulations, the majority (about two-thirds or more) of PD-vs-control DEGs are upregulated, including CRYAB, HSPB1, metallothionein genes, EGFR and TLR4."
+  quote: "all putamen astrocyte subpopulations had nearly 2/3 or more DEGs upregulated in AD and PD, including CRYAB, HSPB1, multiple metallothionein (MT) family genes, EGFR and TLR4"
+  location: "Fig. 2e-m, Fig. 3a; Results 'Shared astrocytic transcriptomic changes between AD and PD'"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: "Ast-0, Ast-1, Ast-2"
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control (also AD vs control)"
+  genes: [CRYAB, HSPB1, MT1E, MT1G, MT2A, MT3, EGFR, TLR4]
+  gene_source: "Supplementary Tables 12-17 (astrocyte subcluster DEGs, AD and PD vs control)"
+  reported_stat: "124-668 DEGs per subcluster/disease; PD cells Ast-0=784, Ast-1=427, Ast-2=222 vs control 683/358/161; n=4 PD, 4 control"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells, BH FDR<0.05, |lnFC|>0.25"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "astrocyte subclustering into Ast-0/1/2 (or test at astrocyte level)"
+  notes: "Specific MT family members are not enumerated in text ('multiple metallothionein (MT) family genes'); MT1E/MT1G/MT2A/MT3 listed as plausible members from other passages. Cell-level test with 4 vs 4 donors: pseudoreplication risk. Contrasts with cortical astrocytes where >90% of DEGs were down (AD datasets)."
+- id: xu2023-C04
+  paper: xu2023
+  statement: "APOE is downregulated in putamen astrocytes in PD (and AD) compared with controls."
+  quote: "Downregulated DEGs include the AD risk gene APOE (Fig. 2f,h,i,l), consistent with previous snRNA-seq studies"
+  location: "Fig. 2f,h,i,l; Results 'Shared astrocytic transcriptomic changes between AD and PD'"
+  centrality: secondary
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: "Ast-0, Ast-1, Ast-2 (panels h,i,l = PD Ast-0/Ast-1 and Ast-1 violin)"
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control (also AD vs control)"
+  genes: [APOE]
+  gene_source: "Supplementary Tables 12-17"
+  reported_stat: "FDR<0.05, |lnFC|>0.25"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Exact subclusters with APOE down in PD inferred from panel letters (h-j are PD volcanoes)."
+- id: xu2023-C05
+  paper: xu2023
+  statement: "Tissue factor (F3) is significantly downregulated in putamen astrocytes in PD (and AD), validated by RNAscope."
+  quote: "Tissue factor (F3) expression was significantly downregulated in AD and PD as validated using RNAScope in situ hybridization and quantification"
+  location: "Fig. 2m-p; Results 'Shared astrocytic transcriptomic changes between AD and PD'"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control (also AD vs control)"
+  genes: [F3]
+  gene_source: text
+  reported_stat: "snRNA Wilcoxon FDR<0.05; RNAscope PD vs CTRL P<0.001 (one-way ANOVA + Tukey on 387 PD vs 1,120 CTRL cells, 4 subjects/group)"
+  unit_of_analysis: cells
+  method: "Seurat Wilcoxon on cells; RNAscope one-way ANOVA on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Both snRNA and RNAscope statistics treat cells as independent units."
+- id: xu2023-C06
+  paper: xu2023
+  statement: "Astrocytic transcriptomic changes are shared/concordant between AD and PD putamen (significant DEG overlap and correlated genome-wide fold changes)."
+  quote: "Our analysis indicated that transcriptomic changes in astrocytes are highly concordant between AD and PD samples."
+  location: "Fig. 3b,c; Extended Data Fig. 5b,d; abstract"
+  centrality: headline
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: "Ast-0, Ast-1, Ast-2"
+  claim_type: other
+  direction: associated_pos
+  comparison: "(AD vs control) vs (PD vs control) logFC concordance"
+  genes: []
+  gene_source: "Supplementary Tables 12-17"
+  reported_stat: "DEG overlap hypergeometric P<0.01; genome-wide logFC Pearson r=0.542-0.795, P<0.001"
+  unit_of_analysis: cells
+  method: "hypergeometric overlap of cell-level DEGs; Pearson correlation of logFC"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "AD samples in the same dataset"
+  notes: "Only testable in datasets containing both AD and PD donors from the same region."
+- id: xu2023-C07
+  paper: xu2023
+  statement: "Genes upregulated in PD (and AD) putamen astrocytes are enriched for neurodegenerative disease pathways."
+  quote: "upregulated DEGs in both AD and PD astrocytes were significantly enriched for multiple neurodegenerative disease pathways"
+  location: "Fig. 3d"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Fig. 3d (KEGG neurodegeneration terms); DEGs in Supplementary Tables 12-17"
+  reported_stat: "hypergeometric FDR<0.05, >=5 genes"
+  unit_of_analysis: cells
+  method: "clusterProfiler GO/KEGG ORA on cell-level DEGs"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "KEGG terms such as Parkinson disease / Alzheimer disease / Huntington disease pathways (exact terms in Fig. 3d)."
+- id: xu2023-C08
+  paper: xu2023
+  statement: "The amyloid-beta binding pathway is downregulated in PD putamen astrocytes (a PD-specific, AD-discordant change)."
+  quote: "discordant transcriptomic changes between AD and PD were also detected, especially for the downregulation of the amyloid-beta (Aβ) binding pathway in PD astrocytes"
+  location: "Extended Data Fig. 5d"
+  centrality: secondary
+  modality: snRNA
+  region: putamen
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Extended Data Fig. 5d (GO 'amyloid-beta binding'); Supplementary Tables 15-17"
+  reported_stat: "hypergeometric FDR<0.05"
+  unit_of_analysis: cells
+  method: "GO ORA on cell-level DEGs"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Genes in the pathway not named in text; use GO:0001540 amyloid-beta binding."
+- id: xu2023-C09
+  paper: xu2023
+  statement: "Many PD GWAS risk genes are differentially expressed in putamen astrocytes in disease, whereas few are affected in cortical astrocytes."
+  quote: "Many PD risk genes were differentially expressed in putamen astrocytes, but few were affected in cortical astrocytes."
+  location: "Fig. 3e; Results 'Regional differences in astrocytic transcriptomic changes'"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "PD vs control (putamen); AD vs control (ec, pfc)"
+  genes: []
+  gene_source: "Fig. 3e heatmap (GWAS AD/PD risk genes DE in >=2 subclusters)"
+  reported_stat: "~10% of risk genes DE in >=2 clusters"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells; overlap with GWAS gene list"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "PD GWAS gene list"
+  notes: "Cortical comparison uses AD-only external datasets, so the regional contrast is not PD-specific. Direction mixed. Abstract-level claim of regional divergence ('regional differences that contribute toward amyloid pathology') is mainly AD."
+- id: xu2023-C10
+  paper: xu2023
+  statement: "Microglial transcriptomic changes are largely unique to each disorder (AD vs PD)."
+  quote: "In contrast, we found that transcriptomic changes in microglia are largely unique to each disorder."
+  location: "Abstract; Extended Data Figs. 9-10"
+  centrality: headline
+  modality: snRNA
+  region: putamen
+  cell_type: Microglia
+  cell_state: "Micr-0, Micr-1"
+  claim_type: other
+  direction: NA
+  comparison: "(PD vs control) vs (AD vs control)"
+  genes: []
+  gene_source: "Supplementary Tables 33-36"
+  reported_stat: "shared DEGs: 45.8%/35.1% of downregulated, 7.4%/8.0% of upregulated"
+  unit_of_analysis: cells
+  method: "overlap of cell-level Wilcoxon DEGs"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "AD samples in the same dataset"
+  notes: "Internally inconsistent: Results state global AD and PD microglial changes were 'highly correlated sharing many downregulated DEGs'; disease specificity rests mainly on upregulated genes and GWAS risk genes. Testable only in datasets with AD + PD."
+- id: xu2023-C11
+  paper: xu2023
+  statement: "Two microglia subpopulations exist in putamen independent of disease: homeostatic Micr-0 and activated Micr-1 (AIF1, APOC1, CD14, FTL, MHC-II high; P2RY12 low), and Micr-1 shares signatures with murine DAM."
+  quote: "Decreased P2RY12 expression and higher AIF1, CD14, FTL and MHC-II gene expression in Micr-1 suggested that Micr-0 and Micr-1 represented homeostatic and activated microglia, respectively."
+  location: "Fig. 4a-g, Fig. 5a; Results 'Four distinct immune cell populations' and 'Micr-1 share transcriptomic signatures with murine DAM'"
+  centrality: headline
+  modality: snRNA
+  region: putamen
+  cell_type: Microglia
+  cell_state: "Micr-1 (activated, DAM-like)"
+  claim_type: state_existence
+  direction: exists
+  comparison: "control, AD and PD (conserved)"
+  genes: [AIF1, APOC1, CD14, FTL, P2RY12, APOE, B2M, TYROBP, TREM2]
+  gene_source: "Supplementary Table 24 (Micr-1 vs DAM overlap)"
+  reported_stat: "32/83 Micr-1 markers overlap DAM, hypergeometric P=6.46e-33"
+  unit_of_analysis: cells
+  method: "FindConservedMarkers; hypergeometric overlap with Keren-Shaul DAM genes"
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Immune subclusters also include T cells and PVMs (MRC1, LYVE1, CD163, F13A1)."
+- id: xu2023-C12
+  paper: xu2023
+  statement: "TREM2 expression is more enriched in activated Micr-1 microglia in PD (and AD) brains than in controls, suggesting transition to a fully activated DAM state in disease."
+  quote: "TREM2 expression was more enriched in Micr-1 cells in AD and PD brains (Fig. 5b,e), suggesting a possible transition from an intermediate activated state in controls to a fully activated state"
+  location: "Fig. 5b,e"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Microglia
+  cell_state: "Micr-1"
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control (within Micr-1)"
+  genes: [TREM2]
+  gene_source: text
+  reported_stat: "violin plots; RNAscope in one AD and one PD case; no explicit statistic"
+  unit_of_analysis: cells
+  method: "visual / violin; RNAscope qualitative"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "microglia subclustering (Micr-0/Micr-1)"
+  notes: "No formal statistic given for disease vs control TREM2 enrichment."
+- id: xu2023-C13
+  paper: xu2023
+  statement: "Most microglial DEGs in PD (and AD) putamen versus controls are downregulated (65.3-75.4%)."
+  quote: "Comparing microglia from AD and PD brains with those of controls identified 112–245 DEGs with the majority (65.3–75.4%) being downregulated in the diseased brains"
+  location: "Extended Data Fig. 9a-d; Results 'Microglia and Aβ pathology, tauopathy and neuron death'"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Microglia
+  cell_state: "Micr-0, Micr-1"
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control (also AD vs control)"
+  genes: []
+  gene_source: "Supplementary Tables 33-36"
+  reported_stat: "112-245 DEGs; PD Micr-0=329, Micr-1=201 cells vs control 264/198"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells, FDR<0.05, |lnFC|>0.25"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: xu2023-C14
+  paper: xu2023
+  statement: "The amyloid-beta binding pathway, including MSR1 and CST3, is downregulated in PD (and AD) putamen microglia."
+  quote: "the Aβ binding pathway was downregulated in both diseases including MSR1 and CST3"
+  location: "Extended Data Fig. 9a,b,e"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control (also AD vs control)"
+  genes: [MSR1, CST3]
+  gene_source: "text; Supplementary Tables 33-36"
+  reported_stat: "GO ORA FDR<0.05"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Can be tested at gene level (MSR1, CST3) and as GO:0001540 gene-set shift."
+- id: xu2023-C15
+  paper: xu2023
+  statement: "Protein folding genes, including HSP90AA1, HSP90AB1 and co-chaperone FKBP4, are uniquely upregulated in PD microglia."
+  quote: "multiple protein folding pathway components including genes encoding stress-inducible heat shock protein HSP90AA1 and HSP90AB1 and their co-chaperone, FKBP4, were uniquely upregulated in PD microglia"
+  location: "Extended Data Figs. 9d, 10d"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [HSP90AA1, HSP90AB1, FKBP4]
+  gene_source: "text; Supplementary Tables 35-36"
+  reported_stat: "Wilcoxon FDR<0.05, |lnFC|>0.25"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Interpreted by authors as microglia protecting against tau pathology in PD."
+- id: xu2023-C16
+  paper: xu2023
+  statement: "Microglial activation follows a core pseudotime co-expression program (26 downregulated, 179 upregulated core genes) shared by control, AD and PD putamen and by other regions/diseases."
+  quote: "human activated microglia ... share a core gene co-expression module regardless of disease status and brain region"
+  location: "Fig. 6, Fig. 7a; Results 'Co-expression modules shared by control, AD and PD microglia'"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: "Micr-0 to Micr-1 activation trajectory"
+  claim_type: trajectory
+  direction: exists
+  comparison: "within control, AD and PD separately"
+  genes: [APOC1, APOE, HLA-DRB1, INPP5D, MEF2C, CHCHD2, FBXO7, PARK7, TYROBP]
+  gene_source: "Supplementary Tables 25-27 (putamen modules); Fig. 7a"
+  reported_stat: "549/516/437 pseudotime DEGs (control/AD/PD), GAM FDR<0.05; 102 genes shared by 6/7 datasets"
+  unit_of_analysis: cells
+  method: "pseudotime + generalized additive model; consensus k-means modules"
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Not a PD-vs-control claim; condition-independent activation program. Pseudotime DEGs were enriched for AD risk genes; PD risk genes CHCHD2, FBXO7, PARK7 overlapped."
+- id: xu2023-C17
+  paper: xu2023
+  statement: "Human putamen contains eight MSN subtypes, including previously undescribed non-canonical D1 (ncD1), non-canonical D2 (ncD2), hybrid D1/D2 (hMSN) and stressed (sMSN) populations, plus five interneuron types."
+  quote: "We identified 13 transcriptionally distinct neuronal populations through subclustering analysis: eight MSN and five interneuron clusters"
+  location: "Fig. 8a-c; Results 'Neuronal diversity of the human putamen'"
+  centrality: headline
+  modality: snRNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: "mD1, pD1, ncD1, mD2, pD2, ncD2, hMSN, sMSN"
+  claim_type: state_existence
+  direction: exists
+  comparison: "all groups"
+  genes: [DRD1, TAC1, DRD2, PENK, PDYN, RXFP2, FAM210B, MPP3, POU6F2, LGR5, FHAD1, RXFP1, MKX, JAG1, STXBP6, EPHA4, KCNIP1, BACH2]
+  gene_source: "Supplementary Tables 38-50 (neuronal conserved markers)"
+  reported_stat: "conserved markers metap P<0.05"
+  unit_of_analysis: cells
+  method: "Seurat subclustering + FindConservedMarkers"
+  testable_with: rna
+  test_template: state_signature
+  requires: "striatal tissue"
+  notes: "Only testable in striatal datasets. Interneurons: in.PDGFD, in.CALB2, in.TH, in.SST, in.SLC5A7."
+- id: xu2023-C18
+  paper: xu2023
+  statement: "A stressed MSN population (sMSN; mixed D1/D2 identity) is defined by stress, unfolded protein response, amyloid/tau binding pathways and neuroprotective genes HPCA, PSAP and DKK3, irrespective of disease."
+  quote: "These results suggest that this heterogenous group of MSNs shares the same stress responses irrespective of disease."
+  location: "Fig. 8b,d-h; Results 'Neuronal transcriptome and selective neuronal vulnerability'"
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: sMSN
+  claim_type: state_existence
+  direction: exists
+  comparison: "all groups"
+  genes: [HPCA, PSAP, DKK3]
+  gene_source: "Supplementary Tables 38-50"
+  reported_stat: "755 sMSN nuclei: 42.5% DRD1-only, 36.8% DRD2-only, 13.5% both"
+  unit_of_analysis: cells
+  method: "FindConservedMarkers + GO/KEGG ORA"
+  testable_with: rna
+  test_template: state_signature
+  requires: "striatal tissue"
+  notes: "Authors also say neuronal death / neurodegeneration pathways selectively enriched in hMSN, sMSN, in.PDGFD, in.CALB2, in.SST markers (selective vulnerability) - based on marker genes, not disease comparison."
+- id: xu2023-C19
+  paper: xu2023
+  statement: "PD putamen neurons have predominantly downregulated DEGs versus controls, whereas AD neurons have more upregulated genes."
+  quote: "AD neurons generally had more upregulated genes, whereas PD neurons had more downregulated genes."
+  location: "Supplementary Fig. 1e; Results 'Neuronal transcriptome and selective neuronal vulnerability'"
+  centrality: secondary
+  modality: snRNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: "all neuronal subclusters"
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Tables 51-69 (neuronal subcluster DEGs)"
+  reported_stat: "23-652 DEGs per cluster"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "cell_type covers MSNs and interneurons."
+- id: xu2023-C20
+  paper: xu2023
+  statement: "Long-term synaptic potentiation, synaptic plasticity, neurotransmitter transport and learning/memory pathways are uniquely downregulated in D1 MSNs in PD."
+  quote: "Regulations of long-term synaptic potentiation, synaptic plasticity, neurotransmitter transport and learning or memory pathways were uniquely downregulated in D1 neurons from PD samples"
+  location: "Fig. 8i"
+  centrality: headline
+  modality: snRNA
+  region: putamen
+  cell_type: MSNs
+  cell_state: "D1 MSNs (mD1/pD1)"
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Fig. 8i; Supplementary Tables 51-69"
+  reported_stat: "GO ORA FDR<0.05, >=5 genes"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "D1 MSN annotation; striatal tissue"
+  notes: "Abstract: 'neuronal transcriptomic profiles suggesting disease-specific changes and selective neuronal vulnerability'. Which D1 subclusters drive the result not stated in text."
+- id: xu2023-C21
+  paper: xu2023
+  statement: "The proportions of major cell types and of astrocyte and immune subpopulations do not differ between PD, AD and control putamen."
+  quote: "the percentage of cells from each case that make up each cluster was not statistically different across the groups"
+  location: "Extended Data Figs. 1f,g, 2d,e, 6c"
+  centrality: secondary
+  modality: snRNA
+  region: putamen
+  cell_type: All
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: "PD vs control (also AD)"
+  genes: []
+  gene_source: text
+  reported_stat: "not significant (one-way ANOVA or t-test); n=4 per group"
+  unit_of_analysis: donors
+  method: "one-way ANOVA / Student's t-test on per-donor percentages"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Null claim (no compositional change), underpowered with 4 vs 4."

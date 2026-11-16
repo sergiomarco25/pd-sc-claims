@@ -1,0 +1,554 @@
+# Zhu et al. 2024, Sci Transl Med, "Single-cell transcriptomic and proteomic analysis of Parkinson's disease brains"
+# DOI 10.1126/scitranslmed.abo1997; PMID 39475571; PMC12372474 (author manuscript)
+# PFC BA9 snRNA-seq, 6 late-stage PD / 6 controls, 77,384 nuclei. DE = Seurat FindMarkers Wilcoxon on cells
+# (|logFC|>0.25, FDR<0.05; T cells |logFC|>0.75 only). Bulk proteomics claims excluded (see notes).
+- id: zhu2024-C01
+  paper: zhu2024
+  statement: "Brain-resident T cells are increased in the PD prefrontal cortex compared with controls."
+  quote: "We identified increased brain-resident T cells (healthy controls, n = 33 nuclei; PD, n = 243 nuclei; P = 0.02) in PD brain samples"
+  location: "Fig. 1E; fig. S1H, S3D; Results 'Single nucleus transcriptomic profiling of postmortem brains'"
+  centrality: headline
+  modality: snRNA
+  region: DLPFC
+  cell_type: T cells
+  cell_state: "brain-resident T cells (CD3E, SKAP1, GNLY, CD96)"
+  claim_type: composition
+  direction: enriched
+  comparison: "PD vs control"
+  genes: [CD3E, SKAP1, GNLY, CD96]
+  gene_source: text
+  reported_stat: "33 vs 243 nuclei; P=0.02; 6 PD vs 6 control"
+  unit_of_analysis: donors
+  method: "Wilcoxon rank-sum on per-donor counts/proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Methods say counts or proportions were tested with Wilcoxon; unclear whether per donor (likely). Very few T cells (276 total). Abstract: 'elevated brain-resident T cells in PD'."
+- id: zhu2024-C02
+  paper: zhu2024
+  statement: "Microglia are more numerous / a higher percentage of nuclei in PD prefrontal cortex (validated by RNAscope for IBA1/C1QA)."
+  quote: "We identified more microglia and higher percentage of microglia in PD brains (healthy controls, n = 1699 nuclei; PD, n = 3684 nuclei; P = 0.09)"
+  location: "Fig. 1E; fig. S2"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "PD vs control"
+  genes: [AIF1, C1QA]
+  gene_source: text
+  reported_stat: "1,699 vs 3,684 nuclei; P=0.09 (not significant at 0.05)"
+  unit_of_analysis: donors
+  method: "Wilcoxon rank-sum; RNAscope cell counts"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Authors present as an increase despite P=0.09. 'IBA' = AIF1."
+- id: zhu2024-C03
+  paper: zhu2024
+  statement: "Oligodendrocyte frequency is decreased in PD prefrontal cortex."
+  quote: "The frequency of oligodendrocytes was found to be decreased in PD patient brains, whereas the number of microglia was increased compared to healthy controls"
+  location: "Fig. 1E; table S2; Discussion"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: composition
+  direction: depleted
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "table S2"
+  reported_stat: "no statistic reported in text"
+  unit_of_analysis: donors
+  method: "not stated for oligodendrocytes (Wilcoxon rank-sum per Methods)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Results only say oligodendrocyte proportions were an 'exception' to similar proportions; direction given in Discussion."
+- id: zhu2024-C04
+  paper: zhu2024
+  statement: "PD excitatory and inhibitory neurons show a broad gene repression signature (79% and 67% of DEGs downregulated), whereas glial populations show overall upregulation."
+  quote: "We identified a broad decrease in gene expression in both excitatory and inhibitory neurons, which revealed a signature of neuronal gene repression with 79% and 67% of downregulated genes, respectively."
+  location: "Fig. 1F; table S3"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Neurons (other)
+  cell_state: "ExN, InN"
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "table S3 (cell-type DEGs)"
+  reported_stat: "806 unique DEGs across cell types; ExN 79% down, InN 67% down"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells, |logFC|>0.25, FDR<0.05"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Also: astrocytes and microglia had the most DEGs; neurons fewer DEGs than glia."
+- id: zhu2024-C05
+  paper: zhu2024
+  statement: "Axonogenesis and presynaptic assembly genes (EPHA6, ROBO1, GAB1, PARD3, NLGN4Y, CBLN2) are upregulated in PD neurons, with EPHA6 and CBLN2 validated by RNAscope."
+  quote: "The most upregulated pathway in neurons (Fig. 1G) consisted of pathways associated with axonogenesis (EPHA6, ROBO1, GAB1, PARD3) and presynaptic assembly (NLGN4Y, CBLN2)"
+  location: "Fig. 1G; fig. S4A-C"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Neurons (other)
+  cell_state: "ExN, InN"
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: [EPHA6, ROBO1, GAB1, PARD3, NLGN4Y, CBLN2]
+  gene_source: "text; table S3"
+  reported_stat: "GO enrichGO; RNAscope t-test on ~10,000 nuclei per section in additional cohort"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA; RNAscope Student's t-test"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "NLGN4Y is Y-linked: sex imbalance between groups could drive it. Which neuron class (ExN vs InN) not specified."
+- id: zhu2024-C06
+  paper: zhu2024
+  statement: "PD astrocytes upregulate heavy-metal detoxification / metal ion response genes (MT1G, MT1F, MT3)."
+  quote: "Astrocytes showed enhanced expression of pathways related to detoxification of heavy metals (MT1G, MT1F, MT3)"
+  location: "Fig. 1G"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: [MT1G, MT1F, MT3]
+  gene_source: "text; table S3"
+  reported_stat: "GO enrichment"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: zhu2024-C07
+  paper: zhu2024
+  statement: "PD astrocytes downregulate coagulation pathway genes (VAV3, LYN, UBASH3B)."
+  quote: "Most astrocyte downregulated pathways consisted of coagulation (VAV3, LYN, UBASH3B)"
+  location: "Fig. 1H"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control"
+  genes: [VAV3, LYN, UBASH3B]
+  gene_source: "text; table S3"
+  reported_stat: "GO enrichment"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "LYN and UBASH3B are typically microglial genes; possible contamination."
+- id: zhu2024-C08
+  paper: zhu2024
+  statement: "PD microglia upregulate activation pathways: myeloid cell differentiation (FOS, STAT3, RUNX1), regulation of hemopoiesis (BCL6, IL4R, JAK3) and glycolytic process (NFKBIZ, IL15, NFKBID)."
+  quote: "Microglia in PD brains were enriched for the pathways of myeloid cell differentiation (FOS, STAT3, RUNX1), regulation of hemopoiesis (BCL6, IL4R, JAK3), and glycolytic process (NFKBIZ, IL15, NFKBID)"
+  location: "Fig. 1G"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: [FOS, STAT3, RUNX1, BCL6, IL4R, JAK3, NFKBIZ, IL15, NFKBID]
+  gene_source: "text; table S3"
+  reported_stat: "microglia 135 up / 178 down DEGs"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "FOS/NFKBIZ are immediate-early / dissociation-sensitive genes; PMI/agonal confounding possible."
+- id: zhu2024-C09
+  paper: zhu2024
+  statement: "PD oligodendrocytes upregulate protein complex assembly (HSPA1A, HSPA1B, FMN1) and cytoskeleton organization (P2RX7, RAPGEF3, FMN1, FCHSD2) genes."
+  quote: "Upregulated pathways in oligodendrocytes indicated the activation of protein complex assembly (HSPA1A, HSPA1B, FMN1) and cytoskeleton organization (P2RX7, RAPGEF3, FMN1, FCHSD2)."
+  location: "Fig. 1G"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: [HSPA1A, HSPA1B, FMN1, P2RX7, RAPGEF3, FCHSD2]
+  gene_source: "text; table S3"
+  reported_stat: "GO enrichment"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: zhu2024-C10
+  paper: zhu2024
+  statement: "PD OPCs upregulate regulation of cell growth (VEGFA, HSPA1A, HSPA1B) and positive neurogenesis (ZNF365, SYT1, MAPT) pathways."
+  quote: "In oligodendrocyte precursor cells, regulation of cell growth (VEGFA, HSPA1, HSPA1B) and positive neurogenesis (ZNF365, SYT1, MAPT) pathways were observed"
+  location: "Fig. 1G"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: [VEGFA, HSPA1A, HSPA1B, ZNF365, SYT1, MAPT]
+  gene_source: "text; table S3"
+  reported_stat: "GO enrichment"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Text writes 'HSPA1' (ambiguous; recorded as HSPA1A)."
+- id: zhu2024-C11
+  paper: zhu2024
+  statement: "PD brain-resident T cells upregulate genes for homeostasis of cell number (IL7R, IL15, MALT1) and T cell differentiation (CAMK4, CD28, ZAP70)."
+  quote: "there was an enrichment of genes in brain-resident T cells in PD brains for pathways regulating homeostasis of cell number (IL7R, IL15, MALT1) and regulation of T cell differentiation (CAMK4, CD28, ZAP70)"
+  location: "Fig. 1G"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: T cells
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: [IL7R, IL15, MALT1, CAMK4, CD28, ZAP70]
+  gene_source: "text; table S3"
+  reported_stat: "|logFC|>0.75, no p-value threshold; 33 control vs 243 PD T-cell nuclei"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells; fold-change filter only"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "sufficient T cells per donor"
+  notes: "No significance filter for T-cell DEGs; very low power. Likely untestable in datasets with few T cells."
+- id: zhu2024-C12
+  paper: zhu2024
+  statement: "Protein folding / unfolded protein response chaperone genes (HSPB1, HSP90AB1, DNAJB6, HSPA1A, HSPH1) are the most downregulated pathways in PD excitatory neurons, indicating decreased chaperone capacity."
+  quote: "Protein folding and unfolded protein response pathways (HSPB1, HSP90AB1, DNAJB6, HSPA1A, HSPH1) were the most downregulated pathways within excitatory neurons in PD"
+  location: "Fig. 1H, Fig. 2C,D"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control"
+  genes: [HSPB1, HSP90AB1, DNAJB6, HSPA1A, HSPH1, DNAJA4]
+  gene_source: "text; table S3; Fig. 2C"
+  reported_stat: "GO enrichment of downregulated DEGs"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Internal inconsistency: later text says all misfolded-protein-response genes were down in ExN 'apart from three genes (HSPH1, HSPB1, and CHORDC1)', yet HSPH1 and HSPB1 are listed here as downregulated. Heat-shock genes are sensitive to agonal state/PMI."
+- id: zhu2024-C13
+  paper: zhu2024
+  statement: "PD inhibitory neurons show repression of the unfolded protein response (HSPD1, HSP90AA1, HSPH1) and receptor-mediated endocytosis (PLCG2) genes, with HSP90AA1 and PLCG2 validated by RNAscope; chaperone repression is weaker than in excitatory neurons."
+  quote: "Inhibitory neurons also showed prominent patterns of repression of unfolded protein response pathway (HSPD1, HSP90AA1, HSPH1) but additionally displayed signatures of dysregulation of receptor mediated endocytosis pathways"
+  location: "Fig. 1H, Fig. 2C; fig. S4D-F"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Inhibitory neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control"
+  genes: [HSPD1, HSP90AA1, HSPH1, PLCG2]
+  gene_source: "text; table S3"
+  reported_stat: "GO ORA; RNAscope t-test"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + GO ORA; RNAscope Student's t-test on nuclei"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "The relative-sparing part (ExN > InN repression) is a separate comparative statement (Fig. 2C,D)."
+- id: zhu2024-C14
+  paper: zhu2024
+  statement: "Alpha-synuclein (Lewy) pathology is inversely correlated with chaperone gene expression in excitatory neurons (e.g. HSP90AB1, HSPA1A, DNAJA4)."
+  quote: "we identified negative correlation patterns, suggesting that Lewy pathology is inversely correlated with chaperone gene expression in PD brains, including for HSP90AB1 (R2 = 0.74; m = −0.42), HSPA1A (R2 = 0.61; m = −0.34)"
+  location: "Fig. 2E; Results 'Chaperone gene expression patterns in PD negatively correlate with Lewy body pathology in excitatory neurons'"
+  centrality: headline
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_neg
+  comparison: "Lewy body + neurite score across donors (pS129 IHC)"
+  genes: [HSP90AB1, HSPA1A, DNAJA4]
+  gene_source: "text; Fig. 2E"
+  reported_stat: "HSP90AB1 R2=0.74, HSPA1A R2=0.61, DNAJA4 R2=0.58; protein folding pathway q=0.021 negatively correlated; HSPA4L R2=0.014"
+  unit_of_analysis: donors
+  method: "per-donor normalized expression vs pathology score; Pearson (text) / Spearman (legend) correlation"
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "per-donor regional Lewy pathology score (pS129 alpha-synuclein) in the same region"
+  notes: "Unclear whether correlation included all 12 donors (controls score 0) or only 6 PD; text says Pearson, legend says Spearman. Abstract headline claim."
+- id: zhu2024-C15
+  paper: zhu2024
+  statement: "Postsynaptic gene ontology pathways are positively correlated with Lewy body pathology score."
+  quote: "identified postsynaptic gene ontology pathways as the most positively correlated pathway (q = 0.0009)"
+  location: "Results 'Chaperone gene expression patterns...'"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: "Lewy body pathology score"
+  genes: []
+  gene_source: "not given"
+  reported_stat: "q=0.0009"
+  unit_of_analysis: donors
+  method: "gene-pathology correlation + pathway enrichment"
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "per-donor Lewy pathology score"
+  notes: "Cell type for this unbiased correlation not explicitly stated (context: neuronal/ExN)."
+- id: zhu2024-C16
+  paper: zhu2024
+  statement: "SNCA and LRRK2 are upregulated in PD prefrontal cortex, with LRRK2 highly expressed in microglia and OPCs."
+  quote: "SNCA and LRRK2 were upregulated in PD brains, consistent with previous literature"
+  location: "Fig. 3A,B; fig. S5"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [SNCA, LRRK2]
+  gene_source: "text; Fig. 3A,B"
+  reported_stat: "dot/violin plots; no statistic in text"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Cell types in which SNCA is up not specified in text. Abstract: 'distinct transcriptional changes in agreement with the known genetics of PD'."
+- id: zhu2024-C17
+  paper: zhu2024
+  statement: "PRKN, PINK1, GBA and PARK7 are downregulated in PD, mainly in excitatory neurons."
+  quote: "Expression of PRKN, PINK1, GBA and PARK7 were downregulated in PD brains mainly in excitatory neurons, suggesting a loss-of-function role in PD"
+  location: "Fig. 3B"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control"
+  genes: [PRKN, PINK1, GBA1, PARK7]
+  gene_source: "text; Fig. 3B"
+  reported_stat: "violin plots; no statistic in text"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "GBA = GBA1 in current HGNC. Authors also say this 'directionality ... extended to most PD genes'."
+- id: zhu2024-C18
+  paper: zhu2024
+  statement: "Excitatory-neuron expression of LRRK2, GIGYF2 and DNAJC13 is positively correlated with Lewy pathology score."
+  quote: "We found that LRRK2 (PARK8) (R2 = 0.58; m = 1.9), GIGY2 (PARK11) (R2 = 0.48; m = 1.6) and DNAJC13 (PARK21) (R2 = 0.39; m = 2.7) expression was positively correlated with Lewy pathology scores"
+  location: "fig. S6"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: "Lewy body pathology score"
+  genes: [LRRK2, GIGYF2, DNAJC13]
+  gene_source: text
+  reported_stat: "R2=0.58, 0.48, 0.39"
+  unit_of_analysis: donors
+  method: "per-donor correlation"
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: "per-donor Lewy pathology score"
+  notes: "'GIGY2' in text = GIGYF2."
+- id: zhu2024-C19
+  paper: zhu2024
+  statement: "PD GWAS (UTMOST) genes with positive effect, including MAPT, TMEM163 and KAT8, are upregulated in PD oligodendrocytes."
+  quote: "Upregulated genes including MAPT, TMEM163, and KAT8 were enriched in oligodendrocytes"
+  location: "Fig. 3C"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [MAPT, TMEM163, KAT8]
+  gene_source: "Fig. 3C (UTMOST genes)"
+  reported_stat: "z scores from t-test PD vs control per cell type"
+  unit_of_analysis: cells
+  method: "UTMOST cross-tissue TWAS + per-gene t-test on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: ""
+- id: zhu2024-C20
+  paper: zhu2024
+  statement: "PD GWAS (UTMOST) genes with negative effect size in BA9, including LRRC37A2, BCL7C, RNF40, DCTPP1 and LRRC37A, are downregulated in PD excitatory neurons."
+  quote: "LRRC37A2, BCL7C, RNF40, DCTPP1, and LRRC37A, had negative effect sizes and were downregulated in excitatory neurons"
+  location: "Fig. 3C,E"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: "PD vs control"
+  genes: [LRRC37A2, BCL7C, RNF40, DCTPP1, LRRC37A]
+  gene_source: "Fig. 3E"
+  reported_stat: "z scores from t-test"
+  unit_of_analysis: cells
+  method: "UTMOST + per-gene t-test on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Fig. 3D also shows STX4 and NUPL2 (positive effect) highly expressed in microglia (expression, not DE claim)."
+- id: zhu2024-C21
+  paper: zhu2024
+  statement: "Excitatory neuron subpopulations (especially ExN2 and ExN3) show altered RNA-velocity transcriptional dynamics in PD whereas inhibitory neurons do not, indicating greater excitatory neuron vulnerability."
+  quote: "the dynamics of inhibitory neurons did not show a major pattern change in PD brains, indicating excitatory neuronal populations are more vulnerable neuronal cell types in PD brains"
+  location: "fig. S7, S8"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Excitatory neurons
+  cell_state: "ExN1, ExN2, ExN3"
+  claim_type: trajectory
+  direction: NA
+  comparison: "PD vs control"
+  genes: [SYN2, MCTP1, PCLO, HTR2A, CLSTN2, SLC4A10, LRFN5, SLIT1, RAPGEF4]
+  gene_source: "fig. S7C-F"
+  reported_stat: "qualitative (velocity field direction)"
+  unit_of_analysis: cells
+  method: "scVelo RNA velocity, visual comparison"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "spliced/unspliced counts"
+  notes: "Qualitative visual claim; also T-cell velocity pattern with FYN, THEMIS. Velocity direction shift linked to pathology score in PD05 vs PD01 (fig. S8)."
+- id: zhu2024-C22
+  paper: zhu2024
+  statement: "Overall cell-cell interactions (CellPhoneDB ligand-receptor pairs) are decreased in PD across all cell types."
+  quote: "overall cell-cell interactions are decreased in PD across all cell types, indicating a general loss of cell-cell communication in PD brains"
+  location: "Fig. 4A"
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ""
+  claim_type: communication
+  direction: down
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "table S4"
+  reported_stat: "difference in number of significant interaction pairs"
+  unit_of_analysis: cells
+  method: "CellPhoneDB run separately on pooled PD and control cells; count of significant pairs"
+  testable_with: rna
+  test_template: communication_liana
+  requires: ""
+  notes: "Counts of significant pairs depend on cell numbers per group."
+- id: zhu2024-C23
+  paper: zhu2024
+  statement: "Excitatory neuron-astrocyte interactions are selectively lost in PD (about 25%), including EGFR-TGFB/BTC, SIRPA-CD47, activin receptor and TYRO3-GAS6 interactions."
+  quote: "One of the most dramatic changes in cell-cell communication was between excitatory neurons and astrocytes, where approximate 25% of the interactions were lost in PD compared to healthy controls"
+  location: "Fig. 4B; table S4"
+  centrality: headline
+  modality: snRNA
+  region: DLPFC
+  cell_type: Astrocytes
+  cell_state: "ExN-Astro pair"
+  claim_type: communication
+  direction: down
+  comparison: "PD vs control"
+  genes: [EGFR, TGFB1, BTC, SIRPA, CD47, ACVR1, ACVR2A, TYRO3, GAS6]
+  gene_source: "Fig. 4B; table S4"
+  reported_stat: "~25% of ExN-Astro interaction pairs lost"
+  unit_of_analysis: cells
+  method: "CellPhoneDB per condition"
+  testable_with: rna
+  test_template: communication_liana
+  requires: ""
+  notes: "Specific TGFB and ACVR family members not named (TGFB1, ACVR1, ACVR2A placeholders). Abstract: 'selective abatement of neuron-astrocyte interactions and enhanced neuroinflammation'."
+- id: zhu2024-C24
+  paper: zhu2024
+  statement: "T cell-excitatory neuron interactions in PD lose CD74-APP/COPA and show reduced CX3CL1-CX3CR1 signalling, while gaining NOTCH pathway interactions."
+  quote: "The loss of MHC class II chaperone CD74 interactions with APP or COPA between T cells and excitatory neurons in PD brains suggests a potential reduction in the immune regulation"
+  location: "Fig. 4C"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: T cells
+  cell_state: "T cell-ExN pair"
+  claim_type: communication
+  direction: NA
+  comparison: "PD vs control"
+  genes: [CD74, APP, COPA, CX3CL1, CX3CR1, TIGIT, CD96, CCL3, CCL4]
+  gene_source: "Fig. 4C; table S4"
+  reported_stat: "presence/absence of significant pairs"
+  unit_of_analysis: cells
+  method: "CellPhoneDB per condition"
+  testable_with: rna
+  test_template: communication_liana
+  requires: "sufficient T cells"
+  notes: "Mixed directions; TIGIT, CD96, CCL3/CCL4 interactions retained. NOTCH members not named."
+- id: zhu2024-C25
+  paper: zhu2024
+  statement: "PD and AD prefrontal cortex share no neuronal DEGs, but share glial DEGs: astrocytes (up MT2A, MT1E, MRAS, COL27A1, PLEC, MT1M, MT1G; down ALDH1A1, BAALC) and microglia (up SPP1, APOE, APOC1, CACNA1A, IRF8; down SYTL3, IFI44L)."
+  quote: "we found no common differentially expressed genes in neurons, but identified many shared differentially expressed genes in glial cells"
+  location: "Fig. 6A-C; abstract"
+  centrality: headline
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ""
+  claim_type: other
+  direction: NA
+  comparison: "(PD vs control, this study) vs (AD vs control, Mathys 2019)"
+  genes: [MT2A, MT1E, MRAS, COL27A1, PLEC, MT1M, MT1G, ALDH1A1, BAALC, SPP1, APOE, APOC1, CACNA1A, IRF8, SYTL3, IFI44L, SLC38A2, CA2, UTY, RASGRF2]
+  gene_source: "text; Fig. 6A"
+  reported_stat: "138 common DEGs across six cell types; over-representation P<=0.01-0.0001"
+  unit_of_analysis: cells
+  method: "overlap of cell-level Wilcoxon DEG lists between studies"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "AD dataset of same region"
+  notes: "Text says 'M1M' (read as MT1M) and 'RASGRAF2' (read as RASGRF2). Discussion says APOE 'was downregulated in both PD and AD in microglia', contradicting the Results list of upregulated shared microglial genes. Oligodendrocyte shared DEGs listed in Results but Discussion says none in oligodendrocytes/OPCs. The PD-side component testable: e.g. MT genes up in PD astrocytes, SPP1/APOC1 in PD microglia."

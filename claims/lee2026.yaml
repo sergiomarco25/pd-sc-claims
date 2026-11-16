@@ -1,0 +1,297 @@
+- id: lee2026-C01
+  paper: lee2026
+  statement: After discounting cross-disease shared signatures, the disease-specific transcriptomic changes of AD, DLBD, vascular
+    dementia and PD are the most similar among the eight disorders.
+  quote: After discounting these cross-disease signatures, we show stronger genetic and transcriptomic concordance among AD,
+    DLBD, Vas and PD.
+  location: Abstract; Fig. 5b; Results "Cross-disorder variation of gene expression"
+  centrality: headline
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ''
+  claim_type: other
+  direction: associated_pos
+  comparison: PD vs control and DLBD vs control effect-size similarity with AD and Vas
+  genes: []
+  gene_source: Supplementary Table 4
+  reported_stat: Spearman similarity of disease-specific effects (values in Fig. 5b)
+  unit_of_analysis: donors (pseudobulk)
+  method: dreamlet pseudobulk mixed model (age, sex, PMI, QC covariates) per tissue source; fixed-effect meta-analysis across
+    sources; multivariate Bayesian meta-analysis (mashr) to split shared vs disease-specific effects
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: AD and vascular dementia cases in the same dataset
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). Testable in other cohorts only if they contain AD/Vas cases; otherwise
+    compare PD-vs-control logFC with published PsychAD AD/DLBD effects.'
+- id: lee2026-C02
+  paper: lee2026
+  statement: DLBD and PD share higher genetic heritability (rg) than disease pairs spanning neurodegenerative and psychiatric
+    disorders, and genetic overlap tracks transcriptomic similarity.
+  quote: pairs within NDDs or NPDs exhibited a higher degree of shared heritability (that is, DLBD–PD, SCZ–BD) compared with
+    pairs spanning NDDs and NPDs
+  location: Fig. 5d,f
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ''
+  claim_type: genetic_enrichment
+  direction: associated_pos
+  comparison: disease pairs
+  genes: []
+  gene_source: ''
+  reported_stat: rg from LDSC; rg vs transcriptome similarity Spearman rho = 0.604
+  unit_of_analysis: other (disease pairs)
+  method: LD score regression on GWAS; Spearman correlation of rg vs median transcriptome similarity
+  testable_with: not_testable
+  test_template: not_testable
+  requires: GWAS summary statistics for multiple disorders
+  notes: GWAS-based, not single-cell. Included because it is the genetic half of the headline concordance claim.
+- id: lee2026-C03
+  paper: lee2026
+  statement: Neurodegenerative disorders (including PD and DLBD) are characterised by a higher abundance of non-neuronal cells,
+    particularly VLMCs and other vascular cell types, in the DLPFC.
+  quote: Specifically, NDDs were characterized by a higher abundance of non-neuronal cells, particularly VLMCs and other vascular
+    cell types
+  location: Fig. 4b; Supplementary Fig. 7c,e,f; Supplementary Table 3
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Fibroblasts
+  cell_state: VLMC
+  claim_type: composition
+  direction: up
+  comparison: NDD (AD, DLBD, Vas, Tau, PD, FTD) vs control
+  genes: []
+  gene_source: Supplementary Table 3
+  reported_stat: log2 fold changes per disorder (Fig. 4b)
+  unit_of_analysis: donors
+  method: 'crumblr (CLR + precision-weighted linear model): composition ~ scale(Age) + Sex + phenotype'
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). Stated for NDDs as a class; PD- and DLBD-specific estimates are in
+    Fig. 4b / Supplementary Table 3 and should be checked there. VLMCs mapped to ''Fibroblasts''.'
+- id: lee2026-C04
+  paper: lee2026
+  statement: Neurodegenerative disorders (including PD and DLBD) show elevated proportions of IN_LAMP5_RELN, IN_LAMP5_LHX6
+    and IN_ADARB2 inhibitory neuron subclasses in the DLPFC.
+  quote: as well as elevation of specific inhibitory neuron subclasses, namely IN_LAMP5_RELN, IN_LAMP5_LHX6 and IN_ADARB2
+  location: Fig. 4b; Supplementary Table 3
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Inhibitory neurons
+  cell_state: IN_LAMP5_RELN; IN_LAMP5_LHX6; IN_ADARB2
+  claim_type: composition
+  direction: up
+  comparison: NDD (AD, DLBD, Vas, Tau, PD, FTD) vs control
+  genes:
+  - LAMP5
+  - RELN
+  - LHX6
+  - ADARB2
+  gene_source: Supplementary Table 2 (taxonomy markers)
+  reported_stat: log2 fold changes per disorder (Fig. 4b)
+  unit_of_analysis: donors
+  method: 'crumblr (CLR + precision-weighted linear model): composition ~ scale(Age) + Sex + phenotype'
+  testable_with: rna
+  test_template: composition_donor
+  requires: cortical tissue with interneuron subclass labels
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). Class-level statement; check PD row of Fig. 4b.'
+- id: lee2026-C05
+  paper: lee2026
+  statement: Increased proportions of meningeal VLMC_DCDC2 are specifically associated with most neurodegenerative disorders.
+  quote: Our subtype-level analysis indicates a polarized response of meningeal VLMC_DCDC2, where their increased proportions
+    are specifically associated with most NDDs.
+  location: Fig. 4c; Supplementary Fig. 7d
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Fibroblasts
+  cell_state: VLMC_DCDC2
+  claim_type: composition
+  direction: up
+  comparison: NDD vs control
+  genes:
+  - DCDC2
+  gene_source: Supplementary Table 2
+  reported_stat: Fig. 4c effect sizes
+  unit_of_analysis: donors
+  method: 'crumblr (CLR + precision-weighted linear model): composition ~ scale(Age) + Sex + phenotype'
+  testable_with: rna
+  test_template: composition_donor
+  requires: VLMC subtype labels
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). ''most NDDs'' - whether PD/DLBD are included must be read from Fig.
+    4c. Meningeal cells depend strongly on dissection.'
+- id: lee2026-C06
+  paper: lee2026
+  statement: DLBD cell-type composition changes are most similar to those of AD and vascular dementia.
+  quote: Notably, stronger similarities were observed between DLBD and both AD and Vas.
+  location: Fig. 4a
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ''
+  claim_type: composition
+  direction: associated_pos
+  comparison: DLBD vs AD/Vas composition effects
+  genes: []
+  gene_source: ''
+  reported_stat: pairwise Spearman correlations (Fig. 4a)
+  unit_of_analysis: donors
+  method: 'crumblr (CLR + precision-weighted linear model): composition ~ scale(Age) + Sex + phenotype; Spearman correlation
+    of effects'
+  testable_with: not_testable
+  test_template: not_testable
+  requires: AD and Vas cases in the same dataset
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). Cross-disorder comparison; not testable in PD-only datasets.'
+- id: lee2026-C07
+  paper: lee2026
+  statement: Disease-specific effects shared by AD, DLBD, Vas and PD implicate neuronal development and synaptic signalling
+    pathways in interneurons (IN_LAMP5_RELN, IN_ADARB2, IN_PVALB).
+  quote: Subsequent meta-analysis using disease-specific effects of these four transcriptomically similar traits implicated
+    neuronal development and synaptic signalling pathways in interneurons (IN_LAMP5_RELN, IN_ADARB2 and IN_PVALB)
+  location: Fig. 5c; Supplementary Fig. 8c
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Inhibitory neurons
+  cell_state: IN_LAMP5_RELN; IN_ADARB2; IN_PVALB
+  claim_type: de_pathway
+  direction: NA
+  comparison: AD/DLBD/Vas/PD vs control (meta-analysed)
+  genes: []
+  gene_source: Supplementary Table 4
+  reported_stat: hypergeometric FDR <= 0.001
+  unit_of_analysis: donors (pseudobulk)
+  method: dreamlet pseudobulk mixed model (age, sex, PMI, QC covariates) per tissue source; fixed-effect meta-analysis across
+    sources; multivariate Bayesian meta-analysis (mashr) to split shared vs disease-specific effects; hypergeometric pathway
+    test
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). Direction of the pathway change not stated in text.'
+- id: lee2026-C08
+  paper: lee2026
+  statement: Disease-specific effects shared by AD, DLBD, Vas and PD implicate vasculature development pathways in VLMCs.
+  quote: as well as vasculature development in the VLMC subclass (Fig. 5c and Supplementary Fig. 8c)
+  location: Fig. 5c
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: Fibroblasts
+  cell_state: VLMC
+  claim_type: de_pathway
+  direction: NA
+  comparison: AD/DLBD/Vas/PD vs control (meta-analysed)
+  genes: []
+  gene_source: Supplementary Table 4
+  reported_stat: hypergeometric FDR <= 0.001
+  unit_of_analysis: donors (pseudobulk)
+  method: dreamlet pseudobulk mixed model (age, sex, PMI, QC covariates) per tissue source; fixed-effect meta-analysis across
+    sources; multivariate Bayesian meta-analysis (mashr) to split shared vs disease-specific effects
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). '
+- id: lee2026-C09
+  paper: lee2026
+  statement: Transcriptomic changes shared across the eight disorders (including PD and DLBD) are enriched in basic cellular
+    functions such as mRNA splicing/processing and protein localisation to mitochondria.
+  quote: By comparing transcriptomic variation across diseases, we reveal universal signatures enriched in basic cellular
+    functions such as mRNA processing and protein localization.
+  location: Abstract; Fig. 5a; Supplementary Fig. 8a,b
+  centrality: headline
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ''
+  claim_type: de_pathway
+  direction: NA
+  comparison: each disorder vs control (shared component)
+  genes: []
+  gene_source: Supplementary Table 4
+  reported_stat: hypergeometric FDR <= 0.01
+  unit_of_analysis: donors (pseudobulk)
+  method: dreamlet pseudobulk mixed model (age, sex, PMI, QC covariates) per tissue source; fixed-effect meta-analysis across
+    sources; multivariate Bayesian meta-analysis (mashr) to split shared vs disease-specific effects
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: 'Cross-disorder contrast: PD = PD diagnosis (secondary diagnosis only AD allowed); DLBD = DLBD diagnosis (secondary
+    only AD). Baseline 319 neurotypical controls; 1,160 donors age >= 17. Per-disorder n in Fig. 1c / Supplementary Table
+    1 (PsychAD cohort: PD n = 48, DLBD n = 112 overall). PD is one of eight contributing disorders; a PD-only test checks
+    whether these pathways change in PD.'
+- id: lee2026-C10
+  paper: lee2026
+  statement: The MAPT H1H1 genotype is associated with increased PD risk in the PsychAD cohort.
+  quote: We also replicated a previous finding indicating that the H1 haplotype is associated with PD susceptibility, and
+    observed that the H1H1 genotype increases PD risk with an odds ratio (OR) of 4.125
+  location: Supplementary Fig. 6h; Results "Sources of transcriptomic variation"
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ''
+  claim_type: genetic_enrichment
+  direction: associated_pos
+  comparison: PD vs control
+  genes:
+  - MAPT
+  - ARL17B
+  - KANSL1
+  gene_source: text
+  reported_stat: OR = 4.125, P <= 0.0273
+  unit_of_analysis: donors
+  method: association of ARL17B-expression-inferred / genotype MAPT haplotype with PD diagnosis
+  testable_with: metadata
+  test_template: not_testable
+  requires: MAPT H1/H2 haplotype (genotype, or ARL17B expression as proxy)
+  notes: Haplotype was inferred partly from ARL17B expression (Fig. 3e), so it is testable in snRNA data via ARL17B levels.
+    Genetic, not a cell-level claim.
+- id: lee2026-C11
+  paper: lee2026
+  statement: The MAPT H1 haplotype increases expression of LRRC37A2/A3 (alpha-synuclein-interacting) and PLEKHM1 (PD GWAS
+    gene) in neurons and astrocytes.
+  quote: Specifically, H1 haplotypes in neurons and astrocytes were associated with increased expression of leucine rich repeat
+    containing 37A genes (LRRC37A2/A3).
+  location: Supplementary Fig. 6i
+  centrality: secondary
+  modality: snRNA
+  region: DLPFC
+  cell_type: All
+  cell_state: ''
+  claim_type: other
+  direction: up
+  comparison: H1 vs H2 haplotype
+  genes:
+  - LRRC37A2
+  - LRRC37A3
+  - PLEKHM1
+  - PDE8B
+  - HNRNPK
+  gene_source: text
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: pseudobulk expression by haplotype
+  testable_with: metadata
+  test_template: de_pseudobulk
+  requires: MAPT haplotype
+  notes: Not a PD-vs-control claim; included because the authors tie it to PD/Lewy body biology. Low priority.

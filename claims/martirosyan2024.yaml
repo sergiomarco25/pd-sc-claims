@@ -1,0 +1,793 @@
+- id: martirosyan2024-C01
+  paper: martirosyan2024
+  statement: Neurons are heavily depleted in PD SNpc.
+  quote: neurons are heavily depleted in PD samples
+  location: Fig. 1F; Results "Single nucleus RNA-seq reveals cell type heterogeneity in human SNpc"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: ''
+  claim_type: composition
+  direction: down
+  comparison: PD vs control
+  genes:
+  - SYT1
+  - SNAP25
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test vs expected 47.34% PD nuclei; 15 PD vs 14 controls
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: 'Binomial test on nuclei counts ignores donor structure (pseudoreplication). Abstract: ''significant decrease in neuronal cells in PD samples''. Cell type ''Neurons'' = all neurons.'
+- id: martirosyan2024-C02
+  paper: martirosyan2024
+  statement: Glial cells (astrocytes, microglia, oligodendrocytes, OPCs) are relatively increased in PD SNpc.
+  quote: the relative proportions of glial and T cells appear to increase
+  location: Fig. 1F; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: glia
+  claim_type: composition
+  direction: up
+  comparison: PD vs control
+  genes:
+  - AQP4
+  - SLC1A3
+  - CD74
+  - ITGAM
+  - MOBP
+  - MBP
+  - VCAN
+  - PDGFRA
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test per cluster
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). Compound across glial classes and per-cluster; Fig. 1F has per-cluster results, not stated per class in text. Split by class when testing.
+- id: martirosyan2024-C03
+  paper: martirosyan2024
+  statement: T cells are relatively increased in PD SNpc.
+  quote: the relative proportions of glial and T cells appear to increase
+  location: Fig. 1F; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: T cells
+  cell_state: ''
+  claim_type: composition
+  direction: up
+  comparison: PD vs control
+  genes:
+  - THEMIS
+  - CD2
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test per cluster
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C04
+  paper: martirosyan2024
+  statement: The dopaminergic neuron subpopulation Neurons0 (TH, SLC6A3, SNCA, ALDH1A1, AGTR1 high) is significantly depleted in PD.
+  quote: the numbers of cells in Neurons0 and Neurons3 were significantly lower in PD samples ... highlighting that the primary subpopulation lost in PD samples is DA neurons
+  location: Fig. 2C,D; Results "Neuronal subpopulations in aged human SNpc ..."
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: Neurons0
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  - SLC6A3
+  - SNCA
+  - ALDH1A1
+  - SLC18A2
+  - KCNJ6
+  - PEG10
+  - AGTR1
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test vs expected 27.96% PD nuclei among neurons
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C05
+  paper: martirosyan2024
+  statement: The GABAergic neuron subpopulation Neurons3 (GAD1, GAD2, GABRA1, GABRB2) is significantly depleted in PD.
+  quote: Neurons3 represents a second neuronal population, which was found to be significantly depleted in PD samples
+  location: Fig. 2C,D; Results "Neuronal subpopulations ..."
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Inhibitory neurons
+  cell_state: Neurons3
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - GAD1
+  - GAD2
+  - GABRA1
+  - GABRB2
+  - SYT11
+  - KCNA2
+  - ABAT
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C06
+  paper: martirosyan2024
+  statement: Neuronal subpopulation Neurons2 (HTR2C-high) is over-represented in PD.
+  quote: Neurons2 and Neurons4 were significantly over-represented in PD samples
+  location: Fig. 2C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: Neurons2
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - HTR2C
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C07
+  paper: martirosyan2024
+  statement: Neuronal subpopulation Neurons4 (SLC44A1-high) is over-represented in PD.
+  quote: Neurons2 and Neurons4 were significantly over-represented in PD samples
+  location: Fig. 2C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: Neurons4
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - SLC44A1
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C08
+  paper: martirosyan2024
+  statement: In PD DA neurons (Neurons0), OGA, CHST1 and KBTBD6 are downregulated, implicating sugar/glucose metabolism and proteasomal catabolism.
+  quote: Pathway analysis ... suggests perturbations in sugar/glucose metabolism, due to the downregulation of O-GlcNAcase (OGA) and carbohydrate sulfotransferase 1 (CHST1)
+  location: Fig. 2F-H; Results "Neuronal subpopulations ..."
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: Neurons0
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes:
+  - OGA
+  - CHST1
+  - KBTBD6
+  gene_source: Supplementary Table 7 (DEGs); Supplementary Table 8 (pathways)
+  reported_stat: adjusted p < 0.1 (BH)
+  unit_of_analysis: cells
+  method: linear mixed model on cells with donor random effect (lme4), ANOVA, BH
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: subpopulation annotation (label transfer to Martirosyan clusters)
+  notes: 20 DEGs total in Neurons0 (Supplementary Table 7).
+- id: martirosyan2024-C09
+  paper: martirosyan2024
+  statement: In PD DA neurons (Neurons0), RAB6B, RAB8B and COG4 are dysregulated, consistent with Golgi-ER vesicle trafficking dysfunction.
+  quote: dysregulation of the genes encoding Ras-related RAB6B, RAB8B and Component of Oligomeric Golgi Complex 4 (COG4) is consistent with dysfunction of Golgi to endoplasmic reticulum (ER) vesicle trafficking
+  location: Fig. 2G,H
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: Neurons0
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes:
+  - RAB6B
+  - RAB8B
+  - COG4
+  gene_source: Supplementary Table 7 (DEGs); Supplementary Table 8 (pathways)
+  reported_stat: adjusted p < 0.1 (BH)
+  unit_of_analysis: cells
+  method: linear mixed model on cells with donor random effect (lme4), ANOVA, BH
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: subpopulation annotation (label transfer to Martirosyan clusters)
+  notes: Direction of each gene not stated in text ('dysregulation'); see Supplementary Table 7.
+- id: martirosyan2024-C10
+  paper: martirosyan2024
+  statement: NEAT1 and CA2 are upregulated in PD GABAergic Neurons3.
+  quote: Differential gene expression analysis between PD and Control samples for Neurons3 showed upregulation of NEAT1 and CA2
+  location: Fig. 2F; Supplementary Table 7
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Inhibitory neurons
+  cell_state: Neurons3
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - NEAT1
+  - CA2
+  gene_source: Supplementary Table 7 (DEGs); Supplementary Table 8 (pathways)
+  reported_stat: adjusted p < 0.1 (BH)
+  unit_of_analysis: cells
+  method: linear mixed model on cells with donor random effect (lme4), ANOVA, BH
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: subpopulation annotation (label transfer to Martirosyan clusters)
+  notes: ''
+- id: martirosyan2024-C11
+  paper: martirosyan2024
+  statement: The TH-enriched astrocyte subpopulation Astrocytes2 (TH, SLC6A3, SNCA) is depleted in PD.
+  quote: the number of cells in Astrocytes2 was significantly lower in PD samples ... Astrocytes2 showed enrichment for key genes linked to dopamine metabolism, including SLC6A3, SNCA, and importantly TH
+  location: Fig. 3C,D; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocytes2 (TH-enriched)
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  - SLC6A3
+  - SNCA
+  - UBB
+  - UBC
+  - HSP90AA1
+  - HSP90AB1
+  - HSPA8
+  - JUN
+  - FOS
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test vs expected 53.37% PD nuclei among astrocytes
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). TH-enriched glia may reflect ambient RNA / doublets from DA neurons; their loss would then track DA neuron loss.
+- id: martirosyan2024-C12
+  paper: martirosyan2024
+  statement: Astrocytes3, a reactive astrocyte state with fatty-acid metabolism and UPR markers, is mostly found in PD and may be PD-specific.
+  quote: We observed that the Astrocytes3 subpopulation was mostly found in patients diagnosed with PD, suggesting that this astrocyte state may be PD-specific
+  location: Fig. 3C-E
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocytes3
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - PTGES3
+  - ABHD3
+  - ADIPOR2
+  - ABHD2
+  - BAG3
+  - SERPINH1
+  - DNAJB1
+  - HSPB1
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C13
+  paper: martirosyan2024
+  statement: Astrocytes4 (GFAP, metallothioneins MT2A/MT1E/MT3, APOE, CLU high) is enriched in PD.
+  quote: Astrocytes4 was enriched in PD samples and expressed high levels of various metallothionein genes (e.g., MT2A, MT1E and MT3)
+  location: Fig. 3C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocytes4
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - GFAP
+  - MT2A
+  - MT1E
+  - MT3
+  - APOE
+  - CLU
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C14
+  paper: martirosyan2024
+  statement: Astrocytes1, a reactive state marked by C3 and CD44, is over-represented in PD.
+  quote: the numbers of cells in Astrocytes1, Astrocytes3, Astrocytes4 and Astrocytes5 were significantly over-represented in PD samples
+  location: Fig. 3C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocytes1
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - C3
+  - CD44
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C15
+  paper: martirosyan2024
+  statement: Astrocytes5 (axon development / synapse organisation markers) is over-represented in PD.
+  quote: the numbers of cells in Astrocytes1, Astrocytes3, Astrocytes4 and Astrocytes5 were significantly over-represented in PD samples
+  location: Fig. 3C
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: Astrocytes5
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). No marker genes named in text.
+- id: martirosyan2024-C16
+  paper: martirosyan2024
+  statement: The TH-enriched microglia subpopulation Microglia1 is depleted in PD.
+  quote: one population, Microglia1, was significantly depleted in samples from patients diagnosed with sporadic PD ... the only microglia population enriched in markers involved in dopamine metabolism, including TH
+  location: Fig. 4C,D; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: Microglia1 (TH-enriched)
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  - HSP90AA1
+  - HSP90AB1
+  - HSPA8
+  - FOS
+  - ACTG1
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test vs expected 50.19% PD nuclei among microglia
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). Possible ambient/doublet artefact (see Astrocytes2).
+- id: martirosyan2024-C17
+  paper: martirosyan2024
+  statement: In PD, Microglia1 upregulates acetyltransferase-activity genes KAT2B, ATF2 and MCM3AP.
+  quote: Microglia1 shows upregulated expression of acetyltransferase activity (KAT2B, ATF2 and MCM3AP) in PD
+  location: Fig. 4F,H; Supplementary Tables 7, 8
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: Microglia1 (TH-enriched)
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - KAT2B
+  - ATF2
+  - MCM3AP
+  gene_source: Supplementary Table 7 (DEGs); Supplementary Table 8 (pathways)
+  reported_stat: adjusted p < 0.1 (BH)
+  unit_of_analysis: cells
+  method: linear mixed model on cells with donor random effect (lme4), ANOVA, BH
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: subpopulation annotation (label transfer to Martirosyan clusters)
+  notes: ''
+- id: martirosyan2024-C18
+  paper: martirosyan2024
+  statement: In PD, Microglia3 (ABCA1, MITF, STARD13) downregulates GTPase-activity genes DOCK1, AGFG1 and ASAP1.
+  quote: Differential gene expression analysis between PD and Controls showed downregulation of genes involved in GTPase activity (DOCK1, AGFG1 and ASAP1)
+  location: Fig. 4G,H
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: Microglia3
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes:
+  - DOCK1
+  - AGFG1
+  - ASAP1
+  gene_source: Supplementary Table 7 (DEGs); Supplementary Table 8 (pathways)
+  reported_stat: adjusted p < 0.1 (BH)
+  unit_of_analysis: cells
+  method: linear mixed model on cells with donor random effect (lme4), ANOVA, BH
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: subpopulation annotation (label transfer to Martirosyan clusters)
+  notes: ''
+- id: martirosyan2024-C19
+  paper: martirosyan2024
+  statement: The TH-enriched oligodendrocyte subpopulation Oligos2 (TH, SLC6A3, SNCG) is largely depleted in PD.
+  quote: Oligos2 represents a population enriched for TH, SLC6A3 and SNCG (genes associated with dopamine metabolism) and it is largely depleted in sporadic PD samples
+  location: Fig. 5C,D; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: Oligos2 (TH-enriched)
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  - SLC6A3
+  - SNCG
+  - UCHL1
+  - NEFL
+  - MAP1B
+  - NRXN3
+  - SLC18A2
+  - CALY
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test vs expected 47.89% PD nuclei among oligodendrocytes
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). Neuronal genes (NEFL, UCHL1, SLC18A2) in an oligodendrocyte cluster suggest neuron-oligodendrocyte doublets or ambient RNA.
+- id: martirosyan2024-C20
+  paper: martirosyan2024
+  statement: Oligos5 (CRYAB, S100B, FTL, FTH1 high; oxidative stress / protein aggregate response) is depleted in PD.
+  quote: The second population of oligodendrocytes depleted in sporadic PD is Oligos5
+  location: Fig. 5C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: Oligos5
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - CRYAB
+  - S100B
+  - FTL
+  - FTH1
+  - MT3
+  - SELENOP
+  - CLU
+  - HSPA1A
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C21
+  paper: martirosyan2024
+  statement: Oligos1 (RBFOX1-high) is over-represented in PD.
+  quote: Oligos1 is more highly represented in PD samples than Controls and highly expresses RBFOX1
+  location: Fig. 5C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: Oligos1
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - RBFOX1
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication).
+- id: martirosyan2024-C22
+  paper: martirosyan2024
+  statement: Oligos3 (OPALIN-high myelinating oligodendrocytes) is over-represented in PD.
+  quote: Oligos3 is another oligodendrocyte subpopulation that is significantly over-represented in PD samples ... Oligos3 expresses high levels of OPALIN
+  location: Fig. 5C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: Oligos3
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes:
+  - OPALIN
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). Opposite direction to Smajic 2022 (OPALINhigh reduced in PD).
+- id: martirosyan2024-C23
+  paper: martirosyan2024
+  statement: Oligos0 is over-represented in PD.
+  quote: whereas Oligos0, Oligos1 and Oligos3 were significantly enriched in PD
+  location: Fig. 5C
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: Oligos0
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 5 (subpopulation markers); Supplementary Table 3 (proportions)
+  reported_stat: binomial test
+  unit_of_analysis: cells
+  method: two-sided binomial test of PD nuclei fraction per cluster vs overall PD fraction
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Binomial test on nuclei counts ignores donor structure (pseudoreplication). No markers named in text.
+- id: martirosyan2024-C24
+  paper: martirosyan2024
+  statement: PD Oligos2 upregulates spliceosome (RBM22, PRPF8, HNRNPU), kinase (CDKN1B, CDKN1C), chaperone-binding (BIRC2, SYVN1) genes and CAMK2G.
+  quote: Oligos2 demonstrates upregulation of genes linked to spliceosome function (RBM22, PRPF8 and HNRNPU) ... Oligos2 also shows up-regulation of CAMK2G
+  location: Fig. 5G; Supplementary Tables 7, 8
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Oligodendrocytes
+  cell_state: Oligos2 (TH-enriched)
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - RBM22
+  - PRPF8
+  - HNRNPU
+  - WNK1
+  - ENSA
+  - CDKN1B
+  - CDKN1C
+  - BIRC2
+  - SYVN1
+  - CAMK2G
+  gene_source: Supplementary Table 7 (DEGs); Supplementary Table 8 (pathways)
+  reported_stat: adjusted p < 0.1 (BH)
+  unit_of_analysis: cells
+  method: linear mixed model on cells with donor random effect (lme4), ANOVA, BH
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: subpopulation annotation (label transfer to Martirosyan clusters)
+  notes: ''
+- id: martirosyan2024-C25
+  paper: martirosyan2024
+  statement: Depleted TH-enriched subpopulations (Neurons0, Astrocytes2, Microglia1, Oligos2) share 28 marker genes, including dopamine metabolism genes ALDH1A1, SLC6A3, SLC18A2 and TH.
+  quote: marker gene analysis of the depleted subpopulations identified 28 overlapping genes, including those associated with dopamine metabolism (e.g., ALDH1A1, SLC6A3 & SLC18A2)
+  location: Fig. 7B-D; Results "TH among several common genes enriched in cell types depleted in sporadic PD samples"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: TH-enriched subpopulations
+  claim_type: state_existence
+  direction: exists
+  comparison: within dataset (shared markers)
+  genes:
+  - TH
+  - ALDH1A1
+  - SLC6A3
+  - SLC18A2
+  - NEFM
+  - NEFH
+  - NEFL
+  - SNAP25
+  - SNCG
+  - MAP1B
+  - YWHAG
+  gene_source: Supplementary Table 10 (28 shared markers)
+  reported_stat: 28 shared markers (Venn)
+  unit_of_analysis: cells
+  method: Seurat marker overlap + GO
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: 'Testable as: do glial cells co-expressing the 28-gene signature exist and are they depleted in PD; key ambient-RNA caveat.'
+- id: martirosyan2024-C26
+  paper: martirosyan2024
+  statement: TH+ glial populations are also detectable and depleted in PD in the independent Kamath et al. SN snRNA-seq dataset.
+  quote: it was possible not only to detect the presence of TH-positive (TH +) glia in the Kamath et al. dataset but also observe that these cells were depleted in samples from PD donors
+  location: Supplementary Figs. 8C, 9C, 10C
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: TH+ glia
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  gene_source: text
+  reported_stat: not given in text
+  unit_of_analysis: cells
+  method: re-analysis of Kamath 2022 data
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Already a cross-dataset replication claim; direct overlap with kamath2022 dataset.
+- id: martirosyan2024-C27
+  paper: martirosyan2024
+  statement: TH transcripts are present in all major SNpc cell types in situ, with glia expressing less TH than neurons.
+  quote: We confirmed TH expression in all major cell types resident in the SNpc using spatial transcriptomics ... glial cells in general express lower amounts of TH transcripts compared to neurons
+  location: Fig. 7E,F
+  centrality: main
+  modality: spatial-other
+  region: SN
+  cell_type: All
+  cell_state: TH+ glia
+  claim_type: state_existence
+  direction: exists
+  comparison: within dataset (3 PD, 3 controls)
+  genes:
+  - TH
+  - SLC6A3
+  - SNAP25
+  gene_source: Supplementary Table 4 (Molecular Cartography panel)
+  reported_stat: qualitative; violin plots
+  unit_of_analysis: cells
+  method: Molecular Cartography (Resolve) with cell segmentation
+  testable_with: spatial
+  test_template: state_signature
+  requires: single-cell resolution spatial data with segmentation
+  notes: Segmentation spill-over from neighbouring DA neurons could produce glial TH signal.
+- id: martirosyan2024-C28
+  paper: martirosyan2024
+  statement: Monogenic PD genes (PARK7, PINK1, ATP13A2, VPS35, SYNJ1, SNCA, DNAJC6) are specifically enriched in neurons, mostly in the DA population Neurons0.
+  quote: Several monogenic PD genes demonstrated significant enrichment specifically in neurons, such as PARK7, PINK1, ATP13A2, VPS35 and SYNJ1 ... most ... show significant enrichment in the DA neuronal population Neurons0
+  location: Fig. 6A; Supplementary Fig. 7A; Results "PD-associated genes ... show cell type-specific expression patterns"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: Neurons0
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes:
+  - PARK7
+  - PINK1
+  - ATP13A2
+  - VPS35
+  - SYNJ1
+  - SNCA
+  - DNAJC6
+  gene_source: Fig. 6A; Supplementary Table 5
+  reported_stat: Wilcoxon, FDR < 0.05
+  unit_of_analysis: cells
+  method: Seurat Wilcoxon cell-type enrichment
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Partially validated by spatial (SNCA, ATP13A2 in neurons).
+- id: martirosyan2024-C29
+  paper: martirosyan2024
+  statement: LRRK2 is enriched in microglia and OPCs and VPS13C in microglia and T cells.
+  quote: SNCA showed enrichment in neurons and microglia, LRRK2 in microglia and OPC, DNAJC6 in neurons and oligodendrocytes, and VPS13C in microglia and T cells
+  location: Fig. 6A; Supplementary Fig. 7B
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ''
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across cell types
+  genes:
+  - LRRK2
+  - VPS13C
+  - SNCA
+  - DNAJC6
+  gene_source: Fig. 6A; Supplementary Table 5
+  reported_stat: Wilcoxon, FDR < 0.05
+  unit_of_analysis: cells
+  method: Seurat Wilcoxon
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Compound; LRRK2 in microglia confirmed spatially, LRRK2 in OPC not.
+- id: martirosyan2024-C30
+  paper: martirosyan2024
+  statement: Genes near PD GWAS variants (MAGMA) are not significantly enriched among the markers of any specific SNpc cell type, though individual genes overlap (SNCA in neurons, P2RY12 and LRRK2 in microglia, LRRK2 in OPCs).
+  quote: Binomial testing did not reveal significant enrichment of the GWAS PD-associated-variant-proximal genes in any specific cell type
+  location: Fig. 6B-G; Supplementary Table 9
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: genetic_enrichment
+  direction: NA
+  comparison: across cell types
+  genes:
+  - SNCA
+  - P2RY12
+  - LRRK2
+  gene_source: Supplementary Table 9 (203 MAGMA genes)
+  reported_stat: binomial test ns
+  unit_of_analysis: cells
+  method: MAGMA gene-level (Nalls 2019) + binomial test of marker overlap
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: PD GWAS summary statistics
+  notes: Null result; contrasts with Kamath 2022 (DA neuron enrichment).

@@ -1,0 +1,260 @@
+claim_id	paper	claim_type	test_template	centrality	n_signatures	n_genes	table_based	unresolved_reason	coverage
+adams2024-C04	adams2024	state_enrichment	state_signature	headline	4.0	157.0	True		full
+adams2024-C05	adams2024	de_gene	de_pseudobulk	headline	2.0	15.0	True		full
+adams2024-C14	adams2024	de_pathway	geneset_shift	main	2.0	299.0	True	module member genes only in Methods (not in supplementary xlsx); resolve centrally from GO/MSigDB. ODC cPP-positive genes attached as proxy	partial
+adams2024-C15	adams2024	de_pathway	geneset_shift	main	2.0	474.0	True	module member genes only in Methods; resolve centrally. ODC cPP-negative genes attached as proxy	partial
+adams2024-C16	adams2024	state_enrichment	state_signature	main	1.0	3.0	False	module gene lists not in supplementary xlsx; take from Keren-Shaul 2017 / Olah 2018 centrally. Only named genes emitted	text_only
+adams2024-C19	adams2024	de_gene	de_pseudobulk	main	2.0	55.0	True		full
+adams2024-C20	adams2024	de_gene	de_pseudobulk	main	2.0	50.0	True		full
+adams2024-C21	adams2024	de_gene	de_pseudobulk	main	2.0	8.0	True		full
+adams2024-C22	adams2024	de_gene	de_pseudobulk	main	2.0	15.0	True		full
+adams2024-C24	adams2024	de_gene	de_pseudobulk	secondary	3.0	56.0	True		full
+adams2024-C25	adams2024	de_gene	de_pseudobulk	secondary	3.0	70.0	True		full
+adams2024-C26	adams2024	de_gene	de_pseudobulk	secondary	29.0	1596.0	True		full
+barbareyes2025-C01	barbareyes2025	state_existence	state_signature	headline	8.0	270.0	True		full
+barbareyes2025-C02	barbareyes2025	de_gene	geneset_shift	headline	1.0	8.0	False		text_only
+barbareyes2025-C03	barbareyes2025	composition	composition_donor	main	2.0	102.0	True		full
+barbareyes2025-C04	barbareyes2025	composition	composition_donor	main	2.0	102.0	True		full
+barbareyes2025-C05	barbareyes2025	composition	composition_donor	main	2.0	102.0	True		full
+barbareyes2025-C06	barbareyes2025	composition	composition_donor	main	2.0	102.0	True		full
+barbareyes2025-C07	barbareyes2025	composition	composition_donor	main	1.0	100.0	True		full
+barbareyes2025-C08	barbareyes2025	composition	composition_donor	main	1.0	100.0	True		full
+barbareyes2025-C09	barbareyes2025	composition	composition_donor	secondary	0.0	0.0		composition null claim (sex independence) over all 15 subclasses; needs label transfer of every subclass; marker signatures emitted only for PDAOPCs, OPCs-A, PDAO-1/2/3, MOL-A/F/G	none
+barbareyes2025-C10	barbareyes2025	state_existence	state_signature	secondary	3.0	105.0	True	full module lists only in Supplementary Fig. 5; named genes used	partial
+barbareyes2025-C11	barbareyes2025	state_existence	state_signature	secondary	3.0	103.0	True	module gene lists only in Supplementary Fig. 5 (not tabulated); named genes used	partial
+barbareyes2025-C12	barbareyes2025	de_pathway	geneset_shift	main	20.0	2132.0	True		full
+barbareyes2025-C13	barbareyes2025	de_pathway	geneset_shift	secondary	1.0	74.0	True		full
+barbareyes2025-C14	barbareyes2025	de_pathway	geneset_shift	secondary	2.0	97.0	True		full
+barbareyes2025-C25	barbareyes2025	de_gene	state_signature	main	1.0	1.0	False		text_only
+barbareyes2025-C26	barbareyes2025	de_gene	state_signature	secondary	1.0	2.0	False		text_only
+barbareyes2025-C29	barbareyes2025	de_pathway	geneset_shift	main	1.0	4.0	False	full module lists not in the supplement; genes named in Fig. 6d used	text_only
+barbareyes2025-C30	barbareyes2025	de_pathway	geneset_shift	headline	1.0	3.0	False	full module lists not in the supplement; genes named in Fig. 6d used	text_only
+barbareyes2025-C31	barbareyes2025	other	geneset_shift	main	2.0	7.0	False		text_only
+barbareyes2025-C32	barbareyes2025	state_enrichment	state_signature	secondary	1.0	4.0	False	full module lists not in the supplement; genes named in Fig. 6d used	text_only
+chia2025-C04	chia2025	composition	composition_donor	secondary	1.0	2.0	False	subcluster marker table not in supplement; only the defining genes SST and SV2C emitted	text_only
+chia2025-C05	chia2025	other	de_pseudobulk	headline	56.0	793.0	True		full
+chia2025-C06	chia2025	de_gene	de_pseudobulk	main	12.0	404.0	True		full
+chia2025-C07	chia2025	de_gene	de_pseudobulk	headline	7.0	114.0	True		full
+chia2025-C08	chia2025	de_gene	de_pseudobulk	main	11.0	189.0	True		full
+chia2025-C09	chia2025	state_enrichment	state_signature	headline	1.0	7.0	False	marker table not in supplement; only text-named markers emitted (state may reflect microglia-oligodendrocyte doublets / ambient myelin RNA)	text_only
+chia2025-C11	chia2025	de_gene	de_pseudobulk	headline	6.0	114.0	True		full
+chia2025-C12	chia2025	de_pathway	geneset_shift	secondary	4.0	114.0	True	pathway named only (Fig. 2e / 4g; no enrichment table in supplement); resolve from MSigDB; microglia DEG-up lists attached	partial
+chia2025-C13	chia2025	de_gene	de_pseudobulk	main	10.0	268.0	True	pathway named only (Fig. 3b); resolve from MSigDB; DLB-vs-PDD DEG lists attached	partial
+clarence2025-C01	clarence2025	de_gene	de_pseudobulk	headline	0.0	0.0		Supplementary Tables not in supplement folder (only a figures PDF)	none
+clarence2025-C02	clarence2025	de_gene	de_pseudobulk	main	1.0	2.0	False	Supplementary Tables not in supplement folder (only a figures PDF); named genes emitted	text_only
+clarence2025-C03	clarence2025	de_pathway	geneset_shift	headline	0.0	0.0		pathway name only; resolve from MSigDB/GO	none
+clarence2025-C04	clarence2025	de_pathway	geneset_shift	headline	0.0	0.0		pathway name only; resolve from MSigDB/GO	none
+clarence2025-C05	clarence2025	de_pathway	geneset_shift	headline	0.0	0.0		pathway name only; resolve from MSigDB/GO	none
+clarence2025-C06	clarence2025	de_pathway	geneset_shift	headline	0.0	0.0		TF activity; resolve regulon centrally (decoupler CollecTRI)	none
+clarence2025-C07	clarence2025	de_pathway	geneset_shift	headline	0.0	0.0		TF activity; resolve regulon centrally (decoupler CollecTRI)	none
+clarence2025-C08	clarence2025	de_pathway	geneset_shift	headline	0.0	0.0		TF activity; resolve regulon centrally (decoupler CollecTRI)	none
+clarence2025-C09	clarence2025	de_pathway	geneset_shift	main	0.0	0.0		TF activity; resolve regulon centrally (decoupler CollecTRI)	none
+clarence2025-C12	clarence2025	de_gene	de_pseudobulk	secondary	1.0	18.0	False	Supplementary Tables not in supplement folder (only a figures PDF); named genes emitted	text_only
+clarence2025-C19	clarence2025	composition	composition_donor	main	0.0	0.0		Supplementary Tables not in supplement folder (only a figures PDF); no marker genes named in text	none
+clarence2025-C20	clarence2025	composition	composition_donor	main	1.0	2.0	False	Supplementary Tables not in supplement folder (only a figures PDF); text list emitted	text_only
+clarence2025-C21	clarence2025	composition	composition_donor	main	1.0	1.0	False	Supplementary Tables not in supplement folder (only a figures PDF); text list emitted	text_only
+clarence2025-C23	clarence2025	composition	composition_donor	main	1.0	2.0	False	Supplementary Tables not in supplement folder (only a figures PDF); subtype-name genes emitted	text_only
+clarence2025-C24	clarence2025	composition	composition_donor	main	1.0	2.0	False	Supplementary Tables not in supplement folder (only a figures PDF); subtype-name genes emitted	text_only
+clarence2025-C25	clarence2025	composition	composition_donor	main	2.0	2.0	False	Supplementary Tables not in supplement folder (only a figures PDF); subtype-name genes emitted	text_only
+clarence2025-C26	clarence2025	composition	composition_donor	secondary	1.0	1.0	False	Supplementary Tables not in supplement folder (only a figures PDF); only CD163 emitted, DAM unresolved	text_only
+dehestani2024-C03	dehestani2024	de_gene	de_pseudobulk	main	8.0	1500.0	True		full
+dehestani2024-C05	dehestani2024	de_pathway	geneset_shift	headline	4.0	1040.0	True	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7) | full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.0882 in Table S7	partial
+dehestani2024-C06	dehestani2024	de_pathway	geneset_shift	headline	4.0	543.0	True	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7)	partial
+dehestani2024-C07	dehestani2024	de_pathway	geneset_shift	secondary	4.0	278.0	True	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7) | full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.159 in Table S7	partial
+dehestani2024-C08	dehestani2024	de_pathway	geneset_shift	secondary	4.0	108.0	True	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.0562 in Table S7 | full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap from Table S7); note term adj. P = 0.129 in Table S7	partial
+feleke2021-C05	feleke2021	composition	composition_donor	main	0.0	0.0		composition of a broad merged class (no marker table in supplement); use endothelial + pericyte annotation; proportions in Supplementary Table 2 are Scaden deconvolution of bulk RNA-seq	none
+feleke2021-C06	feleke2021	de_gene	de_pseudobulk	headline	14.0	2314.0	True		full
+feleke2021-C07	feleke2021	de_gene	de_pseudobulk	secondary	14.0	2314.0	True		full
+feleke2021-C08	feleke2021	de_gene	de_pseudobulk	main	28.0	6934.0	True		full
+feleke2021-C09	feleke2021	de_gene	de_pseudobulk	headline	40.0	5534.0	True		full
+feleke2021-C10	feleke2021	de_pathway	geneset_shift	secondary	17.0	2314.0	True	full GO term membership for a gene-set shift test: resolve from MSigDB (signature holds only the DEG overlap reported in Supplementary Table 6)	partial
+feleke2021-C11	feleke2021	de_gene	de_pseudobulk	main	9.0	2084.0	True		full
+feleke2021-C12	feleke2021	state_enrichment	state_signature	main	5.0	4705.0	True		full
+feleke2021-C13	feleke2021	de_pathway	geneset_shift	secondary	42.0	7302.0	True	PRS-derived pathway (Bandres-Ciga 2020); full membership not in supplement (only DEG overlaps); resolve from Reactome/KEGG via MSigDB; DEG lists vs control attached	partial
+jin2024-C02	jin2024	other	state_signature	secondary	1.0	1.0	False		text_only
+jin2024-C03	jin2024	de_gene	de_pseudobulk	main	2.0	1154.0	True		full
+jin2024-C04	jin2024	de_gene	de_pseudobulk	main	3.0	1154.0	True		full
+jin2024-C05	jin2024	de_gene	de_pseudobulk	main	3.0	1154.0	True		full
+jin2024-C06	jin2024	de_gene	de_pseudobulk	headline	3.0	1154.0	True		full
+jin2024-C07	jin2024	de_gene	de_pseudobulk	main	3.0	1154.0	True		full
+jin2024-C08	jin2024	de_gene	de_pseudobulk	secondary	3.0	1154.0	True		full
+jin2024-C09	jin2024	de_pathway	geneset_shift	main	13.0	1154.0	True	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test	partial
+jin2024-C10	jin2024	de_pathway	geneset_shift	main	7.0	1154.0	True	IPA lists proprietary; signatures hold EX DEG members of matching toxicity lists in table S6 only	partial
+jin2024-C11	jin2024	de_pathway	geneset_shift	secondary	20.0	3107.0	True	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent	partial
+kamath2022-C01	kamath2022	state_existence	state_signature	headline	10.0	491.0	True		full
+kamath2022-C06	kamath2022	composition	composition_donor	headline	1.0	100.0	True		full
+kamath2022-C07	kamath2022	composition	composition_donor	main	1.0	100.0	True		full
+kamath2022-C08	kamath2022	composition	composition_donor	main	1.0	100.0	True		full
+kamath2022-C09	kamath2022	composition	composition_donor	main	1.0	100.0	True		full
+kamath2022-C10	kamath2022	composition	composition_donor	main	1.0	2.0	False	marker table not in supplement (only DA subtype markers given); state-name genes used	text_only
+kamath2022-C11	kamath2022	composition	composition_donor	main	1.0	2.0	False	marker table not in supplement (only DA subtype markers given); state-name genes used	text_only
+kamath2022-C12	kamath2022	composition	composition_donor	main	1.0	100.0	True		full
+kamath2022-C13	kamath2022	composition	composition_donor	main	4.0	244.0	True		full
+kamath2022-C18	kamath2022	genetic_enrichment	state_signature	main	2.0	104.0	True		full
+kamath2022-C19	kamath2022	de_pathway	geneset_shift	headline	0.0	0.0		only TF name given; resolve target set centrally (TRRUST / ENCODE / ARCHS4 libraries)	none
+kamath2022-C20	kamath2022	de_pathway	geneset_shift	headline	0.0	0.0		only TF name given; resolve target set centrally (TRRUST / ENCODE / ARCHS4 libraries)	none
+kamath2022-C21	kamath2022	de_pathway	geneset_shift	main	0.0	0.0		only TF name given; resolve target set centrally (TRRUST / ENCODE / ARCHS4 libraries)	none
+kamath2022-C22	kamath2022	de_gene	de_pseudobulk	secondary	1.0	1.0	False	DE table not in supplement (Supp. Table 10 gives DEG counts only); TP53 from text used	text_only
+lee2023-C01	lee2023	composition	composition_donor	main	1.0	3.0	False		text_only
+lee2023-C02	lee2023	composition	composition_donor	main	1.0	3.0	False		text_only
+lee2023-C03	lee2023	de_pathway	geneset_shift	secondary	1.0	917.0	True	GO term names only (fig. S6B); resolve members from MSigDB. DopaN down-DEGs attached	partial
+lee2023-C04	lee2023	de_pathway	geneset_shift	secondary	2.0	655.0	True	GO term name only; Ast/OPC down-DEGs attached	partial
+lee2023-C05	lee2023	de_pathway	geneset_shift	secondary	1.0	217.0	True	GO term name only; Micro down-DEGs attached	partial
+lee2023-C06	lee2023	de_pathway	geneset_shift	secondary	2.0	963.0	True	GO term name only; DopaN/Micro up-DEGs attached	partial
+lee2023-C07	lee2023	de_pathway	geneset_shift	secondary	2.0	601.0	True	GO term name only; Oligo/Endo up-DEGs attached	partial
+lee2023-C08	lee2023	de_gene	de_pseudobulk	main	3.0	1653.0	True		full
+lee2023-C09	lee2023	de_gene	de_pseudobulk	main	3.0	522.0	True		full
+lee2023-C10	lee2023	de_gene	de_pseudobulk	main	3.0	1001.0	True		full
+lee2026-C01	lee2026	other	de_pseudobulk	headline	74.0	6528.0	True		full
+lee2026-C03	lee2026	composition	composition_donor	main	1.0	2.0	False		text_only
+lee2026-C04	lee2026	composition	composition_donor	main	3.0	10.0	False		text_only
+lee2026-C05	lee2026	composition	composition_donor	secondary	1.0	1.0	False		text_only
+lee2026-C07	lee2026	de_pathway	geneset_shift	main	10.0	821.0	True	pathway themes named only (no term table in the supplement); per-subclass PD/DLBD DE lists provided	partial
+lee2026-C08	lee2026	de_pathway	geneset_shift	secondary	2.0	7.0	True	0 PD DEGs at FDR<0.05 in VLMC | pathway theme named only; PD has 0 VLMC DEGs, DLBD VLMC DE lists provided	partial
+lee2026-C09	lee2026	de_pathway	geneset_shift	headline	1.0	2959.0	True	pathway themes named only; shared-gene list provided as crossdisorder_shared_genes	partial
+lee2026-C11	lee2026	other	de_pseudobulk	secondary	1.0	5.0	False		text_only
+ma2025-C01	ma2025	composition	composition_donor	headline	2.0	100.0	True		full
+ma2025-C06	ma2025	state_enrichment	state_signature	main	4.0	150.0	True		full
+ma2025-C07	ma2025	state_enrichment	state_signature	main	2.0	105.0	True		full
+ma2025-C08	ma2025	de_gene	de_pseudobulk	secondary	3.0	44.0	True		full
+ma2025-C09	ma2025	de_gene	de_pseudobulk	main	2.0	198.0	True		full
+ma2025-C10	ma2025	de_pathway	geneset_shift	secondary	4.0	278.0	True		full
+ma2025-C11	ma2025	de_gene	de_pseudobulk	main	3.0	855.0	True		full
+ma2025-C12	ma2025	de_gene	de_pseudobulk	main	3.0	607.0	True		full
+ma2025-C13	ma2025	de_gene	de_pseudobulk	main	2.0	23.0	True		full
+ma2025-C14	ma2025	de_gene	de_pseudobulk	main	2.0	141.0	True		full
+ma2025-C15	ma2025	de_pathway	geneset_shift	main	13.0	1440.0	True		full
+ma2025-C16	ma2025	composition	composition_donor	main	2.0	101.0	True		full
+ma2025-C17	ma2025	state_enrichment	geneset_shift	main	2.0	100.0	True	external mouse gene sets (ref. 24), not in supplement; SN BAM cluster markers attached; SN BAM DE has 0 genes at adj.P<0.05	partial
+ma2025-C18	ma2025	de_gene	de_pseudobulk	main	2.0	79.0	True		full
+ma2025-C19	ma2025	de_gene	de_pseudobulk	main	2.0	600.0	True		full
+ma2025-C20	ma2025	de_gene	de_pseudobulk	main	2.0	66.0	True		full
+ma2025-C21	ma2025	de_gene	de_pseudobulk	main	2.0	600.0	True		full
+ma2025-C22	ma2025	de_gene	de_pseudobulk	secondary	2.0	2580.0	True		full
+ma2025-C23	ma2025	de_gene	de_pseudobulk	headline	3.0	176.0	True		full
+ma2025-C24	ma2025	state_enrichment	state_signature	secondary	2.0	102.0	True	program gene loadings not in supplement (SD6 sheet A factors 8-10 are not astrocytic); SN fibrous-like astrocyte markers attached	partial
+ma2025-C25	ma2025	de_pathway	geneset_shift	main	4.0	80.0	True	term not in authors' pathfindR table MOESM6|B block Protoplasmic; resolve from MSigDB	partial
+ma2025-C26	ma2025	state_enrichment	state_signature	main	2.0	123.0	True		full
+ma2025-C27	ma2025	state_enrichment	state_signature	main	1.0	79.0	True		full
+ma2025-C28	ma2025	de_gene	de_pseudobulk	main	2.0	26.0	True		full
+ma2025-C29	ma2025	de_gene	de_pseudobulk	secondary	5.0	982.0	True		full
+ma2025-C30	ma2025	de_gene	de_pseudobulk	secondary	2.0	873.0	True		full
+martirosyan2024-C02	martirosyan2024	composition	composition_donor	headline	4.0	400.0	True		full
+martirosyan2024-C04	martirosyan2024	composition	composition_donor	headline	1.0	100.0	True		full
+martirosyan2024-C05	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C06	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C07	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C08	martirosyan2024	de_gene	de_pseudobulk	main	4.0	120.0	True		full
+martirosyan2024-C09	martirosyan2024	de_gene	de_pseudobulk	main	4.0	121.0	True		full
+martirosyan2024-C10	martirosyan2024	de_gene	de_pseudobulk	main	2.0	2.0	True		full
+martirosyan2024-C11	martirosyan2024	composition	composition_donor	headline	1.0	100.0	True		full
+martirosyan2024-C12	martirosyan2024	composition	composition_donor	main	1.0	69.0	True		full
+martirosyan2024-C13	martirosyan2024	composition	composition_donor	main	1.0	15.0	True		full
+martirosyan2024-C14	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C15	martirosyan2024	composition	composition_donor	secondary	1.0	100.0	True		full
+martirosyan2024-C16	martirosyan2024	composition	composition_donor	headline	1.0	95.0	True		full
+martirosyan2024-C17	martirosyan2024	de_gene	de_pseudobulk	main	3.0	78.0	True		full
+martirosyan2024-C18	martirosyan2024	de_gene	de_pseudobulk	secondary	3.0	91.0	True		full
+martirosyan2024-C19	martirosyan2024	composition	composition_donor	headline	1.0	57.0	True		full
+martirosyan2024-C20	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C21	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C22	martirosyan2024	composition	composition_donor	main	1.0	100.0	True		full
+martirosyan2024-C23	martirosyan2024	composition	composition_donor	secondary	1.0	33.0	True		full
+martirosyan2024-C24	martirosyan2024	de_gene	de_pseudobulk	secondary	3.0	64.0	True		full
+martirosyan2024-C25	martirosyan2024	state_existence	state_signature	headline	1.0	28.0	True		full
+martirosyan2024-C26	martirosyan2024	composition	composition_donor	secondary	2.0	28.0	True		full
+martirosyan2024-C27	martirosyan2024	state_existence	state_signature	main	1.0	3.0	False		text_only
+martirosyan2024-C28	martirosyan2024	genetic_enrichment	state_signature	main	2.0	104.0	True		full
+martirosyan2024-C29	martirosyan2024	genetic_enrichment	state_signature	main	1.0	4.0	False		text_only
+menon2026-C01	menon2026	composition	composition_donor	main	1.0	1.0	False	subcluster markers not in supplement; AGTR1 text list used	text_only
+menon2026-C02	menon2026	de_gene	de_pseudobulk	main	2.0	1354.0	True		full
+menon2026-C03	menon2026	de_gene	de_pseudobulk	main	6.0	1385.0	True		full
+menon2026-C04	menon2026	de_gene	de_pseudobulk	main	2.0	654.0	True		full
+menon2026-C05	menon2026	de_gene	de_pseudobulk	main	2.0	470.0	True		full
+menon2026-C06	menon2026	de_pathway	geneset_shift	secondary	6.0	33.0	True		full
+menon2026-C08	menon2026	de_gene	de_pseudobulk	main	4.0	1716.0	True	SupTable2 has no region column; only region-pooled DEGs given (attached)	partial
+menon2026-C09	menon2026	de_gene	de_pseudobulk	secondary	6.0	2291.0	True	SupTable2 has no region column; region-pooled DEGs attached	partial
+menon2026-C10	menon2026	de_gene	de_pseudobulk	secondary	9.0	333.0	True	no region column; cerebellum-specific cell types (Granule, Purkinje, Bergmann-Glia, Golgi, MLI) attached as proxy	partial
+menon2026-C21	menon2026	state_existence	state_signature	secondary	1.0	2.0	False	marker table not in supplement; DRD1/DRD2 text list used	text_only
+smajic2022-C02	smajic2022	state_existence	state_signature	headline	3.0	186.0	True		full
+smajic2022-C11	smajic2022	de_gene	de_pseudobulk	headline	4.0	659.0	True		full
+smajic2022-C12	smajic2022	de_pathway	state_signature	main	4.0	100.0	True	branch-gene GO table not in supplement; branch gene lists + UPR terms of microglia DEGs used	partial
+smajic2022-C14	smajic2022	de_gene	de_pseudobulk	headline	2.0	669.0	True		full
+smajic2022-C15	smajic2022	de_pathway	geneset_shift	main	3.0	674.0	True		full
+smajic2022-C17	smajic2022	de_gene	de_pseudobulk	headline	4.0	2765.0	True		full
+smajic2022-C18	smajic2022	de_pathway	geneset_shift	main	4.0	2778.0	True		full
+smajic2022-C19	smajic2022	de_pathway	geneset_shift	main	3.0	2765.0	True	GO result for trajectory genes not tabulated and no such term among GO of oligodendrocyte down-DEGs; resolve GO terms centrally (trajectory-down gene list given as de_down)	partial
+smajic2022-C20	smajic2022	de_pathway	geneset_shift	secondary	8.0	1276.0	True		full
+smajic2022-C23	smajic2022	genetic_enrichment	state_signature	main	2.0	102.0	True		full
+smajic2022-C25	smajic2022	other	state_signature	headline	0.0	0.0		no genes or supporting Results given (abstract only); a proliferation set (e.g. GO cell cycle) must be chosen centrally	none
+volpato2025-C01	volpato2025	state_existence	state_signature	main	6.0	23.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used	text_only
+volpato2025-C06	volpato2025	composition	composition_donor	headline	1.0	5.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used	text_only
+volpato2025-C07	volpato2025	composition	composition_donor	main	1.0	3.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used	text_only
+volpato2025-C08	volpato2025	composition	composition_donor	headline	1.0	7.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); text-named markers used	text_only
+volpato2025-C09	volpato2025	composition	composition_donor	main	2.0	5.0	False		text_only
+volpato2025-C10	volpato2025	composition	spatial_neighbourhood	main	0.0	0.0			none
+volpato2025-C12	volpato2025	de_gene	de_pseudobulk	main	1.0	1.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only)	text_only
+volpato2025-C13	volpato2025	de_pathway	geneset_shift	main	0.0	0.0		supplement tables not available (medRxiv blocks download; supplied PDF has figures only); resolve GO/Hallmark terms centrally	none
+volpato2025-C14	volpato2025	de_pathway	geneset_shift	secondary	1.0	3.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); resolve GO term centrally	text_only
+volpato2025-C15	volpato2025	de_pathway	geneset_shift	secondary	1.0	3.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); resolve GO terms centrally	text_only
+volpato2025-C20	volpato2025	state_existence	state_signature	main	2.0	6.0	False		text_only
+volpato2025-C24	volpato2025	de_gene	state_signature	headline	2.0	8.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only)	text_only
+volpato2025-C25	volpato2025	genetic_enrichment	state_signature	main	2.0	6.0	False		text_only
+volpato2025-C26	volpato2025	state_existence	state_signature	main	3.0	9.0	False	supplement tables not available (medRxiv blocks download; supplied PDF has figures only); regulon members not given	text_only
+volpato2025-C27	volpato2025	de_pathway	geneset_shift	headline	0.0	0.0		claim from medRxiv v2 abstract only; v2 full text and tables not accessed; resolve KEGG term centrally	none
+wang2024-C01	wang2024	composition	composition_donor	headline	1.0	100.0	True		full
+wang2024-C02	wang2024	composition	composition_donor	main	2.0	101.0	True		full
+wang2024-C03	wang2024	state_existence	state_signature	main	1.0	100.0	True		full
+wang2024-C04	wang2024	composition	composition_donor	main	1.0	100.0	True		full
+wang2024-C05	wang2024	composition	composition_donor	main	1.0	100.0	True		full
+wang2024-C06	wang2024	other	state_signature	secondary	1.0	2.0	False		text_only
+wang2024-C07	wang2024	de_pathway	geneset_shift	main	3.0	1203.0	True		full
+wang2024-C08	wang2024	de_pathway	geneset_shift	main	37.0	2891.0	True		full
+wang2024-C09	wang2024	de_gene	de_pseudobulk	main	38.0	2891.0	True		full
+wang2024-C10	wang2024	de_gene	de_pseudobulk	main	38.0	2891.0	True		full
+wang2024-C11	wang2024	de_pathway	geneset_shift	main	19.0	2034.0	True		full
+wang2024-C12	wang2024	de_gene	de_pseudobulk	main	4.0	234.0	True		full
+wang2024-C13	wang2024	de_gene	de_pseudobulk	secondary	7.0	1336.0	True		full
+wang2024-C14	wang2024	de_pathway	geneset_shift	main	3.0	262.0	True	IPA network is proprietary; MSigDB WP_TYROBP_CAUSAL_NETWORK overlap genes from Table S6 used	partial
+wang2024-C15	wang2024	de_gene	geneset_shift	secondary	36.0	2891.0	True	external bulk DEG list not in supplement; per-cluster DE signatures given instead	partial
+wang2024-C19	wang2024	genetic_enrichment	state_signature	secondary	1.0	4.0	False		text_only
+wang2024-C20	wang2024	de_gene	de_pseudobulk	main	5.0	1324.0	True		full
+wang2024-C21	wang2024	de_gene	de_pseudobulk	secondary	3.0	1203.0	True		full
+wang2024-C22	wang2024	de_gene	de_pseudobulk	secondary	7.0	620.0	True		full
+wang2024-C24	wang2024	de_gene	de_pseudobulk	main	19.0	2034.0	True	list only in figure, not in supplement tables	partial
+wang2024-C25	wang2024	de_gene	de_pseudobulk	headline	3.0	1203.0	True		full
+xu2023-C01	xu2023	state_existence	state_signature	headline	6.0	208.0	True		full
+xu2023-C02	xu2023	state_existence	state_signature	main	4.0	194.0	True		full
+xu2023-C03	xu2023	de_gene	de_pseudobulk	main	7.0	746.0	True		full
+xu2023-C04	xu2023	de_gene	de_pseudobulk	secondary	7.0	746.0	True		full
+xu2023-C05	xu2023	de_gene	de_pseudobulk	main	1.0	1.0	False		text_only
+xu2023-C06	xu2023	other	de_pseudobulk	headline	12.0	970.0	True		full
+xu2023-C07	xu2023	de_pathway	geneset_shift	main	6.0	746.0	True	pathway named only (enrichment table not in supplement); resolve from MSigDB; astrocyte PD DEG-up lists attached	partial
+xu2023-C08	xu2023	de_pathway	geneset_shift	secondary	6.0	746.0	True	GO term named only; resolve from MSigDB; astrocyte PD DEG-down lists attached	partial
+xu2023-C09	xu2023	de_gene	de_pseudobulk	secondary	6.0	746.0	True	gene list shown only in figure heatmap; PD GWAS gene list needed centrally; astrocyte DEG lists attached	partial
+xu2023-C10	xu2023	other	de_pseudobulk	headline	8.0	379.0	True		full
+xu2023-C11	xu2023	state_existence	state_signature	headline	2.0	71.0	True		full
+xu2023-C12	xu2023	de_gene	de_pseudobulk	main	1.0	1.0	False		text_only
+xu2023-C13	xu2023	de_gene	de_pseudobulk	main	4.0	172.0	True		full
+xu2023-C14	xu2023	de_pathway	de_pseudobulk	main	5.0	172.0	True	GO term named only; resolve from MSigDB (MSR1, CST3 emitted as named genes)	partial
+xu2023-C15	xu2023	de_gene	de_pseudobulk	main	5.0	172.0	True		full
+xu2023-C17	xu2023	state_existence	state_signature	headline	14.0	799.0	True		full
+xu2023-C18	xu2023	state_existence	state_signature	main	2.0	100.0	True		full
+xu2023-C19	xu2023	de_gene	de_pseudobulk	secondary	37.0	1737.0	True	not in supplement (Supplementary Table S37 absent; other subclusters covered)	partial
+xu2023-C20	xu2023	de_pathway	geneset_shift	headline	4.0	258.0	True	GO term named only (Fig. 8i); resolve from MSigDB; mD1/pD1 PD DEG-down lists attached	partial
+zhu2024-C01	zhu2024	composition	composition_donor	headline	1.0	4.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C04	zhu2024	de_gene	de_pseudobulk	main	0.0	0.0		supplement not obtainable; no genes named in text	none
+zhu2024-C05	zhu2024	de_pathway	de_pseudobulk	main	1.0	6.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C06	zhu2024	de_pathway	de_pseudobulk	main	1.0	3.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C07	zhu2024	de_pathway	de_pseudobulk	secondary	1.0	3.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C08	zhu2024	de_pathway	de_pseudobulk	main	1.0	9.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C09	zhu2024	de_pathway	de_pseudobulk	secondary	1.0	6.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C10	zhu2024	de_pathway	de_pseudobulk	secondary	1.0	6.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C11	zhu2024	de_pathway	de_pseudobulk	main	1.0	6.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C12	zhu2024	de_pathway	geneset_shift	main	1.0	6.0	False	pathway named only; resolve from MSigDB (GO:0006457 protein folding, GO:0006986 response to unfolded protein) | supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C13	zhu2024	de_pathway	de_pseudobulk	main	1.0	4.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C16	zhu2024	de_gene	de_pseudobulk	main	1.0	2.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C17	zhu2024	de_gene	de_pseudobulk	main	1.0	4.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C19	zhu2024	de_gene	de_pseudobulk	secondary	1.0	3.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C20	zhu2024	de_gene	de_pseudobulk	secondary	1.0	5.0	False	supplement not obtainable; named genes from text emitted	text_only
+zhu2024-C25	zhu2024	other	de_pseudobulk	headline	5.0	20.0	False	supplement not obtainable; named genes from text emitted	text_only

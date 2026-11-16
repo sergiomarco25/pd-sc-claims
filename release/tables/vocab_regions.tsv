@@ -1,0 +1,22 @@
+label	ontology	term	region_group	harmonised_regions	ontology_id	ontology_label	check
+SN	uberon	substantia nigra	midbrain	SN	UBERON:0002038	substantia nigra	ok
+VTA	uberon	ventral tegmental area	midbrain	VTA	UBERON:0002691	ventral tegmental area	ok
+midbrain	uberon	midbrain	midbrain	midbrain;SN	UBERON:0001891	midbrain	ok
+putamen	uberon	putamen	basal ganglia	putamen	UBERON:0001874	putamen	ok
+caudate	uberon	caudate nucleus	basal ganglia	caudate	UBERON:0001873	caudate nucleus	ok
+striatum	uberon	striatum	basal ganglia	putamen;caudate;striatum	UBERON:0002435	striatum	ok
+GPi	uberon	medial globus pallidus	basal ganglia	GPi	UBERON:0002477	medial globus pallidus	ok
+PFC	uberon	prefrontal cortex	cortex	PFC;DLPFC	UBERON:0000451	prefrontal cortex	ok
+DLPFC	uberon	dorsolateral prefrontal cortex	cortex	DLPFC;PFC	UBERON:0009834	dorsolateral prefrontal cortex	ok
+cingulate	uberon	cingulate cortex	cortex	cingulate	UBERON:0003027	cingulate cortex	ok
+temporal	uberon	temporal cortex	cortex	temporal;MTG	UBERON:0016538	temporal cortex	ok
+MTG	uberon	middle temporal gyrus	cortex	MTG;temporal	UBERON:0002771	middle temporal gyrus	ok
+motor	uberon	primary motor cortex	cortex	motor	UBERON:0001384	primary motor cortex	ok
+visual	uberon	primary visual cortex	cortex	visual	UBERON:0002436	primary visual cortex	ok
+parietal	uberon	parietal cortex	cortex	parietal	UBERON:0016530	parietal cortex	ok
+amygdala	uberon	amygdala	limbic	amygdala	UBERON:0001876	amygdala	ok
+hippocampus	uberon	hippocampal formation	limbic	hippocampus	UBERON:0002421	hippocampal formation	ok
+cerebellum	uberon	cerebellum	cerebellum	cerebellum	UBERON:0002037	cerebellum	ok
+DMNX	uberon	dorsal motor nucleus of vagus nerve	brainstem	DMNX	UBERON:0002870	dorsal motor nucleus of vagus nerve	ok
+SVZ	uberon	postnatal subventricular zone	basal ganglia	SVZ	UBERON:0004922	postnatal subventricular zone	ok
+brain	uberon	brain	whole brain		UBERON:0000955	brain	ok

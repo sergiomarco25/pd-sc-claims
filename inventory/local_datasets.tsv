@@ -1,0 +1,10 @@
+paper_id	accession	region	modality	local_path	state	built_by
+xu2023	GSE161045	putamen	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/external_validation/GSE161045	raw GEO tar + cell scores	revision/scripts/06a (xu2023_putamen)
+smajic2022	GSE157783	midbrain	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/external_validation/GSE157783	raw GEO + cell scores	06a (smajic2022_midbrain)
+zhu2024	GSE202210	PFC	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/external_validation/GSE202210	raw GEO + cell scores	06a (zhu2024_pfc)
+wang2024	GSE184950	SN	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/external_validation/GSE184950	raw GEO + cell scores	06a (wang2024_sn)
+kamath2022	GSE178265	SN	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/external_validation/GSE178265	raw GEO mtx + cell scores	06a (kamath2022_sn)
+martirosyan2024	GSE243639	SN	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/published_datasets/adata_martirosyan.h5ad	processed object	06a, 29b
+prashant2024	Fullard multiregion	multiregion	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/multiregion_sc/adata_multiregion_prashant.h5ad	processed object	06a (fullard2024_multiregion)
+menon2026	CELLxGENE	multiregion	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/external_validation/menon2026/menon2026_complete_rna.h5ad	processed object (4.5 M cells) + astro/micro caches	revision/scripts/30*, 33
+siletti2023	CELLxGENE	whole brain (control)	snRNA	/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas/published_datasets/siletti_non_neuronal.h5ad	reference only (no PD)	29b

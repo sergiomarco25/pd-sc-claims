@@ -1,0 +1,338 @@
+{
+ "@context": "https://w3id.org/ro/crate/1.1/context",
+ "@graph": [
+  {
+   "@id": "ro-crate-metadata.json",
+   "@type": "CreativeWork",
+   "conformsTo": {
+    "@id": "https://w3id.org/ro/crate/1.1"
+   },
+   "about": {
+    "@id": "./"
+   }
+  },
+  {
+   "@id": "./",
+   "@type": "Dataset",
+   "name": "PD single-cell claim store",
+   "description": "Claims of human post-mortem brain Parkinson's disease single-cell studies, each re-tested donor-level across harmonised datasets and rated for certainty (rules: RATING.md).",
+   "version": "0.9.1-preview",
+   "datePublished": "2026-11-16",
+   "license": {
+    "@id": "https://creativecommons.org/licenses/by/4.0/"
+   },
+   "author": [
+    {
+     "@id": "#author-1"
+    }
+   ],
+   "keywords": [
+    "Parkinson's disease",
+    "single-cell",
+    "replication",
+    "meta-analysis",
+    "knowledge graph"
+   ],
+   "hasPart": [
+    {
+     "@id": "tables/"
+    },
+    {
+     "@id": "CITATION.cff"
+    },
+    {
+     "@id": "LICENSE-DATA.md"
+    },
+    {
+     "@id": "claim_store.sqlite"
+    },
+    {
+     "@id": "claims.jsonld"
+    },
+    {
+     "@id": "knowledge_graph.graphml"
+    },
+    {
+     "@id": "knowledge_graph.json"
+    },
+    {
+     "@id": "release.json"
+    },
+    {
+     "@id": "SHA256SUMS"
+    }
+   ]
+  },
+  {
+   "@id": "https://creativecommons.org/licenses/by/4.0/",
+   "@type": "CreativeWork",
+   "name": "CC BY 4.0"
+  },
+  {
+   "@id": "#author-1",
+   "@type": "Person",
+   "name": "Sergio Marco Salas"
+  },
+  {
+   "@id": "tables/",
+   "@type": "Dataset",
+   "name": "tables",
+   "hasPart": [
+    {
+     "@id": "tables/background.tsv"
+    },
+    {
+     "@id": "tables/build_info.tsv"
+    },
+    {
+     "@id": "tables/claim.tsv"
+    },
+    {
+     "@id": "tables/claim_dataset.tsv"
+    },
+    {
+     "@id": "tables/claim_relation.tsv"
+    },
+    {
+     "@id": "tables/claim_signature.tsv"
+    },
+    {
+     "@id": "tables/consensus_statement.tsv"
+    },
+    {
+     "@id": "tables/dataset.tsv"
+    },
+    {
+     "@id": "tables/donor_group.tsv"
+    },
+    {
+     "@id": "tables/question.tsv"
+    },
+    {
+     "@id": "tables/signature.tsv"
+    },
+    {
+     "@id": "tables/signature_gene.tsv"
+    },
+    {
+     "@id": "tables/source.tsv"
+    },
+    {
+     "@id": "tables/source_discrepancy.tsv"
+    },
+    {
+     "@id": "tables/vocab_assays.tsv"
+    },
+    {
+     "@id": "tables/vocab_cell_types.tsv"
+    },
+    {
+     "@id": "tables/vocab_contrasts.tsv"
+    },
+    {
+     "@id": "tables/vocab_diseases.tsv"
+    },
+    {
+     "@id": "tables/vocab_organisms.tsv"
+    },
+    {
+     "@id": "tables/vocab_regions.tsv"
+    }
+   ]
+  },
+  {
+   "@id": "CITATION.cff",
+   "@type": "File",
+   "name": "CITATION.cff",
+   "encodingFormat": "application/x-yaml",
+   "contentSize": "808"
+  },
+  {
+   "@id": "LICENSE-DATA.md",
+   "@type": "File",
+   "name": "LICENSE-DATA.md",
+   "encodingFormat": "text/markdown",
+   "contentSize": "1304"
+  },
+  {
+   "@id": "claim_store.sqlite",
+   "@type": "File",
+   "name": "claim_store.sqlite",
+   "encodingFormat": "application/vnd.sqlite3",
+   "contentSize": "12312576"
+  },
+  {
+   "@id": "claims.jsonld",
+   "@type": "File",
+   "name": "claims.jsonld",
+   "encodingFormat": "application/ld+json",
+   "contentSize": "976085"
+  },
+  {
+   "@id": "knowledge_graph.graphml",
+   "@type": "File",
+   "name": "knowledge_graph.graphml",
+   "encodingFormat": "application/graphml+xml",
+   "contentSize": "1959208"
+  },
+  {
+   "@id": "knowledge_graph.json",
+   "@type": "File",
+   "name": "knowledge_graph.json",
+   "encodingFormat": "application/json",
+   "contentSize": "1421502"
+  },
+  {
+   "@id": "tables/background.tsv",
+   "@type": "File",
+   "name": "background.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "11218"
+  },
+  {
+   "@id": "tables/build_info.tsv",
+   "@type": "File",
+   "name": "build_info.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "84"
+  },
+  {
+   "@id": "tables/claim.tsv",
+   "@type": "File",
+   "name": "claim.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "955656"
+  },
+  {
+   "@id": "tables/claim_dataset.tsv",
+   "@type": "File",
+   "name": "claim_dataset.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "1304749"
+  },
+  {
+   "@id": "tables/claim_relation.tsv",
+   "@type": "File",
+   "name": "claim_relation.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "16461"
+  },
+  {
+   "@id": "tables/claim_signature.tsv",
+   "@type": "File",
+   "name": "claim_signature.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "57476"
+  },
+  {
+   "@id": "tables/consensus_statement.tsv",
+   "@type": "File",
+   "name": "consensus_statement.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "2077"
+  },
+  {
+   "@id": "tables/dataset.tsv",
+   "@type": "File",
+   "name": "dataset.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "15190"
+  },
+  {
+   "@id": "tables/donor_group.tsv",
+   "@type": "File",
+   "name": "donor_group.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "1829"
+  },
+  {
+   "@id": "tables/question.tsv",
+   "@type": "File",
+   "name": "question.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "53"
+  },
+  {
+   "@id": "tables/signature.tsv",
+   "@type": "File",
+   "name": "signature.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "170836"
+  },
+  {
+   "@id": "tables/signature_gene.tsv",
+   "@type": "File",
+   "name": "signature_gene.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "7272107"
+  },
+  {
+   "@id": "tables/source.tsv",
+   "@type": "File",
+   "name": "source.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "16823"
+  },
+  {
+   "@id": "tables/source_discrepancy.tsv",
+   "@type": "File",
+   "name": "source_discrepancy.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "3232"
+  },
+  {
+   "@id": "tables/vocab_assays.tsv",
+   "@type": "File",
+   "name": "vocab_assays.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "727"
+  },
+  {
+   "@id": "tables/vocab_cell_types.tsv",
+   "@type": "File",
+   "name": "vocab_cell_types.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "973"
+  },
+  {
+   "@id": "tables/vocab_contrasts.tsv",
+   "@type": "File",
+   "name": "vocab_contrasts.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "1436"
+  },
+  {
+   "@id": "tables/vocab_diseases.tsv",
+   "@type": "File",
+   "name": "vocab_diseases.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "861"
+  },
+  {
+   "@id": "tables/vocab_organisms.tsv",
+   "@type": "File",
+   "name": "vocab_organisms.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "309"
+  },
+  {
+   "@id": "tables/vocab_regions.tsv",
+   "@type": "File",
+   "name": "vocab_regions.tsv",
+   "encodingFormat": "text/tab-separated-values",
+   "contentSize": "1905"
+  },
+  {
+   "@id": "release.json",
+   "@type": "File",
+   "name": "release.json",
+   "encodingFormat": "application/json"
+  },
+  {
+   "@id": "SHA256SUMS",
+   "@type": "File",
+   "name": "SHA256SUMS",
+   "encodingFormat": "text/plain"
+  }
+ ]
+}

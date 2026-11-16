@@ -1,0 +1,10 @@
+claim_id	term	reason
+xu2023-C19	neuronal DEG tables PD vs control for ncD2, in.SST, in.SLC5A7	not in supplement (Supplementary Table S37 absent; other subclusters covered)
+xu2023-C07	KEGG neurodegeneration pathways (Parkinson / Alzheimer / Huntington disease; Fig. 3d)	pathway named only (enrichment table not in supplement); resolve from MSigDB; astrocyte PD DEG-up lists attached
+xu2023-C08	GO:0001540 amyloid-beta binding	GO term named only; resolve from MSigDB; astrocyte PD DEG-down lists attached
+xu2023-C09	AD/PD GWAS risk genes DE in >=2 astrocyte subclusters (Fig. 3e)	gene list shown only in figure heatmap; PD GWAS gene list needed centrally; astrocyte DEG lists attached
+xu2023-C14	GO:0001540 amyloid-beta binding	GO term named only; resolve from MSigDB (MSR1, CST3 emitted as named genes)
+xu2023-C20	GO:0060291 long-term synaptic potentiation	GO term named only (Fig. 8i); resolve from MSigDB; mD1/pD1 PD DEG-down lists attached
+xu2023-C20	GO:0048167 regulation of synaptic plasticity	GO term named only (Fig. 8i); resolve from MSigDB; mD1/pD1 PD DEG-down lists attached
+xu2023-C20	GO:0006836 neurotransmitter transport	GO term named only (Fig. 8i); resolve from MSigDB; mD1/pD1 PD DEG-down lists attached
+xu2023-C20	GO:0007611 learning or memory	GO term named only (Fig. 8i); resolve from MSigDB; mD1/pD1 PD DEG-down lists attached

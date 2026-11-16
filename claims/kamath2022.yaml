@@ -1,0 +1,484 @@
+- id: kamath2022-C01
+  paper: kamath2022
+  statement: "Human SNpc DA neurons comprise ten transcriptionally distinct subpopulations organised along a SOX6 versus CALB1 axis (four SOX6+ and six CALB1+ clusters)."
+  quote: "we identified ten transcriptionally distinct subpopulations ... Four DA clusters preferentially expressed SOX6 while the other six expressed CALB1, recapitulating a well-defined developmental axis of variation"
+  location: "Fig. 1d,e; Results \"A molecular taxonomy of human SNpc DA neurons\""
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: "SOX6+ / CALB1+ DA subtypes (SOX6_AGTR1, SOX6_DDT, CALB1_GEM, CALB1_TRHR, CALB1_RBP4, ...)"
+  claim_type: state_existence
+  direction: exists
+  comparison: "within control"
+  genes: [SOX6, CALB1, TH, SLC6A3, SLC18A2, AGTR1, DDT, GEM, TRHR, RBP4]
+  gene_source: "Fig. 1e dot plot; DA subtype markers in Supplementary Tables (MAST cluster markers, Extended Data Fig. 2c)"
+  reported_stat: "10 clusters from 15,684 DA nuclei (8 neurotypical donors); LIGER alignment score 0.98"
+  unit_of_analysis: cells
+  method: "LIGER integration + clustering; MAST markers"
+  testable_with: rna
+  test_template: state_signature
+  requires: "sufficient DA neuron numbers (NR4A2-sorted or DA-enriched data)"
+  notes: "Abstract states 'ten populations'; full list of the 10 cluster names is in Fig. 1d (not all named in text). Testable by mapping/label transfer of DA neurons."
+- id: kamath2022-C02
+  paper: kamath2022
+  statement: "The CALB1_GEM DA population (cross-species cluster DA8) is primate-specific, found only in human and macaque and absent in rodents."
+  quote: "the DA8 population, composed primarily of the CALB1_GEM human population ... included profiles derived only from humans and macaque"
+  location: "Fig. 1g,h; Results \"A molecular taxonomy of human SNpc DA neurons\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: CALB1_GEM
+  claim_type: state_existence
+  direction: exists
+  comparison: "human/macaque vs mouse/rat/tree shrew"
+  genes: [CALB1, GEM]
+  gene_source: "Extended Data Fig. 3 (DA8 markers)"
+  reported_stat: "6,253 DA nuclei across 5 species; mouse ISH negative"
+  unit_of_analysis: cells
+  method: "cross-species LIGER integration; mouse in situ hybridisation"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "non-human species data"
+  notes: "Cross-species claim; only the existence of CALB1_GEM in human SN is testable in other human datasets."
+- id: kamath2022-C03
+  paper: kamath2022
+  statement: "The SOX6_AGTR1 DA subtype is spatially confined to the ventral tier of the SNpc."
+  quote: "The SOX6_AGTR1 population was the most strongly enriched in the ventral tier ... mean SOX6_AGTR1 relative distance, +490 μm"
+  location: "Fig. 2b-e,g; Results \"Localization of DA neurons in macaque midbrain by Slide-seq\""
+  centrality: headline
+  modality: spatial-other
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: spatial_colocalisation
+  direction: enriched
+  comparison: "ventral vs dorsal tier SNpc"
+  genes: [SOX6, AGTR1, TH]
+  gene_source: text
+  reported_stat: "mean relative distance +490 μm; 27 Slide-seq arrays (macaque); human smFISH repeated 5 times"
+  unit_of_analysis: cells
+  method: "Slide-seq + RCTD deconvolution (macaque); smFISH (human)"
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data with dorsal/ventral SNpc annotation"
+  notes: "Slide-seq was macaque; human confirmation by smFISH only. Not a PD-vs-control claim."
+- id: kamath2022-C04
+  paper: kamath2022
+  statement: "CALB1_GEM and CALB1_TRHR DA subtypes are enriched in the dorsal tier of the SNpc."
+  quote: "the CALB1_GEM and CALB1_TRHR populations were strongly enriched in the dorsal tier (... mean CALB1_GEM relative distance, −478 μm; mean CALB1_TRHR relative distance, −288 μm)"
+  location: "Fig. 2d,e,g; Results \"Localization of DA neurons in macaque midbrain by Slide-seq\""
+  centrality: main
+  modality: spatial-other
+  region: SN
+  cell_type: DA neurons
+  cell_state: "CALB1_GEM; CALB1_TRHR"
+  claim_type: spatial_colocalisation
+  direction: enriched
+  comparison: "dorsal vs ventral tier SNpc"
+  genes: [CALB1, GEM, TRHR]
+  gene_source: text
+  reported_stat: "relative distance −478 μm (CALB1_GEM), −288 μm (CALB1_TRHR)"
+  unit_of_analysis: cells
+  method: "Slide-seq + RCTD (macaque); smFISH (human)"
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data with dorsal/ventral SNpc annotation"
+  notes: "Could be split per subtype if needed."
+- id: kamath2022-C05
+  paper: kamath2022
+  statement: "Among major SNpc cell classes, DA neurons show the largest significant decline as a fraction of cells per individual in PD/LBD."
+  quote: "Among major cell classes, DA neurons showed the largest significant decline (P < 0.05, Wilcoxon rank-sum test) as a fraction of cells per individual"
+  location: "Extended Data Fig. 8a; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: composition
+  direction: down
+  comparison: "PD/LBD vs control"
+  genes: [TH, SLC6A3]
+  gene_source: text
+  reported_stat: "P = 0.034, Wilcoxon two-sided; n = 10 PD/LBD, 8 controls"
+  unit_of_analysis: donors
+  method: "Wilcoxon rank-sum on per-donor proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "NR4A2-negative (unsorted) libraries or unbiased sampling"
+  notes: "Proportions computed from libraries partly NR4A2-sorted; which libraries were used for the major class fraction is not explicit in text."
+- id: kamath2022-C06
+  paper: kamath2022
+  statement: "The SOX6_AGTR1 DA subtype shows the largest significant depletion in PD/LBD SNpc."
+  quote: "The largest statistically significant decline was in the SOX6_AGTR1 DA population"
+  location: "Fig. 3a,b; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: composition
+  direction: depleted
+  comparison: "PD/LBD vs control"
+  genes: [SOX6, AGTR1, TH]
+  gene_source: "Fig. 1e; subtype markers in Supplementary Tables"
+  reported_stat: "MASC OR, FDR < 0.05; n = 22,048 DA neurons, 10 PD/LBD vs 8 controls"
+  unit_of_analysis: cells
+  method: "MASC (binomial GLMM on cell membership; fixed sex, status, NR4A2 gate; library random effect)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA neurons annotated to Kamath subtypes (label transfer)"
+  notes: "Proportion is within DA neurons; robust to library quality and diagnosis per Supp. Fig. 1. MASC is cell-level with library RE (not donor RE)."
+- id: kamath2022-C07
+  paper: kamath2022
+  statement: "The CALB1_GEM DA subtype is proportionally increased in PD/LBD."
+  quote: "clusters CALB1_GEM and CALB1_TRHR were proportionally increased"
+  location: "Fig. 3b; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: CALB1_GEM
+  claim_type: composition
+  direction: enriched
+  comparison: "PD/LBD vs control"
+  genes: [CALB1, GEM]
+  gene_source: text
+  reported_stat: "MASC OR, FDR < 0.05"
+  unit_of_analysis: cells
+  method: "MASC (binomial GLMM, library RE)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA subtype annotation"
+  notes: "Relative increase within DA neurons, interpreted as relative resistance rather than expansion."
+- id: kamath2022-C08
+  paper: kamath2022
+  statement: "The CALB1_TRHR DA subtype is proportionally increased in PD/LBD."
+  quote: "clusters CALB1_GEM and CALB1_TRHR were proportionally increased"
+  location: "Fig. 3b; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: CALB1_TRHR
+  claim_type: composition
+  direction: enriched
+  comparison: "PD/LBD vs control"
+  genes: [CALB1, TRHR]
+  gene_source: text
+  reported_stat: "MASC OR, FDR < 0.05"
+  unit_of_analysis: cells
+  method: "MASC (binomial GLMM, library RE)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA subtype annotation"
+  notes: ""
+- id: kamath2022-C09
+  paper: kamath2022
+  statement: "Disease-associated depletion across the DA neuron embedding forms a gradient of susceptibility that correlates with AGTR1 expression."
+  quote: "identifying a gradient of susceptibility (Fig. 3c and Methods) that correlated with the expression of AGTR1 and ORs from mixed-effects association of single cells (MASC)"
+  location: "Fig. 3c; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: composition
+  direction: associated_neg
+  comparison: "PD/LBD vs control"
+  genes: [AGTR1]
+  gene_source: text
+  reported_stat: "qualitative (UMAP disease enrichment score); no statistic"
+  unit_of_analysis: cells
+  method: "custom disease enrichment score over binned UMAP"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA neurons"
+  notes: "Could be tested as a neighbourhood DA (e.g. Milo) correlation with AGTR1 expression; no formal statistic reported."
+- id: kamath2022-C10
+  paper: kamath2022
+  statement: "A GPNMB-expressing microglia subpopulation is proportionally increased in PD/LBD SNpc."
+  quote: "One proportionally increased population was a subset of microglia expressing GPNMB ... which has been identified as a marker of disease-associated microglia"
+  location: "Fig. 3a; Extended Data Fig. 8b,c; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: "GPNMB+ (GPNMB/SULT1C2) microglia"
+  claim_type: composition
+  direction: enriched
+  comparison: "PD/LBD vs control"
+  genes: [GPNMB, SULT1C2]
+  gene_source: "Extended Data Fig. 8b"
+  reported_stat: "MASC FDR < 0.05; robust to downsampling to 1/6 of data"
+  unit_of_analysis: cells
+  method: "MASC (binomial GLMM, library RE)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Proportion within microglia/macrophages (33,041 nuclei); cluster defined by GPNMB and SULT1C2."
+- id: kamath2022-C11
+  paper: kamath2022
+  statement: "A reactive VIM_LHX2 astrocyte subtype is increased in PD/LBD SNpc."
+  quote: "We also identified an increase in the VIM_LHX2 astrocyte subtype ... The VIM_LHX2 population expresses reactive markers, namely VIM and LHX2"
+  location: "Fig. 3a; Extended Data Fig. 8d,e; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: VIM_LHX2
+  claim_type: composition
+  direction: enriched
+  comparison: "PD/LBD vs control"
+  genes: [VIM, LHX2]
+  gene_source: "Extended Data Fig. 8d"
+  reported_stat: "MASC FDR < 0.05; robust to downsampling"
+  unit_of_analysis: cells
+  method: "MASC (binomial GLMM, library RE)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "11 of 68 subpopulations changed in total (Fig. 3a); only DA, GPNMB microglia and VIM_LHX2 astrocytes are discussed in text. Others (OPC, endothelial) labelled in Fig. 3a only."
+- id: kamath2022-C12
+  paper: kamath2022
+  statement: "smFISH confirms selective depletion of SOX6+/AGTR1+ TH+ DA neurons in PD SNpc."
+  quote: "We also confirmed selective depletion of the SOX6_AGTR1 subpopulation (Fig. 3e; Wilcoxon rank-sum test P < 0.05, log2(fold change −2.1)"
+  location: "Fig. 3d,e; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: composition
+  direction: depleted
+  comparison: "PD vs control"
+  genes: [TH, SOX6, AGTR1]
+  gene_source: text
+  reported_stat: "log2FC −2.1, P = 0.024 (Wilcoxon two-sided); 10 PD vs 10 controls; 3,258 DA neurons counted"
+  unit_of_analysis: donors
+  method: "Wilcoxon rank-sum on per-donor proportions of TH+ cells"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA subtype annotation"
+  notes: "Independent validation cohort (20 frozen midbrains). In other snRNA datasets this reduces to the same test as C06 but at donor level."
+- id: kamath2022-C13
+  paper: kamath2022
+  statement: "smFISH confirms that CALB1+ (TMEM200A+ and TMEM200A−) TH+ DA neurons are relatively enriched in PD SNpc."
+  quote: "We confirmed that CALB1+/TMEM200A+ DA cells were selectively enriched in PD (Fig. 3e; Wilcoxon rank-sum test P < 0.05), as were CALB1+/TMEM200A− DA cells"
+  location: "Fig. 3d,e; Results \"Differentially vulnerable DA neurons in PD\""
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: DA neurons
+  cell_state: "CALB1+/TMEM200A+ (CALB1_TRHR, CALB1_GEM, CALB1_RBP4)"
+  claim_type: composition
+  direction: enriched
+  comparison: "PD vs control"
+  genes: [TH, CALB1, TMEM200A]
+  gene_source: text
+  reported_stat: "log2FC 1.32 (TMEM200A+, P = 0.041), 1.13 (TMEM200A−, P = 0.028); 10 PD vs 10 controls"
+  unit_of_analysis: donors
+  method: "Wilcoxon rank-sum on per-donor proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DA subtype annotation"
+  notes: ""
+- id: kamath2022-C14
+  paper: kamath2022
+  statement: "Genes harbouring familial PD mutations are significantly enriched only among DA neuron marker genes, among SNpc major cell classes."
+  quote: "The DA neuron gene set was the only one to show significant enrichment (Bonferroni-corrected P < 0.05, Fisher's exact test ...) of genes that contained these familial variants"
+  location: "Fig. 4a,b; Results \"Cellular localization of PD common variants\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "DA neuron markers vs other cell class markers"
+  genes: []
+  gene_source: "26 familial PD genes from ref. 38 (whole-exome study); Fig. 4a heatmap"
+  reported_stat: "Fisher's exact, Bonferroni P < 0.05 (8 tests)"
+  unit_of_analysis: cells
+  method: "Fisher's exact test of top-10% AUC (presto Wilcoxon) markers vs 26 familial genes"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "familial PD gene list (ref. 38)"
+  notes: "Familial gene names only shown in Fig. 4a; not enumerated in text."
+- id: kamath2022-C15
+  paper: kamath2022
+  statement: "Common-variant heritable risk for sporadic PD is significantly enriched in DA neuron marker genes (SNpc and caudate cell classes)."
+  quote: "We observed strong, significant enrichment (Bonferroni-corrected P < 0.05) of heritable risk for sporadic PD (Methods) in markers of DA neurons"
+  location: "Fig. 4c; Extended Data Fig. 10a; Results \"Cellular localization of PD common variants\""
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "across 16 SNpc and caudate cell types"
+  genes: []
+  gene_source: "Supplementary Table 9 (MAGMA/s-LDSC results); markers = top 3,500 MAST genes per cell type"
+  reported_stat: "MAGMA and s-LDSC, Bonferroni P < 0.05"
+  unit_of_analysis: cells
+  method: "MAGMA gene-set and s-LDSC on top 3,500 MAST markers; Nalls 2019 PD GWAS"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: "Markers derived from control tissue."
+- id: kamath2022-C16
+  paper: kamath2022
+  statement: "Heritable risk for sporadic Alzheimer's disease is enriched in microglia/macrophage markers in both SNpc and dorsal striatum, in contrast to PD risk."
+  quote: "significant enrichment ... of heritable risk for sporadic AD was identified in markers of microglia/macrophage clusters from both SNpc and dorsal striatum"
+  location: "Fig. 4c; Extended Data Fig. 10a; Results \"Cellular localization of PD common variants\""
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "across 16 SNpc and caudate cell types"
+  genes: []
+  gene_source: "Supplementary Table 9"
+  reported_stat: "MAGMA and s-LDSC, Bonferroni P < 0.05"
+  unit_of_analysis: cells
+  method: "MAGMA / s-LDSC"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "AD GWAS summary statistics"
+  notes: "Contrast/control claim, not a PD claim per se."
+- id: kamath2022-C17
+  paper: kamath2022
+  statement: "Among the 68 SNpc subpopulations, PD common-variant genetic risk is significantly enriched only in the SOX6_AGTR1 DA subtype."
+  quote: "we found the largest and only statistically significant (Bonferroni-corrected P < 0.05 ...) enrichment of PD genetic risk genes within the SOX6_AGTR1 cell subtype"
+  location: "Fig. 4d; Extended Data Fig. 10b; Results \"Cellular localization of PD common variants\""
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "across 68 SNpc subpopulations"
+  genes: [SOX6, AGTR1]
+  gene_source: "Supplementary Tables 7 and 9"
+  reported_stat: "MAGMA and s-LDSC, Bonferroni P < 0.05; not driven by nuclei number"
+  unit_of_analysis: cells
+  method: "MAGMA and s-LDSC on top 3,500 MAST markers per subtype"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "DA subtype annotation; PD GWAS summary statistics"
+  notes: ""
+- id: kamath2022-C18
+  paper: kamath2022
+  statement: "PD GWAS-prioritised genes expressed in SOX6_AGTR1 neurons include SNCA, MAPT and GAK (shared with other subtypes) and SOX6_AGTR1-specific WNT3 and IGSF9B, with GO enrichment for regulation of neuron death and Wnt signalling."
+  quote: "Some prioritized—and well-studied—genes were expressed in multiple SOX6+ and CALB1+ subtypes, including SNCA, MAPT and GAK. Other SOX6_AGTR1-specific genes included the GWA-prioritized genes WNT3 and IGSF9B"
+  location: "Fig. 4e,f; Results \"Cellular localization of PD common variants\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "SOX6_AGTR1 vs other DA subtypes"
+  genes: [SNCA, MAPT, GAK, WNT3, IGSF9B]
+  gene_source: "Fig. 4e; Extended Data Fig. 10e"
+  reported_stat: "MAST z > 4.568 and high MAGMA z; GO via enrichR"
+  unit_of_analysis: cells
+  method: "MAST subtype DE intersected with MAGMA gene z-scores; enrichR GO"
+  testable_with: rna
+  test_template: state_signature
+  requires: "DA subtype annotation"
+  notes: "Testable as specific expression of WNT3/IGSF9B in SOX6_AGTR1-like neurons."
+- id: kamath2022-C19
+  paper: kamath2022
+  statement: "Targets of TP53 are specifically upregulated in SOX6_AGTR1 DA neurons in PD/LBD."
+  quote: "Transcription factors whose targets were enriched in the SOX6_AGTR1 population included TP53"
+  location: "Fig. 4g,h; Results \"Nomination of gene programs altered in dopaminergic neurons\""
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD/LBD vs control"
+  genes: [TP53]
+  gene_source: "TF target sets from enrichR TRRUST/ENCODE/ARCHS4; Supplementary Fig. 3a"
+  reported_stat: "fGSEA FDR < 0.05, not significant in other DA subtypes"
+  unit_of_analysis: cells
+  method: "MAST (library RE) disease DE per subtype, then fGSEA of TF target sets"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "DA subtype annotation; TF target gene sets"
+  notes: "Abstract: 'strongest upregulation of targets of TP53 and NR2F2'."
+- id: kamath2022-C20
+  paper: kamath2022
+  statement: "Targets of NR2F2 are specifically upregulated in SOX6_AGTR1 DA neurons in PD/LBD."
+  quote: "Transcription factors whose targets were enriched in the SOX6_AGTR1 population included TP53 ... as well as NR2F2"
+  location: "Fig. 4g,h; Results \"Nomination of gene programs altered in dopaminergic neurons\""
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD/LBD vs control"
+  genes: [NR2F2]
+  gene_source: "TF target sets (TRRUST/ENCODE/ARCHS4); Supplementary Fig. 3a"
+  reported_stat: "fGSEA FDR < 0.05"
+  unit_of_analysis: cells
+  method: "MAST (library RE) + fGSEA"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "DA subtype annotation; TF target gene sets"
+  notes: ""
+- id: kamath2022-C21
+  paper: kamath2022
+  statement: "Targets of LMX1A are depleted (negative enrichment) specifically in SOX6_AGTR1 DA neurons in PD/LBD."
+  quote: "This analysis revealed a depletion of targets of the TF encoded by the gene LMX1A (Methods; normalized enrichment score <0)"
+  location: "Fig. 4g,h; Results \"Nomination of gene programs altered in dopaminergic neurons\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD/LBD vs control"
+  genes: [LMX1A]
+  gene_source: "TF target sets (TRRUST/ENCODE/ARCHS4)"
+  reported_stat: "fGSEA NES < 0, FDR < 0.05"
+  unit_of_analysis: cells
+  method: "MAST (library RE) + fGSEA"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "DA subtype annotation"
+  notes: "13 TFs significant in total; only TP53, NR2F2, LMX1A named."
+- id: kamath2022-C22
+  paper: kamath2022
+  statement: "TP53 transcript itself is upregulated specifically in SOX6_AGTR1 DA neurons in PD/LBD."
+  quote: "TP53, whose own transcript was also upregulated specifically in the SOX6_AGTR1 population (Supplementary Fig. 3b)"
+  location: "Supplementary Fig. 3b; Results \"Nomination of gene programs altered in dopaminergic neurons\""
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: SOX6_AGTR1
+  claim_type: de_gene
+  direction: up
+  comparison: "PD/LBD vs control"
+  genes: [TP53]
+  gene_source: text
+  reported_stat: "not given in text"
+  unit_of_analysis: cells
+  method: "MAST with library random effect"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "DA subtype annotation"
+  notes: "Requires enough surviving SOX6_AGTR1 neurons in PD donors for pseudobulk."

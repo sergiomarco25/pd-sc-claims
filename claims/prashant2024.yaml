@@ -1,0 +1,26 @@
+- id: prashant2024-C01
+  paper: prashant2024
+  statement: Brain regions affected early in PD (DMNX, GPi) yield significantly fewer nuclei per sample than later-affected
+    or putatively unaffected cortical regions.
+  quote: Notably, regions affected early in Parkinson's disease exhibited significantly fewer cells than later affected, or
+    putatively unaffected, regions (Fig. 3f).
+  location: Fig. 3f; Technical Validation "snRNA-seq data quality control"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ''
+  claim_type: other
+  direction: down
+  comparison: early-affected (DMNX, GPi) vs late-affected (PMC, DLPFC) and unaffected (PVC) regions
+  genes: []
+  gene_source: ''
+  reported_stat: '''significantly fewer'' (test and p not reported)'
+  unit_of_analysis: samples
+  method: not reported (Fig. 3f average nuclei per sample per region)
+  testable_with: metadata
+  test_template: not_testable
+  requires: nuclei counts per sample and region
+  notes: Region comparison pooled over cases and controls, not PD vs control. The authors read it as regional vulnerability,
+    but it can equally reflect tissue type (brainstem/subcortical vs cortex) and dissociation yield. Weak claim, kept for
+    completeness.

@@ -1,0 +1,4 @@
+claim_id	term	reason
+wang2024-C15	bulk-tissue PD meta-analysis DEGs (ref. 30)	external bulk DEG list not in supplement; per-cluster DE signatures given instead
+wang2024-C14	IPA TYROBP causal network	IPA network is proprietary; MSigDB WP_TYROBP_CAUSAL_NETWORK overlap genes from Table S6 used
+wang2024-C24	52 GWAS-locus DEGs (Fig. 6D)	list only in figure, not in supplement tables

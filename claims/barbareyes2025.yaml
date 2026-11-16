@@ -1,0 +1,848 @@
+- id: barbareyes2025-C01
+  paper: barbareyes2025
+  statement: The human dorsal striatum contains four PD-associated oligodendroglia subpopulations (PDAOPCs, PDAO-1, PDAO-2,
+    PDAO-3) that are enriched in PD.
+  quote: We profiled a total of ~ 200.000 oligodendroglial nuclei, defining 15 subclasses, from precursor to mature cells,
+    4 of which are disease-associated.
+  location: Abstract; Fig. 2b-d; Results "PD-associated clusters show specific transcriptomic signatures including stress-reactive
+    and immunological responses"
+  centrality: headline
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAOPCs; PDAO-1; PDAO-2; PDAO-3
+  claim_type: state_existence
+  direction: exists
+  comparison: PD vs control
+  genes:
+  - VCAN
+  - MT3
+  - CD81
+  - OPALIN
+  - DBNDD2
+  - FTL
+  - HSPA1A
+  - CTNNA2
+  - ARHGAP24
+  - SLC5A11
+  - ACTN2
+  - MT-ND3
+  gene_source: 'Supplementary Table 2 (subpopulation markers); markers in text: PDAOPCs VCAN/MT3/CD81, PDAO-1 DBNDD2/FTL/HSPA1A,
+    PDAO-2 CTNNA2/ARHGAP24, PDAO-3 ACTN2/MT-ND3'
+  reported_stat: 15 subpopulations from ~200,000 oligodendroglial nuclei; PD enrichment via scCODA (see composition claims)
+  unit_of_analysis: cells (clustering); samples (composition)
+  method: Louvain clustering + Harmony; Wilcoxon markers; scCODA
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Includes OPCs (PDAOPCs) as well as mature oligodendrocytes; cell_type set to Oligodendrocytes for the lineage. PDAO
+    = PD-associated oligodendrocytes; markers from Supplementary Table 2. Re-testing requires label transfer of the 15 oligodendroglia
+    subpopulations or marker-based scoring.
+- id: barbareyes2025-C02
+  paper: barbareyes2025
+  statement: PD-associated oligodendroglia subpopulations overexpress heat shock proteins (HSP70/HSP90 families, CRYAB, DNAJ
+    family), indicating a stress/proteostasis response.
+  quote: the disease-specific clusters (PDAOPCs, PDAO-1, PDAO-2, and PDAO-3) exhibited upregulated expression of heat shock
+    proteins (HSP) families 70 and 90, including HSPA1A, HSPB1, HSP90AB1, HSPA1B, HSPA8, HSP90AA1, and HSPA5
+  location: Abstract; Fig. 2c; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: headline
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAOPCs; PDAO-1; PDAO-2; PDAO-3
+  claim_type: de_gene
+  direction: up
+  comparison: PD-associated subpopulations vs other oligodendroglia subpopulations
+  genes:
+  - HSPA1A
+  - HSPB1
+  - HSP90AB1
+  - HSPA1B
+  - HSPA8
+  - HSP90AA1
+  - HSPA5
+  - CRYAB
+  - DNAJB1
+  gene_source: Supplementary Table 2; text lists HSPA1A, HSPB1, HSP90AB1, HSPA1B, HSPA8, HSP90AA1, HSPA5, CRYAB and 'DNAJ
+    family members' (DNAJB1 added as representative, not named)
+  reported_stat: marker criteria logFC > 0.5, p < 0.05 (Wilcoxon)
+  unit_of_analysis: cells
+  method: Wilcoxon rank-sum (scanpy rank_genes_groups), cluster vs rest
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: Cluster-marker comparison, not PD vs control within a cell state. A PD-vs-control test is to score the HSP gene set
+    in oligodendrocytes/OPCs per donor. DNAJ members not named in text.
+- id: barbareyes2025-C03
+  paper: barbareyes2025
+  statement: PDAO-1 is increased in the putamen of PD donors relative to controls (+ 5.6% of oligodendroglia).
+  quote: In Pu, PD samples exhibited modest increases in PDAO-1 (+ 5.6%), PDAO-2 (+ 1.5%), PDAO-3 (+ 3.0%), and PDAOPCs (+
+    2.3%), alongside a reduction in MOL-A (− 9.1%) and MOL-F (− 3.7%)
+  location: Abstract (shifts in cell proportions); Fig. 2d; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1
+  claim_type: composition
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 2 (markers defining the subpopulation)
+  reported_stat: + 5.6% (pooled % of oligodendroglia); scCODA credible effect (Fig. 2d asterisk, 'p value of confidence <
+    0.2'); Pu 35 PD / 27 ctrl
+  unit_of_analysis: samples (donor x region)
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: oligodendroglia subpopulation labels (label transfer)
+  notes: 'Reported only for putamen; text says the same tendency was seen in caudate but not significant. Percent changes
+    are differences in pooled percentages of nuclei per condition (Fig. 2d), not per-donor effect sizes. Source cohort: snRNA
+    27 ctrl / 36 PD donors (Pu 27/35, CN 24/34).'
+- id: barbareyes2025-C04
+  paper: barbareyes2025
+  statement: PDAO-2 is increased in the putamen of PD donors relative to controls (+ 1.5% of oligodendroglia).
+  quote: In Pu, PD samples exhibited modest increases in PDAO-1 (+ 5.6%), PDAO-2 (+ 1.5%), PDAO-3 (+ 3.0%), and PDAOPCs (+
+    2.3%), alongside a reduction in MOL-A (− 9.1%) and MOL-F (− 3.7%)
+  location: Abstract (shifts in cell proportions); Fig. 2d; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-2
+  claim_type: composition
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 2 (markers defining the subpopulation)
+  reported_stat: + 1.5% (pooled % of oligodendroglia); scCODA credible effect (Fig. 2d asterisk, 'p value of confidence <
+    0.2'); Pu 35 PD / 27 ctrl
+  unit_of_analysis: samples (donor x region)
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: oligodendroglia subpopulation labels (label transfer)
+  notes: 'Reported only for putamen; text says the same tendency was seen in caudate but not significant. Percent changes
+    are differences in pooled percentages of nuclei per condition (Fig. 2d), not per-donor effect sizes. Source cohort: snRNA
+    27 ctrl / 36 PD donors (Pu 27/35, CN 24/34).'
+- id: barbareyes2025-C05
+  paper: barbareyes2025
+  statement: PDAO-3 is increased in the putamen of PD donors relative to controls (+ 3.0% of oligodendroglia).
+  quote: In Pu, PD samples exhibited modest increases in PDAO-1 (+ 5.6%), PDAO-2 (+ 1.5%), PDAO-3 (+ 3.0%), and PDAOPCs (+
+    2.3%), alongside a reduction in MOL-A (− 9.1%) and MOL-F (− 3.7%)
+  location: Abstract (shifts in cell proportions); Fig. 2d; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-3
+  claim_type: composition
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 2 (markers defining the subpopulation)
+  reported_stat: + 3.0% (pooled % of oligodendroglia); scCODA credible effect (Fig. 2d asterisk, 'p value of confidence <
+    0.2'); Pu 35 PD / 27 ctrl
+  unit_of_analysis: samples (donor x region)
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: oligodendroglia subpopulation labels (label transfer)
+  notes: 'Reported only for putamen; text says the same tendency was seen in caudate but not significant. Percent changes
+    are differences in pooled percentages of nuclei per condition (Fig. 2d), not per-donor effect sizes. Source cohort: snRNA
+    27 ctrl / 36 PD donors (Pu 27/35, CN 24/34).'
+- id: barbareyes2025-C06
+  paper: barbareyes2025
+  statement: PDAOPCs is increased in the putamen of PD donors relative to controls (+ 2.3% of oligodendroglia).
+  quote: In Pu, PD samples exhibited modest increases in PDAO-1 (+ 5.6%), PDAO-2 (+ 1.5%), PDAO-3 (+ 3.0%), and PDAOPCs (+
+    2.3%), alongside a reduction in MOL-A (− 9.1%) and MOL-F (− 3.7%)
+  location: Abstract (shifts in cell proportions); Fig. 2d; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: OPCs
+  cell_state: PDAOPCs
+  claim_type: composition
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 2 (markers defining the subpopulation)
+  reported_stat: + 2.3% (pooled % of oligodendroglia); scCODA credible effect (Fig. 2d asterisk, 'p value of confidence <
+    0.2'); Pu 35 PD / 27 ctrl
+  unit_of_analysis: samples (donor x region)
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: oligodendroglia subpopulation labels (label transfer)
+  notes: 'Reported only for putamen; text says the same tendency was seen in caudate but not significant. Percent changes
+    are differences in pooled percentages of nuclei per condition (Fig. 2d), not per-donor effect sizes. Source cohort: snRNA
+    27 ctrl / 36 PD donors (Pu 27/35, CN 24/34).'
+- id: barbareyes2025-C07
+  paper: barbareyes2025
+  statement: MOL-A is decreased in the putamen of PD donors relative to controls (− 9.1% of oligodendroglia).
+  quote: In Pu, PD samples exhibited modest increases in PDAO-1 (+ 5.6%), PDAO-2 (+ 1.5%), PDAO-3 (+ 3.0%), and PDAOPCs (+
+    2.3%), alongside a reduction in MOL-A (− 9.1%) and MOL-F (− 3.7%)
+  location: Abstract (shifts in cell proportions); Fig. 2d; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: MOL-A
+  claim_type: composition
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 2 (markers defining the subpopulation)
+  reported_stat: − 9.1% (pooled % of oligodendroglia); scCODA credible effect (Fig. 2d asterisk, 'p value of confidence <
+    0.2'); Pu 35 PD / 27 ctrl
+  unit_of_analysis: samples (donor x region)
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: oligodendroglia subpopulation labels (label transfer)
+  notes: 'Reported only for putamen; text says the same tendency was seen in caudate but not significant. Percent changes
+    are differences in pooled percentages of nuclei per condition (Fig. 2d), not per-donor effect sizes. Source cohort: snRNA
+    27 ctrl / 36 PD donors (Pu 27/35, CN 24/34).'
+- id: barbareyes2025-C08
+  paper: barbareyes2025
+  statement: MOL-F is decreased in the putamen of PD donors relative to controls (− 3.7% of oligodendroglia).
+  quote: In Pu, PD samples exhibited modest increases in PDAO-1 (+ 5.6%), PDAO-2 (+ 1.5%), PDAO-3 (+ 3.0%), and PDAOPCs (+
+    2.3%), alongside a reduction in MOL-A (− 9.1%) and MOL-F (− 3.7%)
+  location: Abstract (shifts in cell proportions); Fig. 2d; Results "PD-associated clusters show specific transcriptomic signatures..."
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: MOL-F
+  claim_type: composition
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: Supplementary Table 2 (markers defining the subpopulation)
+  reported_stat: − 3.7% (pooled % of oligodendroglia); scCODA credible effect (Fig. 2d asterisk, 'p value of confidence <
+    0.2'); Pu 35 PD / 27 ctrl
+  unit_of_analysis: samples (donor x region)
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: oligodendroglia subpopulation labels (label transfer)
+  notes: 'Reported only for putamen; text says the same tendency was seen in caudate but not significant. Percent changes
+    are differences in pooled percentages of nuclei per condition (Fig. 2d), not per-donor effect sizes. Source cohort: snRNA
+    27 ctrl / 36 PD donors (Pu 27/35, CN 24/34).'
+- id: barbareyes2025-C09
+  paper: barbareyes2025
+  statement: The PD-associated compositional shifts in oligodendroglia are independent of sex.
+  quote: we performed a similar compositional proportion analysis stratified by sex and found no significant differences between
+    males and females in any of the identified subpopulations
+  location: Supplementary Fig. 4; Results "PD-associated clusters..."
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: all 15 subpopulations
+  claim_type: composition
+  direction: NA
+  comparison: male vs female
+  genes: []
+  gene_source: ''
+  reported_stat: no significant difference (scCODA)
+  unit_of_analysis: samples
+  method: scCODA (Bayesian compositional model) on per-sample nuclei counts; credible-effect threshold reported as 'p value
+    of confidence < 0.2'
+  testable_with: rna
+  test_template: composition_donor
+  requires: sex
+  notes: Null claim; cohort 44 M / 19 F, underpowered per the authors.
+- id: barbareyes2025-C10
+  paper: barbareyes2025
+  statement: PDAO-1 is characterised by Hotspot gene modules containing heat shock / iron-storage genes (CRYAB, FTH1, FTL,
+    HSPA1A, HSPA1B, HSPH1).
+  quote: PDAO-1 showed increased expression of Modules 1 and 2, which were associated with HSP genes (CRYAB, FTH1, FTL, HSPA1A,
+    HSPA1B, HSPH1)
+  location: Supplementary Fig. 5; Results "PD-associated clusters..."
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1
+  claim_type: state_existence
+  direction: exists
+  comparison: PDAO-1 vs other OPALIN+ MOLs
+  genes:
+  - CRYAB
+  - FTH1
+  - FTL
+  - HSPA1A
+  - HSPA1B
+  - HSPH1
+  gene_source: Supplementary Fig. 5 (Hotspot modules 1 and 2; full lists not in main text)
+  reported_stat: ''
+  unit_of_analysis: cells
+  method: Hotspot (top 10,000 HVGs) on OPALIN+ MOLs
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: PDAO = PD-associated oligodendrocytes; markers from Supplementary Table 2. Re-testing requires label transfer of
+    the 15 oligodendroglia subpopulations or marker-based scoring.
+- id: barbareyes2025-C11
+  paper: barbareyes2025
+  statement: PDAO-2 is linked to gene modules enriched for response to cytokines and antigen processing and presentation.
+  quote: PDAO-2 was linked to Modules 6 and 13, which are enriched in response to cytokines and antigen processing and presentation
+    (ETV5, QDPR, ARHGAP24, CTNNA2)
+  location: Supplementary Fig. 5; Results "PD-associated clusters..."
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-2
+  claim_type: state_existence
+  direction: exists
+  comparison: PDAO-2 vs other OPALIN+ MOLs
+  genes:
+  - ETV5
+  - QDPR
+  - ARHGAP24
+  - CTNNA2
+  gene_source: Supplementary Fig. 5 (Hotspot modules 6 and 13)
+  reported_stat: ''
+  unit_of_analysis: cells
+  method: Hotspot
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: PDAO = PD-associated oligodendrocytes; markers from Supplementary Table 2. Re-testing requires label transfer of
+    the 15 oligodendroglia subpopulations or marker-based scoring.
+- id: barbareyes2025-C12
+  paper: barbareyes2025
+  statement: PD-associated oligodendroglia subpopulations are enriched for mitochondrial activity and proteostasis pathways
+    (translation, ribosome biogenesis, protein folding, stress responses), with apoptosis and immune signatures, whereas their
+    control-enriched counterparts are enriched for neural development pathways.
+  quote: Overall, PDA subpopulations were primarily associated with mitochondrial activity and proteostasis, encompassing
+    functions such as translation, ribosome biogenesis, protein folding, stress responses, and metabolic regulation
+  location: Fig. 3a,b; Supplementary Table 3; Results "Disrupted myelination and key pathways..."
+  centrality: main
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1; PDAO-2; PDAO-3; PDAOPCs
+  claim_type: de_pathway
+  direction: up
+  comparison: PDAO-1 vs MOL-A; PDAO-2 vs MOL-A; PDAO-3 vs MOL-F; PDAOPCs vs OPCs-A
+  genes: []
+  gene_source: Supplementary Table 3 (GSEA superpathways)
+  reported_stat: superpathways FDR < 0.05, |NES| > 0.5
+  unit_of_analysis: cells
+  method: GSEApy prerank GSEA (GO, KEGG, Reactome) on cluster-vs-cluster rankings; Jaccard-clustered superpathways
+  testable_with: rna
+  test_template: geneset_shift
+  requires: oligodendroglia subpopulation labels
+  notes: Between-subpopulation comparisons, not PD vs control. A PD-vs-control analogue would test these pathways in oligodendrocytes
+    per donor.
+- id: barbareyes2025-C13
+  paper: barbareyes2025
+  statement: PDAO-2 shows enhanced innate immune signalling and apoptotic pathways mediated by DAP12 and interferon responses.
+  quote: PDAO-2, by contrast, was marked by enhanced innate immune signaling and apoptotic pathways mediated by DAP12 and
+    interferon responses
+  location: Supplementary Table 3; Results "Disrupted myelination and key pathways..."
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-2
+  claim_type: de_pathway
+  direction: up
+  comparison: PDAO-2 vs MOL-A
+  genes:
+  - TYROBP
+  gene_source: Supplementary Table 3
+  reported_stat: FDR < 0.05
+  unit_of_analysis: cells
+  method: GSEApy prerank GSEA
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: DAP12 = TYROBP (gene symbol added by curator).
+- id: barbareyes2025-C14
+  paper: barbareyes2025
+  statement: PDAOPCs are enriched for adaptive immune signalling, antigen receptor regulation and DNA repair pathways relative
+    to OPCs-A.
+  quote: the dysregulated PDAOPCs presented an enrichment in adaptive immune signaling, antigen receptor regulation, and DNA
+    repair mechanisms
+  location: Supplementary Table 3; Results "Disrupted myelination and key pathways..."
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: OPCs
+  cell_state: PDAOPCs
+  claim_type: de_pathway
+  direction: up
+  comparison: PDAOPCs vs OPCs-A
+  genes: []
+  gene_source: Supplementary Table 3
+  reported_stat: FDR < 0.05
+  unit_of_analysis: cells
+  method: GSEApy prerank GSEA
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: ''
+- id: barbareyes2025-C15
+  paper: barbareyes2025
+  statement: Myelin (MBP immunoreactivity) is decreased in the putamen of PD donors.
+  quote: The results revealed a decrease in MBP immunoreactivity within the Pu in PD vs control donors (control = 0.21 ± 0.01,
+    PD = 0.17 ± 0.009, p value = 0.047, t = 2.11)
+  location: Abstract; Fig. 3c,d
+  centrality: headline
+  modality: imaging
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: ''
+  claim_type: pathology_association
+  direction: down
+  comparison: PD vs control
+  genes:
+  - MBP
+  gene_source: text
+  reported_stat: p = 0.047, t = 2.11; MADRC donors with FFPE sections (n not given for MBP; TH/a-syn n = 8-10 per group)
+  unit_of_analysis: donors
+  method: two-sample t-test on mean DAB intensity in random ROIs
+  testable_with: not_testable
+  test_template: not_testable
+  requires: MBP immunohistochemistry
+  notes: IHC, not single-cell. A transcript-level proxy (MBP or myelin gene expression in oligodendrocytes) would be a different
+    claim.
+- id: barbareyes2025-C16
+  paper: barbareyes2025
+  statement: The ratio of PDAO-1 to MOL-A nuclei is negatively correlated with putaminal MBP immunoreactivity.
+  quote: We observed a significant negative correlation, indicating that as the ratio of PDAO-1/MOL-A (r = -0.56, p value
+    = 0.02) and/or PDAO-2/MOL-A (r = − 0.51, p value = 0.02) increases
+  location: Abstract (correlated with transcriptomic alterations); Fig. 3e,f
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1; MOL-A
+  claim_type: pathology_association
+  direction: associated_neg
+  comparison: across donors (MBP IHC vs subpopulation ratio)
+  genes:
+  - MBP
+  gene_source: text
+  reported_stat: Spearman r = -0.56, p = 0.02
+  unit_of_analysis: donors
+  method: Spearman correlation; samples with > 5 cells per subpopulation
+  testable_with: not_testable
+  test_template: pathology_correlation
+  requires: MBP immunohistochemistry on matched tissue
+  notes: Quote is 33 words with leading phrase; n donors not stated in text.
+- id: barbareyes2025-C17
+  paper: barbareyes2025
+  statement: The ratio of PDAO-2 to MOL-A nuclei is negatively correlated with putaminal MBP immunoreactivity.
+  quote: We observed a significant negative correlation, indicating that as the ratio of PDAO-1/MOL-A (r = -0.56, p value
+    = 0.02) and/or PDAO-2/MOL-A (r = − 0.51, p value = 0.02) increases
+  location: Abstract (correlated with transcriptomic alterations); Fig. 3e,f
+  centrality: main
+  modality: snRNA
+  region: putamen
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-2; MOL-A
+  claim_type: pathology_association
+  direction: associated_neg
+  comparison: across donors (MBP IHC vs subpopulation ratio)
+  genes:
+  - MBP
+  gene_source: text
+  reported_stat: Spearman r = − 0.51, p = 0.02
+  unit_of_analysis: donors
+  method: Spearman correlation; samples with > 5 cells per subpopulation
+  testable_with: not_testable
+  test_template: pathology_correlation
+  requires: MBP immunohistochemistry on matched tissue
+  notes: Quote is 33 words with leading phrase; n donors not stated in text.
+- id: barbareyes2025-C18
+  paper: barbareyes2025
+  statement: PDAO-1 arise from MOL-A through an aberrant, PD-associated differentiation trajectory.
+  quote: PDAO-1 likely emerged directly from MOL-A in PD striatum, reflecting a disruption in the normal differentiation pathway
+    of MOL-A to MOL-B and MOL-F
+  location: Abstract (aberrant differentiation trajectories); Fig. 4b,c; Results "Trajectory inference reveals disrupted oligodendrocyte
+    differentiation..."
+  centrality: headline
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1; MOL-A
+  claim_type: trajectory
+  direction: NA
+  comparison: PD vs control (trajectory topology)
+  genes:
+  - LAMA2
+  - LAMA4
+  - MOBP
+  - ERBB4
+  gene_source: Supplementary Table 4 (factor analysis on pseudotime)
+  reported_stat: qualitative (VIA/StaVia and Slingshot)
+  unit_of_analysis: cells
+  method: StaVia (VIA) and Slingshot trajectory inference; factor analysis
+  testable_with: rna
+  test_template: trajectory
+  requires: oligodendroglia subpopulation labels
+  notes: PDAO-2 origin described as ambiguous (MOL-A and/or immOL-B); not extracted as a separate claim. Trajectory claims
+    are hard to falsify; a test is connectivity (PAGA) between the PD state and the putative source state.
+- id: barbareyes2025-C19
+  paper: barbareyes2025
+  statement: PDAO-3 arise from MOL-F through an aberrant, PD-associated differentiation trajectory.
+  quote: In the case of PDAO-3, it appeared to arise from perturbations in MOL-F, suggesting PD-associated alterations in
+    this late-stage differentiation population
+  location: Abstract (aberrant differentiation trajectories); Fig. 4b,c; Results "Trajectory inference reveals disrupted oligodendrocyte
+    differentiation..."
+  centrality: main
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-3; MOL-F
+  claim_type: trajectory
+  direction: NA
+  comparison: PD vs control (trajectory topology)
+  genes: []
+  gene_source: Supplementary Table 4 (factor analysis on pseudotime)
+  reported_stat: qualitative (VIA/StaVia and Slingshot)
+  unit_of_analysis: cells
+  method: StaVia (VIA) and Slingshot trajectory inference; factor analysis
+  testable_with: rna
+  test_template: trajectory
+  requires: oligodendroglia subpopulation labels
+  notes: PDAO-2 origin described as ambiguous (MOL-A and/or immOL-B); not extracted as a separate claim. Trajectory claims
+    are hard to falsify; a test is connectivity (PAGA) between the PD state and the putative source state.
+- id: barbareyes2025-C20
+  paper: barbareyes2025
+  statement: PDAOPCs arise from OPCs-A through an aberrant, PD-associated differentiation trajectory.
+  quote: Finally, the same applied to PDAOPCs, which originated from OPCs-A, highlighting disruptions in the earliest stages
+    of OL lineage differentiation
+  location: Abstract (aberrant differentiation trajectories); Fig. 4b,c; Results "Trajectory inference reveals disrupted oligodendrocyte
+    differentiation..."
+  centrality: main
+  modality: snRNA
+  region: striatum
+  cell_type: OPCs
+  cell_state: PDAOPCs; OPCs-A
+  claim_type: trajectory
+  direction: NA
+  comparison: PD vs control (trajectory topology)
+  genes: []
+  gene_source: Supplementary Table 4 (factor analysis on pseudotime)
+  reported_stat: qualitative (VIA/StaVia and Slingshot)
+  unit_of_analysis: cells
+  method: StaVia (VIA) and Slingshot trajectory inference; factor analysis
+  testable_with: rna
+  test_template: trajectory
+  requires: oligodendroglia subpopulation labels
+  notes: PDAO-2 origin described as ambiguous (MOL-A and/or immOL-B); not extracted as a separate claim. Trajectory claims
+    are hard to falsify; a test is connectivity (PAGA) between the PD state and the putative source state.
+- id: barbareyes2025-C21
+  paper: barbareyes2025
+  statement: PDAO-1 shows loss of adhesion- and ECM-mediated communication molecules (NCAM, CADM, CDH1, laminin) compared
+    with MOL-A.
+  quote: critical cell adhesion molecules (e.g., NCAM, CADM, and CDH1) were nearly absent in PDAO-1, highlighting substantial
+    deficits in the ability of this cluster to engage in adhesion-based communication
+  location: Abstract (impairments in cell communication ... cell adhesion molecules); Fig. 5a,b
+  centrality: headline
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1 vs MOL-A
+  claim_type: communication
+  direction: down
+  comparison: PDAO-1 vs MOL-A
+  genes:
+  - NCAM1
+  - NCAM2
+  - CADM1
+  - CADM2
+  - CDH1
+  - LAMA2
+  gene_source: text (pathway names NCAM, CADM, Laminin, CDH; gene symbols mapped by curator)
+  reported_stat: qualitative (CellChat signalling strength)
+  unit_of_analysis: cells
+  method: CellChat (up to 10,000 cells per subpopulation, 5,000 per condition)
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: CellChat pathway names, not single genes; NCAM/CADM gene choice is the curator's.
+- id: barbareyes2025-C22
+  paper: barbareyes2025
+  statement: Laminin (LAMA2) outgoing signalling linked to myelination declines sharply in PDAO-1 and PDAO-2.
+  quote: there was a sharp decline in outgoing signals linked to myelination, particularly those associated with Laminin (LAMA2),
+    in both PDAO-1 and PDAO-2
+  location: Fig. 5b
+  centrality: main
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1; PDAO-2
+  claim_type: communication
+  direction: down
+  comparison: PDAO-1/PDAO-2 vs MOL-A
+  genes:
+  - LAMA2
+  gene_source: text
+  reported_stat: qualitative
+  unit_of_analysis: cells
+  method: CellChat
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: ''
+- id: barbareyes2025-C23
+  paper: barbareyes2025
+  statement: PDAOPCs express the lowest levels of general communication molecules among precursor cells.
+  quote: the PDAOPCs subpopulation exhibited the lowest levels of general communication molecules among precursor cells, further
+    suggesting disrupted intercellular interactions in early-stage OL precursors in PD
+  location: Fig. 5b
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: OPCs
+  cell_state: PDAOPCs
+  claim_type: communication
+  direction: down
+  comparison: PDAOPCs vs other OPC subpopulations
+  genes: []
+  gene_source: ''
+  reported_stat: qualitative
+  unit_of_analysis: cells
+  method: CellChat
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: ''
+- id: barbareyes2025-C24
+  paper: barbareyes2025
+  statement: Glutamate-related signalling molecules are upregulated in OPC subpopulations, particularly PDAOPCs.
+  quote: Another striking finding from the CellChat analysis was the distinct upregulation of glutamate-related signaling
+    molecules in OPC subpopulations, particularly in PDAOPCs
+  location: Fig. 5b,c
+  centrality: main
+  modality: snRNA
+  region: striatum
+  cell_type: OPCs
+  cell_state: PDAOPCs
+  claim_type: communication
+  direction: up
+  comparison: PDAOPCs vs other oligodendroglia
+  genes: []
+  gene_source: Fig. 5c heatmap
+  reported_stat: qualitative
+  unit_of_analysis: cells
+  method: CellChat; marker heatmap
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: Specific glutamate genes not named in text.
+- id: barbareyes2025-C25
+  paper: barbareyes2025
+  statement: GABRR2 is upregulated in both PDAO-1 and PDAO-2.
+  quote: while GABRR2 was significantly upregulated in both PDAO-1 and PDAO-2
+  location: Abstract (changes in neurotransmitter receptors expression); Fig. 5c
+  centrality: main
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1; PDAO-2
+  claim_type: de_gene
+  direction: up
+  comparison: PDAO-1/PDAO-2 vs other oligodendroglia subpopulations
+  genes:
+  - GABRR2
+  gene_source: text
+  reported_stat: '''significantly upregulated'' (statistic not given)'
+  unit_of_analysis: cells
+  method: Wilcoxon rank-sum (scanpy)
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Genes shown only if detected in >= 50 cells of a population.
+- id: barbareyes2025-C26
+  paper: barbareyes2025
+  statement: CHRNA10 and GABRG1 are highly expressed in PDAO-2.
+  quote: For instance, CHRNA10 and GABRG1 were highly expressed in PDAO-2
+  location: Fig. 5c
+  centrality: secondary
+  modality: snRNA
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-2
+  claim_type: de_gene
+  direction: up
+  comparison: PDAO-2 vs other oligodendroglia subpopulations
+  genes:
+  - CHRNA10
+  - GABRG1
+  gene_source: text
+  reported_stat: ''
+  unit_of_analysis: cells
+  method: expression heatmap
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: ''
+- id: barbareyes2025-C27
+  paper: barbareyes2025
+  statement: PDAO-1, PDAO-3, MOL-F and MOL-G co-localise in striatal tissue.
+  quote: 'Neighborhood enrichment analysis identified four main co-localizing subpopulations: PDAO-1, PDAO-3, MOL-F, and MOL-G'
+  location: Abstract (distinct localization of disease-associated populations); Fig. 6b
+  centrality: headline
+  modality: spatial-Xenium
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-1; PDAO-3; MOL-F; MOL-G
+  claim_type: spatial_colocalisation
+  direction: enriched
+  comparison: within tissue (neighbourhood z-score)
+  genes: []
+  gene_source: 366-gene Xenium panel
+  reported_stat: squidpy nhood_enrichment z-scores (radius 124 um)
+  unit_of_analysis: cells
+  method: Squidpy neighbourhood enrichment on cell2location-assigned labels
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: spatial transcriptomics with oligodendroglia subpopulation labels
+  notes: Xenium cohort stated as N = 4 donors (Pu + CN) in Methods; 435,157 oligodendroglia cells.
+- id: barbareyes2025-C28
+  paper: barbareyes2025
+  statement: PDAO-3, MOL-F and MOL-G are predominantly located in the white-matter tracts crossing the striatum.
+  quote: PDAO-3, MOL-F, and MOL-G were characterized by their maintenance of a myelin-related profile and appeared to be predominantly
+    located within the WM tracts that cross through the striatum
+  location: Fig. 6c
+  centrality: main
+  modality: spatial-Xenium
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAO-3; MOL-F; MOL-G
+  claim_type: spatial_colocalisation
+  direction: enriched
+  comparison: white matter vs grey matter
+  genes: []
+  gene_source: ''
+  reported_stat: bar plots of GM/WM distribution
+  unit_of_analysis: cells
+  method: NicheCompass niches (WM, GM, vascular)
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: spatial data with WM/GM annotation
+  notes: Not a PD-vs-control claim.
+- id: barbareyes2025-C29
+  paper: barbareyes2025
+  statement: A heat shock protein response (HSPR) module is upregulated in oligodendroglia of PD donors in spatial data.
+  quote: we observed a significant upregulation of the HSPR module in PD, accompanied by a marked downregulation of the myelination
+    module
+  location: Fig. 6d,e; Results "Spatial mapping reveals oligodendrocyte subpopulations and myelin-related alterations"
+  centrality: main
+  modality: spatial-Xenium
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: HSPR module
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes:
+  - HSPA1A
+  - DNAJA1
+  - HSP90AB1
+  - CRYAB
+  gene_source: Fig. 6d (Xenium Hotspot module 2; full list not in text)
+  reported_stat: Wilcoxon on module scores (statistic in Fig. 6e)
+  unit_of_analysis: cells
+  method: Hotspot on Xenium oligodendroglia; Wilcoxon rank-sum on per-cell module scores
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: Cell-level test with very few donors (Xenium N = 4 per Methods). Testable in snRNA by scoring the four named genes
+    in oligodendrocytes per donor.
+- id: barbareyes2025-C30
+  paper: barbareyes2025
+  statement: A myelination module (MAG, MOBP, CNTN2) is downregulated in oligodendroglia of PD donors in spatial data.
+  quote: the myelination module, which encompasses genes critical for myelin formation and maintenance, such as MAG, MOBP,
+    and CNTN2, was significantly downregulated in PD
+  location: Abstract (impaired myelin integrity); Fig. 6d,e
+  centrality: headline
+  modality: spatial-Xenium
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: myelination module
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes:
+  - MAG
+  - MOBP
+  - CNTN2
+  gene_source: Fig. 6d (Xenium Hotspot module 3)
+  reported_stat: Wilcoxon on module scores
+  unit_of_analysis: cells
+  method: Hotspot; Wilcoxon rank-sum on per-cell scores
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: Same caveat on donor number as the HSPR claim.
+- id: barbareyes2025-C31
+  paper: barbareyes2025
+  statement: HSPR and myelination module activities are inversely related in oligodendroglia.
+  quote: Interestingly, the activity of the HSPR and myelination modules appeared to be inversely related
+  location: Fig. 6d
+  centrality: main
+  modality: spatial-Xenium
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: HSPR module; myelination module
+  claim_type: other
+  direction: associated_neg
+  comparison: across cells
+  genes:
+  - HSPA1A
+  - DNAJA1
+  - HSP90AB1
+  - CRYAB
+  - MAG
+  - MOBP
+  - CNTN2
+  gene_source: Fig. 6d
+  reported_stat: negative correlation (value not given)
+  unit_of_analysis: cells
+  method: Hotspot module correlation
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ''
+  notes: Could be tested at cell level and at donor (pseudobulk) level; donor level is the more meaningful test.
+- id: barbareyes2025-C32
+  paper: barbareyes2025
+  statement: HSPR module activity in PD correlates with the transcriptional signatures of PD-associated oligodendrocytes (PDAOs).
+  quote: Importantly, the activity of the HSPR module in PD was strongly correlated with the transcriptional signatures of
+    PDAOs
+  location: Fig. 6d,e
+  centrality: secondary
+  modality: spatial-Xenium
+  region: striatum
+  cell_type: Oligodendrocytes
+  cell_state: PDAOs; HSPR module
+  claim_type: state_enrichment
+  direction: associated_pos
+  comparison: within PD
+  genes:
+  - HSPA1A
+  - DNAJA1
+  - HSP90AB1
+  - CRYAB
+  gene_source: Fig. 6d
+  reported_stat: ''
+  unit_of_analysis: cells
+  method: module score vs cell2location labels
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: ''

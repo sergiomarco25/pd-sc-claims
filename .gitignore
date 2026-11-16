@@ -1,0 +1,22 @@
+*.h5ad
+*.h5
+*.loom
+*.mtx*
+*.tar
+*.tar.gz
+*.parquet
+__pycache__/
+.ipynb_checkpoints/
+.snakemake/
+logs/
+scratch/
+manuscript/build/
+manuscript/video/*.mp4
+
+# generated atlas pages (8 MB each; rebuild with scripts/51c_store_browser.py; live copy is the published artifact)
+reports/pd_atlas.html
+reports/pd_atlas.artifact.html
+reports/pd_atlas_public.html
+
+# staged container context for the remote MCP server (deploy/mcp/stage.sh)
+deploy/mcp/build/

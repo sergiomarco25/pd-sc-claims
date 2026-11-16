@@ -1,0 +1,224 @@
+# Dehestani et al. 2024, Molecular Brain (short report), "Transcriptomic changes in oligodendrocytes and precursor cells associate with clinical outcomes of Parkinson's disease"
+# DOI 10.1186/s13041-024-01128-z; PMID 39138468; PMC11323592
+# PFC + ACC snRNA-seq from the same 6 male donors: 2 LRRK2 G2019S PD, 2 GBA1 PD (L444P, E326K), 2 controls; 88,876 nuclei.
+# DE = Seurat FindMarkers Wilcoxon on cells (min.pct 0.25, logFC 0.25, adj P<0.05), regions pooled.
+- id: dehestani2024-C01
+  paper: dehestani2024
+  statement: "Genes expressed in oligodendrocytes, OPCs and microglia are significantly associated with PD GWAS risk loci."
+  quote: "showed the significant association (adjusted P < 0.01) of ODCs, OPCs and MG with PD-linked risk loci"
+  location: "Fig. 2A; Table S4"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: "ODCs, OPCs, MG"
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "cell-type specificity (all donors)"
+  genes: []
+  gene_source: "Table S4"
+  reported_stat: "MAGMA adjusted P<0.01"
+  unit_of_analysis: cells
+  method: "MAGMA competitive gene-set analysis on cell-type-specific expressed genes (Nalls 2019 GWAS incl. 23andMe)"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: "Compound across three cell types (ODC, OPC, MG); abstract highlights ODCs and OPCs. Region = PFC + ACC pooled."
+- id: dehestani2024-C02
+  paper: dehestani2024
+  statement: "Cell-type proportions do not differ significantly between LRRK2-PD, GBA1-PD and control donors (or between PFC and ACC)."
+  quote: "no significant differences (see Methods) in cell type proportions were observed between brain regions or mutation groups"
+  location: "Fig. 1C-E; Table S2"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: "LRRK2-PD vs GBA1-PD vs control"
+  genes: []
+  gene_source: "Table S2"
+  reported_stat: "not significant; n=2 per group"
+  unit_of_analysis: samples
+  method: "speckle propeller (sample-level)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "LRRK2 / GBA1 mutation status"
+  notes: "Null claim with n=2 per group; samples = donor x region (12 samples)."
+- id: dehestani2024-C03
+  paper: dehestani2024
+  statement: "GBA1-PD produces more oligodendrocyte and OPC DEGs than LRRK2-PD, with low overlap and distinct pathways, indicating GBA1 and LRRK2 mutations have unique molecular impacts."
+  quote: "The low overlap between DEGs of LRRK2 or GBA1 compared to Healthy Controls, along with the distinct enriched biological processes in LRRK2 and GBA1 DEGs, indicates that GBA1 and LRRK2 mutations have unique molecular impacts in PD."
+  location: "Fig. 2B,D; Table S5"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: "ODCs and OPCs"
+  claim_type: de_gene
+  direction: NA
+  comparison: "GBA1-PD vs control; LRRK2-PD vs control"
+  genes: []
+  gene_source: "Table S5"
+  reported_stat: "ODC: 1,040 (GBA1) vs 278 (LRRK2) DEGs; OPC: 543 vs 108"
+  unit_of_analysis: cells
+  method: "Seurat FindMarkers Wilcoxon on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "LRRK2 / GBA1 mutation status"
+  notes: "n=2 donors per group; pseudoreplication. Only testable in datasets with genotyped monogenic PD donors."
+- id: dehestani2024-C04
+  paper: dehestani2024
+  statement: "OPC DEGs (especially LRRK2-PD vs control) show the strongest association with PD risk loci."
+  quote: "Using all the DEGs, MAGMA indicated that OPCs had the highest association with PD-linked risk loci"
+  location: "Fig. 2C; Table S6"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "LRRK2-PD vs control DEGs (also GBA1-PD)"
+  genes: []
+  gene_source: "Tables S5, S6"
+  reported_stat: "MAGMA (values in Table S6)"
+  unit_of_analysis: cells
+  method: "MAGMA on DEG sets"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS; LRRK2 mutation status"
+  notes: ""
+- id: dehestani2024-C05
+  paper: dehestani2024
+  statement: "In GBA1-PD oligodendrocytes, upregulated genes are enriched for negative regulation of inclusion body assembly and downregulated genes for protein processing involved in protein targeting to mitochondria."
+  quote: "negative regulation of inclusion body assembly (in GBA1/Control ODCs)"
+  location: "Fig. 2D; Table S7"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "GBA1-PD vs control"
+  genes: []
+  gene_source: "Tables S5, S7"
+  reported_stat: "Enrichr combined score"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + EnrichR GO BP"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "GBA1 mutation status"
+  notes: "Compound: up (inclusion body assembly) and down (protein targeting to mitochondria) — split at test time. Abstract lists both pathways."
+- id: dehestani2024-C06
+  paper: dehestani2024
+  statement: "In GBA1-PD OPCs, upregulated genes are enriched for positive regulation of tau-protein kinase activity and downregulated genes for modulation of chemical synaptic transmission."
+  quote: "positive regulation of tau-protein kinase activity (in GBA1/Control OPCs)"
+  location: "Fig. 2D; Table S7"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "GBA1-PD vs control"
+  genes: []
+  gene_source: "Tables S5, S7"
+  reported_stat: "Enrichr combined score"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + EnrichR"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "GBA1 mutation status"
+  notes: "Compound up/down."
+- id: dehestani2024-C07
+  paper: dehestani2024
+  statement: "In LRRK2-PD oligodendrocytes, upregulated genes are enriched for regulation of microtubule nucleation and downregulated genes for regulation of potassium ion transport."
+  quote: "regulation of microtubule nucleation (in LRRK2/Control ODCs)"
+  location: "Fig. 2D; Table S7"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: "LRRK2-PD vs control"
+  genes: []
+  gene_source: "Tables S5, S7"
+  reported_stat: "Enrichr combined score"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + EnrichR"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "LRRK2 mutation status"
+  notes: "Compound up/down."
+- id: dehestani2024-C08
+  paper: dehestani2024
+  statement: "In LRRK2-PD OPCs, upregulated genes are enriched for regulation of protein polymerization and downregulated genes for cholesterol biosynthetic process."
+  quote: "regulation of protein polymerization (in LRRK2/Control OPCs)"
+  location: "Fig. 2D; Table S7"
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: "LRRK2-PD vs control"
+  genes: []
+  gene_source: "Tables S5, S7"
+  reported_stat: "Enrichr combined score"
+  unit_of_analysis: cells
+  method: "Wilcoxon on cells + EnrichR"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "LRRK2 mutation status"
+  notes: "Compound up/down. Cholesterol biosynthesis down in OPCs may be testable in sporadic PD as a generic check."
+- id: dehestani2024-C09
+  paper: dehestani2024
+  statement: "Polygenic risk scores built from oligodendrocyte/OPC DEGs predict non-motor outcomes (MoCA, BDI-II) but not motor impairment (UPDRS-III) in an independent PD cohort."
+  quote: "polygenic risk scores derived from the dysregulated genes significantly predicted Montreal Cognitive Assessment (MoCA)-, and Beck Depression Inventory-II (BDI-II)-scores but not motor impairment (UPDRS-III)"
+  location: "Table 1; Table S8"
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: OPCs
+  cell_state: "ODC/OPC DEG-based PRS"
+  claim_type: clinical_association
+  direction: associated_pos
+  comparison: "within PD (Tuebingen cohort, 681 PD / 549 controls; N=379-514 with outcomes)"
+  genes: []
+  gene_source: "Tables S5, S8"
+  reported_stat: "GBA1_OPC_DEG-MoCA P=0.055; LRRK2_ODC_DEG-BDI-II P=0.054; LRRK2_OPC_DEG-BDI-II P=0.0002 (beta=-0.152); significance threshold P<=0.1"
+  unit_of_analysis: donors
+  method: "PRS (SNPs in DEGs) linear regression with sex, age, genetic PCs"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "genotyped clinical cohort with MoCA, BDI-II, UPDRS-III"
+  notes: "Uses P<0.1 as significance; replication cohort (n=358) 'does not fully match'. Not testable with snRNA datasets alone (needs genotype + clinical data)."
+- id: dehestani2024-C10
+  paper: dehestani2024
+  statement: "PRS from OPC DEGs in substantia nigra datasets (Smajic/Lee; Kamath OPC_ADM) associate with motor impairment (UPDRS-III), and OPC_ADM is increased in PD."
+  quote: "we found an association of the OPC_ADM subtype with UPDRS-III (P-value = 0.052, Fig. 3C and Table S10)"
+  location: "Fig. 3B-D; Table S10, S11"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: OPCs
+  cell_state: OPC_ADM
+  claim_type: clinical_association
+  direction: associated_pos
+  comparison: "within PD (PRS vs UPDRS-III)"
+  genes: []
+  gene_source: "Table S9-S11 (DEGs re-derived from published datasets)"
+  reported_stat: "SN OPC DEGs-UPDRS-III P=0.012; OPC_ADM-UPDRS-III P=0.052"
+  unit_of_analysis: donors
+  method: "PRS linear regression"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "genotyped clinical cohort"
+  notes: "Uses external datasets (Feleke ACC, Lee/Smajic SN, Kamath SN). The 'OPC_ADM increased in PD' part is cited from Kamath et al. Fig. 3, not tested here."

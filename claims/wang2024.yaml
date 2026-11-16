@@ -1,0 +1,703 @@
+- id: wang2024-C01
+  paper: wang2024
+  statement: A distinct neuron cluster (c9) marked by RIT2, largely RIT2+TH−, is reduced in PD SN.
+  quote: the control brains presented a significantly higher proportion of c9 neurons than PD brains [mean of 3% versus 0.6%, overall odds ratio (OR) = 6.6, P = 0.0073 by Wilcoxon rank sum test of odds]
+  location: Fig. 1E, Fig. 2A,B; Results "Identification of RIT2-enriched neurons in the human SN that show vulnerability in PD"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: c9 RIT2-enriched (RIT2+TH−) neurons
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - RIT2
+  - CADPS2
+  - TH
+  gene_source: Table S2 (cluster markers); fig. S2
+  reported_stat: OR = 6.6, one-tailed Wilcoxon P = 0.0073 (OR = 4.3, P = 0.016 omitting one dominant control); 23 PD vs 9 controls
+  unit_of_analysis: donors
+  method: one-tailed Wilcoxon rank-sum on per-donor odds of cluster membership
+  testable_with: rna
+  test_template: composition_donor
+  requires: label transfer to Wang c9
+  notes: One control contributes >30% of control c9 cells. c9 marker CADPS2 overlaps the Smajic 2022 PD-specific CADPS2high cluster but with opposite direction.
+- id: wang2024-C02
+  paper: wang2024
+  statement: RIT2+ neurons (both neuromelanin+ and neuromelanin−) are decreased in PD SNpc by immunostaining.
+  quote: The number of RIT2+NM+ (including TH+ and TH−) and RIT2+NM− neurons are both decreased in the SN of PD
+  location: Fig. 2D-F
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: RIT2+ neurons
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - RIT2
+  - TH
+  gene_source: text
+  reported_stat: unpaired two-tailed t-test; 5 PD vs 5 controls
+  unit_of_analysis: donors
+  method: IF counts, t-test
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Also reports NM+ neurons reduced 81.58% in PD.
+- id: wang2024-C03
+  paper: wang2024
+  statement: The RIT2-enriched neuron population (c9) is present in independent non-PD SN snRNA-seq datasets (Agarwal 2020, Welch 2019) as a population distinct from typical TH-high DA neurons.
+  quote: These results confirmed the presence of RIT2+ populations either THLow [Agarwal et al.] or TH− [Welch et al.], distinct from a typical DA neuron
+  location: figs. S5, S6; Results "The presence of RIT2-enriched neurons in the human SN and midbrain organoids"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: c9 RIT2-enriched neurons
+  claim_type: state_existence
+  direction: exists
+  comparison: within control
+  genes:
+  - RIT2
+  - TH
+  - SLC18A2
+  - SLC6A3
+  gene_source: Table S2; figs. S5D, S6D
+  reported_stat: significant marker overlap (hypergeometric)
+  unit_of_analysis: cells
+  method: re-clustering + hypergeometric overlap of cluster signatures
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Organoid and mouse RNAscope validation not recorded as separate claims.
+- id: wang2024-C04
+  paper: wang2024
+  statement: DA neuron subcluster c6_2 (TH, SLC18A2, SLC6A3; higher SOX6 fraction) is reduced in PD.
+  quote: 49.7% of the total sequenced of 1654 nuclei in c6_2 were from the control (overall OR = 3.7, Wilcoxon P = 0.00096)
+  location: Fig. 4A-C; Results "Identification of subtypes of DA neurons associated with vulnerability in PD"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c6_2
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  - SLC18A2
+  - SLC6A3
+  - SOX6
+  gene_source: Fig. 4G; fig. S8A
+  reported_stat: OR = 3.7, Wilcoxon P = 0.00096
+  unit_of_analysis: donors
+  method: one-tailed Wilcoxon on per-donor odds
+  testable_with: rna
+  test_template: composition_donor
+  requires: DA subtype label transfer
+  notes: c6_2 has 22.25% SOX6+ cells vs 6.22% in c7_3.
+- id: wang2024-C05
+  paper: wang2024
+  statement: DA neuron subcluster c7_3 (TH, SLC18A2, SLC6A3) is reduced in PD.
+  quote: 60.8% of the total sequenced of 4262 nuclei in c7_3 were from the control (overall OR = 5.9, Wilcoxon P = 0.0041)
+  location: Fig. 4D-F
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c7_3
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes:
+  - TH
+  - SLC18A2
+  - SLC6A3
+  gene_source: Fig. 4G; fig. S8A
+  reported_stat: OR = 5.9, Wilcoxon P = 0.0041
+  unit_of_analysis: donors
+  method: one-tailed Wilcoxon on per-donor odds
+  testable_with: rna
+  test_template: composition_donor
+  requires: DA subtype label transfer
+  notes: ''
+- id: wang2024-C06
+  paper: wang2024
+  statement: Most developmental DA-subtype transcription factors are expressed only in small fractions of aged human SN neurons, MYT1L being an exception.
+  quote: most TFs were expressed in small fractions from all cell clusters ... in the aged human SN (both the control and PD). MYT1L was an exception
+  location: fig. S10
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ''
+  claim_type: other
+  direction: NA
+  comparison: within dataset
+  genes:
+  - MYT1L
+  - SOX6
+  gene_source: fig. S10
+  reported_stat: descriptive
+  unit_of_analysis: cells
+  method: fraction of expressing cells
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: Descriptive, low priority.
+- id: wang2024-C07
+  paper: wang2024
+  statement: The RIT2-enriched c9 neurons have the largest number of PD-vs-control DEGs (1203), dominated by downregulation of synaptic protein interactions.
+  quote: c9 had the greatest number of DEGs (1203), far more than c7_3 (200) and c6_2 (66) ... The most significant DEGs in c9 were associated with the down-regulation of synaptic protein interactions
+  location: Fig. 5A,B; Results "Altered landscape of cell type–specific transcriptomics in the SN of PD"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: c9 RIT2-enriched neurons
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: 1203 DEGs
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: geneset_shift
+  requires: label transfer to c9
+  notes: DEG count on cells scales with cell number; c9 has ~2x fewer PD cells.
+- id: wang2024-C08
+  paper: wang2024
+  statement: Ribosomal genes and protein translation pathways are upregulated in PD in nearly all SN cell types.
+  quote: Functional enrichment analyses revealed up-regulation of ribosomal genes and protein translation-related pathways in nearly all cell types
+  location: Fig. 5B; Table S6
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: pathway enrichment of DEGs
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ribosomal / translation gene sets
+  notes: Could reflect technical (ambient / quality) differences.
+- id: wang2024-C09
+  paper: wang2024
+  statement: Metallothionein genes (MT2A, MT1E, MT3) are broadly upregulated in neuronal and non-neuronal clusters in PD SN.
+  quote: A broad increase of metallothionein family genes, such as MT2A, MT1E, and MT3, was also found in neuronal and non-neuronal clusters in the SN of PD
+  location: Fig. 5C
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - MT2A
+  - MT1E
+  - MT3
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ''
+  notes: ''
+- id: wang2024-C10
+  paper: wang2024
+  statement: Heat shock protein genes (HSPB1, HSPH1, HSPA1, HSP90AA1) and CRYAB are upregulated in many cell types in PD SN.
+  quote: up-regulation of several heat shock protein family members (e.g., HSPB1, HSPH1, HSPA1, and HSP90AA1) and CRYAB was observed in many cell types
+  location: Fig. 5C
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - HSPB1
+  - HSPH1
+  - HSPA1A
+  - HSPA1B
+  - HSP90AA1
+  - CRYAB
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ''
+  notes: Text says 'HSPA1' (HSPA1A/HSPA1B ambiguous).
+- id: wang2024-C11
+  paper: wang2024
+  statement: Vesicle trafficking, synaptic transmission and synapse-related genes are downregulated in neuronal clusters in PD.
+  quote: vesicle trafficking, synaptic transmission, and synapse-related genes were significantly down-regulated in the neuronal clusters of PD brains
+  location: Fig. 5B,C
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: ''
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: pathway enrichment
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: geneset_shift
+  requires: synaptic gene sets
+  notes: ''
+- id: wang2024-C12
+  paper: wang2024
+  statement: In DA neuron subcluster c7_3, SLC18A2, ALDH1A1, SLC6A3 and TH are downregulated in PD, while translation elongation/ribosomal genes are upregulated.
+  quote: c7_3 had decreased expression of SLC18A2, ALDH1A1, SLC6A3, and TH, which are important for the regulation of dopamine release and DA neurogenesis
+  location: Fig. 5B
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c7_3
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes:
+  - SLC18A2
+  - ALDH1A1
+  - SLC6A3
+  - TH
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05; 200 DEGs in c7_3
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: DA subtype label transfer
+  notes: ''
+- id: wang2024-C13
+  paper: wang2024
+  statement: SSBP3 is commonly downregulated while PLCL1 and MTRNR2L1 are upregulated in PD across c9, c7_3 and c6_2 neurons.
+  quote: Genes involved in single-stranded DNA sensing process such as SSBP3 were commonly down-regulated, while PLCL1 and MTRNR2L1 were enhanced in all three neuron clusters
+  location: fig. S8B,C
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c9, c7_3, c6_2
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes:
+  - SSBP3
+  - PLCL1
+  - MTRNR2L1
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ''
+  notes: 'Mixed direction: SSBP3 down; PLCL1, MTRNR2L1 up. MTRNR2L1 is a mitochondrial-pseudogene-like transcript, often technical.'
+- id: wang2024-C14
+  paper: wang2024
+  statement: A TYROBP-centred causal network is impaired in PD microglia, indicating immunosuppression.
+  quote: we observed an impaired TYROBP-centered causal network in the microglia (c1), indicating the immunosuppression in PD brains
+  location: Fig. 5B
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ''
+  claim_type: de_pathway
+  direction: down
+  comparison: PD vs control
+  genes:
+  - TYROBP
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: IPA causal network
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20% + IPA
+  testable_with: rna
+  test_template: geneset_shift
+  requires: TYROBP network gene set (IPA, not public)
+  notes: Network genes not listed in text.
+- id: wang2024-C15
+  paper: wang2024
+  statement: 'Single-nucleus PD DEGs agree with bulk-tissue meta-analysis DEGs: bulk-downregulated genes map to neuronal clusters, bulk-upregulated genes are up across many cell types.'
+  quote: These cluster-specific PD DEGs were largely consistent with those identified in our previous bulk tissue–based meta-analysis
+  location: Fig. 5D
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: Fig. 5D; ref. 30 bulk meta-analysis
+  reported_stat: overlap
+  unit_of_analysis: cells
+  method: DEG overlap
+  testable_with: rna
+  test_template: geneset_shift
+  requires: bulk meta-analysis DEG list (ref. 30)
+  notes: ''
+- id: wang2024-C16
+  paper: wang2024
+  statement: Braak-stage-resolved expression reveals early-sustained HSF1 activation in non-neuronal clusters and early disruption of DA neurogenesis (c7_3) and synaptic homeostasis (c9) genes.
+  quote: The positive ESRGs were primarily involved in HSF1 activation in non-neuron clusters ... while in DA neuron subclusters c7_3 and c9, DA neurogenesis and synaptic homeostasis, respectively, were disrupted at the early stage
+  location: fig. S11A; Table S8
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: pathology_association
+  direction: NA
+  comparison: Braak 1-3 and Braak 4-6 vs control
+  genes: []
+  gene_source: Table S8
+  reported_stat: MAST stage vs control
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%; early/late vs control pattern classification
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: Braak stage
+  notes: 'Compound; PD Braak: II 4, III 3, IV 5, VI 8, NA 3 — early group has only 7 donors.'
+- id: wang2024-C17
+  paper: wang2024
+  statement: TYROBP-centred network and microglial pathogen phagocytosis pathway are disrupted at late Braak stages.
+  quote: TYROBP-centered causal network and microglial pathogen phagocytosis pathway were disrupted at the late stage
+  location: fig. S11C
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ''
+  claim_type: pathology_association
+  direction: down
+  comparison: Braak 4-6 vs control
+  genes:
+  - TYROBP
+  gene_source: Table S8
+  reported_stat: not given
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: pathology_correlation
+  requires: Braak stage
+  notes: ''
+- id: wang2024-C18
+  paper: wang2024
+  statement: Familial PD-linked genes are enriched among markers of neuron subclusters, including GABAergic c7_1, glutamatergic c7_2 and DA c7_3.
+  quote: half (11 of 22) were enriched in neuron clusters, such as GABAergic (c7_1 ...), glutamatergic (c7_2 ...), and DA neurons (c7_3, adjusted P = 9.1 × 10−05, OR = 25.5)
+  location: Fig. 6A; Results "Cell type–specific gene expression enrichment and deregulation of PD-associated genes"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c7_3
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across clusters (controls only)
+  genes:
+  - UCHL1
+  - SNCA
+  - ATP13A2
+  - VPS35
+  - SYNJ1
+  - CHCHD2
+  - TMEM230
+  - PINK1
+  - EIF4G1
+  - GBA1
+  gene_source: Fig. 6A
+  reported_stat: 'FET, Bonferroni: c7_1 P = 0.019 OR 17.9; c7_2 P = 1.5e-4 OR 23.0; c7_3 P = 9.1e-5 OR 25.5'
+  unit_of_analysis: cells
+  method: Fisher's exact test of top-10% FC cluster markers vs 22 PD-linked genes
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: familial PD gene list
+  notes: Text writes GBA (GBA1).
+- id: wang2024-C19
+  paper: wang2024
+  statement: LRRK2 is highly expressed in microglia, endothelial cells and OPCs; PRKN in glia; VPS13C and DNAJC13 in microglia.
+  quote: LRRK2 (PARK8) was highly expressed in microglia (c1), endothelial cells (c4), and OPCs (c5)
+  location: Fig. 6A
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ''
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across clusters
+  genes:
+  - LRRK2
+  - PRKN
+  - VPS13C
+  - DNAJC13
+  gene_source: Fig. 6A
+  reported_stat: descriptive
+  unit_of_analysis: cells
+  method: cluster marker expression
+  testable_with: rna
+  test_template: state_signature
+  requires: ''
+  notes: ''
+- id: wang2024-C20
+  paper: wang2024
+  statement: SNCA, DNAJC6 and CHCHD2 are downregulated in PD DA neuron subclusters (c7_3 or c9).
+  quote: we found that DNAJC6, CHCHD2, and SNCA were down-regulated in DA neuron subclusters c7_3 or c9
+  location: Fig. 6A right
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c7_3 / c9
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes:
+  - SNCA
+  - DNAJC6
+  - CHCHD2
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: DA subtype label transfer
+  notes: Text says 'c7_3 or c9' without specifying which gene in which.
+- id: wang2024-C21
+  paper: wang2024
+  statement: DNAJC6, UCHL1 and PRKN are upregulated in PD c9 neurons.
+  quote: DNAJC6, UCHL1, and PRKN were up-regulated particularly in DA subcluster c9
+  location: Fig. 6A right
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: c9 RIT2-enriched neurons
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - DNAJC6
+  - UCHL1
+  - PRKN
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: label transfer to c9
+  notes: DNAJC6 reported both down (c7_3 or c9) and up (c9).
+- id: wang2024-C22
+  paper: wang2024
+  statement: SNCA is upregulated in PD microglia and oligodendrocytes.
+  quote: SNCA was up-regulated in microglia and oligodendrocytes in PD
+  location: Fig. 6A right
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: ''
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes:
+  - SNCA
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ''
+  notes: Compound (microglia + oligodendrocytes).
+- id: wang2024-C23
+  paper: wang2024
+  statement: PD GWAS-locus genes are enriched among markers of the RIT2-enriched c9 neuron cluster.
+  quote: 90 genes showed cluster-specific expression as evidenced by the significant enrichment in neuron cluster (c9, adjusted P = 0.037, OR = 3.8)
+  location: Fig. 6B
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: c9 RIT2-enriched neurons
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: across clusters (controls only)
+  genes:
+  - RIT2
+  gene_source: GWAS catalog mapped genes (278 loci); Fig. 6B
+  reported_stat: FET, Bonferroni P = 0.037, OR = 3.8
+  unit_of_analysis: cells
+  method: Fisher's exact test of top-10% FC markers vs GWAS catalog genes
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: GWAS catalog PD genes
+  notes: ''
+- id: wang2024-C24
+  paper: wang2024
+  statement: PD GWAS-locus genes are preferentially expressed in neurons and more frequently deregulated in neurons in PD (e.g., SV2C down in c7_3).
+  quote: many PD GWAS loci genes were preferentially expressed in neurons (Fig. 6C) and more frequently deregulated in neurons than in other cell types
+  location: Fig. 6B-D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: ''
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes:
+  - SV2C
+  - KTN1
+  gene_source: Fig. 6D (52 GWAS DEGs)
+  reported_stat: 52 GWAS-associated DEGs
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ''
+  notes: SV2C down in c7_3; KTN1 up in c9.
+- id: wang2024-C25
+  paper: wang2024
+  statement: RIT2 is significantly downregulated in PD within c9 neurons.
+  quote: We found a significant down-regulation of the RIT2 gene in c9
+  location: Fig. 6D; Abstract
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: c9 RIT2-enriched neurons
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes:
+  - RIT2
+  gene_source: Table S5 (cluster DEGs); Table S6 (pathways)
+  reported_stat: Bonferroni P <= 0.05
+  unit_of_analysis: cells
+  method: MAST (Seurat) on cells, covariates PMI, age, sex; Bonferroni P <= 0.05, FC >= 20%
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: label transfer to c9
+  notes: 'Abstract: ''implicated reduced RIT2 expression in the pathogenesis of PD''.'
+- id: wang2024-C26
+  paper: wang2024
+  statement: Cell-cell communication is globally decreased for neuronal cells and increased for microglia, pericytes, endothelial cells and fibroblasts in PD.
+  quote: we observed a global decrease of cell communications for neuronal cells but increased communications for microglia, pericytes, endothelial cells, and fibroblasts
+  location: Fig. 7A,B; Results "Altered cell-cell communication networks in the SN of PD"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: communication
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: Table S9
+  reported_stat: CellChat interaction number/strength
+  unit_of_analysis: cells
+  method: CellChat on pooled PD vs pooled control
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: Compound; neurons down, vascular/microglia up.
+- id: wang2024-C27
+  paper: wang2024
+  statement: Multiple signalling pathways (GRN, EPHB, GAS, PERIOSTIN, EDN, OCLN, IL16, MHC-II, WNT, PACAP, CXCL) are inactivated in PD, while APP signalling is enhanced and ANGPTL activated.
+  quote: we found that GRN, EPHB, GAS, PERIOSTIN, EDN, OCLN, interleukin-16, major histocompatibility complex–II (MHC-II), WNT, PACAP, and CXCL pathways were inactivated in PD
+  location: Fig. 7C; Table S9
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: ''
+  claim_type: communication
+  direction: NA
+  comparison: PD vs control
+  genes:
+  - GRN
+  - APP
+  - ANGPTL4
+  gene_source: Table S9; CellChat DB
+  reported_stat: CellChat information flow
+  unit_of_analysis: cells
+  method: CellChat
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: Pathway-level; ANGPTL gene not specified.
+- id: wang2024-C28
+  paper: wang2024
+  statement: DA-neuron-containing clusters c7 and c9 (and pericytes) lose cadherin (CDH, N-cadherin/CDH2) signalling in PD.
+  quote: two neuronal clusters c7 and c9, both containing subtypes of DA neurons, lost Cadherin (CDH) signaling in PD
+  location: Fig. 7C,D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: c7, c9
+  claim_type: communication
+  direction: down
+  comparison: PD vs control
+  genes:
+  - CDH2
+  gene_source: Table S9
+  reported_stat: CellChat
+  unit_of_analysis: cells
+  method: CellChat
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: ''
+- id: wang2024-C29
+  paper: wang2024
+  statement: EPHA signalling from neuron clusters c6 and c9 to c7 neurons, c0 oligodendrocytes and c8 pericytes is lost in PD.
+  quote: the Ephrin type-A receptors (EPHA) input from neuron clusters c6 and c9 into neuron cluster c7, oligodendrocyte cluster c0, and pericytes cluster c8 were lost in PD
+  location: Fig. 7D
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Neurons (other)
+  cell_state: ''
+  claim_type: communication
+  direction: down
+  comparison: PD vs control
+  genes: []
+  gene_source: Table S9
+  reported_stat: CellChat
+  unit_of_analysis: cells
+  method: CellChat
+  testable_with: rna
+  test_template: communication_liana
+  requires: ''
+  notes: ''

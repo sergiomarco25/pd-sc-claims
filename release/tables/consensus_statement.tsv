@@ -1,0 +1,19 @@
+statement_id	statement	short	our_evidence	verdict
+CS01	Glia in PD mount a heat-shock and unfolded-protein response (HSP70/HSP90 chaperones up)	glial heat-shock / UPR response		established
+CS02	The stress response is shared by many cell types of a patient and across regions, not confined to one cell type	shared across cell types and regions		established
+CS03	Neurons do not raise, or repress, chaperones in PD	neuronal chaperone repression		contradicted
+CS04	Microglia increase in number in PD	more microglia		supported when pooled
+CS05	Microglia switch on activation genes in PD (IL1B, GPNMB, SPP1, cathepsins)	microglial activation genes		partly supported
+CS06	Inflammatory or activated glial states expand in PD	inflammatory glial states expand		largely not supported
+CS07	PD astrocytes become reactive with CD44, GFAP and metallothioneins	astrocyte CD44 / GFAP / metallothioneins		supported
+CS08	Oligodendrocytes lose myelinating identity and myelin genes	oligodendrocytes lose myelin genes		supported
+CS09	Specific disease-associated oligodendroglial subpopulations expand in PD	oligodendroglial subpopulations expand		not supported as proportions
+CS10	Dopaminergic neurons are lost from the substantia nigra	nigral DA neuron loss		supported when pooled
+CS11	The loss is selective for SOX6/AGTR1-positive dopaminergic neurons	AGTR1-selective DA loss		AGTR1 loss yes, selectivity no
+CS12	T cells infiltrate the PD brain	T-cell infiltration		not supported
+CS13	Neurons lose synaptic, mitochondrial and metabolic gene expression	neuronal synaptic / mitochondrial loss		supported
+CS14	Cortical neuron composition changes in Lewy-body disease	cortical neuron composition		excitatory loss supported
+CS15	Familial PD genes point to dopaminergic neurons	familial genes in DA neurons		established
+CS16	Common-variant PD risk acts through dopaminergic-neuron identity	common variants in DA neurons		not supported
+CS17	Common-variant risk involves oligodendroglia and microglia	common variants in glia		supported
+CS18	SNCA expression changes in PD	SNCA expression		partly supported

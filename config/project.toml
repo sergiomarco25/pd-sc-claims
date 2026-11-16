@@ -1,0 +1,73 @@
+# Project configuration: every machine-specific path and the release rules (read by src/pdrep/config.py).
+# To run elsewhere, copy this file, change the paths and point PDREP_CONFIG at it, or set PDREP_<NAME> variables.
+# Values may use {repo} and {data_root}; relative paths are relative to the repository.
+
+project = "pd-sc-replication"
+
+[paths]
+# Large data, not in git. This pipeline writes raw/, harmonised/, results/ and scratch/ inside `work`.
+data_root = "/lustre/groups/ml01/datasets/projects/2025_pdstriatum_sergio.salas"
+work      = "{data_root}/pd_sc_replication"
+# Earlier project folders read by a few scripts (GLIAD revision outputs, donor metadata, fonts).
+legacy    = "/ictstr01/home/icb/sergio.salas/notebooks/pd_striatum"
+# Reference genome for motif scans (scripts/44_hsf1_accessibility.py).
+genome_fa = "/lustre/groups/ml01/datasets/annotations/hg38/genome/hg38.fa"
+
+[envs]
+# Interpreters used by the SLURM runners. Locked specifications: envs/ (COMMUNITY_PLAN step 1.4).
+python = "~/miniconda3/envs/rapids_singlecell/bin/python"
+r_env  = "~/.local/share/mamba/envs/mast_rev"
+
+[pipeline]
+# Harmonised datasets the workflow builds and tests (workflow/Snakefile). One loader each: src/pdrep/build/<id>.py.
+datasets = ["xu2023", "zhu2024", "wang2024", "smajic2022", "kamath2022", "martirosyan2024",
+            "prashant2024", "menon2026", "ma2025", "adams2024", "lee2023", "glock2026", "feleke2021", "jin2024",
+            "dehestani2024", "chia2025", "volpato2025", "lee2026"]
+# Memory (GB) for per-dataset jobs: [pipeline.mem_gb] below; others get default_mem_gb.
+default_mem_gb = 128
+# Gene-level meta-analysis contrasts (scripts/23_de_meta.py) and those also run through GSEA (scripts/24_pathways.py).
+de_contrasts = ["PDany_vs_control", "LBDany_vs_control", "braak"]
+gsea_contrasts = ["PDany_vs_control", "braak"]
+gsea_classes = ["DA neurons", "MSNs", "Excitatory neurons", "Inhibitory neurons", "Neurons (other)", "Astrocytes",
+                "Microglia", "Oligodendrocytes", "OPCs", "Endothelial", "Pericytes", "Fibroblasts", "T cells",
+                "Immune (other)", "Ependymal"]
+
+[pipeline.mem_gb]
+menon2026 = 300
+prashant2024 = 300
+lee2026 = 300
+kamath2022 = 200
+wang2024 = 200
+ma2025 = 200
+feleke2021 = 200
+
+[release]
+# Public home of the code, claims and releases (user decision 2026-11-16): a separate repository exported from this
+# private one by scripts/62_public_repo.py. Schema ids and the public atlas's question form point here.
+public_repository = "https://github.com/sergiomarco25/pd-sc-claims"
+# Datasets whose harmonised objects and per-dataset results stay out of every public export
+# (Lamin public instance, Zenodo store release, static atlas, hosted server). Decision 2026-11-14:
+# the GLIAD / MGH striatum data stay private until the GLIAD paper is published.
+private_datasets = ["barbareyes2026"]
+# Papers whose claims stay out of public exports: the GLIAD preprint (its claim text is public, but kept back until
+# publication by default). Findings of this study with any test in a private dataset are left out as well.
+private_papers = ["barbareyes2026"]
+# Findings with a test in a private dataset whose other datasets' estimates do not depend on private data (each
+# dataset scored on its own, public gene sets): released with the private rows removed and re-rated (user decision
+# 2026-11-14). Not listed, so left out: F-state-upr-astro, F-state-reactive-mg-null, F-state-dam-null (gene modules
+# from the GLIAD analysis). F-axis2-shift is re-derived instead (rederived_findings below).
+separable_findings = ["F-comp-excitatory", "F-comp-microglia", "F-heat-lewy-stage", "F-heat-pmi-null",
+                      "F-heat-stage-mid", "F-prog-chaperone", "F-prog-cirbp", "F-prog-heat", "F-prog-hypoxia",
+                      "F-state-dao", "F-q-complex1-odc", "F-q-heat-sex"]
+# Gene modules (programme names in results/biology/) that come from a private paper's analysis: the GLIAD glial
+# states. Public re-derivations and the public atlas leave them out.
+private_modules = ["UPR astrocytes (Barba-Reyes)", "AR2 astrocytes (Barba-Reyes)", "reactive astrocytes (Barba-Reyes)",
+                   "UPR microglia (Barba-Reyes)", "reactive microglia (Barba-Reyes)", "DAM microglia (Barba-Reyes)"]
+
+# Findings whose estimates in every dataset depend on private data, re-derived without it for the public release:
+# table = results table (under results/) that replaces the finding's evidence table, script = what writes it. The
+# release builder recomputes the finding's per-dataset tests from that table (scripts/59b_public_findings.py) before
+# re-rating. F-axis2-shift: patient axes rebuilt from lee2026, menon2026 and prashant2024 without the GLIAD modules
+# (user decision 2026-11-14).
+[release.rederived_findings]
+F-axis2-shift = { table = "subgroups/public/axes_shift.tsv", script = "scripts/subgroups/10_axes_public.py" }

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software or the claim store, please cite it as below."
+title: "PD single-cell claim replication: a living, re-tested evidence base"
+abstract: >-
+  Published conclusions of human post-mortem brain Parkinson's disease single-cell studies, extracted as structured
+  claims, re-tested donor-level in their own data and in every other harmonised dataset, rated for certainty, and
+  served as a knowledge graph, an atlas and an MCP/REST server for people and AI systems.
+type: software
+authors:
+  - family-names: "Marco Salas"
+    given-names: "Sergio"
+repository-code: "https://github.com/sergiomarco25/pd-sc-claims"
+license: Apache-2.0
+keywords:
+  - Parkinson's disease
+  - single-cell
+  - replication
+  - meta-analysis
+  - knowledge graph
+  - Model Context Protocol

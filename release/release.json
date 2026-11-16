@@ -1,0 +1,205 @@
+{
+  "name": "PD single-cell claim store",
+  "version": "0.9.1-preview",
+  "date": "2026-11-16",
+  "built": "2026-11-16T10:33:39Z",
+  "public": true,
+  "code_commit": "d7997a27342be3ba358ab9b5f8d2c57e5fa627bf-dirty",
+  "rating_version": "2.0.0",
+  "rating_error": "",
+  "claim_schema_version": "1.0.0",
+  "licence": "CC BY 4.0 (data and text); code Apache-2.0",
+  "excluded": {
+    "private_datasets": 1,
+    "private_papers": 1,
+    "separable_findings": [
+      "F-comp-excitatory",
+      "F-comp-microglia",
+      "F-heat-lewy-stage",
+      "F-heat-pmi-null",
+      "F-heat-stage-mid",
+      "F-prog-chaperone",
+      "F-prog-cirbp",
+      "F-prog-heat",
+      "F-prog-hypoxia",
+      "F-q-complex1-odc",
+      "F-q-heat-sex",
+      "F-state-dao"
+    ],
+    "rederived_findings": {
+      "F-axis2-shift": {
+        "table": "subgroups/public/axes_shift.tsv",
+        "script": "scripts/subgroups/10_axes_public.py",
+        "tests": 15,
+        "datasets": [
+          "adams2024",
+          "chia2025",
+          "feleke2021",
+          "glock2026",
+          "kamath2022",
+          "lee2023",
+          "lee2026",
+          "ma2025",
+          "martirosyan2024",
+          "menon2026",
+          "prashant2024",
+          "smajic2022",
+          "volpato2025",
+          "wang2024",
+          "zhu2024"
+        ]
+      }
+    },
+    "removed": {
+      "claims of private papers": 47,
+      "findings depending on private data": 3,
+      "findings kept without their private-dataset tests": 12,
+      "findings re-derived without private data": 1,
+      "tests in private datasets": 475,
+      "private papers in the literature inventory": 1,
+      "questions": 3,
+      "claims with a private source dataset cleared": 32,
+      "claim text fields redacted": 6
+    }
+  },
+  "counts": {
+    "claim": 428,
+    "claim_dataset": 7094,
+    "dataset": 18,
+    "consensus_statement": 18,
+    "background": 8
+  },
+  "verdicts": {
+    "Supported": 152,
+    "Untested": 139,
+    "Inconclusive": 115,
+    "Partly supported": 14,
+    "Contradicted": 6,
+    "Supported (no effect)": 1,
+    "No effect": 1
+  },
+  "changes": null,
+  "private_mentions": {},
+  "files": {
+    "CITATION.cff": {
+      "bytes": 808,
+      "sha256": "dd8f94ff32df9471ab467123dcbe470fb2dff68b3e458db20bc709d8ec4e73c2"
+    },
+    "LICENSE-DATA.md": {
+      "bytes": 1304,
+      "sha256": "c7a07c0d52f66333a06870807809bf02508d68c8d89afda354e540591e41d5c5"
+    },
+    "RATING.md": {
+      "bytes": 6514,
+      "sha256": "46afce053a680b4cd9e2e0b93cf59b5014ad477a2f3046a98053c3da50e32d57"
+    },
+    "claim_store.sqlite": {
+      "bytes": 12312576,
+      "sha256": "fd572446a50f5d5c1fe613297ab86ceedd9f572942a9f3328d7556f1369d4804"
+    },
+    "claims.jsonld": {
+      "bytes": 976085,
+      "sha256": "0744e35bd2477d41f8c4cf7da5d58882528767977af311ae8a805ce1b78f5734"
+    },
+    "knowledge_graph.graphml": {
+      "bytes": 1959208,
+      "sha256": "c85af876bd0f69f4a48aec714d3b8ad553b87a6b1a3d13d09534f78ec5e0736e"
+    },
+    "knowledge_graph.json": {
+      "bytes": 1421502,
+      "sha256": "9f7cb72afa3d12349b5904c7ff72eea2728091f9ac18433156317b15028fee6c"
+    },
+    "ro-crate-metadata.json": {
+      "bytes": 7251,
+      "sha256": "301e38841e1629f7bb6fa8a4086933ac5dfc7ad741759172c6be3e765d853a54"
+    },
+    "schema/claim.schema.json": {
+      "bytes": 5607,
+      "sha256": "bca728999102ab7b366c434788caf0497e8a15cdcce5d4bf2d3b2718e0bcc9d5"
+    },
+    "schema/finding.schema.json": {
+      "bytes": 6491,
+      "sha256": "4c3d2beb18e41ac8822519c74286e22a82a74e9413b0186b9e14c33fb412f1ca"
+    },
+    "tables/background.tsv": {
+      "bytes": 11218,
+      "sha256": "48cf75ba3524f642cbe4d287270889548261232ce9b07a3ed94e69670f6a4091"
+    },
+    "tables/build_info.tsv": {
+      "bytes": 84,
+      "sha256": "4c6264c6506bdc3a08308a69b55ba4ea51bb124852c685305cb8d72310cc13f0"
+    },
+    "tables/claim.tsv": {
+      "bytes": 955656,
+      "sha256": "2e76e9aa370ee3af630f0fb8cdcafb03bd62b2c1d4dce6aa4f389408507cf54b"
+    },
+    "tables/claim_dataset.tsv": {
+      "bytes": 1304749,
+      "sha256": "bfdaf526334c9a0728d5ed647242ab7dfc1928943257f00f860c357fa5804aed"
+    },
+    "tables/claim_relation.tsv": {
+      "bytes": 16461,
+      "sha256": "7add3dc38eecaf3a1bac45851b54ecde73da5669df276b0956eb044c96700639"
+    },
+    "tables/claim_signature.tsv": {
+      "bytes": 57476,
+      "sha256": "0142ecae7e05ce485449722a2e4b66bfac1819728268f57ce8309c72f9f22597"
+    },
+    "tables/consensus_statement.tsv": {
+      "bytes": 2077,
+      "sha256": "c08ac1d8d7c795a65cafdf3e789b27d2ac6d1c37e87964b43a9aea5b02eef4b9"
+    },
+    "tables/dataset.tsv": {
+      "bytes": 15190,
+      "sha256": "ae904cbbd08b37ec938cdefa6c038827c062d30d17c7e47920a4a538cb2352b8"
+    },
+    "tables/donor_group.tsv": {
+      "bytes": 1829,
+      "sha256": "b66ebdb96047a644c24e2c975df4a9bc1887b1c6b1d9977077d45f80dbf60d7f"
+    },
+    "tables/question.tsv": {
+      "bytes": 53,
+      "sha256": "141739237494919dc8a5c7d68f52e8c9b5dcb024595331fb3de12c99f0683c70"
+    },
+    "tables/signature.tsv": {
+      "bytes": 170836,
+      "sha256": "f6a2f532f15b8d284bf09655645f007f3a1c4614955120f80b1f3599e32a4737"
+    },
+    "tables/signature_gene.tsv": {
+      "bytes": 7272107,
+      "sha256": "4cdd17ec3b637cb7368299a36fe54fbf4b2ea14c77e9eee9cbd84a4954e9e814"
+    },
+    "tables/source.tsv": {
+      "bytes": 16823,
+      "sha256": "63a2f5d5dbaf044588d78c825a57d792fbd02cfc90528a324a41b4bebee3645a"
+    },
+    "tables/source_discrepancy.tsv": {
+      "bytes": 3232,
+      "sha256": "b7d96466966295f2d1eec92471a0d0f25d1622a6784a9ce284a8b9259f9f349f"
+    },
+    "tables/vocab_assays.tsv": {
+      "bytes": 727,
+      "sha256": "189a4a94ca5f0b1e9ef19567c666bc6ec307ddbc2564d95b4cd4780028f1f015"
+    },
+    "tables/vocab_cell_types.tsv": {
+      "bytes": 973,
+      "sha256": "0965995b78898932f66776142d53320dcbce7196865565718357a5c274b5cdf2"
+    },
+    "tables/vocab_contrasts.tsv": {
+      "bytes": 1436,
+      "sha256": "54f0806b55a01d1c31b5f91257981f0257a22d788117261bc5f24d9e88c8dadf"
+    },
+    "tables/vocab_diseases.tsv": {
+      "bytes": 861,
+      "sha256": "46818547eb3fa7b7662a60139de3e19331b7369a5cba259d41aa39d9099d45ac"
+    },
+    "tables/vocab_organisms.tsv": {
+      "bytes": 309,
+      "sha256": "f962e59109754fc7fb0238383ac0d99723ac50e91ca02adfb604a53dab0d52cb"
+    },
+    "tables/vocab_regions.tsv": {
+      "bytes": 1905,
+      "sha256": "76eea77955105679b2bca924b2ef72d983a3f7d885d82f2c1dec3eebd2383bb8"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+claim_id	term	reason
+menon2026-C08	region-resolved DEGs (SN vs other regions)	SupTable2 has no region column; only region-pooled DEGs given (attached)
+menon2026-C09	region-resolved DEG overlap	SupTable2 has no region column; region-pooled DEGs attached
+menon2026-C10	cerebellum DEGs	no region column; cerebellum-specific cell types (Granule, Purkinje, Bergmann-Glia, Golgi, MLI) attached as proxy
+menon2026-C16	chromatin_da (SERPINH1 astrocyte peaks across LB stage)	no SERPINH1 peak in SupTable4 and no stage-wise DA peak table in supplement
+menon2026-C01	AGTR1+ DA subcluster 6 marker table	subcluster markers not in supplement; AGTR1 text list used
+menon2026-C21	eccentric MSN markers (Supp. Fig. 4d-f)	marker table not in supplement; DRD1/DRD2 text list used

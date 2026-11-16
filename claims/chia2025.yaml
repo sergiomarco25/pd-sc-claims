@@ -1,0 +1,291 @@
+# Chia et al. 2025, Genome Medicine, "Single-nucleus transcriptomics reveals a distinct microglial state and increased MSR1-mediated phagocytosis as common features across dementia subtypes"
+# DOI 10.1186/s13073-025-01519-4; PMID 40826098; PMC12359983
+# PFC (middle frontal gyrus, grey + white matter) snRNA-seq; 4 NCI / 4 AD / 6 DLB / 6 PDD; 87,470 nuclei. No PD-without-dementia group.
+# DE = union of DESeq2 pseudobulk (sex covariate, nominal P<0.05) and MAST on cells (sex + sample covariates, BH<0.01, |log2FC|>1).
+# Mouse (LRRK2-G2019S), HMC3 cell-line and bulk RT-qPCR results are in notes only.
+- id: chia2025-C01
+  paper: chia2025
+  statement: "Microglial proportions are elevated in PDD prefrontal cortex compared with non-cognitively impaired controls."
+  quote: "microglial proportions were elevated across all dementia subtypes compared to NCI"
+  location: "Fig. 1e; Results 'SnRNA-seq transcriptomics revealed transcriptional profiles in AD, DLB, and PDD'"
+  centrality: headline
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "PDD vs control"
+  genes: [DOCK8]
+  gene_source: text
+  reported_stat: "box plots of per-sample percentages; no test statistic reported; n=6 PDD vs 4 NCI"
+  unit_of_analysis: samples
+  method: "per-sample cell-type percentages, descriptive (no stated test)"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "dementia status (PDD)"
+  notes: "Same claim made for DLB (C02) and AD. No statistical test named for composition."
+- id: chia2025-C02
+  paper: chia2025
+  statement: "Microglial proportions are elevated in DLB prefrontal cortex compared with non-cognitively impaired controls."
+  quote: "microglial proportions were elevated across all dementia subtypes compared to NCI"
+  location: "Fig. 1e"
+  centrality: headline
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: enriched
+  comparison: "DLB vs control"
+  genes: []
+  gene_source: text
+  reported_stat: "descriptive; n=6 DLB vs 4 NCI"
+  unit_of_analysis: samples
+  method: "per-sample percentages, descriptive"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "DLB diagnosis"
+  notes: ""
+- id: chia2025-C03
+  paper: chia2025
+  statement: "Excitatory neurons are reduced in all dementia subtypes including PDD, most markedly in DLB."
+  quote: "excitatory neurons were reduced across all three dementia subtypes, with the most pronounced decrease observed in DLB"
+  location: "Additional file 2: Fig. S3a"
+  centrality: secondary
+  modality: snRNA
+  region: PFC
+  cell_type: Excitatory neurons
+  cell_state: ""
+  claim_type: composition
+  direction: depleted
+  comparison: "PDD vs control; DLB vs control"
+  genes: []
+  gene_source: text
+  reported_stat: "descriptive"
+  unit_of_analysis: samples
+  method: "per-sample percentages, descriptive"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "dementia status"
+  notes: "Samples include variable white matter fraction, which strongly affects neuron proportions."
+- id: chia2025-C04
+  paper: chia2025
+  statement: "Inhibitory neurons are more abundant in DLB and PDD, with SST and SV2C interneuron subclusters specifically enriched."
+  quote: "inhibitory neurons were more abundant in DLB and PDD"
+  location: "Additional file 2: Fig. S3a, S3h-r"
+  centrality: secondary
+  modality: snRNA
+  region: PFC
+  cell_type: Inhibitory neurons
+  cell_state: "SST IN, SV2C IN"
+  claim_type: composition
+  direction: enriched
+  comparison: "PDD vs control; DLB vs control"
+  genes: [SST, SV2C]
+  gene_source: text
+  reported_stat: "descriptive"
+  unit_of_analysis: samples
+  method: "per-sample percentages, descriptive"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "dementia status"
+  notes: "Compound (InN overall + SST/SV2C subclusters). Also: NCI and AD had more lower-layer excitatory neurons."
+- id: chia2025-C05
+  paper: chia2025
+  statement: "PDD and DLB are transcriptionally (and compositionally) more similar to each other than to AD, which resembles controls; LBD-vs-AD/NCI DEGs are mostly in inhibitory neurons."
+  quote: "While AD showed molecular similarities to NCI, PDD and DLB were clustered more closely together, sharing a greater number of DEGs and related pathways, predominantly associated with microglia."
+  location: "Fig. 1d, Fig. 2b, Fig. 3a; abstract"
+  centrality: headline
+  modality: snRNA
+  region: PFC
+  cell_type: All
+  cell_state: ""
+  claim_type: other
+  direction: NA
+  comparison: "PDD vs DLB vs AD vs control"
+  genes: []
+  gene_source: "Additional file 1 tables (DEGs)"
+  reported_stat: "DEGs vs NCI: AD 48, DLB 684, PDD 478; LBD vs AD/NCI 460 DEGs"
+  unit_of_analysis: cells
+  method: "MAST + DESeq2 pseudobulk union; hierarchical clustering"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "PDD, DLB (and AD) diagnoses"
+  notes: "Clustering is qualitative."
+- id: chia2025-C06
+  paper: chia2025
+  statement: "Most PDD-vs-control DEGs are found in inhibitory neurons."
+  quote: "DLB and PDD exhibited substantially higher numbers of DEGs, with 684 and 478 DEGs, respectively, the majority of which were identified in inhibitory neurons"
+  location: "Fig. 2a,b"
+  centrality: main
+  modality: snRNA
+  region: PFC
+  cell_type: Inhibitory neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "PDD vs control (also DLB)"
+  genes: []
+  gene_source: "Additional file 1 (DEG tables)"
+  reported_stat: "478 PDD DEGs"
+  unit_of_analysis: cells
+  method: "MAST (sex, sample covariates; BH<0.01, |log2FC|>1) union DESeq2 pseudobulk (P<0.05 nominal)"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "dementia status"
+  notes: "Union with nominal-P pseudobulk inflates DEG counts."
+- id: chia2025-C07
+  paper: chia2025
+  statement: "HSPA1A is consistently upregulated in PDD and DLB, including in oligodendrocytes (and in AD oligodendrocytes)."
+  quote: "HSPA1A, a gene from the heat shock protein family, consistently showed higher expression in PDD and DLB"
+  location: "Fig. 2c, Fig. 4i; Additional file 2: Fig. S7c-d"
+  centrality: headline
+  modality: snRNA
+  region: PFC
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "PDD vs control (also DLB, AD)"
+  genes: [HSPA1A]
+  gene_source: text
+  reported_stat: "log2FC>1, FDR<0.01 (Fig. 2 legend)"
+  unit_of_analysis: cells
+  method: "MAST / DESeq2"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "dementia status"
+  notes: "Abstract: MSR1 'upregulated in microglia across all dementia subtypes, along with its associated gene HSPA1A in oligodendrocytes'. Heat-shock genes sensitive to agonal state."
+- id: chia2025-C08
+  paper: chia2025
+  statement: "There is significant overlap of dementia-associated DEGs between microglia and oligodendrocytes across dementia subtypes."
+  quote: "we discovered significant overlapping DEGs between the microglial and oligodendrocyte clusters, suggesting a conserved functional crosstalk between the two cell types in dementia"
+  location: "Fig. 2c"
+  centrality: main
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: "microglia + oligodendrocytes"
+  claim_type: de_gene
+  direction: NA
+  comparison: "PDD, DLB, AD vs control"
+  genes: []
+  gene_source: "Fig. 2c heatmap; Additional file 1"
+  reported_stat: "not given"
+  unit_of_analysis: cells
+  method: "overlap of DEG lists"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "dementia status"
+  notes: "Shared DEGs between microglia and oligodendrocytes may reflect ambient RNA / doublets (myelin transcripts in microglia)."
+- id: chia2025-C09
+  paper: chia2025
+  statement: "A distinct microglial state co-expressing microglial (P2RY12, PTPRC, APOE, CD74) and oligodendrocyte/myelin markers (PLP1, MBP, ST18) is enriched in PDD, DLB and AD versus controls, highest in DLB."
+  quote: "The distinct microglia was more enriched in AD, DLB, and PDD than in NCI, with a notably higher proportion in DLB"
+  location: "Fig. 4a-d; Additional file 2: Fig. S7, S8; Results 'Identification of a distinct state of microglia across dementia subtypes'"
+  centrality: headline
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: "distinct microglia (microglia/oligodendrocyte marker co-expressing; putative myelin-phagocytic)"
+  claim_type: state_enrichment
+  direction: enriched
+  comparison: "PDD vs control (also DLB, AD)"
+  genes: [P2RY12, PTPRC, APOE, CD74, PLP1, MBP, ST18]
+  gene_source: text
+  reported_stat: "box plot of per-sample percentages; no statistic in text; replicated in a published snRNA dataset (ref 59)"
+  unit_of_analysis: samples
+  method: "re-clustering + per-sample proportions, descriptive"
+  testable_with: rna
+  test_template: state_signature
+  requires: "dementia status"
+  notes: "Could be microglia-oligodendrocyte doublets or ambient myelin RNA; authors interpret as myelin-phagocytosing microglia. Replication dataset (ref 59) not identified in text read."
+- id: chia2025-C10
+  paper: chia2025
+  statement: "Predicted microglia-oligodendrocyte interactions (number and strength) are increased in PDD and other dementias compared with controls."
+  quote: "Our findings revealed an increase in both the predicted number of interaction pairs and the interaction strength in all dementia subtypes compared to NCI"
+  location: "Fig. 4e,f; Fig. 5 (RNAscope)"
+  centrality: main
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: "microglia-oligodendrocyte pair"
+  claim_type: communication
+  direction: up
+  comparison: "PDD vs control (also DLB, AD)"
+  genes: []
+  gene_source: "not given"
+  reported_stat: "CellChat interaction count/weight; RNAscope qualitative (closer proximity in PDD)"
+  unit_of_analysis: cells
+  method: "CellChat run separately per group on pooled cells"
+  testable_with: rna
+  test_template: communication_liana
+  requires: "dementia status"
+  notes: "RNAscope proximity is qualitative (no quantification reported); spatial part could be tested in spatial datasets via spatial_neighbourhood."
+- id: chia2025-C11
+  paper: chia2025
+  statement: "MSR1 is upregulated in microglia in PDD (and DLB, more modestly AD) compared with controls."
+  quote: "Compared to NCI, MSR1 was highly expressed in microglia from AD, with a more pronounced increase observed in microglia from DLB and PDD"
+  location: "Fig. 4h; Fig. 6a (bulk RT-qPCR validation)"
+  centrality: headline
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "PDD vs control (also DLB, AD)"
+  genes: [MSR1]
+  gene_source: text
+  reported_stat: "significant DEG (MAST/DESeq2); bulk qPCR one-way ANOVA, n=20"
+  unit_of_analysis: cells
+  method: "MAST / DESeq2 pseudobulk; RT-qPCR one-way ANOVA + Tukey"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "dementia status"
+  notes: "Title claim. Mouse LRRK2-G2019S and HMC3 phagocytosis experiments support function (notes). Also tested in PD-without-dementia datasets as an extension."
+- id: chia2025-C12
+  paper: chia2025
+  statement: "Genes upregulated in dementia microglia are enriched for cell differentiation/migration, synapse development, lipid metabolism and transport, synaptic plasticity/cognition and antigen processing and presentation."
+  quote: "these upregulated DEGs were enriched in five main groups: cell differentiation, migration and localisation; synapse development and maturation; lipid metabolism and transport"
+  location: "Fig. 4g; Fig. 2e"
+  centrality: secondary
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "DLB vs control (Fig. 4g); PDD vs control (Fig. 2e)"
+  genes: []
+  gene_source: "Fig. 4g, Fig. 2e"
+  reported_stat: "clusterProfiler GO"
+  unit_of_analysis: cells
+  method: "GO ORA on DEGs"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "dementia status"
+  notes: "Fig. 4g legend specifies DLB microglia; Fig. 2e says both DLB and PDD microglia enriched in synapse organisation, learning/memory, axonogenesis; lipid transport/endocytosis exceptional in DLB."
+- id: chia2025-C13
+  paper: chia2025
+  statement: "DLB and PDD differ mainly through microglia (162 of 294 DLB-vs-PDD DEGs), involving synapse organisation, neuron projection development, cell adhesion and ion transport pathways."
+  quote: "The comparison between DLB and PDD identified 294 DEGs, with the majority being associated with microglia (162 DEGs, 55%)"
+  location: "Fig. 3b,c"
+  centrality: main
+  modality: snRNA
+  region: PFC
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: "DLB vs PDD"
+  genes: []
+  gene_source: "Fig. 3b; Additional file 1"
+  reported_stat: "294 DEGs, 55% microglial"
+  unit_of_analysis: cells
+  method: "MAST + DESeq2"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "PDD and DLB diagnoses"
+  notes: ""

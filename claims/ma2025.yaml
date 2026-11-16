@@ -1,0 +1,827 @@
+- id: ma2025-C01
+  paper: ma2025
+  statement: CD8+ T cells are enriched in the PD substantia nigra.
+  quote: "CD8 + T cells were enriched in the PD SN and characterized by clonal expansion"
+  location: "Abstract; Fig. 1a,b (IHC); Fig. S4I (snRNA differential abundance)"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: T cells
+  cell_state: CD8+ T cells
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes: [CD3E, CD8A]
+  gene_source: text
+  reported_stat: "snRNA: DCATS beta-binomial GLM, FDR (Fig. S4I), 831 SN T cells (535 PD); IHC CD8 density two-tailed t-test, n = 6/group"
+  unit_of_analysis: donors
+  method: DCATS beta-binomial regression on donor x subtype counts; IHC t-test on donors
+  testable_with: rna
+  test_template: composition_donor
+  requires: "T cell annotation (rare population)"
+  notes: "snRNA SN n = 13 PD vs 15 control. Exact DCATS coefficient/FDR only in Fig. S4I."
+
+- id: ma2025-C02
+  paper: ma2025
+  statement: T cells in the PD substantia nigra are clonally expanded (reduced TCR repertoire evenness, lower DE50, left-shifted cumulative clonotype distributions).
+  quote: "Altogether, our findings show that in the PD SN, there is an increased infiltration of clonally expanded T cells."
+  location: "Abstract; Fig. 1c-h"
+  centrality: headline
+  modality: spatial-other
+  region: SN
+  cell_type: T cells
+  cell_state: clonally expanded T cells
+  claim_type: other
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Data 3 (TCR count matrices)"
+  reported_stat: "beta-chain Hill diversity up, evenness down (one-tailed regression); KS P = 2.12e-6 (alpha), 1.11e-6 (beta); DE50 lower for beta; Repseq+ n = 12 PD / 13 control"
+  unit_of_analysis: donors
+  method: bulk-tissue TCR-seq (read-based and UMI-based Repseq+), linear models with age, sex, Braak covariates
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "TCR sequencing"
+  notes: "Modality is tissue TCR-seq (no matching controlled-vocabulary term; set to spatial-other). Not testable in snRNA-only datasets; could be tested in datasets with scTCR/VDJ."
+
+- id: ma2025-C03
+  paper: ma2025
+  statement: PD SN TCR sequences share CDR3 motifs with peripheral blood TCRs reactive to alpha-synuclein.
+  quote: "there were two clusters that only included CDR3s from PD and from PD patient blood T cells challenged with α-synuclein peptides across two external datasets"
+  location: "Abstract; Fig. 1i,j; Fig. S3"
+  centrality: headline
+  modality: spatial-other
+  region: SN
+  cell_type: T cells
+  cell_state: ""
+  claim_type: other
+  direction: exists
+  comparison: PD vs control
+  genes: []
+  gene_source: "Fig. 1i,j"
+  reported_stat: "GLIPH2: 556 clusters, 78 spanning groups; no association between condition and alpha-syn reactivity (Chi2 = 0.078, P = 0.78)"
+  unit_of_analysis: donors
+  method: GLIPH2 clustering vs Singhania 2021 and Gate 2020 blood TCRs
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "TCR sequencing"
+  notes: "Authors themselves note the overlap is not significantly associated with disease status."
+
+- id: ma2025-C04
+  paper: ma2025
+  statement: Dopaminergic neurons are depleted in the PD substantia nigra.
+  quote: "differential abundance analysis demonstrated that dopaminergic neurons were depleted in the SN based on compositional analysis"
+  location: "Fig. S4I"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: composition
+  direction: depleted
+  comparison: PD vs control
+  genes: [TH]
+  gene_source: text
+  reported_stat: "DCATS FDR (Fig. S4I); n = 13 PD vs 15 control"
+  unit_of_analysis: donors
+  method: DCATS beta-binomial GLM
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: ""
+
+- id: ma2025-C05
+  paper: ma2025
+  statement: T cell density is not increased in the PD/DLBD cingulate cortex (parenchyma or white matter).
+  quote: "The results did not reveal significant differences in the density of CD3 + T cells in either region in DLBD"
+  location: "Fig. S1A-E; Fig. 1c,d (TCR clonotypes in cingulate)"
+  centrality: secondary
+  modality: imaging
+  region: cingulate
+  cell_type: T cells
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: PDD/DLBD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "two-tailed t-test on CD3 density, NS; TCR unique alpha clonotypes not increased in cingulate (n = 11 PD, 6 control)"
+  unit_of_analysis: donors
+  method: IHC density t-test; TCR-seq linear model
+  testable_with: rna
+  test_template: composition_donor
+  requires: "cortical dataset with T cell annotation"
+  notes: "No T cells retrieved in the cingulate snRNA data. Cortical cases are PDD/DLBD."
+
+- id: ma2025-C06
+  paper: ma2025
+  statement: PD substantia nigra T cells adopt a CD8+ tissue-resident memory (TRM) phenotype captured by scHPF T cell Factor 5 (IL7R, EOMES, TBX21, ZNF683, PRDM1, CCR5, CXCR6), which scores higher in PD T cells.
+  quote: "PD T cells had higher scores in T cell Factor 5 (Wilcoxon rank sum test, W = 102191, P value = 3.366e-06), nominating the latter as a “disease factor”"
+  location: "Fig. 3c-g; Results \"Single-nucleus RNA sequencing defines a T cell PD disease signature and CD8+ resident memory phenotype\""
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: T cells
+  cell_state: T cell Factor 5 (TRM)
+  claim_type: state_enrichment
+  direction: up
+  comparison: PD vs control
+  genes: [IL7R, EOMES, TBX21, ZNF683, PRDM1, IL2RB, SOS1, CD2, JAK3, LCK, BCL2, IL17RA, IL16, CCR5, CXCR6]
+  gene_source: "Supplementary Data 6 (scHPF T cell factor gene loadings); Supplementary Data 7 (TRM gene set)"
+  reported_stat: "cell-level Wilcoxon W = 102191, P = 3.4e-6; donor contributions to Factor 5 variable, not significant (Fig. 3f; 9 PD vs 12 control); preranked GSEA of TRM set on PD vs control logFC significant (NES in Fig. 3g)"
+  unit_of_analysis: cells
+  method: scHPF factor scores, Wilcoxon on cells; donor-level Wilcoxon on factor contributions; fgsea
+  testable_with: rna
+  test_template: state_signature
+  requires: "T cell annotation"
+  notes: "Pseudoreplication: significant at cell level but NOT at donor level (Fig. 3f). CD103+ cell density higher in PD by IHC (one-tailed t-test, n = 4 vs 5)."
+
+- id: ma2025-C07
+  paper: ma2025
+  statement: An effector T cell program (scHPF T cell Factor 1, including GZMB, IL32, HLA-DRA, HLA-DRB1, CXCR3) is lower in PD T cells, with PD donors contributing less to it.
+  quote: "PD donors had significantly lower contributions to T cell Factor 1, which is associated with effector function"
+  location: "Fig. 3c,d,f"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: T cells
+  cell_state: T cell Factor 1 (effector)
+  claim_type: state_enrichment
+  direction: depleted
+  comparison: PD vs control
+  genes: [GZMB, IL32, HLA-DRA, HLA-DRB1, CXCR3, CD37]
+  gene_source: "Supplementary Data 6"
+  reported_stat: "cell-level Wilcoxon W = 40779, P < 2.2e-16; donor-level two-tailed Wilcoxon significant (n = 9 PD, 12 control)"
+  unit_of_analysis: donors
+  method: scHPF; Wilcoxon on donor contributions
+  testable_with: rna
+  test_template: state_signature
+  requires: "T cell annotation"
+  notes: "Factor 1 also associated with age (Fig. S3D)."
+
+- id: ma2025-C08
+  paper: ma2025
+  statement: Tissue-resident memory genes FOS, RGS1, RGS2 and GADD45B are increased in PD T cells at the donor pseudobulk level.
+  quote: "T cell resident memory genes FOS, RGS1, RGS2, and GADD45B, were nominally significantly increased in PD"
+  location: "Fig. S3C"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: T cells
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [FOS, RGS1, RGS2, GADD45B]
+  gene_source: text
+  reported_stat: "nominal P < 0.05, two-tailed Wilcoxon on donor pseudobulk"
+  unit_of_analysis: donors
+  method: Wilcoxon on donor pseudobulk counts
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "T cell annotation"
+  notes: "Nominal (unadjusted) significance. FOS/RGS1/RGS2/GADD45B are also immediate-early / dissociation-responsive genes."
+
+- id: ma2025-C09
+  paper: ma2025
+  statement: TH is decreased in PD dopaminergic neurons, and dopaminergic neuron DEGs (including ALDH1A1, TH, KCNJ6, SNCA) replicate those of Kamath et al.
+  quote: "All of the DEGs we discovered were significantly dysregulated in Kamath et al.7, including ALDH1A1, TH, KCNJ6, and SNCA"
+  location: "Fig. 2g,h"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes: [TH, ALDH1A1, KCNJ6, SNCA]
+  gene_source: "Supplementary Data 4 (SN DEGs)"
+  reported_stat: "TH logFC = -0.374, P = 1.66e-7"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, binned age and sex in model
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "DA neuron capture"
+  notes: "Direction stated only for TH; others direction in Supplementary Data 4. Donor in a fixed-effect model with condition is collinear; exact handling unclear (possibly duplicateCorrelation)."
+
+- id: ma2025-C10
+  paper: ma2025
+  statement: Dopaminergic neuron DEGs are specifically enriched for amino-acid metabolism pathways (tyrosine and beta-alanine metabolism) not seen in cortical glutamatergic neurons.
+  quote: "several amino-acid metabolic pathways, such as tyrosine and beta-alanine metabolism, were only enriched in dopaminergic nigral neurons"
+  location: "Fig. S5I"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: de_pathway
+  direction: NA
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Data 4"
+  reported_stat: "KEGG enrichment (PathfindR)"
+  unit_of_analysis: cells
+  method: limma DEGs; PathfindR KEGG
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: ""
+
+- id: ma2025-C11
+  paper: ma2025
+  statement: In activated microglia, SPP1, CSTB and CTSD are increased in PD in both the substantia nigra and cingulate cortex.
+  quote: "Several genes were concordantly differentially increased in both regions, such as SPP1, CSTB, and CSTD"
+  location: "Fig. 4g"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: activated microglia
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [SPP1, CSTB, CTSD]
+  gene_source: "Supplementary Data 4-5"
+  reported_stat: "limma adjusted P (Fig. 4g)"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "activated microglia subcluster (CD74, C3, SPP1 high)"
+  notes: "Text writes 'CSTD', presumably CTSD. Regions: SN and cingulate."
+
+- id: ma2025-C12
+  paper: ma2025
+  statement: In activated microglia, CLU, B2M and FTL are decreased in PD in both the substantia nigra and cingulate cortex.
+  quote: "or decreased, such as CLU, B2M, and FTL"
+  location: "Fig. 4g"
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: activated microglia
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes: [CLU, B2M, FTL]
+  gene_source: "Supplementary Data 4-5"
+  reported_stat: "limma adjusted P"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "activated microglia subcluster"
+  notes: ""
+
+- id: ma2025-C13
+  paper: ma2025
+  statement: In substantia nigra activated microglia, CD14, CD163 and GLUL are increased in PD (but decreased in cingulate).
+  quote: "CD14, CD163, and GLUL were increased in the SN and decreased in the cingulate"
+  location: "Fig. 4g"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: activated microglia
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [CD14, CD163, GLUL]
+  gene_source: "Supplementary Data 4"
+  reported_stat: "limma adjusted P"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "activated microglia subcluster"
+  notes: "Cingulate direction opposite (down)."
+
+- id: ma2025-C14
+  paper: ma2025
+  statement: In substantia nigra activated microglia, IFNGR1, CD74 and ITM2B are decreased in PD (but increased in cingulate).
+  quote: "IFNGR1, CD74, and ITM2B were increased in the cingulate and decreased in the SN"
+  location: "Fig. 4g; Fig. 6d (CD74 down in Visium)"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: activated microglia
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes: [IFNGR1, CD74, ITM2B]
+  gene_source: "Supplementary Data 4"
+  reported_stat: "limma adjusted P"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "activated microglia subcluster"
+  notes: "Cingulate direction opposite (up)."
+
+- id: ma2025-C15
+  paper: ma2025
+  statement: PD activated microglia DEGs are enriched for antigen presentation, Th17/Th1/Th2 differentiation and T cell receptor signalling pathways, with cytosolic DNA sensing enriched only in the SN, indicating heightened microglial activation.
+  quote: "Overall, the KEGG pathway enrichment highlighted heightened activation of microglia in PD in a more pronounced way in the SN."
+  location: "Fig. 4h"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Microglia
+  cell_state: activated microglia
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Data 4-5"
+  reported_stat: "PathfindR KEGG adjusted P"
+  unit_of_analysis: cells
+  method: limma DEGs (up and down combined); PathfindR KEGG
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "Enrichment used both up and down DEGs, so direction of pathway activity is not established by the test."
+
+- id: ma2025-C16
+  paper: ma2025
+  statement: CD68+ activated microglia are more abundant in the PD substantia nigra.
+  quote: "As expected, CD68+ microglia were more abundant in the PD SN than in controls"
+  location: "Fig. 4i,j"
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: Microglia
+  cell_state: CD68+ activated microglia
+  claim_type: composition
+  direction: enriched
+  comparison: PD vs control
+  genes: [CD68]
+  gene_source: text
+  reported_stat: "two-tailed Mann-Whitney, n = 8 control, 6 PD"
+  unit_of_analysis: donors
+  method: IHC proportion, Mann-Whitney on donors
+  testable_with: rna
+  test_template: composition_donor
+  requires: "activated microglia subcluster"
+  notes: "Protein-level claim; RNA test is a proxy (proportion of activated-microglia state among cells)."
+
+- id: ma2025-C17
+  paper: ma2025
+  statement: PD substantia nigra border-associated macrophages are enriched for proliferative and activated BAM signatures from an alpha-synuclein mouse model.
+  quote: "several murine BAM signatures enriched in a PD mouse model were enriched in genes that were higher in PD-derived BAMs"
+  location: "Fig. 4k"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Immune (other)
+  cell_state: BAMs
+  claim_type: state_enrichment
+  direction: up
+  comparison: PD vs control
+  genes: [MRC1]
+  gene_source: "Schonhoff et al. 2023 murine BAM cluster markers (ref. 24)"
+  reported_stat: "preranked GSEA NES / adjusted P (Fig. 4k); 207 PD and 332 control BAM nuclei; no individual DEGs survived adjustment"
+  unit_of_analysis: cells
+  method: fgsea on limma-ranked genes
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "BAM annotation; murine gene set (ortholog mapping)"
+  notes: ""
+
+- id: ma2025-C18
+  paper: ma2025
+  statement: GFAP is increased in PD protoplasmic astrocytes of the substantia nigra.
+  quote: "As expected, the expression of GFAP was increased in protoplasmic astrocytes in both the cingulate cortex and SN"
+  location: "Fig. 5g; Fig. 6d (Visium)"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: protoplasmic astrocytes
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [GFAP]
+  gene_source: "Supplementary Data 4"
+  reported_stat: "limma adjusted P"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "protoplasmic vs fibrous-like astrocyte split"
+  notes: "Contradicted at protein level: proportion of GFAP-high astrocytes reduced in PD SN by IF (Fig. S9E-G)."
+
+- id: ma2025-C19
+  paper: ma2025
+  statement: GFAP is increased in PD protoplasmic astrocytes of the cingulate cortex.
+  quote: "the expression of GFAP was increased in protoplasmic astrocytes in both the cingulate cortex and SN"
+  location: "Fig. 5g"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Astrocytes
+  cell_state: protoplasmic astrocytes
+  claim_type: de_gene
+  direction: up
+  comparison: PDD/DLBD vs control
+  genes: [GFAP]
+  gene_source: "Supplementary Data 5"
+  reported_stat: "limma adjusted P; cingulate n = 10 PD, 8 control"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "cortical dataset"
+  notes: "IF shows more GFAP-high astrocytes in PD cingulate."
+
+- id: ma2025-C20
+  paper: ma2025
+  statement: Metallothionein genes (MT3, MT2A, MT1G) are decreased in PD substantia nigra astrocytes.
+  quote: "metallothionein gene expression (e.g., MT3 and MT2A) showed differences between the two regions, where they were increased in the protoplasmic astrocytes in the cingulate cortex but decreased in the SN"
+  location: "Fig. 5g; Fig. S8C; Fig. S9A-D (MT3 IF); Fig. 6d (MT3 down in Visium)"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: protoplasmic astrocytes
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes: [MT3, MT2A, MT1G]
+  gene_source: "Supplementary Data 4"
+  reported_stat: "limma adjusted P; MT3 confirmed by IF"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Authors note opposite direction (up) in Smajic et al. midbrain."
+
+- id: ma2025-C21
+  paper: ma2025
+  statement: Metallothionein genes (MT3, MT2A, MT1G) and chaperones (CRYAB, HSPA1A, HSPA1B) are increased in PD cingulate astrocytes.
+  quote: "Several metallothionein genes, including MT3, MT2A, and MT1G, and chaperone genes involved in protein folding like CRYAB, HSPA1A, and HSPA1B, were increased in both datasets"
+  location: "Fig. 5g; Fig. S8D"
+  centrality: main
+  modality: snRNA
+  region: cingulate
+  cell_type: Astrocytes
+  cell_state: protoplasmic astrocytes
+  claim_type: de_gene
+  direction: up
+  comparison: PDD/DLBD vs control
+  genes: [MT3, MT2A, MT1G, CRYAB, HSPA1A, HSPA1B]
+  gene_source: "Supplementary Data 5"
+  reported_stat: "limma adjusted P"
+  unit_of_analysis: cells
+  method: limma on nuclei with donor, age bin, sex
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "cortical dataset"
+  notes: "Concordant with Zhu et al. PFC."
+
+- id: ma2025-C22
+  paper: ma2025
+  statement: Protoplasmic astrocyte genes SLC1A3, ATP1B2, SLC1A2 and FGFR3 are decreased in PD cingulate astrocytes.
+  quote: "In both datasets, protoplasmic genes like SLC1A3 and ATP1B2 were significantly reduced. Other protoplasmic genes like SLC1A2 and FGFR3 were decreased only in the cingulate cortex"
+  location: "Fig. S8D"
+  centrality: secondary
+  modality: snRNA
+  region: cingulate
+  cell_type: Astrocytes
+  cell_state: protoplasmic astrocytes
+  claim_type: de_gene
+  direction: down
+  comparison: PDD/DLBD vs control
+  genes: [SLC1A3, ATP1B2, SLC1A2, FGFR3]
+  gene_source: "Supplementary Data 5"
+  reported_stat: "limma adjusted P"
+  unit_of_analysis: cells
+  method: limma on nuclei
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: "cortical dataset"
+  notes: ""
+
+- id: ma2025-C23
+  paper: ma2025
+  statement: CD44 is increased in PD substantia nigra astrocytes and CD44+ astrocytes increase in the PD SN.
+  quote: "PD T cells were spatially correlated with CD44+ astrocytes, which increased in the PD SN"
+  location: "Abstract; Fig. 5g-i; Fig. S8C"
+  centrality: headline
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: CD44+ fibrous-like astrocytes
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [CD44]
+  gene_source: "Supplementary Data 4"
+  reported_stat: "limma adjusted P (snRNA); IF proportion CD44+/GFAP+ astrocytes, two-tailed Mann-Whitney P = 0.0043, n = 5 control, 6 PD"
+  unit_of_analysis: cells
+  method: limma on nuclei; IF Mann-Whitney on donors
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Composition part (proportion of CD44+ astrocytes) testable as composition_donor of a CD44-high astrocyte state. Also overlaps Smajic DEGs (CD44, CP, CHI3L1, NEAT1)."
+
+- id: ma2025-C24
+  paper: ma2025
+  statement: PD substantia nigra astrocytes are polarised toward a fibrous-like, CD44-high state (gene programs 8-10 score higher in PD SN astrocytes but not in cingulate).
+  quote: "PD astrocytes are more polarized towards a fibrous-like state with decreased metallothionein gene expression and elevated CD44 expression in the SN"
+  location: "Fig. S10D-F"
+  centrality: secondary
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: fibrous-like astrocytes
+  claim_type: state_enrichment
+  direction: enriched
+  comparison: PD vs control
+  genes: [CD44, GFAP, S100B]
+  gene_source: "Fig. S10 gene programs"
+  reported_stat: "Mann-Whitney on cells (gene-program score distributions)"
+  unit_of_analysis: cells
+  method: GeneTrajectory gene programs; Mann-Whitney on nuclei
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Cell-level test."
+
+- id: ma2025-C25
+  paper: ma2025
+  statement: PD substantia nigra astrocytes up-regulate neuroinflammatory pathways, including JAK/STAT, NF-kB, IL-17 and MAPK signalling.
+  quote: "we found that JAK/STAT signaling was enriched in nigral PD astrocyte genes"
+  location: "Fig. 5j,k; Fig. 5 title"
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: Astrocytes
+  cell_state: protoplasmic astrocytes
+  claim_type: de_pathway
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "KEGG JAK-STAT signaling pathway; Supplementary Data 4"
+  reported_stat: "fgsea NES / adjusted P (Fig. 5k)"
+  unit_of_analysis: cells
+  method: preranked fgsea on limma logFC; PathfindR KEGG
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: "CD44 knockdown in mouse astrocytes reduced JAK/STAT activation (in vitro validation, Fig. 8)."
+
+- id: ma2025-C26
+  paper: ma2025
+  statement: In Visium spatial data, the T cell TRM signature (Factor 5) is increased in PD in the tissue surrounding the SNpc (white matter).
+  quote: "We found a significant increase in PD in T cell Factor 5 scores in the surrounding tissue regions"
+  location: "Fig. 6c"
+  centrality: main
+  modality: spatial-Visium
+  region: SN
+  cell_type: T cells
+  cell_state: T cell Factor 5 (TRM)
+  claim_type: state_enrichment
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Data 6"
+  reported_stat: "LMM with sample random intercept, Bonferroni-adjusted emmeans contrast; n = 5 PD, 5 control"
+  unit_of_analysis: samples
+  method: linear mixed model on spot scores, (1|sample)
+  testable_with: spatial
+  test_template: state_signature
+  requires: "Visium SN sections with SNpc / white-matter annotation"
+  notes: ""
+
+- id: ma2025-C27
+  paper: ma2025
+  statement: In Visium spatial data, the PD-up astrocyte DEG signature is higher in PD in both the SNpc and the surrounding tissue.
+  quote: "astrocyte DEGs exhibited higher enrichment scores in both the SNpc and the surrounding tissue"
+  location: "Fig. 6c"
+  centrality: main
+  modality: spatial-Visium
+  region: SN
+  cell_type: Astrocytes
+  cell_state: PD astrocyte DEG signature
+  claim_type: state_enrichment
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: "Supplementary Data 4 (SN astrocyte DEGs increased in PD)"
+  reported_stat: "LMM (1|sample), Bonferroni-adjusted; n = 5 vs 5"
+  unit_of_analysis: samples
+  method: linear mixed model on spot scores
+  testable_with: spatial
+  test_template: state_signature
+  requires: "spatial SN data"
+  notes: "Also testable in snRNA as a signature score in astrocytes (circular in source dataset)."
+
+- id: ma2025-C28
+  paper: ma2025
+  statement: In Visium spatial data, TH and ALDH1A1 are decreased in PD in the SNpc.
+  quote: "As expected, TH was most decreased in PD in the SNPc compared to the surrounding tissue"
+  location: "Fig. 6d; Supplementary Data 9"
+  centrality: main
+  modality: spatial-Visium
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: de_gene
+  direction: down
+  comparison: PD vs control
+  genes: [TH, ALDH1A1]
+  gene_source: "Supplementary Data 9"
+  reported_stat: "limma adjusted P on spots"
+  unit_of_analysis: ROIs
+  method: limma on Visium spots with age, sex, AD neuropathology covariates
+  testable_with: spatial
+  test_template: de_pseudobulk
+  requires: "spatial SN data with SNpc annotation"
+  notes: "Spots as unit (n = 5 vs 5 donors)."
+
+- id: ma2025-C29
+  paper: ma2025
+  statement: In Visium spatial data, GFAP and GLUL are increased and MT3 and APOE are decreased in PD in both SNpc and surrounding tissue.
+  quote: "Several genes were decreased in both regions, which included astrocytic genes like MT3 and APOE, and increased in both regions, such as GFAP and GLUL"
+  location: "Fig. 6d"
+  centrality: secondary
+  modality: spatial-Visium
+  region: SN
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: de_gene
+  direction: NA
+  comparison: PD vs control
+  genes: [GFAP, GLUL, MT3, APOE]
+  gene_source: "Supplementary Data 9"
+  reported_stat: "limma adjusted P on spots"
+  unit_of_analysis: ROIs
+  method: limma on spots
+  testable_with: spatial
+  test_template: de_pseudobulk
+  requires: "spatial SN data"
+  notes: "Mixed direction: GFAP, GLUL up; MT3, APOE down. Split when testing."
+
+- id: ma2025-C30
+  paper: ma2025
+  statement: In Visium spatial data, CD44 is increased in PD only in the tissue surrounding the SNpc.
+  quote: "Interestingly, CD44 was increased only in the surrounding tissue"
+  location: "Fig. 6d"
+  centrality: secondary
+  modality: spatial-Visium
+  region: SN
+  cell_type: Astrocytes
+  cell_state: CD44+ fibrous-like astrocytes
+  claim_type: de_gene
+  direction: up
+  comparison: PD vs control
+  genes: [CD44]
+  gene_source: "Supplementary Data 9"
+  reported_stat: "limma adjusted P on spots"
+  unit_of_analysis: ROIs
+  method: limma on spots
+  testable_with: spatial
+  test_template: de_pseudobulk
+  requires: "spatial SN data with white-matter annotation"
+  notes: ""
+
+- id: ma2025-C31
+  paper: ma2025
+  statement: T cells are more spatially correlated with CD44+ fibrous-like astrocytes in PD, and the T cell to nearest CD44+ astrocyte distance is reduced in PD.
+  quote: "PD T cells were spatially correlated with CD44+ astrocytes"
+  location: "Abstract; Fig. 7c,f,g"
+  centrality: headline
+  modality: spatial-Visium
+  region: SN
+  cell_type: T cells
+  cell_state: CD44+ fibrous-like astrocytes
+  claim_type: spatial_colocalisation
+  direction: up
+  comparison: PD vs control
+  genes: [CD44, GFAP, CD3E]
+  gene_source: text
+  reported_stat: "SCC on RCTD proportions, permutation P aggregated per condition (n = 5 vs 5); IF min distance two-tailed Mann-Whitney, n = 5 control, 6 PD"
+  unit_of_analysis: donors
+  method: spatial cross-correlation of RCTD deconvolved proportions; IF nearest-neighbour distance
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data with T cell and CD44+ astrocyte resolution"
+  notes: "Visium SCC is at spot level with deconvolution; T cells are rare so deconvolved T cell proportion may be noisy."
+
+- id: ma2025-C32
+  paper: ma2025
+  statement: T cells are closer to CD68+ activated microglia in the PD substantia nigra.
+  quote: "found the minimum distance between T cells and activated microglia was reduced in PD"
+  location: "Fig. 7d,e"
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: T cells
+  cell_state: activated microglia
+  claim_type: spatial_colocalisation
+  direction: up
+  comparison: PD vs control
+  genes: [CD68, CD8A]
+  gene_source: text
+  reported_stat: "two-tailed Mann-Whitney, n = 8 control, 6 PD"
+  unit_of_analysis: donors
+  method: IHC nearest-neighbour distance
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial single-cell data"
+  notes: "Presented as validation of an SCC increase; in Fig. 7c the listed SCC changes do not explicitly include T cell-activated microglia."
+
+- id: ma2025-C33
+  paper: ma2025
+  statement: T cells and oligodendrocytes show increased spatial correlation in PD, with higher CD8+ T cell density in the cerebral peduncle white matter.
+  quote: "We found significantly higher densities of T cells in the white matter in PD"
+  location: "Fig. 7c; Fig. S13A,B"
+  centrality: main
+  modality: spatial-Visium
+  region: SN
+  cell_type: T cells
+  cell_state: ""
+  claim_type: spatial_colocalisation
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "SCC permutation; IHC two-tailed t-test (Fig. S13B)"
+  unit_of_analysis: donors
+  method: spatial cross-correlation; IHC density
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data"
+  notes: ""
+
+- id: ma2025-C34
+  paper: ma2025
+  statement: Activated microglia and endothelial cells show increased spatial correlation in PD.
+  quote: "including a) activated microglia and endothelial cells"
+  location: "Fig. 7c"
+  centrality: secondary
+  modality: spatial-Visium
+  region: SN
+  cell_type: Microglia
+  cell_state: activated microglia
+  claim_type: spatial_colocalisation
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "SCC aggregated permutation P, n = 5 vs 5"
+  unit_of_analysis: samples
+  method: spatial cross-correlation of RCTD proportions
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data"
+  notes: "Not validated separately."
+
+- id: ma2025-C35
+  paper: ma2025
+  statement: BAMs and CD44+ fibrous-like astrocytes show increased spatial correlation in PD.
+  quote: "c) BAMs and CD44+ fibrous-like astrocytes"
+  location: "Fig. 7c"
+  centrality: secondary
+  modality: spatial-Visium
+  region: SN
+  cell_type: Immune (other)
+  cell_state: BAMs; CD44+ fibrous-like astrocytes
+  claim_type: spatial_colocalisation
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "SCC aggregated permutation P"
+  unit_of_analysis: samples
+  method: spatial cross-correlation
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data"
+  notes: ""
+
+- id: ma2025-C36
+  paper: ma2025
+  statement: T cells and endothelial cells show increased spatial correlation in PD.
+  quote: "d) T cells and endothelial cells"
+  location: "Fig. 7c"
+  centrality: secondary
+  modality: spatial-Visium
+  region: SN
+  cell_type: T cells
+  cell_state: ""
+  claim_type: spatial_colocalisation
+  direction: up
+  comparison: PD vs control
+  genes: []
+  gene_source: text
+  reported_stat: "SCC aggregated permutation P"
+  unit_of_analysis: samples
+  method: spatial cross-correlation
+  testable_with: spatial
+  test_template: spatial_neighbourhood
+  requires: "spatial data"
+  notes: ""

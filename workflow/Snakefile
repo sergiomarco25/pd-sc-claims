@@ -1,0 +1,335 @@
+# PD claim replication workflow (claims/COMMUNITY_PLAN.md, step 1.2). Replaces the hand-chained scripts/run_phase*.sh.
+#
+# Every path comes from config/project.toml through src/pdrep/config.py; datasets and memory from its [pipeline] table.
+#
+#   snakemake -n                                   what would run (always look first)
+#   snakemake -n store                             one target: claim store + rating
+#   snakemake --profile workflow/profiles/slurm    run on SLURM (one job per rule x dataset)
+#   snakemake --touch                              adopt results built before this workflow existed
+#
+# Re-runs are triggered by input file times only (see the profiles): editing a script does not rebuild its outputs;
+# use --forcerun <rule> after a code change. Order of the main chain:
+#
+#   harmonise (09) -> pseudobulk (12) -> de_cache (12b, R) -> tests internal/cross (13) -> meta (15) -> R3/R4 reports
+#   -> claim_evidence (33) -> store (51b -> 52 rating -> 51b) -> claim_map (56) -> knowledge_graph (57) -> atlas (51c)
+#   GWAS: magma_genes (16a) -> gwas_sets (16c) -> tests *_gwas (13) and genetics_meta (25)
+#   biology for the atlas: 22, 23, 24, 26, 27, 28, 29, 30, 39, 41a-b
+#
+# Not in the DAG (run by hand): downloads (03, 04, 07), relabelling built datasets (10), findings entry (53),
+# the question loop (54, 55: see the atlas-questions skill), manuscript figures and documents (18-21, 31, 32, 49).
+# Public release after `snakemake store public_inputs`: python3 -I scripts/59_release.py <version>
+# (claims/COMMUNITY_PLAN.md phase 4; public_inputs = findings re-derived without private data, config [release]).
+# Public atlas (step 5.1) after `snakemake public_atlas_inputs` and a release: 56_claim_map.py --db <release store>
+# --out results/public/claim_map; 51c_store_browser.py --public --db <release store>; 61_audit_public.py.
+
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(workflow.basedir).parent / "src"))
+from pdrep import config as cfg  # noqa: E402  (standard library only)
+
+workdir: str(cfg.REPO)
+
+H = str(cfg.HARMONISED)
+R = str(cfg.RESULTS)
+B = f"{R}/biology"
+DS = cfg.DATASETS
+P = cfg.PIPELINE
+PY = f"{cfg.PYTHON} -I"                          # analysis environment
+PY3 = "python3 -I"                               # standard-library scripts
+RSCRIPT = f"{cfg.R_ENV}/bin/Rscript --vanilla"
+SIG_PAPERS = sorted(p.stem for p in (cfg.REPO / "scripts" / "signatures").glob("*.py") if not p.stem.startswith("_"))
+NOT_PAPERS = {"claims", "findings", "background", "questions"}
+PAPER_CLAIMS = sorted(str(p.relative_to(cfg.REPO)) for p in (cfg.REPO / "claims").glob("*.yaml")
+                      if p.stem not in NOT_PAPERS)
+GSEA_CLS = {c.replace(" ", "_"): c for c in P.get("gsea_classes", [])}
+VOCAB = [f"claims/vocab/{v}.tsv" for v in ("regions", "cell_types", "diseases", "assays", "organisms")]
+
+wildcard_constraints:
+    ds="|".join(DS),
+    mode="internal|cross",
+    paper="|".join(SIG_PAPERS),
+    contrast="[A-Za-z_]+",
+
+
+def mem_mb(wc, attempt):
+    return cfg.mem_gb(wc.ds) * 1024 * attempt
+
+
+def tests(mode):
+    return expand(f"{R}/tests/{mode}/{{ds}}.tsv", ds=DS)
+
+
+ALL_TESTS = tests("internal") + tests("cross") + tests("internal_gwas") + tests("cross_gwas")
+STORE = f"{R}/store/claim_store.sqlite"
+ATLAS_BIOLOGY = [f"{B}/{f}" for f in ("composition_meta.tsv", "consensus_genes_PDany.tsv", "donor_heterogeneity.tsv",
+                                      "evidence_map.tsv", "genetics_meta.tsv", "gsea_PDany_vs_control.tsv.gz",
+                                      "programme_meta.tsv", "region_map.tsv")] + [f"{R}/psychad/specificity.tsv"]
+
+
+rule all:
+    input:
+        "reports/pd_atlas.html",
+        f"{R}/store/knowledge_graph.graphml",
+        "claims/consensus_summary.tsv",
+
+
+# ---- claims and signatures (curated text in git) -------------------------------------------------------------------
+
+rule merge_claims:
+    input: PAPER_CLAIMS
+    output: "claims/claims.yaml", "claims/claims.tsv"
+    shell: "{PY} scripts/05_merge_claims.py"
+
+rule paper_signature:
+    output: "claims/signatures/{paper}.tsv"
+    shell: "{PY} scripts/signatures/{wildcards.paper}.py"
+
+rule combine_signatures:
+    input: expand("claims/signatures/{paper}.tsv", paper=SIG_PAPERS)
+    output: "claims/signatures_all.tsv.gz", "claims/signature_coverage.tsv"
+    shell: "{PY} scripts/08_combine_signatures.py"
+
+rule contexts:
+    input: "claims/claims.yaml", "claims/contrast_overrides.tsv"
+    output: "claims/contexts.tsv"
+    shell: "{PY} scripts/11_claim_contexts.py"
+
+
+# ---- per dataset: harmonise, pseudobulk, differential expression ---------------------------------------------------
+
+rule harmonise:
+    output:
+        h5ad=f"{H}/{{ds}}.h5ad",
+        donors=f"{H}/{{ds}}_donors.tsv",
+        pseudobulk=f"{H}/pseudobulk/{{ds}}.h5ad",
+    resources: mem_mb=mem_mb, runtime=720
+    shell: "{PY} scripts/09_build_dataset.py {wildcards.ds}"
+
+rule pseudobulk:
+    input: f"{H}/{{ds}}.h5ad"
+    output: f"{R}/de_cache/{{ds}}/input/manifest.tsv"
+    resources: mem_mb=mem_mb, runtime=240
+    shell: "{PY} scripts/12_export_pseudobulk.py {wildcards.ds}"
+
+rule de_cache:
+    input: f"{R}/de_cache/{{ds}}/input/manifest.tsv"
+    output: f"{R}/de_cache/{{ds}}/de_log.tsv"
+    resources: mem_mb=48 * 1024, runtime=720, cpus_per_task=2
+    shell: "{RSCRIPT} scripts/12b_de_cache.R {R}/de_cache/{wildcards.ds}"
+
+
+# ---- claim tests ---------------------------------------------------------------------------------------------------
+
+rule claim_tests:
+    input:
+        f"{R}/de_cache/{{ds}}/de_log.tsv", f"{H}/{{ds}}_donors.tsv",
+        "claims/contexts.tsv", "claims/signatures_all.tsv.gz",
+    output: f"{R}/tests/{{mode}}/{{ds}}.tsv"
+    resources: mem_mb=mem_mb, runtime=720
+    shell: "{PY} scripts/13_run_tests.py {wildcards.mode} {wildcards.ds}"
+
+rule claim_tests_gwas:
+    input: f"{R}/gwas/sets/{{ds}}.gsa.out", "claims/contexts.tsv"
+    output: f"{R}/tests/{{mode}}_gwas/{{ds}}.tsv"
+    resources: mem_mb=mem_mb, runtime=240
+    shell: "{PY} scripts/13_run_tests.py {wildcards.mode} {wildcards.ds} gwas"
+
+rule magma_genes:
+    output: f"{R}/gwas/nalls2019.genes.raw"
+    resources: mem_mb=32 * 1024, runtime=240
+    shell: "bash scripts/16a_magma_genes.sh"
+
+rule gwas_sets:
+    input: f"{R}/gwas/nalls2019.genes.raw", f"{R}/de_cache/{{ds}}/de_log.tsv"
+    output: f"{R}/gwas/sets/{{ds}}.gsa.out"
+    resources: mem_mb=mem_mb, runtime=240
+    shell: "{PY} scripts/16c_gwas_sets.py {wildcards.ds}"
+
+rule meta:
+    input: ALL_TESTS
+    output: f"{R}/meta/claim_meta.tsv"
+    shell: "{PY} scripts/15_meta_analysis.py"
+
+rule report_r3:
+    input: tests("internal") + tests("internal_gwas")
+    output: "reports/R3_internal_claims.tsv"
+    shell: "{PY} scripts/14_build_r3_report.py"
+
+rule report_r4:
+    input: f"{R}/meta/claim_meta.tsv"
+    output: "reports/R4_cross_claims.tsv"
+    shell: "{PY} scripts/17_build_r4_report.py"
+
+rule claim_evidence:
+    input: "claims/claims.tsv", "reports/R4_cross_claims.tsv", ALL_TESTS
+    output: f"{R}/meta/claim_evidence.tsv", "claims/claim_evidence.tsv", "manuscript/table1_claims.md"
+    shell: "{PY} scripts/33_claim_evidence.py"
+
+
+# ---- cross-dataset biology shown in the atlas ----------------------------------------------------------------------
+
+rule composition_meta:
+    input: expand(f"{H}/pseudobulk/{{ds}}.h5ad", ds=DS)
+    output: f"{B}/composition_meta.tsv", f"{B}/composition_estimates.tsv"
+    resources: mem_mb=64 * 1024
+    shell: "{PY} scripts/22_composition_meta.py"
+
+rule de_meta:
+    input: expand(f"{R}/de_cache/{{ds}}/de_log.tsv", ds=DS)
+    output: f"{B}/de_meta_{{contrast}}.tsv.gz"
+    resources: mem_mb=64 * 1024
+    shell: "{PY} scripts/23_de_meta.py {wildcards.contrast}"
+
+rule gsea_part:
+    input: f"{B}/de_meta_{{contrast}}.tsv.gz"
+    output: f"{B}/gsea_parts/{{contrast}}__{{cls}}.tsv.gz"
+    params: cls=lambda wc: GSEA_CLS[wc.cls]
+    resources: mem_mb=32 * 1024, runtime=720
+    shell: "{PY} scripts/24_pathways.py {wildcards.contrast} '{params.cls}'"
+
+rule gsea:
+    input: expand(f"{B}/gsea_parts/{{{{contrast}}}}__{{cls}}.tsv.gz", cls=GSEA_CLS)
+    output: f"{B}/gsea_{{contrast}}.tsv.gz"
+    shell: "{PY} scripts/24_pathways.py {wildcards.contrast}"
+
+rule genetics_meta:
+    input: expand(f"{R}/gwas/sets/{{ds}}.gsa.out", ds=DS)
+    output: f"{B}/genetics_meta.tsv", f"{B}/genetics_per_dataset.tsv"
+    shell: "{PY} scripts/25_genetics_meta.py"
+
+rule evidence_map:
+    input: "claims/claims.yaml", "reports/R3_internal_claims.tsv", "reports/R4_cross_claims.tsv"
+    output: f"{B}/evidence_map.tsv", f"{B}/claim_themes.tsv"
+    shell: "{PY} scripts/26_evidence_map.py"
+
+rule programmes:
+    input: expand(f"{R}/de_cache/{{ds}}/input/manifest.tsv", ds=DS)
+    output: f"{B}/programme_meta.tsv", f"{B}/programme_effects.tsv"
+    resources: mem_mb=64 * 1024
+    shell: "{PY} scripts/27_programmes.py"
+
+rule biology_figures:
+    input:
+        f"{B}/composition_meta.tsv", f"{B}/de_meta_PDany_vs_control.tsv.gz", f"{B}/evidence_map.tsv",
+        f"{B}/genetics_meta.tsv", f"{B}/gsea_PDany_vs_control.tsv.gz", f"{B}/programme_meta.tsv",
+    output: f"{B}/consensus_genes_PDany.tsv"
+    shell: "{PY} scripts/28_biology_figures.py"
+
+rule donor_scores:
+    input: expand(f"{R}/de_cache/{{ds}}/input/manifest.tsv", ds=DS)
+    output: f"{B}/donor_scores.tsv.gz", f"{B}/donor_composition.tsv.gz"
+    resources: mem_mb=64 * 1024
+    shell: "{PY} scripts/29_donor_scores.py"
+
+rule donor_analyses:
+    input: f"{B}/donor_scores.tsv.gz", f"{B}/donor_composition.tsv.gz"
+    output: f"{B}/donor_heterogeneity.tsv", f"{B}/donor_regions_effects.tsv"
+    shell: "{PY} scripts/30_donor_analyses.py"
+
+rule axes_public:
+    # patient axes without private datasets and private papers' gene modules: public evidence of F-axis2-shift
+    input: f"{B}/donor_scores.tsv.gz", f"{B}/donor_composition.tsv.gz"
+    output: f"{R}/subgroups/public/axis_loadings.tsv", f"{R}/subgroups/public/axes_shift.tsv"
+    shell: "{PY} scripts/subgroups/10_axes_public.py"
+
+PB = f"{R}/public/biology"
+
+
+rule public_biology:
+    # every atlas table re-pooled without private datasets and private modules (config [release])
+    input: f"{B}/composition_estimates.tsv", f"{B}/programme_effects.tsv", f"{B}/genetics_per_dataset.tsv",
+           f"{B}/donor_scores.tsv.gz", f"{R}/psychad/specificity.tsv", f"{PB}/de_meta_PDany_vs_control.tsv.gz"
+    output: f"{PB}/composition_meta.tsv", f"{PB}/programme_meta.tsv", f"{PB}/genetics_meta.tsv",
+            f"{PB}/donor_heterogeneity.tsv", f"{PB}/region_map.tsv", f"{PB}/consensus_genes_PDany.tsv",
+            f"{R}/public/psychad/specificity.tsv"
+    resources: mem_mb=48 * 1024
+    shell: "{PY} scripts/60_public_biology.py"
+
+rule public_de_meta:
+    input: expand(f"{R}/de_cache/{{ds}}/de_log.tsv", ds=[d for d in DS if cfg.is_public(d)])
+    output: f"{PB}/de_meta_PDany_vs_control.tsv.gz"
+    resources: mem_mb=64 * 1024
+    shell: "{PY} scripts/23_de_meta.py PDany_vs_control --public"
+
+rule public_gsea_part:
+    input: f"{PB}/de_meta_PDany_vs_control.tsv.gz"
+    output: f"{PB}/gsea_parts/PDany_vs_control__{{cls}}.tsv.gz"
+    params: cls=lambda wc: GSEA_CLS[wc.cls]
+    resources: mem_mb=32 * 1024, runtime=720
+    shell: "{PY} scripts/24_pathways.py PDany_vs_control '{params.cls}' --public"
+
+rule public_gsea:
+    input: expand(f"{PB}/gsea_parts/PDany_vs_control__{{cls}}.tsv.gz", cls=GSEA_CLS)
+    output: f"{PB}/gsea_PDany_vs_control.tsv.gz"
+    shell: "{PY} scripts/24_pathways.py PDany_vs_control --public"
+
+rule public_atlas_inputs:
+    input: rules.public_biology.output, f"{PB}/gsea_PDany_vs_control.tsv.gz"
+
+rule public_inputs:
+    # every results table named in config [release] rederived_findings
+    input: [f"{R}/{v['table']}" for v in cfg.REDERIVED_FINDINGS.values()]
+
+rule region_map:
+    input: f"{B}/donor_regions_effects.tsv"
+    output: f"{B}/region_map.tsv"
+    shell: "{PY} scripts/39_region_map.py"
+
+rule psychad_pseudobulk:
+    output: f"{R}/psychad/donors.tsv"
+    resources: mem_mb=300 * 1024, runtime=720
+    shell: "{PY} scripts/41a_psychad_pseudobulk.py"
+
+rule psychad_specificity:
+    input: f"{R}/psychad/donors.tsv"
+    output: f"{R}/psychad/specificity.tsv"
+    resources: mem_mb=64 * 1024
+    shell: "{PY} scripts/41b_psychad_specificity.py"
+
+
+# ---- claim store, rating, graph, atlas -----------------------------------------------------------------------------
+
+rule vocab:
+    output: VOCAB
+    shell: "{PY} scripts/51a_vocab.py"   # queries the EBI OLS4 API; --offline re-uses resolved IDs
+
+rule store:
+    # 51b builds the store, 52 rates every claim from it, 51b runs again to load the ratings: one rule, no cycle.
+    input:
+        "claims/claims.yaml", "claims/findings.yaml", "claims/background.yaml", "claims/questions.yaml",
+        "claims/contexts.tsv", "claims/consensus_statements.tsv", "claims/claim_evidence.tsv",
+        "claims/signatures_all.tsv.gz", "claims/signature_coverage.tsv", "inventory/papers.tsv", VOCAB,
+        expand(f"{H}/{{ds}}_donors.tsv", ds=DS), ALL_TESTS,
+    output:
+        STORE, "claims/store/claim_rating.tsv", "claims/store/claims_contextualised.jsonl",
+        "claims/store/claim_structure.tsv", "claims/store/validation.tsv",
+    resources: mem_mb=32 * 1024
+    shell: "{PY} scripts/51b_claim_store.py && {PY} scripts/52_rating.py && {PY} scripts/51b_claim_store.py"
+
+rule consensus:
+    input: "claims/consensus_statements.tsv", "claims/claim_evidence.tsv"
+    output: "claims/consensus_summary.tsv", "manuscript/table1_consensus.md"
+    shell: "{PY} scripts/42_consensus.py"
+
+rule claim_map:
+    # needs sentence-transformers, installed under scratch/pylib (not in the analysis environment), hence no -I
+    input: STORE
+    output: "claims/store/claim_map.tsv", "claims/store/claim_clusters.tsv", f"{R}/store/claim_embeddings.npz"
+    resources: mem_mb=32 * 1024
+    shell: "PYTHONPATH=scratch/pylib HF_HOME=scratch/hf {cfg.PYTHON} scripts/56_claim_map.py"
+
+rule knowledge_graph:
+    input: STORE, "claims/store/claim_map.tsv", "claims/store/claim_clusters.tsv", f"{R}/store/claim_embeddings.npz"
+    output:
+        "claims/store/kg_nodes.tsv", "claims/store/kg_edges.tsv",
+        f"{R}/store/knowledge_graph.graphml", f"{R}/store/knowledge_graph.json",
+    shell: "{PY3} scripts/57_knowledge_graph.py"
+
+rule atlas:
+    input:
+        STORE, "claims/store/claim_map.tsv", "claims/store/claim_clusters.tsv", f"{R}/store/claim_embeddings.npz",
+        "scripts/atlas_template.html", ATLAS_BIOLOGY,
+    output: "reports/pd_atlas.html", "reports/pd_atlas.artifact.html"
+    resources: mem_mb=32 * 1024
+    shell: "{PY} scripts/51c_store_browser.py"

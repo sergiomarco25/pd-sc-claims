@@ -1,0 +1,210 @@
+<title>PD Claims in Their Own Data</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: same report family as R1/R2; outcome summary, then patterns, then decisions, then the claim browser. */
+:root {
+  --bg: #f7f8f7; --surface: #ffffff; --fg: #1d2421; --muted: #5d6863; --line: #dfe4e1;
+  --accent: #7a2e3a; --accent-soft: #f3e6e8;
+  --ok: #2f7a4f; --okbg: #e3f1e8; --dir: #7f9a3a; --dirbg: #eef3df; --nr: #9a6a12; --nrbg: #f6ecd6;
+  --bad: #b23a3a; --badbg: #f7e1e1; --na: #8a908d; --nabg: #eceeed;
+  --f-display: "Newsreader", Georgia, serif; --f-body: "Public Sans", system-ui, sans-serif; --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141917; --surface: #1b211f; --fg: #e4e9e6; --muted: #9aa5a0; --line: #2d3532; --accent: #e08a97; --accent-soft: #3a2228;
+  --ok: #7fcf9f; --okbg: #1d3327; --dir: #c2d986; --dirbg: #2a3219; --nr: #e2b65e; --nrbg: #3a2f17; --bad: #f08c8c; --badbg: #3d2020;
+  --na: #8f9692; --nabg: #262c2a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141917; --surface: #1b211f; --fg: #e4e9e6; --muted: #9aa5a0; --line: #2d3532; --accent: #e08a97; --accent-soft: #3a2228;
+  --ok: #7fcf9f; --okbg: #1d3327; --dir: #c2d986; --dirbg: #2a3219; --nr: #e2b65e; --nrbg: #3a2f17; --bad: #f08c8c; --badbg: #3d2020;
+  --na: #8f9692; --nabg: #262c2a; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 40px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 44px; }
+h1, h2 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; } h2 { font-size: 24px; } h3 { margin: 0; font-size: 16px; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+.eyebrow { font: 500 12px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+section, header { display: grid; gap: 16px; min-width: 0; }
+.lede { font-size: 17px; color: var(--muted); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.stat { background: var(--surface); padding: 14px 16px; display: grid; gap: 2px; }
+.stat b { font: 600 28px var(--f-display); font-variant-numeric: tabular-nums; } .stat span { font-size: 13px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+.defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 20px; font-size: 14px; }
+.defs div { display: grid; gap: 3px; }
+.stackrow { display: grid; grid-template-columns: 140px 1fr 46px; gap: 10px; align-items: center; font-size: 13px; }
+.track { display: flex; height: 14px; border-radius: 2px; overflow: hidden; background: var(--nabg); }
+.n { font: 12px var(--f-mono); text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bars { display: grid; gap: 5px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.two > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 11.5px var(--f-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--surface); position: sticky; top: 0; }
+td.num { font: 12.5px var(--f-mono); font-variant-numeric: tabular-nums; }
+.pill { display: inline-block; font: 500 11.5px var(--f-mono); padding: 1px 7px; border-radius: 99px; white-space: nowrap; }
+.o-reproduced { color: var(--ok); background: var(--okbg); } .o-direction_only { color: var(--dir); background: var(--dirbg); }
+.o-not_reproduced { color: var(--nr); background: var(--nrbg); } .o-contradicted { color: var(--bad); background: var(--badbg); }
+.o-not_testable, .o- { color: var(--na); background: var(--nabg); }
+.note { border-left: 3px solid var(--nr); padding: 4px 0 4px 14px; font-size: 14px; display: grid; gap: 6px; }
+.decisions { display: grid; gap: 14px; }
+.decision { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; display: grid; gap: 6px; font-size: 14px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.controls input, .controls select { font: 14px var(--f-body); padding: 6px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); color: var(--fg); }
+.controls input { flex: 1 1 220px; min-width: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+tr.claim { cursor: pointer; } tr.claim:hover td { background: var(--accent-soft); }
+tr.detail td { background: var(--bg); font-size: 13.5px; }
+tr.detail dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
+tr.detail dt { color: var(--muted); font-size: 12.5px; } tr.detail dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+blockquote { margin: 0; font-family: var(--f-display); font-size: 15.5px; font-style: italic; }
+.pid { font-family: var(--f-mono); font-size: 12.5px; white-space: nowrap; }
+.small { font-size: 13px; color: var(--muted); }
+@media (max-width: 520px) { .stackrow { grid-template-columns: 96px 1fr 36px; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Report R3 · internal replication · 22 Oct 2026</div>
+    <h1>Do Parkinson's single-cell claims hold up in their own data?</h1>
+    <p class="lede">Each claim re-tested in the dataset it came from, with one shared pipeline: donors (donor × region) as the unit, pseudobulk edgeR for genes, log-ratio proportions for composition, co-expression and donor spread for cell states. This is the baseline before testing every claim across the other datasets.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section>
+    <div class="eyebrow">How to read the outcomes</div>
+    <div class="defs">
+      <div><span><span class="pill o-reproduced">reproduced</span></span>Significant in the claimed direction (gene sets: set test p &lt; 0.05; single genes: FDR &lt; 0.05).</div>
+      <div><span><span class="pill o-direction_only">direction only</span></span>Claimed direction, not significant with donors as the unit; or a coherent state seen in fewer than half the donors.</div>
+      <div><span><span class="pill o-not_reproduced">not reproduced</span></span>Opposite direction, not significant.</div>
+      <div><span><span class="pill o-contradicted">contradicted</span></span>Significant in the opposite direction.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">By paper</div>
+    <h2>Outcome of every claim, per paper</h2>
+    <div class="legend" id="legend"></div>
+    <div class="bars" id="papers"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Patterns</div>
+    <h2>Composition claims fail most; gene-level claims mostly survive their own data</h2>
+    <p>Gene-level claims are re-tested on gene lists the authors selected in this same data, so a high internal rate is expected and partly circular; the cross-dataset test (next report) is the real check. Composition claims have no such advantage, and most lose significance once each donor counts once.</p>
+    <div class="two">
+      <div><h3>By test</h3><div class="bars" id="byTemplate"></div></div>
+      <div><h3>By the authors' unit of analysis</h3><div class="bars" id="byUnit"></div>
+        <h3>By prominence in the paper</h3><div class="bars" id="byCentral"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Our GLIAD paper</div>
+    <h2>Preprint vs revised analysis</h2>
+    <div class="note"><strong>Caveat.</strong> The "revised" gene lists for astrocytes and oligodendrocytes came from revision DE that used the glia <code>counts</code> layer, which turned out to be misaligned for those populations. The audit session is re-running them; these rows will be refreshed.</div>
+    <div class="scroll" style="max-height: 460px"><table id="gliad"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Before any re-analysis</div>
+    <h2>Claims that disagree with their own paper's tables</h2>
+    <p>Found while building gene signatures from the supplementary tables: the stated direction, gene or significance is not what the authors' own tables show.</p>
+    <div class="scroll" style="max-height: 420px"><table id="disc"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Coverage</div>
+    <h2>Why some claims could not be tested yet</h2>
+    <div class="bars" id="untestable"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">For your decision</div>
+    <h2>What I need you to check</h2>
+    <div class="decisions">
+      <div class="decision"><h3>1. Outcome rules</h3><p>Are the four outcome definitions above what you want to report? In particular: should "direction only" count as partial support, and is "seen in ≥ 50% of donors" the right bar for a cell state?</p></div>
+      <div class="decision"><h3>2. Next: cross-dataset replication (Phase 5)</h3><p>Every testable claim × every other dataset that has the cell type and groups, reported for the same region and other regions, plus a random-effects meta-analysis. The DE cache and test engine are already built for it.</p></div>
+      <div class="decision"><h3>3. The remaining claim types</h3><p>GWAS enrichment needs PD GWAS summary statistics (proposal: the public Nalls 2019 meta-analysis, MAGMA gene-level); communication claims need LIANA per dataset; trajectory, chromatin and spatial claims are mostly testable only in their own data. Proposal: do GWAS and communication in Phase 5, report the rest as "not testable elsewhere".</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">All claims</div>
+    <h2>Claim browser</h2>
+    <p class="small">Click a claim for the authors' statement, method and statistic next to our donor-level result.</p>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search statement or claim ID" aria-label="Search claims">
+      <select id="fp" aria-label="Paper"><option value="">All papers</option></select>
+      <select id="fo" aria-label="Outcome"><option value="">All outcomes</option></select>
+      <select id="ft" aria-label="Test"><option value="">All tests</option></select>
+      <span class="small" id="nshown"></span>
+    </div>
+    <div class="scroll"><table id="claims"></table></div>
+  </section>
+</div>
+
+<script>
+const D = /*DATA*/null;
+const O = ["reproduced", "direction_only", "not_reproduced", "contradicted", "not_testable"];
+const COL = {reproduced: "--ok", direction_only: "--dir", not_reproduced: "--nr", contradicted: "--bad", not_testable: "--na"};
+const LBL = {reproduced: "reproduced", direction_only: "direction only", not_reproduced: "not reproduced", contradicted: "contradicted", not_testable: "not testable yet"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pill = o => `<span class="pill o-${esc(o)}">${esc(LBL[o] || o || "–")}</span>`;
+const fmt = (v, d = 3) => v == null || Number.isNaN(v) ? "–" : (Math.abs(v) < 1e-3 && v !== 0 ? Number(v).toExponential(1) : Number(v).toFixed(d));
+
+const c = D.counts, tested = c.n - c.not_testable;
+document.getElementById("stats").innerHTML = [
+  [tested, `claims tested (of ${c.n})`], [Math.round(100 * c.reproduced / tested) + "%", "reproduced"],
+  [Math.round(100 * c.direction_only / tested) + "%", "direction only"], [c.not_reproduced, "not reproduced"],
+  [c.contradicted, "contradicted"], [c.papers, "papers"]
+].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+document.getElementById("legend").innerHTML = O.map(o => `<span><i class="sw" style="background:var(${COL[o]})"></i>${LBL[o]}</span>`).join("");
+
+const stack = (label, r, keys = O) => { const t = keys.reduce((s, k) => s + (r[k] || 0), 0);
+  return `<div class="stackrow"><span class="pid">${esc(label)}</span><div class="track">${keys.map(k => r[k] ? `<div title="${LBL[k]}: ${r[k]}" style="width:${(100 * r[k] / t).toFixed(1)}%;background:var(${COL[k]})"></div>` : "").join("")}</div><span class="n">${t}</span></div>`; };
+document.getElementById("papers").innerHTML = D.by_paper.sort((a, b) => (b.reproduced + b.direction_only + b.not_reproduced + b.contradicted) - (a.reproduced + a.direction_only + a.not_reproduced + a.contradicted)).map(r => stack(r.paper, r)).join("");
+const four = O.slice(0, 4);
+const pct = r => ` (${Math.round(100 * r.reproduced / r.n)}% reproduced)`;
+document.getElementById("byTemplate").innerHTML = D.by_template.sort((a, b) => b.n - a.n).map(r => stack(r.key.replaceAll("_", " "), r, four)).join("");
+document.getElementById("byUnit").innerHTML = D.by_unit.map(r => stack(r.key, r, four)).join("");
+document.getElementById("byCentral").innerHTML = D.by_centrality.map(r => stack(r.key, r, four)).join("");
+
+document.getElementById("gliad").innerHTML = `<thead><tr><th>Claim</th><th>Preprint</th><th>Revised</th><th>Statement</th></tr></thead><tbody>` +
+  D.gliad.map(r => `<tr><td class="pid">${esc(r.claim_id)}</td><td>${r.preprint ? pill(r.preprint) : "–"}</td><td>${r.revised ? pill(r.revised) : "–"}</td><td>${esc(r.statement)}</td></tr>`).join("") + "</tbody>";
+document.getElementById("disc").innerHTML = `<thead><tr><th>Claim</th><th>What the paper's own tables show</th><th>Source</th></tr></thead><tbody>` +
+  D.discrepancies.map(r => `<tr><td class="pid">${esc(r.claim_id)}</td><td>${esc(r.finding)}<div class="small">${esc(r.statement)}</div></td><td class="small">${esc(r.evidence)}</td></tr>`).join("") + "</tbody>";
+const um = Math.max(...Object.values(D.untestable));
+document.getElementById("untestable").innerHTML = Object.entries(D.untestable).map(([k, v]) => `<div class="stackrow" style="grid-template-columns: minmax(0,1fr) 120px 40px"><span>${esc(k)}</span><div class="track"><div style="width:${(100 * v / um).toFixed(1)}%;background:var(--na)"></div></div><span class="n">${v}</span></div>`).join("");
+
+const fp = document.getElementById("fp"), fo = document.getElementById("fo"), ft = document.getElementById("ft");
+[...new Set(D.claims.map(r => r.paper))].sort().forEach(p => fp.add(new Option(p, p)));
+O.forEach(o => fo.add(new Option(LBL[o], o)));
+[...new Set(D.claims.map(r => r.template_used).filter(Boolean))].sort().forEach(t => ft.add(new Option(t.replaceAll("_", " "), t)));
+const tbl = document.getElementById("claims"), open = new Set();
+function render() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const rows = D.claims.filter(r => (!fp.value || r.paper === fp.value) && (!fo.value || r.outcome === fo.value) && (!ft.value || r.template_used === ft.value) &&
+    (!q || `${r.claim_id} ${r.statement}`.toLowerCase().includes(q)));
+  document.getElementById("nshown").textContent = `${rows.length} of ${D.claims.length}`;
+  tbl.innerHTML = `<thead><tr><th>Claim</th><th>Statement</th><th>Outcome</th><th>Test</th><th>Donors</th><th>Effect</th><th>p</th></tr></thead><tbody>` +
+    rows.map(r => `<tr class="claim" tabindex="0" data-id="${esc(r.claim_id)}"><td class="pid">${esc(r.claim_id)}<div class="small">${esc(r.centrality)}</div></td>
+      <td>${esc(r.statement)}<div class="small">${esc(r.comparison)}</div></td><td>${pill(r.outcome)}</td><td class="small">${esc((r.template_used || "").replaceAll("_", " "))}</td>
+      <td class="num">${r.n_case ? `${r.n_case}${r.n_ref ? " / " + r.n_ref : ""}` : "–"}</td><td class="num">${fmt(r.effect)}</td><td class="num">${fmt(r.p)}</td></tr>` +
+      (open.has(r.claim_id) ? `<tr class="detail"><td colspan="7"><dl>
+        <dt>Authors' quote</dt><dd><blockquote>“${esc(r.quote)}”</blockquote><div class="small">${esc(r.location)}</div></dd>
+        <dt>Authors' test</dt><dd>${esc(r.authors_method) || "–"} · unit: ${esc(r.authors_unit) || "–"} · ${esc(r.reported_stat) || ""}</dd>
+        <dt>Our test</dt><dd>${esc(r.template_used) || "–"} · regions ${esc(r.regions_tested) || "–"} · classes ${esc(r.classes_tested) || "–"} · z ${fmt(r.z, 2)}
+          ${r.n_genes ? ` · ${Math.round(r.n_genes)} genes, ${Math.round(100 * r.concordance)}% in claimed direction` : ""}${r.donor_spread != null ? ` · donor spread ${fmt(r.donor_spread, 2)}` : ""}</dd>
+        ${r.note ? `<dt>Note</dt><dd>${esc(r.note)}</dd>` : ""}${r.why_untestable ? `<dt>Why untestable</dt><dd>${esc(r.why_untestable)}</dd>` : ""}</dl></td></tr>` : "")).join("") + "</tbody>";
+}
+tbl.addEventListener("click", e => { const r = e.target.closest("tr.claim"); if (!r) return; const id = r.dataset.id; open.has(id) ? open.delete(id) : open.add(id); render(); });
+tbl.addEventListener("keydown", e => { if (e.key === "Enter") e.target.closest("tr.claim")?.click(); });
+["q", "fp", "fo", "ft"].forEach(id => document.getElementById(id).addEventListener("input", render));
+render();
+</script>

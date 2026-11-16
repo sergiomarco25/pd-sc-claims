@@ -1,0 +1,550 @@
+- id: smajic2022-C01
+  paper: smajic2022
+  statement: "A neuronal cluster with high CADPS2 and low TH expression (CADPS2high cells) is almost exclusively present in idiopathic PD midbrain."
+  quote: "These cells almost exclusively originated from idiopathic Parkinson's disease patients (idiopathic Parkinson's disease, 98.4%; control, 1.6%)"
+  location: "Fig. 1E-I; Results (cell type composition)"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Neurons (other)
+  cell_state: CADPS2high
+  claim_type: state_enrichment
+  direction: enriched
+  comparison: "PD vs control"
+  genes: [CADPS2, TH, MAP2, SCN2A, TIAM1]
+  gene_source: "Fig. 1E,I; Supplementary Table 3 (cluster markers)"
+  reported_stat: "120 cells, 98.4% from IPD; per-sample proportion t-test P = 0.02 (Fig. 1H)"
+  unit_of_analysis: donors
+  method: "Student's t-test on per-sample proportions; beta-regression with age, PMI, condition"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Only 120 cells; could be a donor-specific or ambient artefact. Abstract says 'exclusively present'."
+- id: smajic2022-C02
+  paper: smajic2022
+  statement: "CADPS2high cells represent dysfunctional/degenerating dopaminergic neurons: they share a DaN neuronal profile but with low TH and higher TIAM1."
+  quote: "With regard to neuronal markers, these cells show a similar profile to DaNs, except for low TH abundance ... CADPS2high cells express even higher levels of TIAM1 than DaNs"
+  location: "Fig. 1I; Results (cell type composition)"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: DA neurons
+  cell_state: CADPS2high
+  claim_type: state_existence
+  direction: exists
+  comparison: "CADPS2high vs DaNs"
+  genes: [CADPS2, TH, TIAM1, MAP2, SCN2A]
+  gene_source: "Fig. 1I"
+  reported_stat: "qualitative"
+  unit_of_analysis: cells
+  method: "marker comparison"
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Interpretive. Validation (LCM + digital PCR, Fig. 1J): CADPS2:ACTB ratio higher in 150 neuromelanin+ nigral neurons per donor from IPD vs controls (t-test P = 0.027; validation cohort incl. C1, IPD4 + 4 new cases and 4 new controls). In snRNA data testable as CADPS2 up in PD DA neurons (de_pseudobulk)."
+- id: smajic2022-C03
+  paper: smajic2022
+  statement: "Dopaminergic neurons (TH+ or neuromelanin+) are reduced in idiopathic PD substantia nigra."
+  quote: "confirmed a significant reduction in TH- or neuromelanin-positive nigral DaNs in the idiopathic Parkinson's disease midbrains compared to controls"
+  location: "Supplementary Fig. 2A-D; Supplementary Fig. 5; Results"
+  centrality: secondary
+  modality: imaging
+  region: SN
+  cell_type: DA neurons
+  cell_state: ""
+  claim_type: composition
+  direction: down
+  comparison: "PD vs control"
+  genes: [TH]
+  gene_source: text
+  reported_stat: "not in text; beta-regression: loss of DaNs among most significant condition coefficients"
+  unit_of_analysis: donors
+  method: "immunofluorescence image analysis, t-test; beta-regression on snRNA proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "DaNs only 0.18% of nuclei in snRNA."
+- id: smajic2022-C04
+  paper: smajic2022
+  statement: "Microglia are increased in fraction in idiopathic PD midbrain."
+  quote: "Idiopathic Parkinson's disease patients display a higher proportion of microglia cells (t-test P = 0.03)"
+  location: "Fig. 2B,C; Results"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: up
+  comparison: "PD vs control"
+  genes: [CD74]
+  gene_source: text
+  reported_stat: "t-test P = 0.03; 5 IPD vs 6 controls"
+  unit_of_analysis: donors
+  method: "Student's t-test on per-sample proportions; UMAP density"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: ""
+- id: smajic2022-C05
+  paper: smajic2022
+  statement: "IBA1-positive microglial area is increased in idiopathic PD midbrain, most significantly in the SN."
+  quote: "The Parkinson's disease-associated increase of microglia is the most significant in the SN (t-test P = 0.024)"
+  location: "Fig. 2D,E; Results"
+  centrality: main
+  modality: imaging
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: composition
+  direction: up
+  comparison: "PD vs control"
+  genes: [AIF1]
+  gene_source: text
+  reported_stat: "t-test P = 0.024 (SN); 11 individuals"
+  unit_of_analysis: donors
+  method: "IF image analysis, unpaired t-test"
+  testable_with: rna
+  test_template: composition_donor
+  requires: "SN-dissected samples"
+  notes: "Protein area measure; in snRNA testable only as microglia proportion in SN."
+- id: smajic2022-C06
+  paper: smajic2022
+  statement: "Nigral microglia in idiopathic PD are less ramified (reduced branching, amoeboid), indicating activation."
+  quote: "An idiopathic Parkinson's disease-associated reduction of microglia branching indicates less ramified microglia in the SN (t-test P = 2 × 10−16)"
+  location: "Fig. 2F,G; Results"
+  centrality: headline
+  modality: imaging
+  region: SN
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: pathology_association
+  direction: down
+  comparison: "PD vs control"
+  genes: [AIF1]
+  gene_source: text
+  reported_stat: "t-test P = 2e-16"
+  unit_of_analysis: cells
+  method: "IBA1 skeleton analysis, t-test (apparently per cell)"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: "morphology imaging"
+  notes: "P = 2e-16 implies cells treated as independent (pseudoreplication)."
+- id: smajic2022-C07
+  paper: smajic2022
+  statement: "Astrocytes are increased in fraction in idiopathic PD midbrain."
+  quote: "these results revealed an increase in the fraction of microglia and astrocytes and a decreased fraction of oligodendrocytes in idiopathic Parkinson's disease midbrains"
+  location: "Fig. 2B; Supplementary Fig. 3A-C; Results"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: composition
+  direction: up
+  comparison: "PD vs control"
+  genes: [AQP4, GFAP]
+  gene_source: text
+  reported_stat: "Supplementary Table 6; GFAP IF only a trend"
+  unit_of_analysis: donors
+  method: "t-test on per-sample proportions; UMAP density; GFAP IF"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Significance in snRNA not stated in text; GFAP imaging was a non-significant trend."
+- id: smajic2022-C08
+  paper: smajic2022
+  statement: "Oligodendrocytes are reduced in idiopathic PD midbrain, most strongly in the SN."
+  quote: "We also discovered a reduction in idiopathic Parkinson's disease oligodendrocyte numbers"
+  location: "Abstract; Supplementary Fig. 3D-F; Results"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: composition
+  direction: down
+  comparison: "PD vs control"
+  genes: [MOBP, PLP1]
+  gene_source: text
+  reported_stat: "Supplementary Table 6; PLP1 IF reduced, most significant in SN"
+  unit_of_analysis: donors
+  method: "t-test on per-sample proportions; PLP1 IF"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Discussion calls the snRNA result 'a trend towards decreased oligodendrocyte numbers'."
+- id: smajic2022-C09
+  paper: smajic2022
+  statement: "OPCs, pericytes, ependymal, excitatory, inhibitory and GABAergic cells do not change in proportion in idiopathic PD."
+  quote: "the other midbrain cell types, OPCs, pericytes, ependymal, excitatory, inhibitory, and GABAergic cells, did not display significant deviations"
+  location: "Supplementary Fig. 4; Supplementary Table 6"
+  centrality: secondary
+  modality: snRNA
+  region: midbrain
+  cell_type: All
+  cell_state: ""
+  claim_type: composition
+  direction: NA
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 6"
+  reported_stat: "not significant"
+  unit_of_analysis: donors
+  method: "t-test on per-sample proportions"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: "Null claim."
+- id: smajic2022-C10
+  paper: smajic2022
+  statement: "Microglia form an activation trajectory from P2RY12high homeostatic cells to GPNMBhigh and HSP90AA1/IL1Bhigh branches, and PD microglia are enriched toward the activated end."
+  quote: "Idiopathic Parkinson's disease cells differentially distribute along the microglia activation trajectory being enriched towards the activated state"
+  location: "Fig. 3A-D; Supplementary Fig. 6; Results"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: "GPNMBhigh / HSP90AA1high / IL1Bhigh activated microglia"
+  claim_type: trajectory
+  direction: enriched
+  comparison: "PD vs control"
+  genes: [P2RY12, GPNMB, HSP90AA1, IL1B]
+  gene_source: "Fig. 3B,D (65 trajectory genes)"
+  reported_stat: "cell-density along pseudotime; no formal statistic in text"
+  unit_of_analysis: cells
+  method: "monocle3 trajectory, density comparison"
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Abstract: 'pro-inflammatory trajectory characterized by elevated levels of IL1B, GPNMB and HSP90AA1'."
+- id: smajic2022-C11
+  paper: smajic2022
+  statement: "IL1B, GPNMB and HSP90AA1 are upregulated in idiopathic PD microglia."
+  quote: "idiopathic Parkinson's disease microglia revealed a pro-inflammatory trajectory characterized by elevated levels of IL1B, GPNMB and HSP90AA1"
+  location: "Abstract; Fig. 3F; Supplementary Table 8"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [IL1B, GPNMB, HSP90AA1]
+  gene_source: "Supplementary Table 8 (29 PD-up trajectory genes, Fig. 3F)"
+  reported_stat: "q < 0.05"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM on cells"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Whether all three are among the 29 DE genes is not explicit in text."
+- id: smajic2022-C12
+  paper: smajic2022
+  statement: "Activated microglia states (GPNMB and HSP90AA1 branches) are enriched for cytokine secretion and unfolded protein response functions."
+  quote: "This analysis revealed that these subpopulations are enriched in cytokine secretion and the stress response to unfolded protein pathways"
+  location: "Fig. 3E; Results"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: "GPNMBhigh / HSP90AA1high microglia"
+  claim_type: de_pathway
+  direction: up
+  comparison: "trajectory-associated (activated vs homeostatic)"
+  genes: [GPNMB, HSP90AA1]
+  gene_source: "Fig. 3D (65 genes)"
+  reported_stat: "Enrichr GO"
+  unit_of_analysis: cells
+  method: "monocle3 Moran's I + Enrichr"
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Not itself a PD-vs-control comparison."
+- id: smajic2022-C13
+  paper: smajic2022
+  statement: "PD astrocytes are enriched at the end of an astrogliosis trajectory toward a reactive CD44high/S100A6high state."
+  quote: "idiopathic Parkinson's disease astrocytes were highly enriched at the end of the astrogliosis trajectory compared to control astrocytes"
+  location: "Fig. 4A-D; Supplementary Fig. 6; Results"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Astrocytes
+  cell_state: "CD44high reactive astrocytes"
+  claim_type: trajectory
+  direction: enriched
+  comparison: "PD vs control"
+  genes: [CD44, S100A6, VAV3, LRRC4C]
+  gene_source: "Fig. 4D (94 trajectory genes)"
+  reported_stat: "density along pseudotime; no statistic"
+  unit_of_analysis: cells
+  method: "monocle3 trajectory, density comparison"
+  testable_with: rna
+  test_template: trajectory
+  requires: ""
+  notes: "Abstract: 'reactive patient astrocytes showed CD44 overexpression'."
+- id: smajic2022-C14
+  paper: smajic2022
+  statement: "CD44 is overexpressed in PD astrocytes."
+  quote: "While reactive patient astrocytes showed CD44 overexpression"
+  location: "Abstract; Fig. 4B,F"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Astrocytes
+  cell_state: "CD44high"
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [CD44]
+  gene_source: text
+  reported_stat: "not stated"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Unclear whether CD44 is DE PD vs control or just a state marker enriched in PD."
+- id: smajic2022-C15
+  paper: smajic2022
+  statement: "The reactive CD44high astrocyte state and PD-upregulated astrocyte trajectory genes are related to the unfolded protein response, including several heat-shock proteins."
+  quote: "The CD44high subpopulation was related to the unfolded protein response (UPR) pathway ... These genes include several heat-shock proteins"
+  location: "Fig. 4E,F; Supplementary Table 8"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Astrocytes
+  cell_state: "CD44high"
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 8 (34 PD-up astrogliosis genes, Fig. 4F)"
+  reported_stat: "Enrichr GO; q < 0.05 DE"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM + Enrichr"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "UPR / HSP gene set"
+  notes: "Heat-shock genes shown in Fig. 4F, not named in text."
+- id: smajic2022-C16
+  paper: smajic2022
+  statement: "Myelinating OPALINhigh oligodendrocytes are reduced in PD, with oligodendrocytes shifted toward an RBFOX1/S100Bhigh stress state."
+  quote: "we found a reduced fraction of myelinating OPALINhigh cells compared to controls"
+  location: "Fig. 4G-J; Supplementary Fig. 6; Results"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Oligodendrocytes
+  cell_state: "OPALINhigh"
+  claim_type: trajectory
+  direction: depleted
+  comparison: "PD vs control"
+  genes: [OPALIN, FRY, RBFOX1, S100B]
+  gene_source: "Fig. 4H"
+  reported_stat: "density along pseudotime; no statistic"
+  unit_of_analysis: cells
+  method: "monocle3 trajectory density"
+  testable_with: rna
+  test_template: composition_donor
+  requires: ""
+  notes: ""
+- id: smajic2022-C17
+  paper: smajic2022
+  statement: "Remaining oligodendrocytes in PD show stress-induced upregulation of S100B."
+  quote: "the remaining cells being characterized by a stress-induced upregulation of S100B"
+  location: "Abstract; Fig. 4H"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Oligodendrocytes
+  cell_state: "S100Bhigh"
+  claim_type: de_gene
+  direction: up
+  comparison: "PD vs control"
+  genes: [S100B]
+  gene_source: text
+  reported_stat: "not stated"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM"
+  testable_with: rna
+  test_template: de_pseudobulk
+  requires: ""
+  notes: "Results only describe S100B as a trajectory endpoint marker; DE statistic not reported."
+- id: smajic2022-C18
+  paper: smajic2022
+  statement: "Genes upregulated in PD oligodendrocytes along the trajectory (330) are associated with the unfolded protein response."
+  quote: "upregulated genes are related to the response to unfolded protein pathways"
+  location: "Fig. 4L; Supplementary Table 8"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 8"
+  reported_stat: "330 up genes; Enrichr"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM + Enrichr"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "UPR gene set"
+  notes: ""
+- id: smajic2022-C19
+  paper: smajic2022
+  statement: "Genes downregulated in PD oligodendrocytes along the trajectory (216) are associated with neuron projection and synaptic transmission."
+  quote: "Two hundred and sixteen idiopathic Parkinson's disease downregulated genes across the trajectory are associated with pathways important for neuron projection and synaptic transmission"
+  location: "Fig. 4K; Supplementary Table 8"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Oligodendrocytes
+  cell_state: ""
+  claim_type: de_pathway
+  direction: down
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 8"
+  reported_stat: "216 down genes; Enrichr"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM + Enrichr"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: ""
+  notes: ""
+- id: smajic2022-C20
+  paper: smajic2022
+  statement: "Unfolded protein response pathways are also upregulated in PD OPCs and vascular cells."
+  quote: "the unfolded protein pathways are also upregulated in the OPCs, and the vascular cells"
+  location: "Supplementary Table 8; Results"
+  centrality: secondary
+  modality: snRNA
+  region: midbrain
+  cell_type: OPCs
+  cell_state: ""
+  claim_type: de_pathway
+  direction: up
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "Supplementary Table 8"
+  reported_stat: "not stated"
+  unit_of_analysis: cells
+  method: "monocle3 quasi-Poisson GLM"
+  testable_with: rna
+  test_template: geneset_shift
+  requires: "UPR gene set"
+  notes: "Compound (OPCs + vascular cells: endothelial/pericytes); split if testing separately."
+- id: smajic2022-C21
+  paper: smajic2022
+  statement: "PD GWAS risk variants are enriched in marker genes of microglia, neurons, astrocytes and OPCs in midbrain."
+  quote: "We found that Parkinson's disease risk variants are significantly associated with microglia, neurons, astrocytes, and OPCs"
+  location: "Fig. 5A; Supplementary Table 4"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: All
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "across midbrain cell types (all samples)"
+  genes: []
+  gene_source: "Supplementary Table 4; markers FDR < 0.05, pct > 0.5, logFC > 0.25"
+  reported_stat: "MAGMA P < 0.05"
+  unit_of_analysis: cells
+  method: "MAGMA competitive gene-set analysis, Nalls 2019 (no 23andMe)"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: "Significance threshold P < 0.05, multiple-testing correction unclear."
+- id: smajic2022-C22
+  paper: smajic2022
+  statement: "The association of PD risk with cell types depends on disease status: in PD samples microglia and neurons are associated, in controls pericytes and OPCs."
+  quote: "Considering idiopathic Parkinson's disease samples alone, microglia and neurons remain significantly associated ... By contrast, in control subjects, disease variants are associated with pericytes and OPCs"
+  location: "Fig. 5A; Supplementary Table 4"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "markers from PD-only vs control-only samples"
+  genes: []
+  gene_source: "Supplementary Table 4"
+  reported_stat: "MAGMA P < 0.05"
+  unit_of_analysis: cells
+  method: "MAGMA on condition-specific marker sets"
+  testable_with: rna
+  test_template: genetic_enrichment
+  requires: "PD GWAS summary statistics"
+  notes: "Compound across cell types; abstract: 'PD risk variants were associated with glia- and neuron-specific gene expression patterns in idiopathic PD cases'."
+- id: smajic2022-C23
+  paper: smajic2022
+  statement: "LRRK2 is the top PD risk gene driving enrichment in microglia and OPCs, and SNCA in dopaminergic neurons."
+  quote: "LRRK2 showed the highest association with microglia and OPCs, and SNCA was the most prominent Parkinson's disease-associated gene in DaNs"
+  location: "Fig. 5B; Supplementary Table 5"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "across midbrain cell types"
+  genes: [LRRK2, SNCA]
+  gene_source: "Fig. 5B (top 5 genes per cell type); Supplementary Table 5"
+  reported_stat: "MAGMA gene z-scores"
+  unit_of_analysis: cells
+  method: "MAGMA gene contribution"
+  testable_with: rna
+  test_template: state_signature
+  requires: ""
+  notes: "Testable as cell-type specificity of LRRK2 (microglia/OPC) and SNCA (DA neurons)."
+- id: smajic2022-C24
+  paper: smajic2022
+  statement: "PD-risk genes in microglial markers implicate the NLRP3 inflammasome complex, and in DaNs phosphorylation/kinase activity."
+  quote: "we identified terms such as 'phosphorylation' and 'kinase activity' in DaNs and 'NLRP3 inflammasome complex' in microglia"
+  location: "Fig. 5C,D"
+  centrality: main
+  modality: snRNA
+  region: midbrain
+  cell_type: Microglia
+  cell_state: ""
+  claim_type: genetic_enrichment
+  direction: enriched
+  comparison: "pathway enrichment of GWAS-driving marker genes"
+  genes: []
+  gene_source: "Fig. 5C,D"
+  reported_stat: "GO/KEGG/Reactome enrichment"
+  unit_of_analysis: cells
+  method: "pathway enrichment of MAGMA-contributing genes"
+  testable_with: not_testable
+  test_template: not_testable
+  requires: ""
+  notes: "Derivative of C22/C24; low priority."
+- id: smajic2022-C25
+  paper: smajic2022
+  statement: "Astrocytes and microglia show PD-specific cell proliferation."
+  quote: "astrocytes and microglia presented idiopathic Parkinson's disease-specific cell proliferation and dysregulation of genes related to unfolded protein response and cytokine signalling"
+  location: "Abstract only"
+  centrality: headline
+  modality: snRNA
+  region: midbrain
+  cell_type: Astrocytes
+  cell_state: ""
+  claim_type: other
+  direction: up
+  comparison: "PD vs control"
+  genes: []
+  gene_source: "not given"
+  reported_stat: "none in Results"
+  unit_of_analysis: cells
+  method: "unclear (Seurat CellCycleScoring was run)"
+  testable_with: rna
+  test_template: state_signature
+  requires: "cell-cycle gene sets"
+  notes: "Not supported by any Results text located; may refer to increased proportions. Compound (astrocytes + microglia). Testability uncertain."

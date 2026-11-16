@@ -1,0 +1,224 @@
+<title>PD Claims Across Datasets</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: same report family as R1-R3; robustness summary, patterns, matrix, decisions, claim browser. */
+:root {
+  --bg: #f7f8f7; --surface: #ffffff; --fg: #1d2421; --muted: #5d6863; --line: #dfe4e1;
+  --accent: #7a2e3a; --accent-soft: #f3e6e8;
+  --ok: #2f7a4f; --okbg: #e3f1e8; --dir: #7f9a3a; --dirbg: #eef3df; --nr: #9a6a12; --nrbg: #f6ecd6;
+  --bad: #b23a3a; --badbg: #f7e1e1; --na: #8a908d; --nabg: #eceeed;
+  --f-display: "Newsreader", Georgia, serif; --f-body: "Public Sans", system-ui, sans-serif; --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141917; --surface: #1b211f; --fg: #e4e9e6; --muted: #9aa5a0; --line: #2d3532; --accent: #e08a97; --accent-soft: #3a2228;
+  --ok: #7fcf9f; --okbg: #1d3327; --dir: #c2d986; --dirbg: #2a3219; --nr: #e2b65e; --nrbg: #3a2f17; --bad: #f08c8c; --badbg: #3d2020;
+  --na: #8f9692; --nabg: #262c2a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141917; --surface: #1b211f; --fg: #e4e9e6; --muted: #9aa5a0; --line: #2d3532; --accent: #e08a97; --accent-soft: #3a2228;
+  --ok: #7fcf9f; --okbg: #1d3327; --dir: #c2d986; --dirbg: #2a3219; --nr: #e2b65e; --nrbg: #3a2f17; --bad: #f08c8c; --badbg: #3d2020;
+  --na: #8f9692; --nabg: #262c2a; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 15px/1.55 var(--f-body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 40px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 44px; }
+h1, h2 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; } h2 { font-size: 24px; } h3 { margin: 0; font-size: 16px; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+.eyebrow { font: 500 12px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+section, header { display: grid; gap: 16px; min-width: 0; }
+.lede { font-size: 17px; color: var(--muted); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.stat { background: var(--surface); padding: 14px 16px; display: grid; gap: 2px; }
+.stat b { font: 600 28px var(--f-display); font-variant-numeric: tabular-nums; } .stat span { font-size: 13px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+.defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 20px; font-size: 14px; }
+.defs div { display: grid; gap: 3px; }
+.stackrow { display: grid; grid-template-columns: 140px 1fr 46px; gap: 10px; align-items: center; font-size: 13px; }
+.track { display: flex; height: 14px; border-radius: 2px; overflow: hidden; background: var(--nabg); }
+.n { font: 12px var(--f-mono); text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bars { display: grid; gap: 5px; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.two > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 11.5px var(--f-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--surface); position: sticky; top: 0; }
+td.num { font: 12.5px var(--f-mono); font-variant-numeric: tabular-nums; }
+.pill { display: inline-block; font: 500 11.5px var(--f-mono); padding: 1px 7px; border-radius: 99px; white-space: nowrap; }
+.o-reproduced { color: var(--ok); background: var(--okbg); } .o-direction_only { color: var(--dir); background: var(--dirbg); }
+.o-not_reproduced { color: var(--nr); background: var(--nrbg); } .o-contradicted { color: var(--bad); background: var(--badbg); }
+.o-not_testable, .o- { color: var(--na); background: var(--nabg); }
+.note { border-left: 3px solid var(--nr); padding: 4px 0 4px 14px; font-size: 14px; display: grid; gap: 6px; }
+.decisions { display: grid; gap: 14px; }
+.decision { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; display: grid; gap: 6px; font-size: 14px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.controls input, .controls select { font: 14px var(--f-body); padding: 6px 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); color: var(--fg); }
+.controls input { flex: 1 1 220px; min-width: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+tr.claim { cursor: pointer; } tr.claim:hover td { background: var(--accent-soft); }
+tr.detail td { background: var(--bg); font-size: 13.5px; }
+tr.detail dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; }
+tr.detail dt { color: var(--muted); font-size: 12.5px; } tr.detail dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+blockquote { margin: 0; font-family: var(--f-display); font-size: 15.5px; font-style: italic; }
+.pid { font-family: var(--f-mono); font-size: 12.5px; white-space: nowrap; }
+.small { font-size: 13px; color: var(--muted); }
+@media (max-width: 520px) { .stackrow { grid-template-columns: 96px 1fr 36px; } }
+.r-robust { color: var(--ok); background: var(--okbg); } .r-supported { color: var(--dir); background: var(--dirbg); }
+.r-inconsistent { color: var(--nr); background: var(--nrbg); } .r-not_replicated { color: var(--nr); background: var(--nrbg); }
+.r-contradicted { color: var(--bad); background: var(--badbg); } .r-insufficient { color: var(--na); background: var(--nabg); }
+.mx { border-collapse: separate; border-spacing: 2px; font-size: 11px; }
+.mx th { position: sticky; top: 0; writing-mode: vertical-rl; transform: rotate(180deg); height: 110px; padding: 2px; font: 500 10.5px var(--f-mono); background: var(--surface); }
+.mx td { width: 16px; height: 14px; padding: 0; border: 0; border-radius: 2px; }
+.mx td.lab { width: auto; padding-right: 8px; font: 11.5px var(--f-mono); white-space: nowrap; background: none; }
+</style>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Report R4 · cross-dataset replication · 22 Oct 2026</div>
+    <h1>Which Parkinson's single-cell claims hold up in other people's data?</h1>
+    <p class="lede">Every claim tested in every other dataset that has the cell type and donor groups it needs, with the same donor-level tests as R3, then combined across datasets. A claim counts as robust when the combined evidence supports it and at least half of the datasets reproduce it on their own.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section>
+    <div class="eyebrow">How to read robustness</div>
+    <div class="defs">
+      <div><span><span class="pill r-robust">robust</span></span>≥ 3 datasets, combined p &lt; 0.05 as claimed, and ≥ 50% reproduce it individually.</div>
+      <div><span><span class="pill r-supported">supported</span></span>Combined p &lt; 0.05 as claimed, but fewer than half reproduce it individually (or only 2 datasets).</div>
+      <div><span><span class="pill r-inconsistent">inconsistent</span></span>Not significant combined, and datasets disagree strongly (I² ≥ 50%).</div>
+      <div><span><span class="pill r-not_replicated">not replicated</span></span>Not significant combined, datasets agree there is little effect.</div>
+      <div><span><span class="pill r-contradicted">contradicted</span></span>Combined p &lt; 0.05 in the opposite direction.</div>
+      <div><span><span class="pill r-insufficient">insufficient</span></span>Testable in fewer than 2 other datasets.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="note"><strong>Two rules worth knowing.</strong> (1) A cell-state claim counts as reproduced only if the state's markers co-vary beyond random genes matched for expression and parent-cell-type specificity (after removing sequencing-depth effects), a distinct high-scoring tail of nuclei exists (at least twice what random sets give), and at least half the donors contribute; a coherent but continuous programme is "direction only". (2) The four "no difference" claims are scored with an equivalence-style rule: reproduced where no significant difference is found. With few donors this rule is lenient, so read their "robust" calls with that in mind.</div>
+  </section>
+
+  <section>
+    <div class="eyebrow">By paper</div>
+    <h2>Robustness of each paper's claims</h2>
+    <div class="legend" id="legend"></div>
+    <div class="bars" id="papers"></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">What predicts replication</div>
+    <h2>Claim type, the authors' statistical unit, and prominence</h2>
+    <div class="two">
+      <div><h3>By test</h3><div class="bars" id="byTemplate"></div></div>
+      <div><h3>By the authors' unit of analysis</h3><div class="bars" id="byUnit"></div>
+        <h3>By prominence in the paper</h3><div class="bars" id="byCentral"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Region and time</div>
+    <h2>Same region, other regions, and only datasets published later</h2>
+    <div class="scroll"><table id="scopes"></table></div>
+    <h3>Internal result (R3) against cross-dataset robustness</h3>
+    <div class="scroll"><table id="crossint"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Every test</div>
+    <h2>Claims × datasets</h2>
+    <p class="small">Each square is one claim tested in one dataset (green reproduced, olive direction only, amber not reproduced, red contradicted, grey not testable, blank no data). Rows sorted by robustness.</p>
+    <div class="legend" id="mxlegend"></div>
+    <div class="scroll" style="max-height: 620px"><table class="mx" id="matrix"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Our GLIAD paper</div>
+    <h2>Robustness, preprint vs revised analysis</h2>
+    <div class="note"><strong>Caveat.</strong> Revised astrocyte/oligodendrocyte gene lists come from revision DE that used the misaligned counts layer; the audit session is re-running them.</div>
+    <div class="scroll" style="max-height: 420px"><table id="gliad"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Genetics</div>
+    <h2>PD GWAS enrichment claims (Nalls 2019, MAGMA)</h2>
+    <div class="scroll" style="max-height: 420px"><table id="gwas"></table></div>
+  </section>
+
+  <section>
+    <div class="eyebrow">All claims</div>
+    <h2>Claim browser</h2>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search statement or claim ID" aria-label="Search claims">
+      <select id="fp" aria-label="Paper"><option value="">All papers</option></select>
+      <select id="fr" aria-label="Robustness"><option value="">All robustness</option></select>
+      <select id="ft" aria-label="Test"><option value="">All tests</option></select>
+      <span class="small" id="nshown"></span>
+    </div>
+    <div class="scroll"><table id="claims"></table></div>
+  </section>
+</div>
+
+<script>
+const D = /*DATA*/null;
+const R = ["robust", "supported", "inconsistent", "not_replicated", "contradicted", "insufficient"];
+const RC = {robust: "--ok", supported: "--dir", inconsistent: "--nr", not_replicated: "--nr", contradicted: "--bad", insufficient: "--na"};
+const RL = {robust: "robust", supported: "supported", inconsistent: "inconsistent", not_replicated: "not replicated", contradicted: "contradicted", insufficient: "insufficient"};
+const OC = {reproduced: "--ok", direction_only: "--dir", not_reproduced: "--nr", contradicted: "--bad", not_testable: "--na"};
+const OL = {reproduced: "reproduced", direction_only: "direction only", not_reproduced: "not reproduced", contradicted: "contradicted", not_testable: "not testable"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const rp = r => `<span class="pill r-${esc(r)}">${esc(RL[r] || r || "–")}</span>`;
+const op = o => `<span class="pill o-${esc(o)}">${esc(OL[o] || o || "–")}</span>`;
+const fmt = (v, d = 3) => v == null || Number.isNaN(v) ? "–" : (Math.abs(v) < 1e-3 && v !== 0 ? Number(v).toExponential(1) : Number(v).toFixed(d));
+const pc = v => v == null ? "–" : Math.round(100 * v) + "%";
+
+const c = D.counts, tested = c.n - c.insufficient;
+document.getElementById("stats").innerHTML = [
+  [tested, `claims tested in ≥ 2 other datasets (of ${c.n})`], [c.robust, "robust"], [c.supported, "supported"],
+  [c.inconsistent + c.not_replicated, "not replicated or inconsistent"], [c.contradicted, "contradicted"]
+].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+document.getElementById("legend").innerHTML = R.slice(0, 5).map(r => `<span><i class="sw" style="background:var(${RC[r]})"></i>${RL[r]}</span>`).join("");
+const stack = (label, r) => { const t = R.slice(0, 5).reduce((s, k) => s + (r[k] || 0), 0);
+  return `<div class="stackrow"><span class="pid">${esc(label)}</span><div class="track">${R.slice(0, 5).map(k => r[k] ? `<div title="${RL[k]}: ${r[k]}" style="width:${(100 * r[k] / t).toFixed(1)}%;background:var(${RC[k]})"></div>` : "").join("")}</div><span class="n">${t}</span></div>`; };
+document.getElementById("papers").innerHTML = D.by_paper.map(r => stack(r.key, r)).join("");
+document.getElementById("byTemplate").innerHTML = D.by_template.map(r => stack(r.key.replaceAll("_", " "), r)).join("");
+document.getElementById("byUnit").innerHTML = D.by_unit.map(r => stack(r.key, r)).join("");
+document.getElementById("byCentral").innerHTML = D.by_centrality.map(r => stack(r.key, r)).join("");
+document.getElementById("scopes").innerHTML = `<thead><tr><th>Datasets used</th><th>Claims with ≥ 1 test</th><th>Mean share of datasets reproducing</th><th>Combined p &lt; 0.05 as claimed</th></tr></thead><tbody>` +
+  D.scopes.map(s => `<tr><td>${esc(s.scope.replaceAll("_", " "))}</td><td class="num">${s.claims}</td><td class="num">${pc(s.mean_frac_reproduced)}</td><td class="num">${s.combined_sig}</td></tr>`).join("") + "</tbody>";
+document.getElementById("crossint").innerHTML = `<thead><tr><th>Internal (R3)</th>${R.slice(0, 5).map(r => `<th>${RL[r]}</th>`).join("")}</tr></thead><tbody>` +
+  D.cross_internal.map(r => `<tr><td>${op(r.internal)}</td>${R.slice(0, 5).map(k => `<td class="num">${r[k] || 0}</td>`).join("")}</tr>`).join("") + "</tbody>";
+document.getElementById("mxlegend").innerHTML = Object.keys(OC).map(o => `<span><i class="sw" style="background:var(${OC[o]})"></i>${OL[o]}</span>`).join("");
+document.getElementById("matrix").innerHTML = `<thead><tr><th></th><th></th>${D.matrix.datasets.map(d => `<th>${esc(d)}</th>`).join("")}</tr></thead><tbody>` +
+  D.matrix.rows.map(r => `<tr><td class="lab">${esc(r.claim_id)}</td><td class="lab">${rp(r.robustness)}</td>${r.cells.map((v, i) => `<td title="${esc(D.matrix.datasets[i])}: ${esc(OL[v] || "no data")}" style="background:${v ? `var(${OC[v]})` : "transparent"}"></td>`).join("")}</tr>`).join("") + "</tbody>";
+document.getElementById("gliad").innerHTML = `<thead><tr><th>Claim</th><th>Preprint</th><th>Revised</th><th>Statement</th></tr></thead><tbody>` +
+  D.gliad.map(r => `<tr><td class="pid">${esc(r.claim_id)}</td><td>${r.preprint ? rp(r.preprint) : (r.both ? rp(r.both) : "–")}</td><td>${r.revised ? rp(r.revised) : "–"}</td><td>${esc(r.statement)}</td></tr>`).join("") + "</tbody>";
+document.getElementById("gwas").innerHTML = `<thead><tr><th>Claim</th><th>Internal</th><th>Across datasets</th><th>Datasets</th><th>Statement</th></tr></thead><tbody>` +
+  D.gwas.map(r => `<tr><td class="pid">${esc(r.claim_id)}</td><td>${op(r.internal)}</td><td>${rp(r.robustness)} <span class="small">${r.n_reproduced ?? 0}/${r.k ?? 0}</span></td><td class="small">${esc(r.datasets || "")}</td><td>${esc(r.statement)}</td></tr>`).join("") + "</tbody>";
+
+const fp = document.getElementById("fp"), fr = document.getElementById("fr"), ft = document.getElementById("ft");
+[...new Set(D.claims.map(r => r.paper))].sort().forEach(p => fp.add(new Option(p, p)));
+R.forEach(r => fr.add(new Option(RL[r], r)));
+[...new Set(D.claims.map(r => r.template).filter(Boolean))].sort().forEach(t => ft.add(new Option(t.replaceAll("_", " "), t)));
+const tbl = document.getElementById("claims"), open = new Set();
+function render() {
+  const q = document.getElementById("q").value.toLowerCase();
+  const rows = D.claims.filter(r => (!fp.value || r.paper === fp.value) && (!fr.value || r.robustness === fr.value) && (!ft.value || r.template === ft.value) &&
+    (!q || `${r.claim_id} ${r.statement}`.toLowerCase().includes(q)));
+  document.getElementById("nshown").textContent = `${rows.length} of ${D.claims.length}`;
+  tbl.innerHTML = `<thead><tr><th>Claim</th><th>Statement</th><th>Internal</th><th>Across datasets</th><th>Reproduced</th><th>z</th><th>I²</th></tr></thead><tbody>` +
+    rows.map(r => `<tr class="claim" tabindex="0" data-id="${esc(r.claim_id)}"><td class="pid">${esc(r.claim_id)}<div class="small">${esc(r.centrality)}</div></td>
+      <td>${esc(r.statement)}<div class="small">${esc(r.comparison)}</div></td><td>${op(r.internal)}</td><td>${rp(r.robustness)}</td>
+      <td class="num">${r.n_reproduced ?? 0}/${r.k ?? 0}</td><td class="num">${fmt(r.z, 2)}</td><td class="num">${fmt(r.I2, 2)}</td></tr>` +
+      (open.has(r.claim_id) ? `<tr class="detail"><td colspan="7"><dl>
+        <dt>Authors' quote</dt><dd><blockquote>“${esc(r.quote)}”</blockquote><div class="small">${esc(r.location)}</div></dd>
+        <dt>Authors' test</dt><dd>${esc(r.method) || "–"} · unit: ${esc(r.unit_of_analysis) || "–"}</dd>
+        <dt>Datasets</dt><dd>${esc(r.datasets || "–")}</dd>
+        <dt>Breakdown</dt><dd>${r.n_reproduced ?? 0} reproduced, ${r.n_direction_only ?? 0} direction only, ${r.n_not_reproduced ?? 0} not reproduced, ${r.n_contradicted ?? 0} contradicted · combined p ${fmt(r.p)}</dd>
+        <dt>Same region</dt><dd>${r.same_region_k} datasets, ${pc(r.same_region_rep)} reproduce · other regions: ${r.other_region_k} datasets, ${pc(r.other_region_rep)}</dd>
+        <dt>Later datasets</dt><dd>${r.later_datasets_k} datasets, ${pc(r.later_datasets_rep)} reproduce</dd></dl></td></tr>` : "")).join("") + "</tbody>";
+}
+tbl.addEventListener("click", e => { const r = e.target.closest("tr.claim"); if (!r) return; const id = r.dataset.id; open.has(id) ? open.delete(id) : open.add(id); render(); });
+tbl.addEventListener("keydown", e => { if (e.key === "Enter") e.target.closest("tr.claim")?.click(); });
+["q", "fp", "fr", "ft"].forEach(id => document.getElementById(id).addEventListener("input", render));
+render();
+</script>

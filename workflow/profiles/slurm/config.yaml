@@ -1,0 +1,14 @@
+# SLURM runs: snakemake --profile workflow/profiles/slurm   (needs snakemake-executor-plugin-slurm)
+# Same queue settings as the former scripts/run_phase4.sh / run_phase5.sh: preemptible QOS, jobs requeue if preempted.
+executor: slurm
+jobs: 40
+rerun-triggers: [mtime]
+latency-wait: 120
+retries: 1
+printshellcmds: true
+default-resources:
+  slurm_partition: cpu_p
+  slurm_extra: "'--qos=cpu_preemptible --requeue'"
+  mem_mb: 16000
+  runtime: 360
+  cpus_per_task: 4

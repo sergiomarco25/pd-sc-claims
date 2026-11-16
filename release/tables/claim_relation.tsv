@@ -1,0 +1,217 @@
+claim_a	relation	claim_b	basis	note
+barbareyes2025-C02	supports_statement	CS01	curated	glial heat-shock / UPR response
+barbareyes2025-C10	supports_statement	CS01	curated	glial heat-shock / UPR response
+barbareyes2025-C29	supports_statement	CS01	curated	glial heat-shock / UPR response
+barbareyes2025-C32	supports_statement	CS01	curated	glial heat-shock / UPR response
+chia2025-C07	supports_statement	CS01	curated	glial heat-shock / UPR response
+clarence2025-C02	supports_statement	CS01	curated	glial heat-shock / UPR response
+clarence2025-C27	supports_statement	CS01	curated	glial heat-shock / UPR response
+lee2023-C07	supports_statement	CS01	curated	glial heat-shock / UPR response
+lee2023-C19	supports_statement	CS01	curated	glial heat-shock / UPR response
+martirosyan2024-C12	supports_statement	CS01	curated	glial heat-shock / UPR response
+menon2026-C14	supports_statement	CS01	curated	glial heat-shock / UPR response
+smajic2022-C11	supports_statement	CS01	curated	glial heat-shock / UPR response
+smajic2022-C12	supports_statement	CS01	curated	glial heat-shock / UPR response
+smajic2022-C15	supports_statement	CS01	curated	glial heat-shock / UPR response
+smajic2022-C17	supports_statement	CS01	curated	glial heat-shock / UPR response
+smajic2022-C18	supports_statement	CS01	curated	glial heat-shock / UPR response
+smajic2022-C20	supports_statement	CS01	curated	glial heat-shock / UPR response
+wang2024-C10	supports_statement	CS01	curated	glial heat-shock / UPR response
+wang2024-C16	supports_statement	CS01	curated	glial heat-shock / UPR response
+xu2023-C15	supports_statement	CS01	curated	glial heat-shock / UPR response
+zhu2024-C09	supports_statement	CS01	curated	glial heat-shock / UPR response
+zhu2024-C10	supports_statement	CS01	curated	glial heat-shock / UPR response
+adams2024-C14	supports_statement	CS01	curated	glial heat-shock / UPR response
+adams2024-C20	supports_statement	CS01	curated	glial heat-shock / UPR response
+adams2024-C21	supports_statement	CS01	curated	glial heat-shock / UPR response
+ma2025-C21	supports_statement	CS01	curated	glial heat-shock / UPR response
+volpato2025-C15	supports_statement	CS01	curated	glial heat-shock / UPR response
+martirosyan2024-C20	opposes_statement	CS01	curated	glial heat-shock / UPR response
+menon2026-C09	supports_statement	CS02	curated	shared across cell types and regions
+clarence2025-C03	supports_statement	CS02	curated	shared across cell types and regions
+adams2024-C26	supports_statement	CS02	curated	shared across cell types and regions
+wang2024-C08	supports_statement	CS02	curated	shared across cell types and regions
+feleke2021-C07	opposes_statement	CS02	curated	shared across cell types and regions
+zhu2024-C12	supports_statement	CS03	curated	neuronal chaperone repression
+zhu2024-C13	supports_statement	CS03	curated	neuronal chaperone repression
+zhu2024-C14	supports_statement	CS03	curated	neuronal chaperone repression
+smajic2022-C04	supports_statement	CS04	curated	more microglia
+smajic2022-C05	supports_statement	CS04	curated	more microglia
+feleke2021-C01	supports_statement	CS04	curated	more microglia
+feleke2021-C02	supports_statement	CS04	curated	more microglia
+feleke2021-C03	supports_statement	CS04	curated	more microglia
+chia2025-C01	supports_statement	CS04	curated	more microglia
+chia2025-C02	supports_statement	CS04	curated	more microglia
+zhu2024-C02	supports_statement	CS04	curated	more microglia
+adams2024-C13	supports_statement	CS04	curated	more microglia
+martirosyan2024-C02	supports_statement	CS04	curated	more microglia
+menon2026-C12	opposes_statement	CS04	curated	more microglia
+xu2023-C21	opposes_statement	CS04	curated	more microglia
+jin2024-C01	opposes_statement	CS04	curated	more microglia
+smajic2022-C10	supports_statement	CS05	curated	microglial activation genes
+smajic2022-C11	supports_statement	CS05	curated	microglial activation genes
+ma2025-C11	supports_statement	CS05	curated	microglial activation genes
+ma2025-C12	supports_statement	CS05	curated	microglial activation genes
+ma2025-C15	supports_statement	CS05	curated	microglial activation genes
+lee2023-C06	supports_statement	CS05	curated	microglial activation genes
+martirosyan2024-C17	supports_statement	CS05	curated	microglial activation genes
+martirosyan2024-C18	supports_statement	CS05	curated	microglial activation genes
+zhu2024-C08	supports_statement	CS05	curated	microglial activation genes
+wang2024-C14	opposes_statement	CS05	curated	microglial activation genes
+xu2023-C13	opposes_statement	CS05	curated	microglial activation genes
+xu2023-C14	opposes_statement	CS05	curated	microglial activation genes
+lee2023-C05	opposes_statement	CS05	curated	microglial activation genes
+kamath2022-C10	supports_statement	CS06	curated	inflammatory glial states expand
+ma2025-C16	supports_statement	CS06	curated	inflammatory glial states expand
+clarence2025-C21	supports_statement	CS06	curated	inflammatory glial states expand
+clarence2025-C23	supports_statement	CS06	curated	inflammatory glial states expand
+kamath2022-C11	supports_statement	CS06	curated	inflammatory glial states expand
+martirosyan2024-C14	supports_statement	CS06	curated	inflammatory glial states expand
+ma2025-C25	supports_statement	CS06	curated	inflammatory glial states expand
+volpato2025-C14	supports_statement	CS06	curated	inflammatory glial states expand
+chia2025-C09	supports_statement	CS06	curated	inflammatory glial states expand
+xu2023-C12	supports_statement	CS06	curated	inflammatory glial states expand
+smajic2022-C13	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+smajic2022-C14	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+ma2025-C18	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+ma2025-C19	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+ma2025-C23	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+ma2025-C24	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+zhu2024-C06	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+wang2024-C09	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+martirosyan2024-C13	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+xu2023-C03	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+xu2023-C07	supports_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+ma2025-C20	opposes_statement	CS07	curated	astrocyte CD44 / GFAP / metallothioneins
+smajic2022-C16	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+smajic2022-C19	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+adams2024-C15	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+adams2024-C19	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+adams2024-C22	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+adams2024-C24	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+adams2024-C25	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+barbareyes2025-C30	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+barbareyes2025-C31	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+barbareyes2025-C07	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+barbareyes2025-C08	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+lee2023-C18	supports_statement	CS08	curated	oligodendrocytes lose myelin genes
+martirosyan2024-C22	opposes_statement	CS08	curated	oligodendrocytes lose myelin genes
+barbareyes2025-C01	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+barbareyes2025-C03	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+barbareyes2025-C04	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+barbareyes2025-C05	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+barbareyes2025-C06	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+martirosyan2024-C21	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+martirosyan2024-C23	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+adams2024-C04	supports_statement	CS09	curated	oligodendroglial subpopulations expand
+smajic2022-C08	opposes_statement	CS09	curated	oligodendroglial subpopulations expand
+zhu2024-C03	opposes_statement	CS09	curated	oligodendroglial subpopulations expand
+volpato2025-C08	opposes_statement	CS09	curated	oligodendroglial subpopulations expand
+smajic2022-C03	supports_statement	CS10	curated	nigral DA neuron loss
+ma2025-C04	supports_statement	CS10	curated	nigral DA neuron loss
+kamath2022-C05	supports_statement	CS10	curated	nigral DA neuron loss
+martirosyan2024-C01	supports_statement	CS10	curated	nigral DA neuron loss
+martirosyan2024-C04	supports_statement	CS10	curated	nigral DA neuron loss
+kamath2022-C06	supports_statement	CS11	curated	AGTR1-selective DA loss
+kamath2022-C09	supports_statement	CS11	curated	AGTR1-selective DA loss
+kamath2022-C12	supports_statement	CS11	curated	AGTR1-selective DA loss
+lee2023-C01	supports_statement	CS11	curated	AGTR1-selective DA loss
+menon2026-C01	supports_statement	CS11	curated	AGTR1-selective DA loss
+volpato2025-C06	supports_statement	CS11	curated	AGTR1-selective DA loss
+volpato2025-C09	supports_statement	CS11	curated	AGTR1-selective DA loss
+wang2024-C04	supports_statement	CS11	curated	AGTR1-selective DA loss
+kamath2022-C07	supports_statement	CS11	curated	AGTR1-selective DA loss
+kamath2022-C08	supports_statement	CS11	curated	AGTR1-selective DA loss
+kamath2022-C13	supports_statement	CS11	curated	AGTR1-selective DA loss
+lee2023-C02	supports_statement	CS11	curated	AGTR1-selective DA loss
+ma2025-C01	supports_statement	CS12	curated	T-cell infiltration
+ma2025-C06	supports_statement	CS12	curated	T-cell infiltration
+ma2025-C07	supports_statement	CS12	curated	T-cell infiltration
+ma2025-C08	supports_statement	CS12	curated	T-cell infiltration
+ma2025-C26	supports_statement	CS12	curated	T-cell infiltration
+martirosyan2024-C03	supports_statement	CS12	curated	T-cell infiltration
+zhu2024-C01	supports_statement	CS12	curated	T-cell infiltration
+zhu2024-C11	supports_statement	CS12	curated	T-cell infiltration
+ma2025-C05	opposes_statement	CS12	curated	T-cell infiltration
+jin2024-C03	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C05	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C06	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C07	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C08	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C09	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C10	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+wang2024-C11	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+feleke2021-C10	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+xu2023-C19	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+lee2023-C03	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+wang2024-C07	supports_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+jin2024-C04	opposes_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+zhu2024-C05	opposes_statement	CS13	curated	neuronal synaptic / mitochondrial loss
+chia2025-C03	supports_statement	CS14	curated	cortical neuron composition
+clarence2025-C19	supports_statement	CS14	curated	cortical neuron composition
+chia2025-C04	opposes_statement	CS14	curated	cortical neuron composition
+lee2026-C03	opposes_statement	CS14	curated	cortical neuron composition
+lee2026-C04	opposes_statement	CS14	curated	cortical neuron composition
+menon2026-C11	opposes_statement	CS14	curated	cortical neuron composition
+kamath2022-C14	supports_statement	CS15	curated	familial genes in DA neurons
+martirosyan2024-C28	supports_statement	CS15	curated	familial genes in DA neurons
+wang2024-C18	supports_statement	CS15	curated	familial genes in DA neurons
+kamath2022-C18	supports_statement	CS15	curated	familial genes in DA neurons
+kamath2022-C15	supports_statement	CS16	curated	common variants in DA neurons
+kamath2022-C17	supports_statement	CS16	curated	common variants in DA neurons
+volpato2025-C02	supports_statement	CS16	curated	common variants in DA neurons
+volpato2025-C03	supports_statement	CS16	curated	common variants in DA neurons
+wang2024-C23	supports_statement	CS16	curated	common variants in DA neurons
+martirosyan2024-C30	opposes_statement	CS16	curated	common variants in DA neurons
+lee2023-C13	supports_statement	CS17	curated	common variants in glia
+lee2023-C14	supports_statement	CS17	curated	common variants in glia
+smajic2022-C23	supports_statement	CS17	curated	common variants in glia
+dehestani2024-C01	supports_statement	CS17	curated	common variants in glia
+lee2023-C10	supports_statement	CS17	curated	common variants in glia
+lee2023-C09	supports_statement	CS17	curated	common variants in glia
+smajic2022-C22	opposes_statement	CS17	curated	common variants in glia
+martirosyan2024-C29	opposes_statement	CS17	curated	common variants in glia
+feleke2021-C11	supports_statement	CS18	curated	SNCA expression
+feleke2021-C12	supports_statement	CS18	curated	SNCA expression
+wang2024-C22	supports_statement	CS18	curated	SNCA expression
+zhu2024-C16	supports_statement	CS18	curated	SNCA expression
+wang2024-C20	opposes_statement	CS18	curated	SNCA expression
+kamath2022-C05	agrees_with	ma2025-C04	computed	composition of DA neurons
+kamath2022-C05	agrees_with	smajic2022-C03	computed	composition of DA neurons
+kamath2022-C05	agrees_with	F-comp-da-neurons	computed	composition of DA neurons
+ma2025-C04	agrees_with	smajic2022-C03	computed	composition of DA neurons
+ma2025-C04	agrees_with	F-comp-da-neurons	computed	composition of DA neurons
+smajic2022-C03	agrees_with	F-comp-da-neurons	computed	composition of DA neurons
+chia2025-C03	agrees_with	F-comp-excitatory	computed	composition of Excitatory neurons
+chia2025-C01	agrees_with	feleke2021-C01	computed	composition of Microglia
+chia2025-C01	agrees_with	feleke2021-C02	computed	composition of Microglia
+chia2025-C01	agrees_with	feleke2021-C03	computed	composition of Microglia
+chia2025-C01	agrees_with	smajic2022-C04	computed	composition of Microglia
+chia2025-C01	agrees_with	smajic2022-C05	computed	composition of Microglia
+chia2025-C01	agrees_with	zhu2024-C02	computed	composition of Microglia
+chia2025-C01	agrees_with	F-comp-microglia	computed	composition of Microglia
+chia2025-C02	agrees_with	feleke2021-C01	computed	composition of Microglia
+chia2025-C02	agrees_with	feleke2021-C02	computed	composition of Microglia
+chia2025-C02	agrees_with	feleke2021-C03	computed	composition of Microglia
+chia2025-C02	agrees_with	smajic2022-C04	computed	composition of Microglia
+chia2025-C02	agrees_with	smajic2022-C05	computed	composition of Microglia
+chia2025-C02	agrees_with	zhu2024-C02	computed	composition of Microglia
+chia2025-C02	agrees_with	F-comp-microglia	computed	composition of Microglia
+feleke2021-C01	agrees_with	smajic2022-C04	computed	composition of Microglia
+feleke2021-C01	agrees_with	smajic2022-C05	computed	composition of Microglia
+feleke2021-C01	agrees_with	zhu2024-C02	computed	composition of Microglia
+feleke2021-C01	agrees_with	F-comp-microglia	computed	composition of Microglia
+feleke2021-C02	agrees_with	smajic2022-C04	computed	composition of Microglia
+feleke2021-C02	agrees_with	smajic2022-C05	computed	composition of Microglia
+feleke2021-C02	agrees_with	zhu2024-C02	computed	composition of Microglia
+feleke2021-C02	agrees_with	F-comp-microglia	computed	composition of Microglia
+feleke2021-C03	agrees_with	smajic2022-C04	computed	composition of Microglia
+feleke2021-C03	agrees_with	smajic2022-C05	computed	composition of Microglia
+feleke2021-C03	agrees_with	zhu2024-C02	computed	composition of Microglia
+feleke2021-C03	agrees_with	F-comp-microglia	computed	composition of Microglia
+smajic2022-C04	agrees_with	zhu2024-C02	computed	composition of Microglia
+smajic2022-C04	agrees_with	F-comp-microglia	computed	composition of Microglia
+smajic2022-C05	agrees_with	zhu2024-C02	computed	composition of Microglia
+smajic2022-C05	agrees_with	F-comp-microglia	computed	composition of Microglia
+zhu2024-C02	agrees_with	F-comp-microglia	computed	composition of Microglia
+smajic2022-C08	agrees_with	zhu2024-C03	computed	composition of Oligodendrocytes

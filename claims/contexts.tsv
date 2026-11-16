@@ -1,0 +1,410 @@
+claim_id	paper	dataset	regions	cell_classes	cell_state	contrast	direction	claim_type	test_template	status	comparison_text	null_claim
+adams2024-C01	adams2024	adams2024	midbrain	ALL		aged_vs_youngcontrol	up	trajectory	trajectory	ok	aged control vs young control	False
+adams2024-C02	adams2024	adams2024	midbrain	Microglia		PD_vs_agedcontrol	up	trajectory	trajectory	ok	PD vs aged control	False
+adams2024-C03	adams2024	adams2024	midbrain	Oligodendrocytes		PD_vs_agedcontrol	up	trajectory	trajectory	ok	PD vs aged control	False
+adams2024-C04	adams2024	adams2024	midbrain	Oligodendrocytes	disease-associated ODC (high cPP)	PD_vs_agedcontrol	enriched	state_enrichment	state_signature	ok	PD vs aged control	False
+adams2024-C05	adams2024	adams2024	midbrain	Oligodendrocytes		PD_vs_agedcontrol	down	de_gene	de_pseudobulk	ok	PD vs aged control	False
+adams2024-C06	adams2024	adams2024	midbrain	ALL		PD_vs_agedcontrol	NA	chromatin	chromatin_da	ok	PD vs aged control	False
+adams2024-C07	adams2024	adams2024	midbrain	ALL		PD_vs_agedcontrol	NA	chromatin	chromatin_da	ok	PD vs aged control	False
+adams2024-C08	adams2024	adams2024	midbrain	Oligodendrocytes		PD_vs_agedcontrol	down	chromatin	chromatin_da	ok	PD vs aged control	False
+adams2024-C09	adams2024	adams2024	midbrain	Oligodendrocytes		aged_vs_youngcontrol	up	chromatin	chromatin_da	ok	aged control and PD vs young control	False
+adams2024-C10	adams2024	adams2024	midbrain	ALL		within	NA	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+adams2024-C11	adams2024	adams2024	midbrain	ALL		within	enriched	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+adams2024-C12	adams2024	adams2024	midbrain	Oligodendrocytes		PD_vs_agedcontrol	NA	composition	composition_donor	ok	PD vs aged control	False
+adams2024-C13	adams2024	adams2024	midbrain	Microglia		PD_vs_agedcontrol	NA	composition	composition_donor	ok	PD vs aged control	False
+adams2024-C14	adams2024	adams2024	midbrain	Oligodendrocytes	UPR / CMA module	aged_vs_youngcontrol	up	de_pathway	geneset_shift	ok	along cPP (young -> aged -> PD)	False
+adams2024-C15	adams2024	adams2024	midbrain	Oligodendrocytes	myelination module	aged_vs_youngcontrol	down	de_pathway	geneset_shift	ok	along cPP (young -> aged -> PD)	False
+adams2024-C16	adams2024	adams2024	midbrain	Microglia	stage 1 DAM / aging MG vs homeostatic MG	aged_vs_youngcontrol	up	state_enrichment	state_signature	ok	along cPP (young -> aged -> PD)	False
+adams2024-C17	adams2024	adams2024	midbrain	Astrocytes		PD_vs_agedcontrol	NA	trajectory	trajectory	ok	PD vs aged control	False
+adams2024-C18	adams2024	adams2024	midbrain	OPCs		PD_vs_agedcontrol	NA	trajectory	trajectory	ok	PD vs aged control	False
+adams2024-C19	adams2024	adams2024	midbrain	Oligodendrocytes	disease-associated ODC	within	down	de_gene	de_pseudobulk	ok	disease-associated vs healthy ODC (PD-specific, not changed young vs aged)	False
+adams2024-C20	adams2024	adams2024	midbrain	Oligodendrocytes	disease-associated ODC	PD_vs_agedcontrol	up	de_gene	de_pseudobulk	ok	disease-associated vs healthy ODC; PD vs aged control (FISH)	False
+adams2024-C21	adams2024	adams2024	midbrain	Oligodendrocytes	disease-associated ODC	aged_vs_youngcontrol	up	de_gene	de_pseudobulk	ok	aged vs young and disease-associated vs healthy ODC	False
+adams2024-C22	adams2024	adams2024	midbrain	Oligodendrocytes	disease-associated ODC	PD_vs_agedcontrol	down	de_gene	de_pseudobulk	ok	PD vs aged control	False
+adams2024-C23	adams2024	adams2024	midbrain	Oligodendrocytes	disease-associated ODC	within	up	chromatin	chromatin_da	ok	disease-associated vs healthy ODC	False
+adams2024-C24	adams2024	adams2024	midbrain	Oligodendrocytes		PD_vs_agedcontrol	down	de_gene	de_pseudobulk	ok	PD vs aged control	False
+adams2024-C25	adams2024	adams2024	midbrain	Oligodendrocytes	RBFOX1+ / OPALIN+ ODC	aged_vs_youngcontrol	down	de_gene	de_pseudobulk	ok	PD vs young control	False
+adams2024-C26	adams2024	adams2024	midbrain	ALL		aged_vs_youngcontrol	NA	de_gene	de_pseudobulk	ok	aged vs young and PD vs aged control	False
+barbareyes2025-C01	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAOPCs; PDAO-1; PDAO-2; PDAO-3	PDany_vs_control	exists	state_existence	state_signature	ok	PD vs control	False
+barbareyes2025-C02	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAOPCs; PDAO-1; PDAO-2; PDAO-3	within	up	de_gene	geneset_shift	ok	PD-associated subpopulations vs other oligodendroglia subpopulations	False
+barbareyes2025-C03	barbareyes2025		putamen	Oligodendrocytes	PDAO-1	PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+barbareyes2025-C04	barbareyes2025		putamen	Oligodendrocytes	PDAO-2	PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+barbareyes2025-C05	barbareyes2025		putamen	Oligodendrocytes	PDAO-3	PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+barbareyes2025-C06	barbareyes2025		putamen	OPCs	PDAOPCs	PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+barbareyes2025-C07	barbareyes2025		putamen	Oligodendrocytes	MOL-A	PDany_vs_control	down	composition	composition_donor	ok	PD vs control	False
+barbareyes2025-C08	barbareyes2025		putamen	Oligodendrocytes	MOL-F	PDany_vs_control	down	composition	composition_donor	ok	PD vs control	False
+barbareyes2025-C09	barbareyes2025		caudate;putamen	Oligodendrocytes	all 15 subpopulations	sex	NA	composition	composition_donor	ok	male vs female	False
+barbareyes2025-C10	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1	within	exists	state_existence	state_signature	ok	PDAO-1 vs other OPALIN+ MOLs	False
+barbareyes2025-C11	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-2	within	exists	state_existence	state_signature	ok	PDAO-2 vs other OPALIN+ MOLs	False
+barbareyes2025-C12	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1; PDAO-2; PDAO-3; PDAOPCs	within	up	de_pathway	geneset_shift	ok	PDAO-1 vs MOL-A; PDAO-2 vs MOL-A; PDAO-3 vs MOL-F; PDAOPCs vs OPCs-A	False
+barbareyes2025-C13	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-2	within	up	de_pathway	geneset_shift	ok	PDAO-2 vs MOL-A	False
+barbareyes2025-C14	barbareyes2025		caudate;putamen	OPCs	PDAOPCs	within	up	de_pathway	geneset_shift	ok	PDAOPCs vs OPCs-A	False
+barbareyes2025-C15	barbareyes2025		putamen	Oligodendrocytes		PDany_vs_control	down	pathology_association	not_testable	not_testable	PD vs control	False
+barbareyes2025-C16	barbareyes2025		putamen	Oligodendrocytes	PDAO-1; MOL-A	within	associated_neg	pathology_association	pathology_correlation	ok	across donors (MBP IHC vs subpopulation ratio)	False
+barbareyes2025-C17	barbareyes2025		putamen	Oligodendrocytes	PDAO-2; MOL-A	within	associated_neg	pathology_association	pathology_correlation	ok	across donors (MBP IHC vs subpopulation ratio)	False
+barbareyes2025-C18	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1; MOL-A	PDany_vs_control	NA	trajectory	trajectory	ok	PD vs control (trajectory topology)	False
+barbareyes2025-C19	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-3; MOL-F	PDany_vs_control	NA	trajectory	trajectory	ok	PD vs control (trajectory topology)	False
+barbareyes2025-C20	barbareyes2025		caudate;putamen	OPCs	PDAOPCs; OPCs-A	PDany_vs_control	NA	trajectory	trajectory	ok	PD vs control (trajectory topology)	False
+barbareyes2025-C21	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1 vs MOL-A	within	down	communication	communication_liana	ok	PDAO-1 vs MOL-A	False
+barbareyes2025-C22	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1; PDAO-2	within	down	communication	communication_liana	ok	PDAO-1/PDAO-2 vs MOL-A	False
+barbareyes2025-C23	barbareyes2025		caudate;putamen	OPCs	PDAOPCs	within	down	communication	communication_liana	ok	PDAOPCs vs other OPC subpopulations	False
+barbareyes2025-C24	barbareyes2025		caudate;putamen	OPCs	PDAOPCs	within	up	communication	communication_liana	ok	PDAOPCs vs other oligodendroglia	False
+barbareyes2025-C25	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1; PDAO-2	within	up	de_gene	state_signature	ok	PDAO-1/PDAO-2 vs other oligodendroglia subpopulations	False
+barbareyes2025-C26	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-2	within	up	de_gene	state_signature	ok	PDAO-2 vs other oligodendroglia subpopulations	False
+barbareyes2025-C27	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-1; PDAO-3; MOL-F; MOL-G	within	enriched	spatial_colocalisation	spatial_neighbourhood	ok	within tissue (neighbourhood z-score)	False
+barbareyes2025-C28	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAO-3; MOL-F; MOL-G	not_available	enriched	spatial_colocalisation	spatial_neighbourhood	not_available	white matter vs grey matter	False
+barbareyes2025-C29	barbareyes2025		caudate;putamen	Oligodendrocytes	HSPR module	PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+barbareyes2025-C30	barbareyes2025		caudate;putamen	Oligodendrocytes	myelination module	PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+barbareyes2025-C31	barbareyes2025		caudate;putamen	Oligodendrocytes	HSPR module; myelination module	within	associated_neg	other	geneset_shift	ok	across cells	False
+barbareyes2025-C32	barbareyes2025		caudate;putamen	Oligodendrocytes	PDAOs; HSPR module	within	associated_pos	state_enrichment	state_signature	ok	within PD	False
+chia2025-C01	chia2025	chia2025	PFC	Microglia		PDD_vs_control	enriched	composition	composition_donor	ok	PDD vs control	False
+chia2025-C02	chia2025	chia2025	PFC	Microglia		DLB_vs_control	enriched	composition	composition_donor	ok	DLB vs control	False
+chia2025-C03	chia2025	chia2025	PFC	Excitatory neurons		PDD_vs_control	depleted	composition	composition_donor	ok	PDD vs control; DLB vs control	False
+chia2025-C04	chia2025	chia2025	PFC	Inhibitory neurons	SST IN, SV2C IN	PDD_vs_control	enriched	composition	composition_donor	ok	PDD vs control; DLB vs control	False
+chia2025-C05	chia2025	chia2025	PFC	ALL		PDD_vs_control	NA	other	de_pseudobulk	ok	PDD vs DLB vs AD vs control	False
+chia2025-C06	chia2025	chia2025	PFC	Inhibitory neurons		PDD_vs_control	NA	de_gene	de_pseudobulk	ok	PDD vs control (also DLB)	False
+chia2025-C07	chia2025	chia2025	PFC	Oligodendrocytes		PDD_vs_control	up	de_gene	de_pseudobulk	ok	PDD vs control (also DLB, AD)	False
+chia2025-C08	chia2025	chia2025	PFC	Microglia	microglia + oligodendrocytes	PDD_vs_control	NA	de_gene	de_pseudobulk	ok	PDD, DLB, AD vs control	False
+chia2025-C09	chia2025	chia2025	PFC	Microglia	distinct microglia (microglia/oligodendrocyte marker co-expressing; putative myelin-phagocytic)	PDD_vs_control	enriched	state_enrichment	state_signature	ok	PDD vs control (also DLB, AD)	False
+chia2025-C10	chia2025	chia2025	PFC	Microglia	microglia-oligodendrocyte pair	PDD_vs_control	up	communication	communication_liana	ok	PDD vs control (also DLB, AD)	False
+chia2025-C11	chia2025	chia2025	PFC	Microglia		PDD_vs_control	up	de_gene	de_pseudobulk	ok	PDD vs control (also DLB, AD)	False
+chia2025-C12	chia2025	chia2025	PFC	Microglia		DLB_vs_control	up	de_pathway	geneset_shift	ok	DLB vs control (Fig. 4g); PDD vs control (Fig. 2e)	False
+chia2025-C13	chia2025	chia2025	PFC	Microglia		DLB_vs_PDD	NA	de_gene	de_pseudobulk	ok	DLB vs PDD	False
+clarence2025-C01	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+clarence2025-C02	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Endothelial		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+clarence2025-C03	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL	UPR program	PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C04	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C05	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C06	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C07	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C08	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C09	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+clarence2025-C10	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia		PDany_vs_control	enriched	genetic_enrichment	genetic_enrichment	ok	PD vs control	False
+clarence2025-C11	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	Mg_DAM, Mg_Adapt, Mg_Homeo, Mg_Prolif	within	enriched	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+clarence2025-C12	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+clarence2025-C13	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL	TPS	braak	associated_pos	pathology_association	pathology_correlation	ok	Braak LB medium (3-4) and late (5-6) vs control/early	False
+clarence2025-C14	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Endothelial	TPS	braak	associated_pos	pathology_association	pathology_correlation	ok	across Braak LB groups (control+early, medium, late)	False
+clarence2025-C15	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	TPS	braak	associated_neg	pathology_association	pathology_correlation	ok	across Braak LB groups	False
+clarence2025-C16	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia		PDany_vs_control	up	communication	communication_liana	ok	PD vs control	False
+clarence2025-C17	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia		PDany_vs_control	up	communication	communication_liana	ok	PD vs control	False
+clarence2025-C18	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	down	communication	communication_liana	ok	PD vs control	False
+clarence2025-C19	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Excitatory neurons	EN_L6_CT, EN_L6B	braak	depleted	composition	composition_donor	ok	Braak LB early/medium/late vs control	False
+clarence2025-C20	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	homeostatic microglia	braak	depleted	composition	composition_donor	ok	PD vs control; Braak LB stages	False
+clarence2025-C21	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	adaptive and proliferative microglia	braak	enriched	composition	composition_donor	ok	PD vs control; Braak LB stages	False
+clarence2025-C22	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Endothelial		LBearly_vs_control	enriched	composition	composition_donor	ok	Braak LB 1-2 vs control	False
+clarence2025-C23	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	Adapt_TMEM163, Adapt_AIF1	braak	enriched	composition	composition_donor	ok	Braak LB early/medium/late vs control	False
+clarence2025-C24	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	Adapt_IFI44L, Adapt_CCL3	braak	depleted	composition	composition_donor	ok	Braak LB early/medium/late vs control	False
+clarence2025-C25	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	Adapt_HSPA1A, Prolif_MKI67	LBlate_vs_control	enriched	composition	composition_donor	ok	Braak LB 3-6 vs control (depleted at Braak 1-2)	False
+clarence2025-C26	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	DAM, PVM_CD163	LBearly_vs_control	enriched	composition	composition_donor	ok	Braak LB 1-2 vs control (declines later)	False
+clarence2025-C27	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	Hotspot module 2 (stress / UPR)	braak	up	trajectory	pathology_correlation	ok	along predicted Braak LB pseudotime	False
+clarence2025-C28	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	Microglia	Hotspot module 3 (proliferation)	braak	up	trajectory	pathology_correlation	ok	along predicted Braak LB pseudotime	False
+clarence2025-C29	clarence2025	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL		PDany_vs_control	NA	composition	composition_donor	ok	PD effect vs age effect	False
+dehestani2024-C01	dehestani2024	dehestani2024	PFC;cingulate	Oligodendrocytes	ODCs, OPCs, MG	within	enriched	genetic_enrichment	genetic_enrichment	ok	cell-type specificity (all donors)	False
+dehestani2024-C02	dehestani2024	dehestani2024	PFC;cingulate	ALL		GBA_vs_control	NA	composition	composition_donor	ok	LRRK2-PD vs GBA1-PD vs control	False
+dehestani2024-C03	dehestani2024	dehestani2024	PFC;cingulate	Oligodendrocytes	ODCs and OPCs	GBA_vs_control	NA	de_gene	de_pseudobulk	ok	GBA1-PD vs control; LRRK2-PD vs control	False
+dehestani2024-C04	dehestani2024	dehestani2024	PFC;cingulate	OPCs		GBA_vs_control	enriched	genetic_enrichment	genetic_enrichment	ok	LRRK2-PD vs control DEGs (also GBA1-PD)	False
+dehestani2024-C05	dehestani2024	dehestani2024	PFC;cingulate	Oligodendrocytes		GBA_vs_control	up	de_pathway	geneset_shift	ok	GBA1-PD vs control	False
+dehestani2024-C06	dehestani2024	dehestani2024	PFC;cingulate	OPCs		GBA_vs_control	up	de_pathway	geneset_shift	ok	GBA1-PD vs control	False
+dehestani2024-C07	dehestani2024	dehestani2024	PFC;cingulate	Oligodendrocytes		LRRK2_vs_control	NA	de_pathway	geneset_shift	ok	LRRK2-PD vs control	False
+dehestani2024-C08	dehestani2024	dehestani2024	PFC;cingulate	OPCs		LRRK2_vs_control	NA	de_pathway	geneset_shift	ok	LRRK2-PD vs control	False
+dehestani2024-C09	dehestani2024	dehestani2024	PFC;cingulate	OPCs	ODC/OPC DEG-based PRS	within	associated_pos	clinical_association	not_testable	not_testable	within PD (Tuebingen cohort, 681 PD / 549 controls; N=379-514 with outcomes)	False
+dehestani2024-C10	dehestani2024	dehestani2024	PFC;cingulate	OPCs	OPC_ADM	within	associated_pos	clinical_association	not_testable	not_testable	within PD (PRS vs UPDRS-III)	False
+feleke2021-C01	feleke2021	feleke2021	cingulate	Microglia		PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+feleke2021-C02	feleke2021	feleke2021	cingulate	Microglia		PDD_vs_control	enriched	composition	composition_donor	ok	PDD vs control	False
+feleke2021-C03	feleke2021	feleke2021	cingulate	Microglia		DLB_vs_control	enriched	composition	composition_donor	ok	DLB vs control	False
+feleke2021-C04	feleke2021	feleke2021	cingulate	OPCs		DLB_vs_control	enriched	composition	composition_donor	ok	DLB vs control	False
+feleke2021-C05	feleke2021	feleke2021	cingulate	Endothelial	vascular cells (endothelial + pericytes merged)	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control (also PDD, DLB)	False
+feleke2021-C06	feleke2021	feleke2021	cingulate	ALL		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control (also PDD, DLB vs control)	False
+feleke2021-C07	feleke2021	feleke2021	cingulate	ALL		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control (also PDD, DLB vs control)	False
+feleke2021-C08	feleke2021	feleke2021	cingulate	ALL		PDD_vs_control	down	de_gene	de_pseudobulk	ok	PDD vs control; DLB vs control (contrasted with PD vs control)	False
+feleke2021-C09	feleke2021	feleke2021	cingulate	ALL		DLB_vs_PDD	NA	de_gene	de_pseudobulk	ok	PDD vs PD; DLB vs PD; DLB vs PDD	False
+feleke2021-C10	feleke2021	feleke2021	cingulate	ALL		PDany_vs_control	NA	de_pathway	geneset_shift	ok	PD vs control	False
+feleke2021-C11	feleke2021	feleke2021	cingulate	ALL	ExN, InN, astrocytes, oligodendrocytes	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+feleke2021-C12	feleke2021	feleke2021	cingulate	Excitatory neurons	SNCA-high excitatory neurons	PDD_vs_control	depleted	state_enrichment	state_signature	ok	PDD vs control; DLB vs control	False
+feleke2021-C13	feleke2021	feleke2021	cingulate	ALL		PDany_vs_control	NA	de_pathway	geneset_shift	ok	PD, PDD, DLB vs control	False
+feleke2021-C14	feleke2021	feleke2021	cingulate	Astrocytes	astrocytes and OPCs	PDany_vs_control	enriched	genetic_enrichment	genetic_enrichment	ok	PD vs control DEGs	False
+feleke2021-C15	feleke2021	feleke2021	cingulate	Oligodendrocytes		PDany_vs_control	enriched	genetic_enrichment	genetic_enrichment	ok	PD vs control DEGs	False
+feleke2021-C16	feleke2021	feleke2021	cingulate	Excitatory neurons		PDD_vs_control	enriched	genetic_enrichment	genetic_enrichment	ok	PDD vs control DEGs	False
+feleke2021-C17	feleke2021	feleke2021	cingulate	Microglia		within	enriched	genetic_enrichment	genetic_enrichment	ok	within group (cell-type specificity, not disease contrast)	False
+jin2024-C01	jin2024	jin2024	temporal	ALL		LBDany_vs_control	NA	composition	composition_donor	ok	LBD vs control	False
+jin2024-C02	jin2024	jin2024	temporal	Excitatory neurons		within	NA	other	state_signature	ok	cell-type expression pattern; SNCA-Tri case vs others	False
+jin2024-C03	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	down	de_gene	de_pseudobulk	ok	LBD vs control	False
+jin2024-C04	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	up	de_gene	de_pseudobulk	ok	LBD vs control	False
+jin2024-C05	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	down	de_gene	de_pseudobulk	ok	LBD vs control	False
+jin2024-C06	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	down	de_gene	de_pseudobulk	ok	LBD vs control	False
+jin2024-C07	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	down	de_gene	de_pseudobulk	ok	LBD vs control	False
+jin2024-C08	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	NA	de_gene	de_pseudobulk	ok	LBD vs control	False
+jin2024-C09	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	NA	de_pathway	geneset_shift	ok	LBD vs control	False
+jin2024-C10	jin2024	jin2024	temporal	Excitatory neurons		LBDany_vs_control	down	de_pathway	geneset_shift	ok	LBD vs control	False
+jin2024-C11	jin2024	jin2024	temporal	ALL		LBDany_vs_control	NA	de_pathway	geneset_shift	ok	LBD vs control	False
+jin2024-C12	jin2024	jin2024	temporal	Excitatory neurons			NA	other	not_testable	not_testable	SNCA-multiplication LBD vs sporadic LBD	False
+kamath2022-C01	kamath2022	kamath2022	SN	DA neurons	SOX6+ / CALB1+ DA subtypes (SOX6_AGTR1, SOX6_DDT, CALB1_GEM, CALB1_TRHR, CALB1_RBP4, ...)	within	exists	state_existence	state_signature	ok	within control	False
+kamath2022-C02	kamath2022	kamath2022	SN	DA neurons	CALB1_GEM		exists	state_existence	not_testable	not_testable	human/macaque vs mouse/rat/tree shrew	False
+kamath2022-C03	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	not_available	enriched	spatial_colocalisation	spatial_neighbourhood	not_available	ventral vs dorsal tier SNpc	False
+kamath2022-C04	kamath2022	kamath2022	SN	DA neurons	CALB1_GEM; CALB1_TRHR	not_available	enriched	spatial_colocalisation	spatial_neighbourhood	not_available	dorsal vs ventral tier SNpc	False
+kamath2022-C05	kamath2022	kamath2022	SN	DA neurons		LBDany_vs_control	down	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C06	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	LBDany_vs_control	depleted	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C07	kamath2022	kamath2022	SN	DA neurons	CALB1_GEM	LBDany_vs_control	enriched	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C08	kamath2022	kamath2022	SN	DA neurons	CALB1_TRHR	LBDany_vs_control	enriched	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C09	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	LBDany_vs_control	associated_neg	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C10	kamath2022	kamath2022	SN	Microglia	GPNMB+ (GPNMB/SULT1C2) microglia	LBDany_vs_control	enriched	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C11	kamath2022	kamath2022	SN	Astrocytes	VIM_LHX2	LBDany_vs_control	enriched	composition	composition_donor	ok	PD/LBD vs control	False
+kamath2022-C12	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+kamath2022-C13	kamath2022	kamath2022	SN	DA neurons	CALB1+/TMEM200A+ (CALB1_TRHR, CALB1_GEM, CALB1_RBP4)	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+kamath2022-C14	kamath2022	kamath2022	SN	DA neurons		within	enriched	genetic_enrichment	genetic_enrichment	ok	DA neuron markers vs other cell class markers	False
+kamath2022-C15	kamath2022	kamath2022	SN;caudate	DA neurons		within	enriched	genetic_enrichment	genetic_enrichment	ok	across 16 SNpc and caudate cell types	False
+kamath2022-C16	kamath2022	kamath2022	SN;caudate	Microglia		within	enriched	genetic_enrichment	genetic_enrichment	ok	across 16 SNpc and caudate cell types	False
+kamath2022-C17	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	within	enriched	genetic_enrichment	genetic_enrichment	ok	across 68 SNpc subpopulations	False
+kamath2022-C18	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	within	enriched	genetic_enrichment	state_signature	ok	SOX6_AGTR1 vs other DA subtypes	False
+kamath2022-C19	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	LBDany_vs_control	up	de_pathway	geneset_shift	ok	PD/LBD vs control	False
+kamath2022-C20	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	LBDany_vs_control	up	de_pathway	geneset_shift	ok	PD/LBD vs control	False
+kamath2022-C21	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	LBDany_vs_control	down	de_pathway	geneset_shift	ok	PD/LBD vs control	False
+kamath2022-C22	kamath2022	kamath2022	SN	DA neurons	SOX6_AGTR1	LBDany_vs_control	up	de_gene	de_pseudobulk	ok	PD/LBD vs control	False
+lee2023-C01	lee2023	lee2023	SN	DA neurons	AGTR1+ DopaN	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+lee2023-C02	lee2023	lee2023	SN	DA neurons	AGTR1- DopaN	PDany_vs_control	NA	composition	composition_donor	ok	PD vs control	True
+lee2023-C03	lee2023	lee2023	SN	DA neurons		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+lee2023-C04	lee2023	lee2023	SN	Astrocytes		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+lee2023-C05	lee2023	lee2023	SN	Microglia		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+lee2023-C06	lee2023	lee2023	SN	Microglia		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+lee2023-C07	lee2023	lee2023	SN	Oligodendrocytes		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+lee2023-C08	lee2023	lee2023	SN	DA neurons		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+lee2023-C09	lee2023	lee2023	SN	Microglia		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+lee2023-C10	lee2023	lee2023	SN	Oligodendrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+lee2023-C11	lee2023	lee2023	SN	Oligodendrocytes		PDany_vs_control	down	chromatin	chromatin_da	ok	PD vs control	False
+lee2023-C12	lee2023	lee2023	SN	ALL		PDany_vs_control	enriched	chromatin	chromatin_da	ok	PD vs control	False
+lee2023-C13	lee2023	lee2023	SN	Oligodendrocytes		within	enriched	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+lee2023-C14	lee2023	lee2023	SN	Microglia		within	enriched	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+lee2023-C15	lee2023	lee2023	SN	DA neurons		within	enriched	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+lee2023-C16	lee2023	lee2023	SN	ALL		PDany_vs_control	enriched	genetic_enrichment	genetic_enrichment	ok	PD vs control	False
+lee2023-C17	lee2023	lee2023	SN	ALL		within	exists	other	not_testable	not_testable	NA	False
+lee2023-C18	lee2023	lee2023	SN	Oligodendrocytes		PDany_vs_control	down	chromatin	chromatin_da	ok	PD vs control	False
+lee2023-C19	lee2023	lee2023	SN	ALL		PDany_vs_control	up	chromatin	chromatin_da	ok	PD vs control	False
+lee2023-C20	lee2023	lee2023	SN	ALL			down	genetic_enrichment	not_testable	not_testable	risk vs non-risk allele	False
+lee2023-C21	lee2023	lee2023	SN	ALL		within	NA	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+lee2023-C22	lee2023	lee2023	SN	Oligodendrocytes		PDany_vs_control	NA	other	not_testable	not_testable	PD vs control	False
+lee2026-C01	lee2026	lee2026	DLPFC	ALL		LBDany_vs_control	associated_pos	other	de_pseudobulk	ok	PD vs control and DLBD vs control effect-size similarity with AD and Vas	False
+lee2026-C02	lee2026	lee2026	DLPFC	ALL			associated_pos	genetic_enrichment	not_testable	not_testable	disease pairs	False
+lee2026-C03	lee2026	lee2026	DLPFC	Fibroblasts	VLMC	LBDany_vs_control	up	composition	composition_donor	ok	NDD (AD, DLBD, Vas, Tau, PD, FTD) vs control	False
+lee2026-C04	lee2026	lee2026	DLPFC	Inhibitory neurons	IN_LAMP5_RELN; IN_LAMP5_LHX6; IN_ADARB2	LBDany_vs_control	up	composition	composition_donor	ok	NDD (AD, DLBD, Vas, Tau, PD, FTD) vs control	False
+lee2026-C05	lee2026	lee2026	DLPFC	Fibroblasts	VLMC_DCDC2	LBDany_vs_control	up	composition	composition_donor	ok	NDD vs control	False
+lee2026-C06	lee2026	lee2026	DLPFC	ALL			associated_pos	composition	not_testable	not_testable	DLBD vs AD/Vas composition effects	False
+lee2026-C07	lee2026	lee2026	DLPFC	Inhibitory neurons	IN_LAMP5_RELN; IN_ADARB2; IN_PVALB	LBDany_vs_control	NA	de_pathway	geneset_shift	ok	AD/DLBD/Vas/PD vs control (meta-analysed)	False
+lee2026-C08	lee2026	lee2026	DLPFC	Fibroblasts	VLMC	LBDany_vs_control	NA	de_pathway	geneset_shift	ok	AD/DLBD/Vas/PD vs control (meta-analysed)	False
+lee2026-C09	lee2026	lee2026	DLPFC	ALL		LBDany_vs_control	NA	de_pathway	geneset_shift	ok	each disorder vs control (shared component)	False
+lee2026-C10	lee2026	lee2026	DLPFC	ALL		PDany_vs_control	associated_pos	genetic_enrichment	not_testable	not_testable	PD vs control	False
+lee2026-C11	lee2026	lee2026	DLPFC	ALL		not_available	up	other	de_pseudobulk	not_available	H1 vs H2 haplotype	False
+ma2025-C01	ma2025	ma2025	SN	T cells	CD8+ T cells	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+ma2025-C02	ma2025	ma2025	SN	T cells	clonally expanded T cells	PDany_vs_control	up	other	not_testable	not_testable	PD vs control	False
+ma2025-C03	ma2025	ma2025	SN	T cells		PDany_vs_control	exists	other	not_testable	not_testable	PD vs control	False
+ma2025-C04	ma2025	ma2025	SN	DA neurons		PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+ma2025-C05	ma2025	ma2025	cingulate	T cells		PDD_vs_control	NA	composition	composition_donor	ok	PDD/DLBD vs control	True
+ma2025-C06	ma2025	ma2025	SN	T cells	T cell Factor 5 (TRM)	PDany_vs_control	up	state_enrichment	state_signature	ok	PD vs control	False
+ma2025-C07	ma2025	ma2025	SN	T cells	T cell Factor 1 (effector)	PDany_vs_control	depleted	state_enrichment	state_signature	ok	PD vs control	False
+ma2025-C08	ma2025	ma2025	SN	T cells		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C09	ma2025	ma2025	SN	DA neurons		PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C10	ma2025	ma2025	SN	DA neurons		PDany_vs_control	NA	de_pathway	geneset_shift	ok	PD vs control	False
+ma2025-C11	ma2025	ma2025	SN;cingulate	Microglia	activated microglia	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C12	ma2025	ma2025	SN;cingulate	Microglia	activated microglia	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C13	ma2025	ma2025	SN	Microglia	activated microglia	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C14	ma2025	ma2025	SN	Microglia	activated microglia	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C15	ma2025	ma2025	SN	Microglia	activated microglia	PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+ma2025-C16	ma2025	ma2025	SN	Microglia	CD68+ activated microglia	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+ma2025-C17	ma2025	ma2025	SN	Immune (other)	BAMs	PDany_vs_control	up	state_enrichment	geneset_shift	ok	PD vs control	False
+ma2025-C18	ma2025	ma2025	SN	Astrocytes	protoplasmic astrocytes	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C19	ma2025	ma2025	cingulate	Astrocytes	protoplasmic astrocytes	PDD_vs_control	up	de_gene	de_pseudobulk	ok	PDD/DLBD vs control	False
+ma2025-C20	ma2025	ma2025	SN	Astrocytes	protoplasmic astrocytes	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C21	ma2025	ma2025	cingulate	Astrocytes	protoplasmic astrocytes	PDD_vs_control	up	de_gene	de_pseudobulk	ok	PDD/DLBD vs control	False
+ma2025-C22	ma2025	ma2025	cingulate	Astrocytes	protoplasmic astrocytes	PDD_vs_control	down	de_gene	de_pseudobulk	ok	PDD/DLBD vs control	False
+ma2025-C23	ma2025	ma2025	SN	Astrocytes	CD44+ fibrous-like astrocytes	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C24	ma2025	ma2025	SN	Astrocytes	fibrous-like astrocytes	PDany_vs_control	enriched	state_enrichment	state_signature	ok	PD vs control	False
+ma2025-C25	ma2025	ma2025	SN	Astrocytes	protoplasmic astrocytes	PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+ma2025-C26	ma2025	ma2025	SN	T cells	T cell Factor 5 (TRM)	PDany_vs_control	up	state_enrichment	state_signature	ok	PD vs control	False
+ma2025-C27	ma2025	ma2025	SN	Astrocytes	PD astrocyte DEG signature	PDany_vs_control	up	state_enrichment	state_signature	ok	PD vs control	False
+ma2025-C28	ma2025	ma2025	SN	DA neurons		PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C29	ma2025	ma2025	SN	Astrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C30	ma2025	ma2025	SN	Astrocytes	CD44+ fibrous-like astrocytes	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+ma2025-C31	ma2025	ma2025	SN	T cells	CD44+ fibrous-like astrocytes	PDany_vs_control	up	spatial_colocalisation	spatial_neighbourhood	ok	PD vs control	False
+ma2025-C32	ma2025	ma2025	SN	T cells	activated microglia	PDany_vs_control	up	spatial_colocalisation	spatial_neighbourhood	ok	PD vs control	False
+ma2025-C33	ma2025	ma2025	SN	T cells		PDany_vs_control	up	spatial_colocalisation	spatial_neighbourhood	ok	PD vs control	False
+ma2025-C34	ma2025	ma2025	SN	Microglia	activated microglia	PDany_vs_control	up	spatial_colocalisation	spatial_neighbourhood	ok	PD vs control	False
+ma2025-C35	ma2025	ma2025	SN	Immune (other)	BAMs; CD44+ fibrous-like astrocytes	PDany_vs_control	up	spatial_colocalisation	spatial_neighbourhood	ok	PD vs control	False
+ma2025-C36	ma2025	ma2025	SN	T cells		PDany_vs_control	up	spatial_colocalisation	spatial_neighbourhood	ok	PD vs control	False
+martirosyan2024-C01	martirosyan2024	martirosyan2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)		PDany_vs_control	down	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C02	martirosyan2024	martirosyan2024	SN	ALL	glia	PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C03	martirosyan2024	martirosyan2024	SN	T cells		PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C04	martirosyan2024	martirosyan2024	SN	DA neurons	Neurons0	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C05	martirosyan2024	martirosyan2024	SN	Inhibitory neurons	Neurons3	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C06	martirosyan2024	martirosyan2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	Neurons2	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C07	martirosyan2024	martirosyan2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	Neurons4	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C08	martirosyan2024	martirosyan2024	SN	DA neurons	Neurons0	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+martirosyan2024-C09	martirosyan2024	martirosyan2024	SN	DA neurons	Neurons0	PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+martirosyan2024-C10	martirosyan2024	martirosyan2024	SN	Inhibitory neurons	Neurons3	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+martirosyan2024-C11	martirosyan2024	martirosyan2024	SN	Astrocytes	Astrocytes2 (TH-enriched)	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C12	martirosyan2024	martirosyan2024	SN	Astrocytes	Astrocytes3	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C13	martirosyan2024	martirosyan2024	SN	Astrocytes	Astrocytes4	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C14	martirosyan2024	martirosyan2024	SN	Astrocytes	Astrocytes1	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C15	martirosyan2024	martirosyan2024	SN	Astrocytes	Astrocytes5	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C16	martirosyan2024	martirosyan2024	SN	Microglia	Microglia1 (TH-enriched)	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C17	martirosyan2024	martirosyan2024	SN	Microglia	Microglia1 (TH-enriched)	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+martirosyan2024-C18	martirosyan2024	martirosyan2024	SN	Microglia	Microglia3	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+martirosyan2024-C19	martirosyan2024	martirosyan2024	SN	Oligodendrocytes	Oligos2 (TH-enriched)	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C20	martirosyan2024	martirosyan2024	SN	Oligodendrocytes	Oligos5	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C21	martirosyan2024	martirosyan2024	SN	Oligodendrocytes	Oligos1	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C22	martirosyan2024	martirosyan2024	SN	Oligodendrocytes	Oligos3	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C23	martirosyan2024	martirosyan2024	SN	Oligodendrocytes	Oligos0	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C24	martirosyan2024	martirosyan2024	SN	Oligodendrocytes	Oligos2 (TH-enriched)	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+martirosyan2024-C25	martirosyan2024	martirosyan2024	SN	ALL	TH-enriched subpopulations	within	exists	state_existence	state_signature	ok	within dataset (shared markers)	False
+martirosyan2024-C26	martirosyan2024	martirosyan2024	SN	ALL	TH+ glia	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+martirosyan2024-C27	martirosyan2024	martirosyan2024	SN	ALL	TH+ glia	within	exists	state_existence	state_signature	ok	within dataset (3 PD, 3 controls)	False
+martirosyan2024-C28	martirosyan2024	martirosyan2024	SN	DA neurons	Neurons0	within	enriched	genetic_enrichment	state_signature	ok	across cell types	False
+martirosyan2024-C29	martirosyan2024	martirosyan2024	SN	Microglia		within	enriched	genetic_enrichment	state_signature	ok	across cell types	False
+martirosyan2024-C30	martirosyan2024	martirosyan2024	SN	ALL		within	NA	genetic_enrichment	genetic_enrichment	ok	across cell types	False
+menon2026-C01	menon2026	menon2026	SN	DA neurons	AGTR1+ DA subcluster 6	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+menon2026-C02	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Oligodendrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+menon2026-C03	menon2026	menon2026	putamen	MSNs		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+menon2026-C04	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Excitatory neurons		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+menon2026-C05	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Astrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+menon2026-C06	menon2026	menon2026	SN	DA neurons		PDany_vs_control	NA	de_pathway	geneset_shift	ok	PD vs control	False
+menon2026-C07	menon2026	menon2026	putamen	MSNs		PDany_vs_control	NA	chromatin	chromatin_da	ok	PD vs control	False
+menon2026-C08	menon2026	menon2026	SN	Oligodendrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control (by region)	False
+menon2026-C09	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Oligodendrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control (cross-region)	False
+menon2026-C10	menon2026	menon2026	cerebellum	ALL		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+menon2026-C11	menon2026	menon2026	cingulate	Inhibitory neurons		PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+menon2026-C12	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	ALL		PDany_vs_control	NA	composition	composition_donor	ok	PD vs control	True
+menon2026-C13	menon2026	menon2026	cingulate	Inhibitory neurons	PVALB interneurons	braak	NA	pathology_association	pathology_correlation	ok	across Unified LB stage (I, IIa, III, IV)	False
+menon2026-C14	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Astrocytes		braak	associated_pos	pathology_association	pathology_correlation	ok	across Unified LB stage	False
+menon2026-C15	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Astrocytes		braak	associated_pos	pathology_association	pathology_correlation	ok	across Unified LB stage	False
+menon2026-C16	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	Astrocytes		braak	NA	chromatin	chromatin_da	ok	across Unified LB stage	False
+menon2026-C17	menon2026	menon2026	putamen	MSNs		braak	associated_pos	pathology_association	pathology_correlation	ok	across Unified LB stage	False
+menon2026-C18	menon2026	menon2026	putamen	MSNs		braak	associated_neg	pathology_association	pathology_correlation	ok	across Unified LB stage	False
+menon2026-C19	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	ALL		PDany_vs_control	associated_pos	genetic_enrichment	not_testable	not_testable	PD vs control (GP2 3,611 cases / 350 controls; UKB 3,070 / 30,700)	False
+menon2026-C20	menon2026	menon2026	MTG;SN;cerebellum;cingulate;putamen	ALL		within	NA	genetic_enrichment	not_testable	not_testable	NA	False
+menon2026-C21	menon2026	menon2026	putamen	MSNs	eccentric DRD1/DRD2 MSNs	within	exists	state_existence	state_signature	ok	NA	False
+prashant2024-C01	prashant2024	prashant2024	DLPFC;DMNX;GPi;motor;visual	ALL			down	other	not_testable	not_testable	early-affected (DMNX, GPi) vs late-affected (PMC, DLPFC) and unaffected (PVC) regions	False
+smajic2022-C01	smajic2022	smajic2022	midbrain	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	CADPS2high	PDany_vs_control	enriched	state_enrichment	composition_donor	ok	PD vs control	False
+smajic2022-C02	smajic2022	smajic2022	midbrain	DA neurons	CADPS2high	within	exists	state_existence	state_signature	ok	CADPS2high vs DaNs	False
+smajic2022-C03	smajic2022	smajic2022	midbrain	DA neurons		PDany_vs_control	down	composition	composition_donor	ok	PD vs control	False
+smajic2022-C04	smajic2022	smajic2022	midbrain	Microglia		PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+smajic2022-C05	smajic2022	smajic2022	midbrain	Microglia		PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+smajic2022-C06	smajic2022	smajic2022	midbrain	Microglia		PDany_vs_control	down	pathology_association	not_testable	not_testable	PD vs control	False
+smajic2022-C07	smajic2022	smajic2022	midbrain	Astrocytes		PDany_vs_control	up	composition	composition_donor	ok	PD vs control	False
+smajic2022-C08	smajic2022	smajic2022	midbrain	Oligodendrocytes		PDany_vs_control	down	composition	composition_donor	ok	PD vs control	False
+smajic2022-C09	smajic2022	smajic2022	midbrain	ALL		PDany_vs_control	NA	composition	composition_donor	ok	PD vs control	False
+smajic2022-C10	smajic2022	smajic2022	midbrain	Microglia	GPNMBhigh / HSP90AA1high / IL1Bhigh activated microglia	PDany_vs_control	enriched	trajectory	trajectory	ok	PD vs control	False
+smajic2022-C11	smajic2022	smajic2022	midbrain	Microglia		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+smajic2022-C12	smajic2022	smajic2022	midbrain	Microglia	GPNMBhigh / HSP90AA1high microglia	within	up	de_pathway	state_signature	ok	trajectory-associated (activated vs homeostatic)	False
+smajic2022-C13	smajic2022	smajic2022	midbrain	Astrocytes	CD44high reactive astrocytes	PDany_vs_control	enriched	trajectory	trajectory	ok	PD vs control	False
+smajic2022-C14	smajic2022	smajic2022	midbrain	Astrocytes	CD44high	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+smajic2022-C15	smajic2022	smajic2022	midbrain	Astrocytes	CD44high	PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+smajic2022-C16	smajic2022	smajic2022	midbrain	Oligodendrocytes	OPALINhigh	PDany_vs_control	depleted	trajectory	composition_donor	ok	PD vs control	False
+smajic2022-C17	smajic2022	smajic2022	midbrain	Oligodendrocytes	S100Bhigh	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+smajic2022-C18	smajic2022	smajic2022	midbrain	Oligodendrocytes		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+smajic2022-C19	smajic2022	smajic2022	midbrain	Oligodendrocytes		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+smajic2022-C20	smajic2022	smajic2022	midbrain	OPCs		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+smajic2022-C21	smajic2022	smajic2022	midbrain	ALL		within	enriched	genetic_enrichment	genetic_enrichment	ok	across midbrain cell types (all samples)	False
+smajic2022-C22	smajic2022	smajic2022	midbrain	Microglia		within	enriched	genetic_enrichment	genetic_enrichment	ok	markers from PD-only vs control-only samples	False
+smajic2022-C23	smajic2022	smajic2022	midbrain	Microglia		within	enriched	genetic_enrichment	state_signature	ok	across midbrain cell types	False
+smajic2022-C24	smajic2022	smajic2022	midbrain	Microglia			enriched	genetic_enrichment	not_testable	not_testable	pathway enrichment of GWAS-driving marker genes	False
+smajic2022-C25	smajic2022	smajic2022	midbrain	Astrocytes		PDany_vs_control	up	other	state_signature	ok	PD vs control	False
+volpato2025-C01	volpato2025	volpato2025	SN	ALL	DaN_0-3; ODC_0-2 (psODC_2); Astrocyte_0-3; Microglia_0-2	within	exists	state_existence	state_signature	ok	within dataset	False
+volpato2025-C02	volpato2025	volpato2025	SN	OPCs		within	enriched	genetic_enrichment	genetic_enrichment	ok	across major cell types (controls)	False
+volpato2025-C03	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	within	enriched	genetic_enrichment	genetic_enrichment	ok	across subtypes (controls)	False
+volpato2025-C04	volpato2025	volpato2025	SN	Oligodendrocytes	psODC_2 (perineuronal satellite ODCs)	within	enriched	genetic_enrichment	genetic_enrichment	ok	across subtypes (controls)	False
+volpato2025-C05	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3; psODC_2; OPC	within	enriched	genetic_enrichment	genetic_enrichment	ok	across PPI modules	False
+volpato2025-C06	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	LBlate_vs_control	depleted	composition	composition_donor	ok	PD (Braak 5-6) vs control	False
+volpato2025-C07	volpato2025	volpato2025	SN	Astrocytes	Astrocyte_2	LBlate_vs_control	depleted	composition	composition_donor	ok	PD (Braak 5-6) vs control	False
+volpato2025-C08	volpato2025	volpato2025	SN	Oligodendrocytes	psODC_2 (perineuronal satellite ODCs)	LBlate_vs_control	depleted	composition	composition_donor	ok	PD (Braak 5-6) vs control	False
+volpato2025-C09	volpato2025	volpato2025	SN	DA neurons	AGTR1+	LBlate_vs_control	down	composition	composition_donor	ok	PD (Braak 5-6) vs control	False
+volpato2025-C10	volpato2025	volpato2025	SN	Oligodendrocytes	perineuronal oligodendrocytes	LBlate_vs_control	depleted	composition	spatial_neighbourhood	ok	PD (Braak 5-6) vs control	False
+volpato2025-C11	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3; psODC_2	braak	depleted	pathology_association	pathology_correlation	ok	iLBD/PD Braak I-IV vs control, PD Braak 5-6 vs control	False
+volpato2025-C12	volpato2025	volpato2025	SN	DA neurons	DaN_0, DaN_1, DaN_2	LBDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD/iLBD stages vs control	False
+volpato2025-C13	volpato2025	volpato2025	SN	DA neurons	DaN_1	LBlate_vs_control	NA	de_pathway	geneset_shift	ok	PD (Braak 5-6) vs control	False
+volpato2025-C14	volpato2025	volpato2025	SN	Astrocytes	Astrocyte_1 (GABRA2, EDNRB, SLC6A11)	LBlate_vs_control	up	de_pathway	geneset_shift	ok	PD (Braak 5-6) vs control	False
+volpato2025-C15	volpato2025	volpato2025	SN	Oligodendrocytes	ODC_0 (PLXDC2, PALM2, LAMA2)	LBlate_vs_control	up	de_pathway	geneset_shift	ok	PD (Braak 5-6) vs control	False
+volpato2025-C16	volpato2025	volpato2025	SN	OPCs		LBlate_vs_control	NA	other	not_testable	not_testable	PD (Braak 5-6) vs control	False
+volpato2025-C17	volpato2025	volpato2025	SN	OPCs	OPC -> psODC_2 / ODC_1	LBlate_vs_control	NA	trajectory	trajectory	ok	PD (Braak 5-6) vs control	False
+volpato2025-C18	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3; psODC_2; OPC	within	enriched	communication	communication_liana	ok	within controls	False
+volpato2025-C19	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	LBlate_vs_control	down	communication	communication_liana	ok	PD (Braak 5-6) vs control	False
+volpato2025-C20	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	within	up	state_existence	state_signature	ok	DaN_3 vs other DaN subtypes	False
+volpato2025-C21	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	within	up	trajectory	trajectory	ok	within controls (DaN_1 -> DaN_3 pseudotime)	False
+volpato2025-C22	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	within	enriched	genetic_enrichment	genetic_enrichment	ok	across subtypes	False
+volpato2025-C23	volpato2025	volpato2025	SN	Astrocytes	Astrocyte_1	within	enriched	genetic_enrichment	genetic_enrichment	ok	across subtypes	False
+volpato2025-C24	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	within	up	de_gene	state_signature	ok	DaN_3 vs other cell populations	False
+volpato2025-C25	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3	within	enriched	genetic_enrichment	state_signature	ok	across cell types	False
+volpato2025-C26	volpato2025	volpato2025	SN	DA neurons	AGTR1+ DaN_3; Astrocyte_1	within	up	state_existence	state_signature	ok	across subtypes	False
+volpato2025-C27	volpato2025	volpato2025	SN	Oligodendrocytes	psODC_2 (perineuronal ODCs)	LBlate_vs_control	down	de_pathway	geneset_shift	ok	PD (Braak 5-6) vs control	False
+wang2024-C01	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	c9 RIT2-enriched (RIT2+TH−) neurons	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+wang2024-C02	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	RIT2+ neurons	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+wang2024-C03	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	c9 RIT2-enriched neurons	within	exists	state_existence	state_signature	ok	within control	False
+wang2024-C04	wang2024	wang2024	SN	DA neurons	c6_2	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+wang2024-C05	wang2024	wang2024	SN	DA neurons	c7_3	PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+wang2024-C06	wang2024	wang2024	SN	DA neurons		within	NA	other	state_signature	ok	within dataset	False
+wang2024-C07	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	c9 RIT2-enriched neurons	PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+wang2024-C08	wang2024	wang2024	SN	ALL		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+wang2024-C09	wang2024	wang2024	SN	ALL		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C10	wang2024	wang2024	SN	ALL		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C11	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+wang2024-C12	wang2024	wang2024	SN	DA neurons	c7_3	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C13	wang2024	wang2024	SN	DA neurons	c9, c7_3, c6_2	PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C14	wang2024	wang2024	SN	Microglia		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+wang2024-C15	wang2024	wang2024	SN	ALL		PDany_vs_control	NA	de_gene	geneset_shift	ok	PD vs control	False
+wang2024-C16	wang2024	wang2024	SN	ALL		LBlate_vs_control	NA	pathology_association	pathology_correlation	ok	Braak 1-3 and Braak 4-6 vs control	False
+wang2024-C17	wang2024	wang2024	SN	Microglia		LBlate_vs_control	down	pathology_association	pathology_correlation	ok	Braak 4-6 vs control	False
+wang2024-C18	wang2024	wang2024	SN	DA neurons	c7_3	within	enriched	genetic_enrichment	genetic_enrichment	ok	across clusters (controls only)	False
+wang2024-C19	wang2024	wang2024	SN	Microglia		within	enriched	genetic_enrichment	state_signature	ok	across clusters	False
+wang2024-C20	wang2024	wang2024	SN	DA neurons	c7_3 / c9	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C21	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	c9 RIT2-enriched neurons	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C22	wang2024	wang2024	SN	Microglia		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C23	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	c9 RIT2-enriched neurons	within	enriched	genetic_enrichment	genetic_enrichment	ok	across clusters (controls only)	False
+wang2024-C24	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C25	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	c9 RIT2-enriched neurons	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+wang2024-C26	wang2024	wang2024	SN	ALL		PDany_vs_control	NA	communication	communication_liana	ok	PD vs control	False
+wang2024-C27	wang2024	wang2024	SN	ALL		PDany_vs_control	NA	communication	communication_liana	ok	PD vs control	False
+wang2024-C28	wang2024	wang2024	SN	DA neurons	c7, c9	PDany_vs_control	down	communication	communication_liana	ok	PD vs control	False
+wang2024-C29	wang2024	wang2024	SN	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)		PDany_vs_control	down	communication	communication_liana	ok	PD vs control	False
+xu2023-C01	xu2023	xu2023	putamen	Astrocytes	Ast-0 / Ast-1 / Ast-2	within	exists	state_existence	state_signature	ok	control, AD and PD (conserved across groups)	False
+xu2023-C02	xu2023	xu2023	putamen	Astrocytes	Ast-1 (reactive), Ast-2 (GFAP-high)	within	exists	state_existence	state_signature	ok	Ast-1/Ast-2 vs other astrocyte subclusters, within each group	False
+xu2023-C03	xu2023	xu2023	putamen	Astrocytes	Ast-0, Ast-1, Ast-2	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control (also AD vs control)	False
+xu2023-C04	xu2023	xu2023	putamen	Astrocytes	Ast-0, Ast-1, Ast-2 (panels h,i,l = PD Ast-0/Ast-1 and Ast-1 violin)	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control (also AD vs control)	False
+xu2023-C05	xu2023	xu2023	putamen	Astrocytes		PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control (also AD vs control)	False
+xu2023-C06	xu2023	xu2023	putamen	Astrocytes	Ast-0, Ast-1, Ast-2	PD_AD_concordance	associated_pos	other	de_pseudobulk	ok	(AD vs control) vs (PD vs control) logFC concordance	False
+xu2023-C07	xu2023	xu2023	putamen	Astrocytes		PDany_vs_control	up	de_pathway	geneset_shift	ok	PD vs control	False
+xu2023-C08	xu2023	xu2023	putamen	Astrocytes		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+xu2023-C09	xu2023	xu2023	putamen	Astrocytes		PDany_vs_control	NA	de_gene	de_pseudobulk	ok	PD vs control (putamen); AD vs control (ec, pfc)	False
+xu2023-C10	xu2023	xu2023	putamen	Microglia	Micr-0, Micr-1	PD_AD_concordance	NA	other	de_pseudobulk	ok	(PD vs control) vs (AD vs control)	False
+xu2023-C11	xu2023	xu2023	putamen	Microglia	Micr-1 (activated, DAM-like)	within	exists	state_existence	state_signature	ok	control, AD and PD (conserved)	False
+xu2023-C12	xu2023	xu2023	putamen	Microglia	Micr-1	PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control (within Micr-1)	False
+xu2023-C13	xu2023	xu2023	putamen	Microglia	Micr-0, Micr-1	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control (also AD vs control)	False
+xu2023-C14	xu2023	xu2023	putamen	Microglia		PDany_vs_control	down	de_pathway	de_pseudobulk	ok	PD vs control (also AD vs control)	False
+xu2023-C15	xu2023	xu2023	putamen	Microglia		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+xu2023-C16	xu2023	xu2023	putamen	Microglia	Micr-0 to Micr-1 activation trajectory	within	exists	trajectory	trajectory	ok	within control, AD and PD separately	False
+xu2023-C17	xu2023	xu2023	putamen	MSNs	mD1, pD1, ncD1, mD2, pD2, ncD2, hMSN, sMSN	within	exists	state_existence	state_signature	ok	all groups	False
+xu2023-C18	xu2023	xu2023	putamen	MSNs	sMSN	within	exists	state_existence	state_signature	ok	all groups	False
+xu2023-C19	xu2023	xu2023	putamen	MSNs	all neuronal subclusters	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+xu2023-C20	xu2023	xu2023	putamen	MSNs	D1 MSNs (mD1/pD1)	PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+xu2023-C21	xu2023	xu2023	putamen	ALL		PDany_vs_control	NA	composition	composition_donor	ok	PD vs control (also AD)	False
+zhu2024-C01	zhu2024	zhu2024	PFC	T cells	brain-resident T cells (CD3E, SKAP1, GNLY, CD96)	PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+zhu2024-C02	zhu2024	zhu2024	PFC	Microglia		PDany_vs_control	enriched	composition	composition_donor	ok	PD vs control	False
+zhu2024-C03	zhu2024	zhu2024	PFC	Oligodendrocytes		PDany_vs_control	depleted	composition	composition_donor	ok	PD vs control	False
+zhu2024-C04	zhu2024	zhu2024	PFC	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	ExN, InN	PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+zhu2024-C05	zhu2024	zhu2024	PFC	DA neurons;Excitatory neurons;Inhibitory neurons;MSNs;Neurons (other)	ExN, InN	PDany_vs_control	up	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C06	zhu2024	zhu2024	PFC	Astrocytes		PDany_vs_control	up	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C07	zhu2024	zhu2024	PFC	Astrocytes		PDany_vs_control	down	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C08	zhu2024	zhu2024	PFC	Microglia		PDany_vs_control	up	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C09	zhu2024	zhu2024	PFC	Oligodendrocytes		PDany_vs_control	up	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C10	zhu2024	zhu2024	PFC	OPCs		PDany_vs_control	up	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C11	zhu2024	zhu2024	PFC	T cells		PDany_vs_control	up	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C12	zhu2024	zhu2024	PFC	Excitatory neurons		PDany_vs_control	down	de_pathway	geneset_shift	ok	PD vs control	False
+zhu2024-C13	zhu2024	zhu2024	PFC	Inhibitory neurons		PDany_vs_control	down	de_pathway	de_pseudobulk	ok	PD vs control	False
+zhu2024-C14	zhu2024	zhu2024	PFC	Excitatory neurons		not_available	associated_neg	pathology_association	pathology_correlation	not_available	Lewy body + neurite score across donors (pS129 IHC)	False
+zhu2024-C15	zhu2024	zhu2024	PFC	Excitatory neurons		not_available	associated_pos	pathology_association	pathology_correlation	not_available	Lewy body pathology score	False
+zhu2024-C16	zhu2024	zhu2024	PFC	ALL		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+zhu2024-C17	zhu2024	zhu2024	PFC	Excitatory neurons		PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+zhu2024-C18	zhu2024	zhu2024	PFC	Excitatory neurons		not_available	associated_pos	pathology_association	pathology_correlation	not_available	Lewy body pathology score	False
+zhu2024-C19	zhu2024	zhu2024	PFC	Oligodendrocytes		PDany_vs_control	up	de_gene	de_pseudobulk	ok	PD vs control	False
+zhu2024-C20	zhu2024	zhu2024	PFC	Excitatory neurons		PDany_vs_control	down	de_gene	de_pseudobulk	ok	PD vs control	False
+zhu2024-C21	zhu2024	zhu2024	PFC	Excitatory neurons	ExN1, ExN2, ExN3	PDany_vs_control	NA	trajectory	not_testable	not_testable	PD vs control	False
+zhu2024-C22	zhu2024	zhu2024	PFC	ALL		PDany_vs_control	down	communication	communication_liana	ok	PD vs control	False
+zhu2024-C23	zhu2024	zhu2024	PFC	Astrocytes	ExN-Astro pair	PDany_vs_control	down	communication	communication_liana	ok	PD vs control	False
+zhu2024-C24	zhu2024	zhu2024	PFC	T cells	T cell-ExN pair	PDany_vs_control	NA	communication	communication_liana	ok	PD vs control	False
+zhu2024-C25	zhu2024	zhu2024	PFC	ALL		PD_AD_concordance	NA	other	de_pseudobulk	ok	(PD vs control, this study) vs (AD vs control, Mathys 2019)	False

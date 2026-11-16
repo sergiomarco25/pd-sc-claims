@@ -1,0 +1,19 @@
+claim_id	term	reason
+jin2024-C09	IPA: Calcium Signaling	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Synaptic Long Term Potentiation	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Synaptogenesis Signaling Pathway	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: SNARE Signaling Pathway	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Clathrin-mediated Endocytosis Signaling	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: RHOGDI Signaling	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Protein Kinase A Signaling	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: α-Adrenergic Signaling	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Unfolded protein response	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Glycogen Degradation II	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C09	IPA: Protein Ubiquitination Pathway	IPA gene set proprietary; signature holds only the EX DEG members; use closest GO/Reactome set for a full gene-set test
+jin2024-C10	IPA toxicity lists (Fig. 3G): mitochondrial dysfunction, lipid metabolism, oxidative stress	IPA lists proprietary; signatures hold EX DEG members of matching toxicity lists in table S6 only
+jin2024-C11	IPA: RHOGDI Signaling	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent
+jin2024-C11	IPA: Protein Kinase A Signaling	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent
+jin2024-C11	IPA: Synaptogenesis Signaling Pathway	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent
+jin2024-C11	IPA: Signaling by Rho Family GTPases	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent
+jin2024-C11	IPA: Estrogen Receptor Signaling	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent
+jin2024-C11	IPA: Protein Ubiquitination Pathway	IPA gene set proprietary; signature holds only DEG members; use GO/Reactome equivalent

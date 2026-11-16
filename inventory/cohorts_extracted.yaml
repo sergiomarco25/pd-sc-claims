@@ -1,0 +1,402 @@
+- dataset: chia2025
+  paper: chia2025
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen
+  brain_banks:
+  - Parkinson's UK Brain Bank (Imperial College London)
+  country: UK
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text (Methods)
+    quote: null
+  lewy_staging: Lewy body stage (per-donor in Additional file 1 Table S3)
+  disease_definitions: AD, DLB, PDD and non-cognitively-impaired controls; clinical and pathological diagnosis
+  sampling: prefrontal cortex, middle frontal gyrus; grey and white matter
+  assay: 10x Chromium Single Cell 3' v3 snRNA-seq
+  notes: ''
+  sources:
+  - chia2025 full text
+  - Methods "Postmortem human prefrontal cortical tissues"
+  - SnRNA-seq library preparation
+- dataset: dehestani2024
+  paper: dehestani2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen
+  brain_banks:
+  - Netherlands Brain Bank
+  - UCL Queen Square Brain Bank (one LRRK2 brain)
+  country: Netherlands; UK
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: Braak Lewy body stage (PD donors 5-6)
+  disease_definitions: idiopathic PD, GBA1-PD, LRRK2-PD and controls; all donors male, aged 65-80
+  sampling: cortex (see claims/notes/dehestani2024.md)
+  assay: 10x Chromium Single Cell 3' v3.1 snRNA-seq
+  notes: all-male cohort
+  sources:
+  - dehestani2024 full text
+  - Methods
+- dataset: feleke2021
+  paper: feleke2021
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen
+  brain_banks:
+  - Parkinson's UK Tissue Bank (Multiple Sclerosis and Parkinson's Tissue Bank
+  - Imperial College London)
+  country: UK
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: Braak alpha-synuclein stage; Braak tau stage <= 3 required for all donors
+  disease_definitions: PD by MDS clinical criteria, PDD and DLB by current clinical criteria, all pathologically confirmed;
+    controls with Braak tau <= 3
+  sampling: anterior cingulate cortex, grey matter
+  assay: 10x Chromium Single Cell 3' v2 snRNA-seq
+  notes: tau filter excludes donors with substantial AD co-pathology
+  sources:
+  - feleke2021 full text
+  - Methods "Sample selection"
+  - Nuclei encapsulation
+- dataset: jin2024
+  paper: jin2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain, autopsy-confirmed
+  brain_banks:
+  - Mayo Clinic Jacksonville brain bank for neurodegenerative disorders
+  country: USA
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: not_reported (AD staging by Braak NFT and Thal phase)
+  disease_definitions: autopsy-confirmed LBD (5, including one SNCA duplication and one SNCA triplication) and controls (3)
+  sampling: superior temporal cortex, grey matter
+  assay: 10x Chromium Single Cell 3' v3.1 snRNA-seq
+  notes: two of five LBD donors carry SNCA multiplications
+  sources:
+  - jin2024 full text
+  - Methods; table S4
+- dataset: kamath2022
+  paper: kamath2022
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen
+  brain_banks:
+  - NIH NeuroBioBank
+  - Multiple Sclerosis and Parkinson's Tissue Bank
+  country: USA; UK
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text (Methods
+    Supplementary Table 1/2 not checked): null
+    quote: null
+  lewy_staging: midbrain loss score where reported by the brain bank (0-3)
+  disease_definitions: PD/LBD (10) vs neurotypical controls (8)
+  sampling: substantia nigra pars compacta; NR4A2 FANS enrichment of dopaminergic nuclei (NR4A2+ and NR4A2- nuclei sorted);
+    4 control caudate libraries as reference (one NeuN-sorted)
+  assay: 10x Chromium 3' v3 snRNA-seq
+  notes: composition of sorted libraries is not tissue composition
+  sources:
+  - kamath2022 full text
+  - Results "A molecular taxonomy"
+  - Methods "FANS for enrichment of dopaminergic nuclei"
+  - acknowledgements
+- dataset: lee2023
+  paper: lee2023
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks: not_reported
+  country: not_reported
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: Braak stage (pathological scoring per Braak)
+  disease_definitions: PD vs controls (see claims/notes/lee2023.md)
+  sampling: substantia nigra; nuclei flow-sorted (MoFlo Astrios) before library preparation
+  assay: 10x Chromium Single Cell 3' snRNA-seq and Chromium Single Cell ATAC (separate libraries)
+  notes: ''
+  sources:
+  - lee2023 full text
+  - Methods
+- dataset: lee2026
+  paper: lee2026
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen
+  brain_banks:
+  - Mount Sinai NIH NeuroBioBank (MSSM)
+  country: USA
+  ancestry:
+    summary: 'genetic ancestry: European 303, African 47, Asian 6, unknown 45 (of 401 donors in the harmonised subset)'
+    counts:
+      European: 303
+      African: 47
+      Asian: 3
+      East Asian: 2
+      South Asian: 1
+      unknown: 45
+    basis: genetic
+    source: harmonised obs `genetic_ancestry` (unique donors); full text
+    quote: The cohort covers a diverse genetic background and over 30% of the donors (n = 509) were of non-European (EUR)
+      ancestry.
+  lewy_staging: not_reported for Lewy bodies (AD measures CERAD, Braak NFT)
+  disease_definitions: PsychAD diagnoses; harmonised subset keeps controls and Lewy body diagnoses (DLB, PDD, PD)
+  sampling: dorsolateral prefrontal cortex
+  assay: 10x snRNA-seq (multiplexed)
+  notes: the paper's full cohort (1,494 donors from MSSM, HBCC and RADC) is larger than the harmonised MSSM subset; ancestry
+    quote refers to the full cohort
+  sources:
+  - lee2026 full text
+  - Methods; harmonised/lee2026.h5ad obs
+- dataset: ma2025
+  paper: ma2025
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen at autopsy
+  brain_banks:
+  - New York Brain Bank (Columbia University)
+  country: USA
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: not_reported
+  disease_definitions: PD/DLB donors vs controls without significant neuropathology
+  sampling: substantia nigra and cingulate cortex
+  assay: 10x Chromium 3' v3/v3.1 snRNA-seq (+ TCR-seq, Visium)
+  notes: ''
+  sources:
+  - ma2025 full text
+  - Methods
+- dataset: martirosyan2024
+  paper: martirosyan2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks:
+  - Oregon Brain Bank
+  country: USA (samples registered in UZ Leuven Biobank, Belgium)
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: presence of Lewy bodies in midbrain from neuropathology reports
+  disease_definitions: PD vs controls, from brain bank clinical and neuropathology reports
+  sampling: substantia nigra / midbrain
+  assay: 10x Chromium Single Cell 3' v3 snRNA-seq
+  notes: ''
+  sources:
+  - martirosyan2024 full text
+  - Methods "Selection of donors"
+- dataset: prashant2024
+  paper: prashant2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks:
+  - Harvard Brain Tissue Resource Center (NIH NeuroBioBank)
+  - Mount Sinai NIH NeuroBioBank
+  - University of Miami Brain Endowment Bank (NIH NeuroBioBank)
+  country: USA
+  ancestry:
+    summary: not reported for 96 of 97 donors (1 South Asian)
+    counts:
+      unknown: 96
+      South Asian: 1
+    basis: not_reported
+    source: harmonised obs `ancestry` (unique donors)
+    quote: null
+  lewy_staging: Braak PD stage (plus Braak AD stage, Hoehn and Yahr)
+  disease_definitions: clinically diagnosed PD only, without other neurological or major neuropsychiatric disease including
+    AD; unaffected controls
+  sampling: DMNX, GPi, primary motor cortex, DLPFC, primary visual cortex
+  assay: 10x snRNA-seq
+  notes: the paper names four brain banks; three found in the extracted text
+  sources:
+  - prashant2024 full text
+  - Methods and Table 1; harmonised/prashant2024.h5ad obs
+- dataset: smajic2022
+  paper: smajic2022
+  organism: Homo sapiens
+  sample_type: post-mortem brain, frozen sections
+  brain_banks:
+  - Parkinson's UK Brain Bank
+  - Newcastle Brain Tissue Resource
+  country: UK
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: full text
+    quote: null
+  lewy_staging: not_reported
+  disease_definitions: idiopathic PD vs controls, with neuropathological reports
+  sampling: midbrain (hemi-midbrain sections); nuclei sorted before library preparation
+  assay: 10x Chromium Next GEM Single Cell 3' v3.1 snRNA-seq
+  notes: ''
+  sources:
+  - smajic2022 full text
+  - Materials and methods
+- dataset: wang2024
+  paper: wang2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks:
+  - University of Miami Brain Endowment Bank (via NIH NeuroBioBank)
+  country: USA
+  ancestry:
+    summary: 'self-reported White: 32 of 32 donors'
+    counts:
+      White: 32
+    basis: self_reported
+    source: GEO sample characteristics `race` (harmonised obs), checked against Table S1
+    quote: null
+  lewy_staging: Braak stage (control 0, early 1-3, late 4-6)
+  disease_definitions: PD (23, includes PDD) vs controls (9)
+  sampling: substantia nigra
+  assay: 10x Chromium Single Cell 3' snRNA-seq
+  notes: ''
+  sources:
+  - wang2024 full text
+  - Methods and Table 1; inventory/harmonisation/wang2024.md
+- dataset: adams2024
+  paper: adams2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks:
+  - 'NIH NeuroBioBank: Human Brain and Spinal Fluid Resource Center (Sepulveda, 17 donors)'
+  - University of Maryland Brain and Tissue Bank (12)
+  - Harvard Brain Tissue Resource Center (1)
+  - University of Miami Brain Endowment Bank (1)
+  country: USA
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: 'full text (NCBI PMC11361719, Methods) and GEO metadata: not reported'
+    quote: null
+  lewy_staging: Braak LB where given in GEO / Supplementary Table 1
+  disease_definitions: young controls, aged controls, PD (3 donors with poor RNA quality dropped as in the paper)
+  sampling: substantia nigra dissected from midbrain blocks; nuclei 7AAD-sorted to remove debris (no cell-type enrichment)
+  assay: 10x Genomics Single Cell Multiome ATAC + Gene Expression (CG000338); RNA part used
+  notes: young vs aged controls allow ageing contrasts
+  sources:
+  - PMC11361719 Methods 'Human samples'
+  - harmonised/adams2024.h5ad obs brain_bank
+- dataset: glock2026
+  paper: glock2026
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks: not_reported (three cohorts labelled Cohort 01-03 on GEO)
+  country: not_reported
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: GEO GSE295998 (no publication located)
+    quote: null
+  lewy_staging: Braak LB and LB pathology in GEO metadata
+  disease_definitions: late-onset PD vs controls (GEO)
+  sampling: amygdala; limbic excitatory neurons profiled
+  assay: 10x snRNA-seq, CellBender-filtered
+  notes: GEO-only dataset (Genentech); no paper text available
+  sources:
+  - inventory/harmonisation/glock2026.md
+  - GEO GSE295998
+- dataset: menon2026
+  paper: menon2026
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks:
+  - Banner Sun Health Research Institute
+  country: USA
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: CELLxGENE obs, harmonised obs (preprint full text not retrieved)
+    quote: null
+  lewy_staging: Unified Lewy body stage
+  disease_definitions: PD (80) vs controls (21); clinical diagnosis and dementia status available
+  sampling: substantia nigra, putamen, cingulate gyrus, middle temporal gyrus, cerebellum
+  assay: 10x Multiome (snRNA + snATAC); RNA part used
+  notes: preprint
+  sources:
+  - harmonised/menon2026.h5ad obs `brain_bank`
+  - inventory/harmonisation/menon2026.md
+- dataset: volpato2025
+  paper: volpato2025
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks: not_reported (Oxford group)
+  country: UK
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: GEO GSE329625 metadata (preprint full text not retrieved)
+    quote: null
+  lewy_staging: Braak LB (PD Braak 5-6 and 3-4, iLBD)
+  disease_definitions: PD Braak 5-6 (6), PD Braak 3-4 (3), iLBD (4), controls (7)
+  sampling: ventral substantia nigra pars compacta
+  assay: ICELL8 full-length single-nucleus RNA-seq (SMART-seq-type read counts, not UMIs)
+  notes: preprint; country inferred from the Oxford authorship, not stated in the sources checked
+  sources:
+  - inventory/papers.tsv
+  - inventory/harmonisation/volpato2025.md
+- dataset: xu2023
+  paper: xu2023
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks: not_reported
+  country: USA
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: 'full text (NCBI PMC10046522, Methods) and Supplementary Table 1: not reported'
+    quote: null
+  lewy_staging: Lewy body stage per McKeith et al., modified by Burack et al.; Braak NFT and Abeta stages for AD
+  disease_definitions: 'groups by clinical diagnosis with neuropathological characterisation: PD (4), AD (4), cognitively
+    healthy controls (4; Lewy body stage 0)'
+  sampling: putamen
+  assay: 10x Chromium Single Cell 3' v3
+  notes: Supplementary Table 1 has no ancestry column (cause of death and CDR are given); country inferred from the authors'
+    institution
+  sources:
+  - PMC10046522 Methods
+  - raw/supplements/xu2023 Table S1
+- dataset: zhu2024
+  paper: zhu2024
+  organism: Homo sapiens
+  sample_type: post-mortem brain
+  brain_banks: not_reported
+  country: USA
+  ancestry:
+    summary: not_reported
+    counts: null
+    basis: not_reported
+    source: 'full text (NCBI PMC12372474, Methods): not reported'
+    quote: null
+  lewy_staging: Lewy pathology score in Table S1 (not on disk)
+  disease_definitions: PD (6) vs controls (6) by clinical diagnosis and brain pathology
+  sampling: prefrontal cortex BA9
+  assay: 10x Chromium Single Cell 3' v3
+  notes: demographics missing until Table S1 is fetched; country inferred from the authors' institution
+  sources:
+  - PMC12372474 Methods

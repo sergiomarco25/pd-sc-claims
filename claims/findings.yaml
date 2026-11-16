@@ -1,0 +1,756 @@
+- id: F-axis2-shift
+  origin: finding
+  paper: this-study
+  statement: PD donors are shifted towards the proteostatic end of the second patient axis (UPR glial states and disease-associated
+    oligodendrocytes) compared with controls.
+  quote: ''
+  location: scripts/subgroups/03_axes_controls_clinical.py -> results/subgroups/axes_shift.tsv
+  centrality: secondary
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: patient axis 2 (proteostatic stress)
+  claim_type: other
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: subgroups/axes_shift.tsv
+    filter:
+      axis: PC2
+      dataset:
+      - adams2024
+      - chia2025
+      - feleke2021
+      - glock2026
+      - kamath2022
+      - lee2023
+      - lee2026
+      - ma2025
+      - martirosyan2024
+      - menon2026
+      - prashant2024
+      - smajic2022
+      - volpato2025
+      - wang2024
+      - zhu2024
+    columns:
+      est: g
+      n_case: n_case
+      n_ref: n_ctrl
+    scale: smd
+  analysis:
+    script: scripts/subgroups/03_axes_controls_clinical.py
+    results: results/subgroups/axes_shift.tsv
+    date: '2026-11-13'
+- id: F-cirbp-ad
+  origin: finding
+  paper: this-study
+  statement: CIRBP and RBM3 are also lower in Alzheimer's disease astrocytes than in controls (dorsolateral prefrontal cortex).
+  quote: ''
+  location: scripts/41b_psychad_specificity.py -> results/psychad/specificity.tsv
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Astrocytes
+  cell_state: cold-inducible (CIRBP, RBM3)
+  claim_type: de_gene
+  direction: down
+  comparison: AD_vs_control
+  genes:
+  - CIRBP
+  - RBM3
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: AD_vs_control
+  null_claim: false
+  evidence:
+    table: psychad/specificity.tsv
+    filter:
+      programme: cold-inducible (CIRBP, RBM3)
+      cell_class: Astrocytes
+      group: Alzheimer's disease
+    columns:
+      est: effect_sd
+      se: se_sd
+      n_case: n_group
+      n_ref: n_ctrl
+    dataset: lee2026
+    scale: smd
+  analysis:
+    script: scripts/41b_psychad_specificity.py
+    results: results/psychad/specificity.tsv
+    date: '2026-11-13'
+- id: F-cirbp-scz-null
+  origin: finding
+  paper: this-study
+  statement: CIRBP and RBM3 are not lower in schizophrenia astrocytes than in controls (dorsolateral prefrontal cortex).
+  quote: ''
+  location: scripts/41b_psychad_specificity.py -> results/psychad/specificity.tsv
+  centrality: main
+  modality: snRNA
+  region: DLPFC
+  cell_type: Astrocytes
+  cell_state: cold-inducible (CIRBP, RBM3)
+  claim_type: de_gene
+  direction: NA
+  comparison: SCZ_vs_control
+  genes:
+  - CIRBP
+  - RBM3
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: SCZ_vs_control
+  null_claim: true
+  evidence:
+    table: psychad/specificity.tsv
+    filter:
+      programme: cold-inducible (CIRBP, RBM3)
+      cell_class: Astrocytes
+      group: schizophrenia
+    columns:
+      est: effect_sd
+      se: se_sd
+      n_case: n_group
+      n_ref: n_ctrl
+    dataset: lee2026
+    scale: smd
+  analysis:
+    script: scripts/41b_psychad_specificity.py
+    results: results/psychad/specificity.tsv
+    date: '2026-11-13'
+- id: F-comp-da-neurons
+  origin: finding
+  paper: this-study
+  statement: Dopaminergic neurons make up a smaller share of neurons in the PD substantia nigra than in controls.
+  quote: ''
+  location: scripts/22_composition_meta.py -> results/biology/composition_estimates.tsv
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: DA neurons
+  cell_state: ''
+  claim_type: composition
+  direction: down
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: DA neuron vulnerability
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/composition_estimates.tsv
+    filter:
+      contrast: PDany_vs_control
+      cell_class: DA neurons
+      denominator: all neurons
+      region_group: midbrain / SN
+    scale: logit
+  analysis:
+    script: scripts/22_composition_meta.py
+    results: results/biology/composition_estimates.tsv
+    date: '2026-11-13'
+- id: F-comp-excitatory
+  origin: finding
+  paper: this-study
+  statement: Excitatory neurons make up a smaller share of nuclei in PD than in controls when all regions are pooled; the
+    cortex-only estimate is not significant.
+  quote: ''
+  location: scripts/22_composition_meta.py -> results/biology/composition_estimates.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Excitatory neurons
+  cell_state: ''
+  claim_type: composition
+  direction: down
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: 'Manuscript v0.8 says ''cortical excitatory neurons are lost (-0.15, 14 datasets)'': that figure is the all-regions
+    estimate; cortex only: -0.11, FDR 0.61.'
+  themes: Synaptic & neuronal function
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/composition_estimates.tsv
+    filter:
+      contrast: PDany_vs_control
+      cell_class: Excitatory neurons
+      denominator: all nuclei
+    scale: logit
+  analysis:
+    script: scripts/22_composition_meta.py
+    results: results/biology/composition_estimates.tsv
+    date: '2026-11-13'
+- id: F-comp-microglia
+  origin: finding
+  paper: this-study
+  statement: Microglia make up a larger share of nuclei in PD than in controls, pooled across brain regions.
+  quote: ''
+  location: scripts/22_composition_meta.py -> results/biology/composition_estimates.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Microglia
+  cell_state: ''
+  claim_type: composition
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Microglial activation
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/composition_estimates.tsv
+    filter:
+      contrast: PDany_vs_control
+      cell_class: Microglia
+      denominator: all nuclei
+    scale: logit
+  analysis:
+    script: scripts/22_composition_meta.py
+    results: results/biology/composition_estimates.tsv
+    date: '2026-11-13'
+- id: F-heat-dmnx
+  origin: finding
+  paper: this-study
+  statement: In the dorsal motor nucleus of the vagus, the heat-shock response is higher in PD than in controls.
+  quote: ''
+  location: scripts/30_donor_analyses.py -> results/biology/donor_regions_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: DMNX
+  cell_type: All
+  cell_state: heat response
+  claim_type: de_pathway
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/donor_regions_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      region: DMNX
+    columns:
+      est: hedges_g
+      n_case: n_cases
+      n_ref: n_ctrl
+    scale: smd
+  analysis:
+    script: scripts/30_donor_analyses.py
+    results: results/biology/donor_regions_effects.tsv
+    date: '2026-11-13'
+- id: F-heat-lewy-stage
+  origin: finding
+  paper: this-study
+  statement: The heat-shock response rises with Lewy body stage across donors.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: heat response
+  claim_type: pathology_association
+  direction: associated_pos
+  comparison: braak
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Lewy pathology & stage
+  contrast: braak
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      test: Lewy stage
+    scale: fisher_z
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-heat-pmi-null
+  origin: finding
+  paper: this-study
+  statement: The heat-shock response is not associated with post-mortem interval.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: heat response
+  claim_type: other
+  direction: NA
+  comparison: pmi
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: pmi
+  null_claim: true
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      test: post-mortem interval
+    scale: fisher_z
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-heat-sn
+  origin: finding
+  paper: this-study
+  statement: In the substantia nigra, the heat-shock response is higher in PD than in controls.
+  quote: ''
+  location: scripts/30_donor_analyses.py -> results/biology/donor_regions_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: SN
+  cell_type: All
+  cell_state: heat response
+  claim_type: de_pathway
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/donor_regions_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      region:
+      - SN
+      - midbrain
+    columns:
+      est: hedges_g
+      n_case: n_cases
+      n_ref: n_ctrl
+    scale: smd
+  analysis:
+    script: scripts/30_donor_analyses.py
+    results: results/biology/donor_regions_effects.tsv
+    date: '2026-11-13'
+- id: F-heat-stage-early-null
+  origin: finding
+  paper: this-study
+  statement: The heat-shock response is not raised at Lewy body stage 1-2 compared with controls.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: heat response
+  claim_type: de_pathway
+  direction: NA
+  comparison: LBearly_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Lewy pathology & stage
+  contrast: LBearly_vs_control
+  null_claim: true
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      test: LBearly_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-heat-stage-mid
+  origin: finding
+  paper: this-study
+  statement: The heat-shock response is raised at Lewy body stage 3-4 compared with controls.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: heat response
+  claim_type: de_pathway
+  direction: up
+  comparison: LBmid_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Lewy pathology & stage
+  contrast: LBmid_vs_control
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      test: LBmid_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-prog-chaperone
+  origin: finding
+  paper: this-study
+  statement: Chaperone-mediated protein folding genes are higher in PD than in controls across cell types.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: chaperone folding
+  claim_type: de_pathway
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: chaperone folding
+      cell_class: ALL
+      test: PDany_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-prog-cirbp
+  origin: finding
+  paper: this-study
+  statement: The cold-inducible RNA-binding proteins CIRBP and RBM3 are lower in PD than in controls across cell types.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: cold-inducible (CIRBP, RBM3)
+  claim_type: de_gene
+  direction: down
+  comparison: PDany_vs_control
+  genes:
+  - CIRBP
+  - RBM3
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: cold-inducible (CIRBP, RBM3)
+      cell_class: ALL
+      test: PDany_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-prog-heat
+  origin: finding
+  paper: this-study
+  statement: The heat-shock response programme is higher in PD than in controls across cell types (pseudobulk of all nuclei).
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: heat response
+  claim_type: de_pathway
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Proteostasis / heat shock / UPR
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: heat response
+      cell_class: ALL
+      test: PDany_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-prog-hypoxia
+  origin: finding
+  paper: this-study
+  statement: Hypoxia-response genes are higher in PD than in controls in glia and vascular cells (astrocytes, microglia, oligodendrocytes,
+    endothelial cells).
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Astrocytes;Microglia;Oligodendrocytes;Endothelial
+  cell_state: hypoxia
+  claim_type: de_pathway
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: Per dataset, the four classes are combined by fixed effect. Not raised in all cells pooled (g 0.14, FDR 0.16), OPCs
+    or neurons.
+  themes: Mitochondria & metabolism
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: hypoxia
+      cell_class:
+      - Astrocytes
+      - Microglia
+      - Oligodendrocytes
+      - Endothelial
+      test: PDany_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'
+- id: F-q-complex1-odc
+  origin: finding
+  paper: this-study
+  statement: Mitochondrial complex I biogenesis genes are lower in PD oligodendrocytes than in controls.
+  quote: ''
+  location: scripts/54_question_analysis.py -> results/questions/q-example-complex1-odc.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: complex I biogenesis (Reactome)
+  claim_type: de_pathway
+  direction: down
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: 'From question q-example-complex1-odc: Are mitochondrial complex I genes lower in PD oligodendrocytes?'
+  themes: Mitochondria & metabolism
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: questions/q-example-complex1-odc.tsv
+    scale: smd
+    columns: {}
+  analysis:
+    script: scripts/54_question_analysis.py
+    results: results/questions/q-example-complex1-odc.tsv
+    question: q-example-complex1-odc
+    date: '2026-11-13'
+- id: F-q-heat-sex
+  origin: finding
+  paper: this-study
+  statement: Among donors with Lewy body disease, the heat-shock response differs between men and women.
+  quote: ''
+  location: scripts/54_question_analysis.py -> results/questions/q-example-heat-sex.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: heat response
+  claim_type: other
+  direction: NA
+  comparison: male vs female Lewy body disease donors
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: 'From question q-example-heat-sex: Is the heat-shock response different between men and women with PD?'
+  themes: Proteostasis / heat shock / UPR
+  contrast: sex
+  null_claim: false
+  evidence:
+    table: questions/q-example-heat-sex.tsv
+    scale: smd
+    columns: {}
+  analysis:
+    script: scripts/54_question_analysis.py
+    results: results/questions/q-example-heat-sex.tsv
+    question: q-example-heat-sex
+    date: '2026-11-13'
+- id: F-state-dao
+  origin: finding
+  paper: this-study
+  statement: The disease-associated oligodendrocyte state described in the nigra (Adams) is higher in PD oligodendrocytes
+    across datasets and regions.
+  quote: ''
+  location: scripts/27_programmes.py -> results/biology/programme_effects.tsv
+  centrality: main
+  modality: snRNA
+  region: multiple
+  cell_type: Oligodendrocytes
+  cell_state: disease-associated oligodendrocytes (Adams)
+  claim_type: state_enrichment
+  direction: up
+  comparison: PDany_vs_control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: donor-level meta-analysis (this study)
+  testable_with: rna
+  test_template: finding
+  requires: ''
+  notes: ''
+  themes: Oligodendroglia & myelin
+  contrast: PDany_vs_control
+  null_claim: false
+  evidence:
+    table: biology/programme_effects.tsv
+    filter:
+      programme: disease-associated oligodendrocytes (Adams)
+      cell_class: Oligodendrocytes
+      test: PDany_vs_control
+    scale: smd
+  analysis:
+    script: scripts/27_programmes.py
+    results: results/biology/programme_effects.tsv
+    date: '2026-11-13'

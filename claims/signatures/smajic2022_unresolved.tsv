@@ -1,0 +1,5 @@
+claim_id	term	reason
+smajic2022-C16	OPALINhigh / RBFOX1-S100Bhigh oligodendrocyte subcluster markers	subcluster marker table not in supplement (Fig. 4H only); named genes + trajectory genes used
+smajic2022-C19	GO neuron projection / synaptic transmission (Fig. 4L, oligodendrocyte trajectory-down genes)	GO result for trajectory genes not tabulated and no such term among GO of oligodendrocyte down-DEGs; resolve GO terms centrally (trajectory-down gene list given as de_down)
+smajic2022-C25	astrocyte / microglia proliferation	no genes or supporting Results given (abstract only); a proliferation set (e.g. GO cell cycle) must be chosen centrally
+smajic2022-C12	GO enrichment of microglia branch genes (Fig. 3E: cytokine secretion, UPR)	branch-gene GO table not in supplement; branch gene lists + UPR terms of microglia DEGs used

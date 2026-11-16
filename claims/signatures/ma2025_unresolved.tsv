@@ -1,0 +1,4 @@
+claim_id	term	reason
+ma2025-C17	Schonhoff et al. 2023 murine proliferative/activated BAM signatures	external mouse gene sets (ref. 24), not in supplement; SN BAM cluster markers attached; SN BAM DE has 0 genes at adj.P<0.05
+ma2025-C24	astrocyte gene programs 8-10 (Fig. S10)	program gene loadings not in supplement (SD6 sheet A factors 8-10 are not astrocytic); SN fibrous-like astrocyte markers attached
+ma2025-C25	KEGG hsa04630	term not in authors' pathfindR table MOESM6|B block Protoplasmic; resolve from MSigDB

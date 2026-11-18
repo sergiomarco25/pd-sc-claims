@@ -1,0 +1,26 @@
+# Claim contexts and the store's contrast vocabulary (claimstore.contexts, claimstore.build_store).
+# A claim's comparison text (lower case) is matched against `rules` in order; the first match gives its contrast code
+# (claims/contrast_overrides.tsv takes precedence). Codes are those of config/contrasts.toml plus non-group codes
+# (a stage or pathology covariate, `within`, `not_available`) labelled in [contrast_labels].
+
+# AD phrasings added (2026-11-17): 'do not differ', 'does not change', 'no selective ...', 'no <cell type> changes/differs'
+null_pattern = 'not significantly|no significant|not changed|unchanged|no difference|not (?:reduced|increased|altered|different|depleted|enriched)|comparable|did not differ|does not differ|no change|do not differ|do(?:es)? not change|no selective|\bno\b[^.;]{0,80}\b(?:changes|differs)\b'
+
+rules = [
+    ["^case vs control", "case_vs_control"],
+    ["within|vs other|subpopulations|markers", "within"],
+]
+
+# a claim cell type -> the cell classes tested ("All": the pseudobulk of all cells)
+[cell_class_expand]
+All = ["ALL"]
+
+# a claim region -> the harmonised dataset regions it covers
+[region_map]
+
+# contrast code -> [kind, case group, reference group]
+[contrast_labels]
+case_vs_control = ["case_control", "case", "control"]
+within = ["within", "", ""]
+not_available = ["not_available", "", ""]
+"" = ["unassigned", "", ""]

@@ -1,4 +1,4 @@
-"""claims/RATING.md states the rules scripts/52_rating.py applies: same version, same thresholds (step 2.4).
+"""claims/RATING.md states the rules the engine's rating (src/claimstore/rating.py) applies: same version, same thresholds (step 2.4).
 Standard library only."""
 import ast
 import re
@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def _script_constants():
-    tree = ast.parse((ROOT / "scripts" / "52_rating.py").read_text())
+    tree = ast.parse((ROOT / "src" / "claimstore" / "rating.py").read_text())
     out = {}
     for node in tree.body:
         if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "RATING_VERSION":

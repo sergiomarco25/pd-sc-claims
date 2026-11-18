@@ -1,0 +1,65 @@
+# Harmonisation: the common schema of every harmonised dataset and the rules that label cell classes from marker
+# genes (read by claimstore.harmonise; claims/COMMUNITY_PLAN.md step 2.1). A new field changes these, not code.
+#
+# A loader (src/pdrep/build/<dataset>.py) returns an AnnData with raw integer counts in X (cells x genes, gene symbols
+# as var_names) and the `obs` columns below (values it cannot fill: NaN / "unknown"), plus AUTHOR_TO_CLASS mapping its
+# author cell labels to `cell_classes` (empty: cells are labelled here by marker clustering).
+
+# Cell metadata every harmonised dataset carries. Between `region` and `author_cell_type` are the donor-level columns
+# of the donor table; `braak_lb` is the stage column ([stage] in config/contrasts.toml).
+obs = ["dataset", "donor", "sample", "region", "disease", "disease_raw", "sex", "age", "pmi", "braak_lb",
+       "author_cell_type", "cell_class"]
+# Donor-level columns beyond the schema that the pseudobulk unit table carries when a dataset has them
+donor_extras = ["age_group", "genotype", "unified_lb_stage", "gliad_donor_group"]
+regions = ["SN", "VTA", "midbrain", "putamen", "caudate", "striatum", "PFC", "DLPFC", "cingulate", "temporal", "MTG",
+           "motor", "visual", "parietal", "amygdala", "hippocampus", "cerebellum", "DMNX", "GPi", "SVZ", "other"]
+diseases = ["control", "PD", "PDD", "DLB", "LBD", "iLBD", "AD", "other"]
+cell_classes = ["DA neurons", "MSNs", "Excitatory neurons", "Inhibitory neurons", "Neurons (other)", "Astrocytes",
+                "Microglia", "Oligodendrocytes", "OPCs", "Endothelial", "Pericytes", "Fibroblasts", "T cells",
+                "Immune (other)", "Ependymal", "Unknown"]
+# Datasets mixing sorted and unsorted nuclei (obs `enrichment` = "sorted"): these classes are tested on sorted units,
+# every other class on unsorted units
+sorted_classes = ["DA neurons"]
+
+# Canonical markers of each class (scanpy score_genes on log-normalised counts; a class needs >= 2 detected genes)
+[markers]
+"DA neurons" = ["TH", "SLC6A3", "DDC", "SLC18A2", "KCNJ6"]
+"MSNs" = ["PPP1R1B", "DRD1", "DRD2", "PENK", "TAC1"]
+"Excitatory neurons" = ["SLC17A7", "SATB2", "SLC17A6", "CAMK2A", "NRGN"]
+"Inhibitory neurons" = ["GAD1", "GAD2", "SLC32A1", "SST", "PVALB"]
+"Neurons (other)" = ["RBFOX3", "SNAP25", "SYT1", "STMN2"]
+"Astrocytes" = ["AQP4", "GJA1", "SLC1A2", "GFAP", "ALDH1L1", "SLC1A3"]
+"Microglia" = ["P2RY12", "CX3CR1", "CSF1R", "DOCK8", "TMEM119"]
+"Oligodendrocytes" = ["MBP", "PLP1", "MOBP", "ST18", "MOG"]
+"OPCs" = ["PDGFRA", "VCAN", "PTPRZ1", "OLIG1"]
+"Endothelial" = ["CLDN5", "FLT1", "VWF", "PECAM1"]
+"Pericytes" = ["PDGFRB", "RGS5", "KCNJ8", "ACTA2"]
+"Fibroblasts" = ["DCN", "COL1A2", "LUM", "COL1A1"]
+"T cells" = ["CD3E", "CD3D", "CD2", "SKAP1", "CD247"]          # no THEMIS (L6 excitatory neurons) or IL7R
+"Immune (other)" = ["MRC1", "F13A1", "CD163", "LYVE1", "MS4A1"]  # no PTPRC: microglia express it
+"Ependymal" = ["FOXJ1", "RSPH1", "DYNLRB2", "CCDC153", "CFAP126"]  # not DNAH9/CFAP43: also in MSNs
+
+# Two-step class call (claimstore.harmonise.classify): the lineage first (`pan_neuronal` against each non-neuronal
+# class), then the neuron subtype for neuron rows
+[labelling]
+neuron_subtypes = ["DA neurons", "MSNs", "Excitatory neurons", "Inhibitory neurons"]
+pan_neuronal = "Neurons (other)"
+# a neuron goes to a subtype only if that subtype's z-score clears this; else the pan-neuronal class
+subtype_min_z = 0.5
+# a cluster can only take a class whose raw mean marker score (above control genes) clears this
+min_raw = 0.1
+# within the neuron step, the key wins over the value when it clears the subtype threshold (MSNs are GABAergic)
+precedence = { "MSNs" = "Inhibitory neurons" }
+
+# Classes only plausible in some regions (others may appear in any region)
+[labelling.region_only]
+"DA neurons" = ["SN", "VTA", "midbrain"]
+"MSNs" = ["putamen", "caudate", "striatum"]
+"Ependymal" = ["SVZ", "caudate", "striatum"]
+
+# A cluster can only take these classes if any listed gene is detected in at least this fraction of its nuclei
+# (kamath2022 caudate MSNs scored "Ependymal" on DNAH9; wang2024 neuron/oligodendrocyte mixtures with TH in 12-15% of
+# nuclei scored "DA neurons")
+[labelling.require_detect]
+"DA neurons" = { genes = ["TH", "SLC6A3"], min_fraction = 0.30 }
+"Ependymal" = { genes = ["FOXJ1"], min_fraction = 0.20 }

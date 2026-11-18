@@ -1,0 +1,56 @@
+# Claim schema of this project: required fields, controlled vocabularies and field descriptions (claimstore.schema).
+# Set `region` and `cell_type` to this field's values, then run python3 -I claims/schema/build_schemas.py.
+version = "1.0.0"
+required = ["id", "paper", "statement", "location", "centrality", "modality", "region", "cell_type", "claim_type",
+    "direction", "comparison", "unit_of_analysis", "testable_with", "test_template"]
+list_fields = ["cell_type", "modality", "region"]
+
+[vocab]
+centrality = ["headline", "main", "secondary"]
+modality = ["snRNA", "scRNA", "multiome-RNA", "snATAC", "multiome-ATAC", "spatial-Visium", "spatial-Xenium",
+    "spatial-GeoMx", "spatial-other", "imaging"]
+region = ["multiple"]
+cell_type = ["All"]
+claim_type = ["composition", "de_gene", "de_pathway", "state_existence", "state_enrichment", "genetic_enrichment",
+    "communication", "pathology_association", "trajectory", "chromatin", "spatial_colocalisation",
+    "clinical_association", "other"]
+direction = ["up", "down", "enriched", "depleted", "exists", "associated_pos", "associated_neg", "NA"]
+testable_with = ["rna", "atac", "spatial", "metadata", "not_testable"]
+test_template = ["composition_donor", "de_pseudobulk", "geneset_shift", "state_signature", "genetic_enrichment",
+    "communication_liana", "pathology_correlation", "trajectory", "chromatin_da", "spatial_neighbourhood",
+    "not_testable"]
+
+[text]
+id = "<paper_id>-C<nn>, numbered in order of appearance"
+paper = "paper id (inventory/papers.tsv); the file name without .yaml"
+statement = "the conclusion in one sentence, close to the authors' wording"
+quote = "short verbatim quote supporting it (at most 40 words)"
+location = "figure / panel / section"
+centrality = "headline (abstract or title) / main (Results heading or main figure) / secondary"
+modality = "assay(s) the claim rests on"
+region = "region(s) or tissue(s) the claim is about"
+cell_type = "broad cell class(es)"
+cell_state = "named subpopulation or signature, or empty"
+claim_type = "kind of claim; decides the test"
+direction = "direction asserted"
+comparison = "groups compared, e.g. 'case vs control', 'late vs early stage', 'within cases'"
+genes = "genes needed to test the claim, as reported"
+gene_source = "where the full gene list is, or 'text'"
+reported_stat = "effect size / statistic / p or FDR as reported, and n"
+unit_of_analysis = "what the authors' test treated as independent (cells, donors, samples, ROIs)"
+method = "test used by the authors"
+testable_with = "data type needed to re-test"
+test_template = "re-test template"
+requires = "metadata or features needed beyond disease labels"
+notes = "caveats, ambiguities"
+
+[finding_text]
+id = "F-<short-name>"
+paper = "always this-study"
+test_template = "'finding': estimates come from the finding's own analysis (evidence), not from a re-test template"
+origin = "record origin"
+themes = "biological themes, ';'-separated"
+contrast = "contrast code (config/contrasts.toml)"
+null_claim = "true if the finding asserts the absence of an effect"
+evidence = "where the per-dataset estimates are (claimstore.store.resolve_evidence)"
+analysis = "how the finding was produced (script, spec, date)"

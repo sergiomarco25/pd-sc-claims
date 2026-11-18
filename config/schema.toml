@@ -1,0 +1,62 @@
+# Claim schema of this project: required fields, controlled vocabularies and field descriptions (claimstore.schema).
+# claims/schema/claim.schema.json and finding.schema.json are generated from it (claims/schema/build_schemas.py);
+# claim validation (scripts/05_merge_claims.py) enforces the same vocabularies. A new field edits region and cell_type.
+version = "1.0.0"
+required = ["id", "paper", "statement", "location", "centrality", "modality", "region", "cell_type", "claim_type",
+    "direction", "comparison", "unit_of_analysis", "testable_with", "test_template"]
+list_fields = ["cell_type", "modality", "region"]
+
+[vocab]
+centrality = ["headline", "main", "secondary"]
+modality = ["snRNA", "scRNA", "multiome-RNA", "snATAC", "multiome-ATAC", "spatial-Visium", "spatial-Xenium",
+    "spatial-GeoMx", "spatial-other", "imaging"]
+region = ["SN", "VTA", "midbrain", "putamen", "caudate", "striatum", "PFC", "DLPFC", "cingulate", "temporal", "MTG",
+    "motor", "visual", "parietal", "amygdala", "hippocampus", "cerebellum", "DMNX", "GPi", "multiple"]
+cell_type = ["DA neurons", "Neurons (other)", "Excitatory neurons", "Inhibitory neurons", "MSNs", "Astrocytes",
+    "Microglia", "Oligodendrocytes", "OPCs", "Endothelial", "Pericytes", "Fibroblasts", "T cells",
+    "Immune (other)", "All"]
+claim_type = ["composition", "de_gene", "de_pathway", "state_existence", "state_enrichment", "genetic_enrichment",
+    "communication", "pathology_association", "trajectory", "chromatin", "spatial_colocalisation",
+    "clinical_association", "other"]
+direction = ["up", "down", "enriched", "depleted", "exists", "associated_pos", "associated_neg", "NA"]
+testable_with = ["rna", "atac", "spatial", "metadata", "not_testable"]
+test_template = ["composition_donor", "de_pseudobulk", "geneset_shift", "state_signature", "genetic_enrichment",
+    "communication_liana", "pathology_correlation", "trajectory", "chromatin_da", "spatial_neighbourhood",
+    "not_testable"]
+
+# What each field holds (JSON Schema descriptions; claims/SCHEMA.md explains them at length)
+[text]
+id = "<paper_id>-C<nn>, numbered in order of appearance"
+paper = "paper id (inventory/papers.tsv); the file name without .yaml"
+statement = "the conclusion in one sentence, close to the authors' wording"
+quote = "short verbatim quote supporting it (at most 40 words)"
+location = "figure / panel / section"
+centrality = "headline (abstract or title) / main (Results heading or main figure) / secondary"
+modality = "assay(s) the claim rests on"
+region = "brain region(s) the claim is about"
+cell_type = "broad cell class(es)"
+cell_state = "named subpopulation or signature, or empty"
+claim_type = "kind of claim; decides the test"
+direction = "direction asserted"
+comparison = "groups compared, e.g. 'PD vs control', 'Braak 5-6 vs 3-4', 'within PD'"
+genes = "genes needed to test the claim, as reported"
+gene_source = "where the full gene list is, or 'text'"
+reported_stat = "effect size / statistic / p or FDR as reported, and n"
+unit_of_analysis = "what the authors' test treated as independent (cells, donors, samples, ROIs)"
+method = "test used by the authors"
+testable_with = "data type needed to re-test"
+test_template = "re-test template (src/pdrep/tests/engine.py)"
+requires = "metadata or features needed beyond disease labels"
+notes = "caveats, ambiguities"
+
+# Fields that only findings of this study have, or that mean something else for them
+[finding_text]
+id = "F-<short-name>"
+paper = "always this-study"
+test_template = "'finding': estimates come from the finding's own analysis (evidence), not from a re-test template"
+origin = "record origin"
+themes = "biological themes, ';'-separated"
+contrast = "contrast code (src/pdrep/contrasts.py)"
+null_claim = "true if the finding asserts the absence of an effect"
+evidence = "where the per-dataset estimates are (pdrep.store.resolve_evidence)"
+analysis = "how the finding was produced (script, spec, date)"

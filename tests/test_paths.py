@@ -1,7 +1,7 @@
 """Static checks that keep the code portable (COMMUNITY_PLAN step 1.1). Standard library only.
 
 - no hard-coded cluster paths in code (they belong in config/project.toml);
-- every file that uses `cfg.` imports pdrep.config before its first use (a multi-line statement once used it early).
+- every file that uses `cfg.` imports the config (pdrep.config or claimstore.config) before its first use (a multi-line statement once used it early).
 """
 import re
 from pathlib import Path
@@ -38,7 +38,8 @@ def test_config_imported_before_use():
         if p.suffix != ".py" or p.name == "config.py":
             continue
         lines = _text(p).split("\n")
-        imp = next((i for i, ln in enumerate(lines) if ln.startswith("from pdrep import config as cfg")), None)
+        imp = next((i for i, ln in enumerate(lines)
+                    if ln.startswith(("from pdrep import config as cfg", "from claimstore import config as cfg"))), None)
         use = next((i for i, ln in enumerate(lines) if "cfg." in ln and not ln.lstrip().startswith("#")), None)
         if use is not None and (imp is None or use < imp):
             bad.append(f"{p.relative_to(ROOT)}:{use + 1}")

@@ -1,0 +1,85 @@
+# Project configuration (claimstore.config): every path, the pipeline, the release rules and facts about this field.
+# Values may use {repo} and {data_root}; relative paths are relative to the repository. Environment variables
+# {{env_prefix}}_<NAME> override paths (e.g. {{env_prefix}}_DATA_ROOT).
+
+[project]
+name = "{{name}}"
+title = "{{title}}"
+description = "{{description}}"
+keywords = []
+server_name = "{{name}}"
+licence = "CC BY 4.0 (data and text); code Apache-2.0"
+env_prefix = "{{env_prefix}}"
+
+[server]
+# The MCP server's instructions (a file next to this one) and the ids quoted in its tool descriptions
+instructions = "server_instructions.md"
+examples = { claim = "example2024-C01", finding = "F-example", statement = "CS01", gene = "GENE1", cell = "All", region = "multiple", dataset = "example2024", background = "BG-example", paper = "example2024", cell_types = "All", regions = "multiple" }
+
+[claims]
+# Papers whose claims were made on another paper's cohort: paper id -> dataset id
+paper_to_dataset = {}
+# How the store describes samples and claims of this field (claimstore.build_store)
+sample_type = "post-mortem tissue"
+heritability_label = "genetic risk"
+stage_available_column = "stage_available"
+staging_field = "staging"
+
+[rating]
+# Test templates of each rating family (claims/RATING.md section 2)
+effect_templates = ["composition_clr", "de_genes", "geneset_shift", "state_genes_shift", "trajectory_genes",
+                    "communication_genes"]
+pattern_templates = ["state_existence", "gwas_magma_specificity", "gwas_magma", "familial_overlap"]
+# Datasets of sorted nuclei or cells, whose composition is not tissue composition
+enriched_sort = []
+# Datasets that may share donors: dataset -> other datasets (a caveat on the rating, not merged)
+shared_banks = {}
+shared_bank_caveat = "{dataset} may share donors with {others} (not verified)"
+not_assessed = "a gradient with disease stage; adjustment for age, sex and sample quality"
+
+[tests]
+# Claim re-tests (claimstore.retest). Gene symbols renamed since publication: old = "new" (MARCH*/SEPT* built in)
+gene_aliases = {}
+# Contrast codes that compare two contrasts' fold changes: code = { contrasts = ["a", "b"], template = "name" }
+concordance = {}
+# genetic_enrichment claims: "module:function" of this field's package (none: such claims are not testable)
+genetic_test = ""
+# A curated signature whose rows name cell classes is applied per class (claims/SIGNATURES.md)
+signatures_per_class = true
+
+[atlas]
+# The atlas page (src/claimstore/cli.py atlas -> reports/atlas.html); every key is optional (claimstore.atlas):
+# title, headline, lead (default: the project's title and description), disease (short name of the case group),
+# case_label, scope (what the records are about, for "Ask the atlas"), examples (questions), ask_placeholder,
+# stop_words, region_groups / region_group_of (columns of the data landscape), key_findings ([{label, title, text,
+# href}]), graph_start (node ids), template (a page of the project's own), extras ("module:function" adding tables)
+disease = ""
+
+[paths]
+data_root = "data"
+work = "{data_root}"
+legacy = "{repo}/.."
+genome_fa = "{data_root}/genome.fa"
+
+[envs]
+python = ""
+r_env = ""
+
+[pipeline]
+# Datasets the pipeline builds and tests, one loader each: src/{{package}}/build/<dataset>.py
+loaders = "{{package}}.build"
+datasets = []
+default_mem_gb = 64
+de_contrasts = ["case_vs_control"]
+gsea_contrasts = []
+gsea_classes = []
+
+[release]
+public_repository = "{{repository}}"
+# Datasets and papers kept out of every public export, and findings re-derived without them
+private_datasets = []
+private_papers = []
+separable_findings = []
+private_modules = []
+
+[release.rederived_findings]

@@ -5,6 +5,8 @@ Reads the claim store (results/store/claim_store.sqlite, 51b_claim_store.py) and
 compact JSON in scripts/atlas_template.html and writes reports/pd_atlas.html (static, works offline) and
 reports/pd_atlas.artifact.html (same page without the html/head skeleton, for publishing as a claude.ai Artifact with
 capabilities {sample: {}} so "Ask the atlas" can call Claude).
+The store part (claims, tests, datasets, papers, genes, knowledge graph) and the page writing are the engine's
+(claimstore.atlas); this script adds the PD biology sections and keeps this project's own page, scripts/atlas_template.html.
 
 Run: ~/miniconda3/envs/rapids_singlecell/bin/python scripts/51c_store_browser.py
 Public atlas (claims/COMMUNITY_PLAN.md step 5.1): ... 51c_store_browser.py --public --db results/releases/v<V>/claim_store.sqlite
@@ -14,17 +16,14 @@ Public atlas (claims/COMMUNITY_PLAN.md step 5.1): ... 51c_store_browser.py --pub
 """
 import argparse
 import base64
-import json
-import sqlite3
 from io import BytesIO
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from pdrep import kg  # noqa: E402
+from claimstore import atlas as A  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -181,11 +180,7 @@ def build_anat():
     return views
 
 
-def recs(df, digits=4):
-    df = df.copy()
-    for c in df.select_dtypes("number"):
-        df[c] = df[c].round(digits)
-    return df.replace({np.nan: None}).to_dict("records")
+recs = A.recs
 
 
 OPTIONAL = {"consensus_genes_PDany.tsv": ["gene", "cell_class", "est", "se", "fdr", "k", "n_sig_same_dir", "frac_dir"],
@@ -210,54 +205,14 @@ def figure_b64(name, width=1400):
 
 
 def store():
-    con = sqlite3.connect(DB)
-    q = lambda s: pd.read_sql(s, con)  # noqa: E731
-    claims = q("""SELECT claim_id id, paper, source_dataset ds, statement, quote, location, organisms, organism_ids,
-                  organism_note, sample_type, region_asserted, regions, region_ids, region_groups, cell_types,
-                  cell_type_ids, cell_state, assay, assay_id, subject_kind, subject, predicate, direction, contrast,
-                  contrast_kind, case_group, reference_group, comparison_raw, claim_type, centrality,
-                  unit_of_analysis, reported_stat, method, genes, needs_review, context_text, evidence_text, tier,
-                  rank, themes, verdict, certainty, rating, family, start, k_cohorts, est, lo, hi, i2, concordance,
-                  z_comb, detect, donors, rob, inconsistency, indirectness, imprecision, dependence, upgrade, reasons,
-                  not_assessed, scope_tested, scope_held, caveats, origin, analysis_script, analysis_results,
-                  analysis_date, notes FROM claim""")
-    claims["rank"] = pd.to_numeric(claims["rank"], errors="coerce")
-    ds = q("SELECT * FROM dataset")
-    ev = q("""SELECT claim_id c, dataset d, role, variant v, region_match rm, outcome o, effect, z, p,
-              n_case nc, n_ref nr, regions_tested reg, classes_tested cls, note FROM claim_dataset""")
-    for k in ("effect", "z", "p"):
-        ev[k] = pd.to_numeric(ev[k], errors="coerce")
-    rel = q("SELECT claim_a a, relation r, claim_b b, basis, note FROM claim_relation")
-    cs = q("SELECT * FROM consensus_statement")
-    bgt = q("SELECT * FROM background")
-    for col in ("references", "statements", "establishes", "supports_claims", "consistent_with", "contrasts_with", "regions"):
-        bgt[col] = bgt[col].map(lambda v: json.loads(v) if v else [])
+    s = A.read_store(DB)
     global BG_RECORDS
-    BG_RECORDS = bgt.replace({np.nan: None}).to_dict("records")
-    sig = q("""SELECT cs.claim_id c, sg.gene g FROM claim_signature cs
-               JOIN signature_gene sg ON cs.signature_id = sg.signature_id""").dropna().drop_duplicates()
-    papers = q("SELECT paper_id id, first_author, year, title, doi, journal_or_preprint journal FROM source "
-               "WHERE paper_id IN (SELECT DISTINCT paper FROM claim)")
-    info = q("SELECT * FROM build_info").iloc[0].to_dict()
-    con.close()
-    named = {}
-    for _, r in claims.iterrows():
-        for g in filter(None, (r.genes or "").split(";")):
-            named.setdefault(g, set()).add(r.id)
-    in_sig = sig.groupby("g").c.apply(set).to_dict()
-    gene_claims = {g: [sorted(named.get(g, set())), sorted(in_sig.get(g, set()) - named.get(g, set()))]
-                   for g in set(named) | set(in_sig)}
-    return claims, ds, ev, rel, cs, papers, info, gene_claims
+    BG_RECORDS = s["background"]
+    return (s["claims"], s["datasets"], s["evidence"], s["relations"], s["statements"], s["papers"], s["info"],
+            s["gene_claims"])
 
 
-def question_form():
-    """GitHub issue form for questions: of the public repository (config [release] public_repository), else of the
-    repository in CITATION.cff."""
-    import re
-    if cfg.PUBLIC_REPOSITORY:
-        return cfg.PUBLIC_REPOSITORY.rstrip("/") + "/issues/new?template=question.yml"
-    m = re.search(r'^repository-code:\s*"?([^"\n]+)"?', (ROOT / "CITATION.cff").read_text(), re.M)
-    return m.group(1).rstrip("/") + "/issues/new?template=question.yml" if m else None
+question_form = A.question_form
 
 
 def main():
@@ -275,11 +230,6 @@ def main():
         for k in cfg.PRIVATE_MODULES:
             PROGRAMMES.pop(k, None)
     claims, ds, ev, rel, cs, papers, info, gene_claims = store()
-    src = pd.read_sql("SELECT paper_id, first_author, year FROM source", sqlite3.connect(DB)).set_index("paper_id")
-    def label(d):
-        a = f"{src.first_author.get(d.dataset, '')} {int(float(src.year.get(d.dataset)))}" if d.dataset in src.index and src.year.get(d.dataset) else d.dataset
-        return a if d.cohort == d.dataset else f"{a} · {d.cohort}"
-    ds["label"] = ds.apply(label, axis=1)
 
     comp = tsv("composition_meta.tsv")[["contrast", "cell_class", "denominator", "scope", "est", "se", "p", "fdr",
                                         "k", "I2", "datasets"]]
@@ -307,14 +257,8 @@ def main():
                     .str.lower().str.capitalize())
 
     # headline numbers
-    tested = claims.verdict.fillna("Untested").ne("Untested")
-    held = claims.verdict.fillna("").str.startswith("Supported")
-    strong = held & claims.certainty.isin(["High", "Moderate"])
-    regions = sorted({r for x in ds.regions for r in x.split(";")} - {"other"})
-    findings = claims.origin.eq("finding")
-    stats = dict(findings=int(findings.sum()), papers=int(claims.paper[~findings].nunique()), datasets=len(ds), donors=int(ds.n_donors.sum()),
-                 regions=len(regions), claims=int((~findings).sum()), tested=int((tested & ~findings).sum()), held=int((held & ~findings).sum()), strong=int((strong & ~findings).sum()),
-                 nuclei=None if a.public else "10.9 million", nuclei_source=None if a.public else "manuscript v0.8 abstract")
+    stats = A.stats(claims, ds, nuclei=None if a.public else "10.9 million",
+                    nuclei_source=None if a.public else "manuscript v0.8 abstract")
 
     data = dict(
         claims=recs(claims), datasets=recs(ds), evidence=recs(ev, 3), relations=recs(rel), statements=recs(cs),
@@ -327,19 +271,12 @@ def main():
                for k, (x, y, b) in SITES.items()},
         model_figure=None if a.public else figure_b64("B9_model.png"), anat=build_anat(),
         public=bool(a.public), links={"question_form": question_form()} if a.public else {},
-        kg=kg.build(DB).compact(kg.similarity_links(DB, cache=cfg.STORE_DB.parent / "claim_embeddings.npz"),
-                                kg.topic_clusters(DB, map_dir=RES / "public" / "claim_map" if a.public else None)))
-    tpl = (ROOT / "scripts" / "atlas_template.html").read_text()
+        kg=A.knowledge_graph(DB, a.public))
     out = ROOT / "reports" / ("pd_atlas_public.html" if a.public else "pd_atlas.html")
-    html = tpl.replace("/*__DATA__*/null", json.dumps(data, separators=(",", ":"), default=str))
-    out.write_text(html)
+    A.write(A.render(data, ROOT / "scripts" / "atlas_template.html"), out, artifact=not a.public)
     if a.public:
         print(f"{out} ({out.stat().st_size / 1e6:.1f} MB): {len(claims)} claims, {len(ds)} datasets, {len(ev)} tests")
         return
-    # claude.ai Artifact version: the publisher adds the doctype/head/body skeleton, so ship title + style + body only
-    head, body = html.split("<body>", 1)
-    art = head[head.index("<title>"):head.index("</head>")] + body.rsplit("</body>", 1)[0]
-    (ROOT / "reports" / "pd_atlas.artifact.html").write_text(art)
     print(f"{out} ({out.stat().st_size / 1e6:.1f} MB): {len(claims)} claims, {len(ds)} datasets, {len(ev)} tests, "
           f"{len(prog)} programme effects, {len(genes)} gene effects, {len(gsea)} pathways")
 

@@ -2,7 +2,56 @@
 # To run elsewhere, copy this file, change the paths and point PDREP_CONFIG at it, or set PDREP_<NAME> variables.
 # Values may use {repo} and {data_root}; relative paths are relative to the repository.
 
-project = "pd-sc-replication"
+[project]
+name = "pd-sc-replication"
+# How releases, the server and the linked-data exports describe the store (claimstore.config.describe)
+title = "PD single-cell claim store"
+description = "Claims of human post-mortem brain Parkinson's disease single-cell studies, each re-tested donor-level across harmonised datasets and rated for certainty (rules: RATING.md)."
+keywords = ["Parkinson's disease", "single-cell", "replication", "meta-analysis", "knowledge graph"]
+server_name = "pd-claim-store"
+licence = "CC BY 4.0 (data and text); code Apache-2.0"
+env_prefix = "PDREP"      # environment variables PDREP_<NAME> override paths (PDREP_DATA_ROOT, PDREP_STORE_DB, ...)
+
+[server]
+# The MCP server's instructions (a file next to this one) and the ids quoted in its tool descriptions
+instructions = "server_instructions.md"
+examples = { claim = "xu2023-C11", finding = "F-axis2-shift", statement = "CS01", gene = "TH", cell = "Microglia", region = "SN", dataset = "kamath2022", background = "BG-nigral-da-loss", paper = "kamath2022", cell_types = "Microglia, DA neurons, All", regions = "SN, putamen, PFC" }
+
+[claims]
+# Papers whose claims were made on another paper's cohort: their source dataset (contexts, store, rating dependence)
+paper_to_dataset = { barbareyes2025 = "barbareyes2026", clarence2025 = "prashant2024", fullard2025 = "lee2026" }
+# How the store describes samples and claims of this field (claimstore.build_store)
+sample_type = "post-mortem brain"
+heritability_label = "PD genetic risk"
+stage_available_column = "lewy_stage_available"
+staging_field = "lewy_staging"
+
+[rating]
+# Test templates of each rating family (claimstore.rating; claims/RATING.md section 2)
+effect_templates = ["composition_clr", "de_genes", "geneset_shift", "state_genes_shift", "trajectory_genes",
+                    "communication_genes"]
+pattern_templates = ["state_existence", "pd_ad_logfc_concordance", "gwas_magma_specificity", "gwas_magma",
+                     "familial_overlap"]
+# Datasets of sorted nuclei, whose composition is not tissue composition (kamath2022: NR4A2-sorted)
+enriched_sort = ["kamath2022"]
+# Datasets drawing on the same brain bank may share donors (not verified): a caveat on the rating, not merged
+shared_banks = { prashant2024 = ["barbareyes2026", "lee2026", "wang2024", "adams2024"] }
+shared_bank_caveat = "{dataset} shares brain banks with {others} (donor overlap not verified)"
+# What the rating does not yet assess (stated on every rating)
+not_assessed = "gradient with Lewy stage (needs per-claim stage trend); triangulation beyond the reference knowledge in claims/background.yaml (needs claim-level links to protein, chromatin and spatial evidence); adjustment for age, sex, PMI and RNA quality (needs adjusted tests)"
+
+[tests]
+# Claim re-tests (claimstore.retest). Gene symbols renamed since publication (MARCH*/SEPT* are handled by the engine)
+gene_aliases = { GBA = "GBA1", PARK2 = "PRKN", PARK7 = "PARK7", C9ORF72 = "C9orf72" }
+# Contrast codes that compare two contrasts' fold changes (Spearman per region x class), and their test template
+concordance = { PD_AD_concordance = { contrasts = ["PDany_vs_control", "AD_vs_control"], template = "pd_ad_logfc_concordance" } }
+# genetic_enrichment claims: PD GWAS (Nalls 2019) MAGMA and familial-gene tests of the PD package
+genetic_test = "pdrep.genetics:genetic_test"
+# Cell metadata the composition test reads, as in every release so far. The engine's default (the schema's donor
+# columns and donor_extras of config/harmonise.toml) would add disease_raw and the study donor-group column, which
+# would make composition claims on those donor groups testable.
+unit_columns = ["donor", "region", "disease", "cell_class", "enrichment", "braak_lb", "unified_lb_stage", "age_group",
+                "genotype", "sex", "age", "pmi"]
 
 [paths]
 # Large data, not in git. This pipeline writes raw/, harmonised/, results/ and scratch/ inside `work`.
@@ -20,6 +69,7 @@ r_env  = "~/.local/share/mamba/envs/mast_rev"
 
 [pipeline]
 # Harmonised datasets the workflow builds and tests (workflow/Snakefile). One loader each: src/pdrep/build/<id>.py.
+loaders = "pdrep.build"
 datasets = ["xu2023", "zhu2024", "wang2024", "smajic2022", "kamath2022", "martirosyan2024",
             "prashant2024", "menon2026", "ma2025", "adams2024", "lee2023", "glock2026", "feleke2021", "jin2024",
             "dehestani2024", "chia2025", "volpato2025", "lee2026"]

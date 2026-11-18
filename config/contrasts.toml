@@ -6,13 +6,24 @@
 #   column = "value"                  equal
 #   column = ["a", "b"]               one of
 #   column = { contains = "x" }       contains x, ignoring case
-#   lewy_stage = { min = 3, max = 4.9 }   Lewy-body stage (braak_lb, else the Unified LB stage; controls without a
-#                                     stage count as 0 when the dataset stages its cases), bounds inclusive
-# A column the dataset does not have matches nothing. `braak` (the stage as a continuous covariate) is not a group
-# contrast and is handled by the DE cache and the tests engine directly.
+#   lewy_stage = { min = 3, max = 4.9 }   stage range, bounds inclusive (the stage is defined in [stage] below)
+# A column the dataset does not have matches nothing. `braak` (the stage as a continuous covariate, [stage] contrast)
+# is not a group contrast and is handled by the DE cache and the tests engine directly.
 
-# Lewy-body diagnoses (pdrep.contrasts.LEWY)
+# Lewy-body diagnoses (pdrep.contrasts.LEWY; any top-level list is a named group, claimstore.contrasts.GROUPS)
 lewy_body = ["PD", "PDD", "DLB", "LBD"]
+
+# The stage used by `lewy_stage = {min, max}` conditions and as the continuous stage covariate: the first of `columns`
+# with any value in the dataset; units of `zero_group` (in `group_column`) without a stage count as 0 when the dataset
+# stages anyone (pathology-free by definition).
+[stage]
+name = "lewy_stage"
+columns = ["braak_lb", "unified_lb_stage"]
+group_column = "disease"
+zero_group = "control"
+# The stage as a continuous covariate: its contrast code in claims, DE fit files and tests, and how tests name it
+contrast = "braak"
+label = "Lewy-body stage"
 
 [contrasts.PDany_vs_control]
 case = { disease = ["PD", "PDD"] }

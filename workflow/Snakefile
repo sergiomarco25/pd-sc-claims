@@ -37,7 +37,6 @@ DS = cfg.DATASETS
 P = cfg.PIPELINE
 PY = f"{cfg.PYTHON} -I"                          # analysis environment
 PY3 = "python3 -I"                               # standard-library scripts
-RSCRIPT = f"{cfg.R_ENV}/bin/Rscript --vanilla"
 SIG_PAPERS = sorted(p.stem for p in (cfg.REPO / "scripts" / "signatures").glob("*.py") if not p.stem.startswith("_"))
 NOT_PAPERS = {"claims", "findings", "background", "questions"}
 PAPER_CLAIMS = sorted(str(p.relative_to(cfg.REPO)) for p in (cfg.REPO / "claims").glob("*.yaml")
@@ -116,7 +115,7 @@ rule de_cache:
     input: f"{R}/de_cache/{{ds}}/input/manifest.tsv"
     output: f"{R}/de_cache/{{ds}}/de_log.tsv"
     resources: mem_mb=48 * 1024, runtime=720, cpus_per_task=2
-    shell: "{RSCRIPT} scripts/12b_de_cache.R {R}/de_cache/{wildcards.ds}"
+    shell: "{PY} scripts/12b_de_cache.py {wildcards.ds}"   # src/claimstore/de_cache.R with [envs] r_env
 
 
 # ---- claim tests ---------------------------------------------------------------------------------------------------

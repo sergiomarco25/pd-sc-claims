@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+data/
+results/
+scratch/
+*.h5ad
+# atlas pages (cli.py atlas): rebuilt from the store, published with a release
+reports/

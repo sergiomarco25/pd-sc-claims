@@ -1,19 +1,30 @@
 #!/usr/bin/env Rscript
-# DE cache: edgeR quasi-likelihood pseudobulk DE for every region x cell class x contrast of one dataset that has
-# >= 3 case and >= 3 reference units (manifest.tsv from 12_export_pseudobulk.py), plus a continuous Lewy-body stage
-# fit ("braak") across all units with a stage value. Model as revision/scripts/05d_edger_pseudobulk.R:
+# DE cache (claimstore engine): edgeR quasi-likelihood pseudobulk DE for every region x cell class x contrast of one
+# dataset that has >= 3 case and >= 3 reference units (input/manifest.tsv from claimstore.pseudobulk), plus a fit of the
+# stage as a continuous covariate across all units with a stage value. Model:
 #   ~ group + age + sex + pmi   (covariates used only when known for every unit in the fit and not constant)
-# Usage: Rscript 12b_de_cache.R <dataset_dir>   (dataset_dir = results/de_cache/<dataset>)
+# Usage: python -I src/claimstore/cli.py de-cache <dataset>   (passes the stage settings of config/contrasts.toml), or
+#   Rscript de_cache.R <dataset_dir> [<stage_contrast> <stage_columns> <group_column> <zero_group>]
+#   dataset_dir = results/de_cache/<dataset>; stage_columns comma-separated (the first with any value is the stage);
+#   units of zero_group without a stage count as stage 0. Without the stage settings there is no stage fit.
 suppressPackageStartupMessages({ library(data.table); library(edgeR) })
-dsdir <- commandArgs(trailingOnly = TRUE)[1]
+args <- commandArgs(trailingOnly = TRUE)
+dsdir <- args[1]
+stage_contrast <- if (length(args) >= 3) args[2] else ""
+stage_cols <- if (length(args) >= 3) strsplit(args[3], ",", fixed = TRUE)[[1]] else character()
+group_col <- if (length(args) >= 4) args[4] else ""
+zero_group <- if (length(args) >= 5) args[5] else ""
 indir <- file.path(dsdir, "input"); outdir <- file.path(dsdir, "de"); dir.create(outdir, showWarnings = FALSE)
 units <- fread(file.path(indir, "units.tsv"), colClasses = "character")
 man <- fread(file.path(indir, "manifest.tsv"))
 scl <- function(v) as.numeric(scale(v))
-braak_of <- function(u) {
-  b <- suppressWarnings(as.numeric(u$braak_lb))
-  if (all(is.na(b)) && "unified_lb_stage" %in% names(u)) b <- suppressWarnings(as.numeric(u$unified_lb_stage))
-  if (any(!is.na(b))) b[is.na(b) & u$disease == "control"] <- 0  # as pdrep.contrasts.braak_value
+stage_of <- function(u) {  # as claimstore.contrasts.stage_value
+  b <- rep(NA_real_, nrow(u))
+  for (col in stage_cols) if (col %in% names(u)) {
+    v <- suppressWarnings(as.numeric(u[[col]]))
+    if (any(!is.na(v))) { b <- v; break }
+  }
+  if (any(!is.na(b)) && nzchar(zero_group) && group_col %in% names(u)) b[is.na(b) & u[[group_col]] == zero_group] <- 0
   b
 }
 
@@ -60,13 +71,13 @@ for (i in seq_len(nrow(all_files))) {
                                            n_genes = nrow(tt), n_fdr05 = sum(tt$padj < 0.05), covariates = tt$covariates[1])
     }
   }
-  b <- braak_of(u); sel <- !is.na(b)
-  if (sum(sel) >= 6 && length(unique(b[sel])) >= 3) {
+  b <- stage_of(u); sel <- !is.na(b)
+  if (nzchar(stage_contrast) && sum(sel) >= 6 && length(unique(b[sel])) >= 3) {
     uu <- u[sel]; uu$stage <- b[sel]
     tt <- tryCatch(fit_one(counts[, sel, drop = FALSE], uu, "stage"), error = function(e) NULL)
     if (!is.null(tt)) {
-      fwrite(tt, file.path(outdir, paste0(stem, "__braak.tsv.gz")), sep = "\t")
-      log[[length(log) + 1]] <- data.table(file = f$file, region = f$region, cell_class = f$cell_class, contrast = "braak",
+      fwrite(tt, file.path(outdir, paste0(stem, "__", stage_contrast, ".tsv.gz")), sep = "\t")
+      log[[length(log) + 1]] <- data.table(file = f$file, region = f$region, cell_class = f$cell_class, contrast = stage_contrast,
                                            n_case = sum(sel), n_ref = NA, n_genes = nrow(tt), n_fdr05 = sum(tt$padj < 0.05),
                                            covariates = tt$covariates[1])
     }

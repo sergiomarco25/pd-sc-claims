@@ -1,0 +1,17 @@
+# Contrasts: which donor x region units are case and which are reference (claimstore.contrasts).
+# Each side (case, ref) is a table of conditions on the unit metadata; a unit belongs to a side when all hold.
+#   column = "value" | ["a", "b"] | { contains = "x" } ;  stage = { min = 3, max = 4.9 }  (stage defined below)
+# Any top-level list is a named group.
+
+[stage]
+name = "stage"
+columns = ["stage"]
+group_column = "disease"
+zero_group = "control"
+# The stage as a continuous covariate: its contrast code in claims, DE fit files and tests, and how tests name it
+contrast = "stage"
+label = "disease stage"
+
+[contrasts.case_vs_control]
+case = { disease = "case" }
+ref = { disease = "control" }

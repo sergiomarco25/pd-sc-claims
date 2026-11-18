@@ -1,0 +1,23 @@
+# One file per paper: claims/<paper_id>.yaml, a list of claims (format: claims/SCHEMA.md, config/schema.toml).
+- id: example2024-C01
+  paper: example2024
+  statement: Cells of type X make up a larger share of nuclei in cases than in controls.
+  quote: ''
+  location: Fig. 1b
+  centrality: headline
+  modality: snRNA
+  region: multiple
+  cell_type: All
+  cell_state: ''
+  claim_type: composition
+  direction: up
+  comparison: case vs control
+  genes: []
+  gene_source: ''
+  reported_stat: ''
+  unit_of_analysis: donors
+  method: ''
+  testable_with: rna
+  test_template: composition_donor
+  requires: ''
+  notes: Example claim from the template; replace it with real ones.

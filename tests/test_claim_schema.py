@@ -1,10 +1,9 @@
 """Every claim and finding file validates against its JSON Schema (claims/schema/, COMMUNITY_PLAN step 2.3).
 
 Also checks what JSON Schema cannot: ids match their file, ids are unique, the committed schema files are what
-claims/schema/build_schemas.py writes, and its vocabularies equal those scripts/05_merge_claims.py enforces.
+claims/schema/build_schemas.py writes from config/schema.toml, and the merge step uses those same vocabularies.
 Needs PyYAML and jsonschema:  pytest tests/test_claim_schema.py   or   python tests/test_claim_schema.py
 """
-import ast
 import importlib.util
 import json
 from pathlib import Path
@@ -46,16 +45,15 @@ def test_schema_files_are_current():
         jsonschema.Draft7Validator.check_schema(_load(name))
 
 
-def test_vocabularies_match_merge_script():
-    tree = ast.parse((ROOT / "scripts" / "05_merge_claims.py").read_text())
-    merge = {}
-    for node in tree.body:
-        if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") in ("VOCAB", "REQUIRED"):
-            merge[node.targets[0].id] = ast.literal_eval(node.value)
+def test_merge_script_uses_the_schema_vocabularies():
+    spec = importlib.util.spec_from_file_location("merge_claims", ROOT / "scripts" / "05_merge_claims.py")
+    merge = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(merge)
     b = _builder()
-    assert merge["REQUIRED"] == b.REQUIRED
-    for k, allowed in merge["VOCAB"].items():
+    assert merge.REQUIRED == b.REQUIRED
+    for k, allowed in merge.VOCAB.items():
         assert set(allowed) == set(b.VOCAB[k]), k
+    assert {"region", "cell_type"} <= set(b.VOCAB) and b.LIST_FIELDS == {"region", "cell_type", "modality"}
 
 
 def test_paper_claims_validate():

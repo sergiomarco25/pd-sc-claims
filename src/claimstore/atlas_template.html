@@ -1,0 +1,1465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+:root{color-scheme:light;--bg:#f6f6f3;--panel:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#7a7975;--line:#e3e2dc;--grid:#ecebe6;
+--accent:#256abf;--accent-soft:#e3edf9;--neg:#1c5cab;--mid:#f0efec;--pos:#b8322f;--brain:#efefeb;--brain2:#e6e6e1;
+--good:#0ca30c;--g-know:#2a78d6;--g-bio:#eb6834;--g-src:#1baf7a;--good-soft:#8fd18f;--warn:#fab219;--none:#a3a29c;--crit:#d03b3b;--untested:#e3e2dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#121211;--panel:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;
+--muted:#8d8c86;--line:#33332f;--grid:#2a2a27;--accent:#86b6ef;--accent-soft:#1d2a3a;--neg:#5598e7;--mid:#383835;--pos:#e66767;
+--brain:#232321;--brain2:#2b2b28;--none:#6e6d68;--untested:#2e2e2b;--good-soft:#3f7f3f;--g-know:#3987e5;--g-bio:#d95926;--g-src:#199e70}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#121211;--panel:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#8d8c86;--line:#33332f;--grid:#2a2a27;
+--accent:#86b6ef;--accent-soft:#1d2a3a;--neg:#5598e7;--mid:#383835;--pos:#e66767;--brain:#232321;--brain2:#2b2b28;--none:#6e6d68;--untested:#2e2e2b;--good-soft:#3f7f3f;--g-know:#3987e5;--g-bio:#d95926;--g-src:#199e70}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent);text-decoration:none;cursor:pointer}a:hover{text-decoration:underline}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--panel);border-bottom:1px solid var(--line)}
+.bar{max-width:1240px;margin:0 auto;padding:8px 16px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:700;font-size:15px;margin-right:10px;color:var(--ink)}
+nav a{color:var(--ink2);padding:5px 9px;border-radius:6px;font-size:14px}
+nav a.on{background:var(--accent-soft);color:var(--accent);text-decoration:none}
+.search{margin-left:auto;position:relative}
+.search input{width:240px;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:13px}
+#sres{position:absolute;right:0;top:36px;width:360px;max-height:60vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.15);display:none}
+#sres div{padding:7px 10px;border-bottom:1px solid var(--line);cursor:pointer;font-size:13px}#sres div:hover{background:var(--accent-soft)}
+#sres small{color:var(--muted);display:block}
+main{max-width:1240px;margin:0 auto;padding:22px 16px 80px}
+h1{font-size:30px;line-height:1.2;margin:6px 0 8px;letter-spacing:-.01em}
+h2{font-size:21px;margin:0 0 4px}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:22px 0 8px;font-weight:600}
+.lead{font-size:16.5px;color:var(--ink2);max-width:860px}
+.sub{color:var(--muted);font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0 6px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile b{display:block;font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile span{color:var(--ink2);font-size:13px}
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:12px;margin:12px 0}
+.finding{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--accent)}
+.finding:hover{border-color:var(--accent)}
+.finding .k{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+.finding .t{font-weight:600;font-size:15.5px;line-height:1.35}
+.finding .d{color:var(--ink2);font-size:13.5px}
+.finding .go{margin-top:auto;font-size:13px;color:var(--accent)}
+.finding .mini{margin:2px 0 0}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.sechead{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;justify-content:space-between;margin-bottom:6px}
+.sechead p{margin:2px 0 0;color:var(--ink2);font-size:14px;max-width:760px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,input.f{padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);font:inherit;font-size:13px;max-width:100%}
+.two{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:22px;align-items:start}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.ccard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer}
+.ccard:hover{border-color:var(--accent)}
+.ccard .n{font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:12px;color:var(--ink2);margin:6px 0}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.gradient{width:160px;height:9px;border-radius:5px;display:inline-block;vertical-align:middle;margin:0 6px}
+svg text{fill:var(--ink2);font-size:11.5px;font-family:inherit}
+svg .lab{fill:var(--ink);font-size:12px}
+svg .link{fill:var(--accent);cursor:pointer}
+svg .link:hover{text-decoration:underline}
+svg .ax{stroke:var(--line)}svg .gr{stroke:var(--grid)}svg .zero{stroke:var(--muted);stroke-dasharray:3 3}
+[data-href]{cursor:pointer}
+.chip{display:inline-block;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:1px 9px;font-size:12px;margin:2px 3px 2px 0;color:var(--ink2)}
+a.chip:hover{border-color:var(--accent);text-decoration:none}
+.badge{display:inline-flex;align-items:center;gap:4px;border-radius:4px;padding:0 7px;font-size:11.5px;font-weight:600;border:1px solid var(--line);color:var(--ink);white-space:nowrap}
+.badge i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.verdict{font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:12px}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+tr[data-href]:hover td{background:var(--accent-soft)}
+.ctx{background:var(--accent-soft);border-radius:8px;padding:10px 12px;font-size:13.5px}
+blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid var(--line);color:var(--ink2);font-style:italic}
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:5px 16px;font-size:14px;margin:0}
+dl.kv dt{color:var(--muted)}dl.kv dd{margin:0}
+.oid{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);margin-left:4px}
+.crumb{font-size:13px;color:var(--muted);margin-bottom:4px}
+.matrix{font-size:12.5px}
+.mrow{display:grid;grid-template-columns:132px 196px repeat(var(--nd),18px) minmax(240px,1fr);align-items:center;gap:0;border-bottom:1px solid var(--line);cursor:pointer}
+.mrow:hover{background:var(--accent-soft)}
+.mrow .s{padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
+.mcell{width:14px;height:14px;border-radius:3px;margin:2px}
+.mhead{display:grid;grid-template-columns:132px 196px repeat(var(--nd),18px) minmax(240px,1fr);align-items:end;position:sticky;top:50px;background:var(--panel);z-index:2;border-bottom:1px solid var(--line)}
+.mhead div.v{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;color:var(--ink2);height:96px;padding:2px 0;cursor:pointer;white-space:nowrap}
+.brainviews{display:grid;gap:14px 18px;grid-template-columns:repeat(auto-fit,minmax(460px,1fr))!important}.brainviews figure{margin:0}.brainviews figcaption{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;text-align:center}
+@media (max-width:900px){.brainviews{grid-template-columns:1fr!important}}
+.askcard{border-color:var(--accent)}.askrow{display:flex;gap:8px;margin:8px 0}.askrow input{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:15px}
+.askrow button,.ex{font:inherit;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}.askrow button{padding:8px 16px;font-weight:600;background:var(--accent);color:var(--panel);border-color:var(--accent)}
+.askrow button#asks{background:var(--panel);color:var(--ink);border-color:var(--line)}
+.examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.ex{font-size:12.5px;padding:3px 10px;color:var(--ink2)}.ex:hover{border-color:var(--accent);color:var(--accent)}
+.answer{background:var(--accent-soft);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:14.5px}.answer p{margin:6px 0}.answer ul{margin:4px 0 8px;padding-left:20px}.answer h4{margin:10px 0 4px}
+a.cite,span.cite{display:inline-block;font-size:11.5px;padding:0 6px;border-radius:9px;background:var(--panel);border:1px solid var(--line);margin:0 1px;white-space:nowrap}
+.hits{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:8px}.hit{border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;font-size:13px;background:var(--panel)}.hit:hover{border-color:var(--accent)}
+.cdots{display:inline-flex;gap:2px;vertical-align:middle}.cdots i{width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);display:inline-block}.cdots i.on{background:var(--ink);border-color:var(--ink)}
+.qitem{border-bottom:1px solid var(--line);padding:8px 0}.qitem summary{cursor:pointer;list-style:none}.qitem summary::-webkit-details-marker{display:none}
+.cgroup{margin:22px 0}.cgroup h2{margin-bottom:2px}.bgcard{border-left:4px solid var(--accent)}.refs{margin:6px 0 4px;padding-left:18px}.refs li{margin:6px 0;font-size:13.5px}
+#g3{position:fixed;inset:0;z-index:40;background:var(--bg);display:none}
+#g3labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}#g3labels span{position:absolute;left:0;top:0;font-size:11.5px;color:var(--ink);background:color-mix(in srgb,var(--panel) 78%,transparent);padding:0 5px;border-radius:5px;white-space:nowrap}#g3labels span.on{font-weight:700;font-size:13px}
+#g3panel,#g3card{position:absolute;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.15);overflow:auto}
+#g3panel{top:max(12px,env(safe-area-inset-top));left:12px;width:280px;max-height:calc(100vh - 24px)}#g3card{top:max(12px,env(safe-area-inset-top));right:12px;width:340px;max-height:calc(100vh - 24px);display:none}
+#g3panel input.f{width:100%;margin:6px 0 4px}.g3top{display:flex;gap:10px;align-items:baseline}.g3row{display:flex;gap:6px;align-items:center;margin:3px 0;cursor:pointer}.g3row span{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+.g3row i,#g3panel .g3row span i{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}.g3seg{display:flex;gap:4px;align-items:center;margin:6px 0;color:var(--muted)}.g3seg button{font:inherit;font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);cursor:pointer}.g3seg button.on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+#g3panel summary,#g3card summary{cursor:pointer;margin:6px 0 2px;font-weight:600}.g3help{color:var(--muted);font-size:12px;margin:8px 0 0}.g3x{position:sticky;top:0;float:right;font:inherit;font-size:18px;line-height:1;border:none;background:none;color:var(--muted);cursor:pointer}
+#g3labels span.topic{font-size:14px;font-weight:700;padding:2px 8px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 88%,transparent)}
+#g3panel select{font:inherit;font-size:12.5px;padding:2px 4px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);margin-left:auto;max-width:170px}
+.g3legend{margin:2px 0 4px}.g3note{color:var(--muted);font-size:11.5px;margin:3px 0}.g3note i{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:-1px}
+.g3path{border-top:1px solid var(--line);padding:6px 0}.g3step{color:var(--muted);font-size:12px;margin:1px 0 1px 10px}
+#g3card .g3seg a{margin-right:6px}#g3pick{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--panel);padding:6px 14px;border-radius:16px;font-size:13px;display:none;z-index:2}#g3pick a{color:var(--panel);text-decoration:underline}
+#g3msg{position:absolute;top:45%;left:0;right:0;text-align:center;color:var(--muted)}#g3card a.chip{cursor:pointer}
+@media (max-width:700px){#g3panel{width:auto;right:12px;max-height:38vh}#g3card{top:auto;bottom:12px;left:12px;width:auto;max-height:40vh}}
+.figure img{width:100%;border-radius:8px;border:1px solid var(--line);background:#fff}
+#tip{position:fixed;pointer-events:none;z-index:50;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12.5px;line-height:1.4;max-width:340px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:none}
+#tip b{font-weight:600}
+.note{font-size:12.5px;color:var(--muted);margin-top:6px}
+.empty{color:var(--muted);padding:18px 0}
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:600}
+.statecard{border-left:4px solid var(--line)}
+.kgwrap{display:grid;grid-template-columns:minmax(0,1.9fr) minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:900px){.two,.kgwrap{grid-template-columns:1fr}.search input{width:160px}h1{font-size:24px}#sres{width:300px}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <span class="brand">__BRAND__</span>
+  <nav id="nav">
+    <a data-v="overview" href="#overview">Overview</a><a data-v="ask" href="#ask">Ask</a><a data-v="cells" href="#cells">Cell types</a><a data-v="programmes" href="#programmes">Programmes</a><a data-v="regions" href="#regions">Brain regions</a><a data-v="consensus" href="#consensus">Consensus</a><a data-v="claims" href="#claims">Claims</a><a data-v="datasets" href="#datasets">Datasets</a><a data-v="genes" href="#genes">Genes</a><a data-v="graph" href="#graph">Graph</a>
+  </nav>
+  <div class="search"><input id="q" placeholder="Search claims, genes, cells, datasets…" autocomplete="off"><div id="sres"></div></div>
+</div></header>
+<main id="main"></main>
+<div id="tip"></div>
+<script>
+const D = /*__DATA__*/null;
+// field wording (config [atlas], claimstore.atlas); tables a field does not have are empty, and their sections and
+// pages are left out: a field without biology tables gets an atlas of its claims, tests, datasets and genes
+const F = D.field || {};
+for (const [k, v] of Object.entries({prog: [], comp: [], region: [], spec: [], gen: [], het: [], themes: [], genes: [], gsea: [],
+  anat: [], sites: {}, programmes: {}, links: {}, background: [], statements: [], relations: [], cell_order: ["ALL"]})) if (D[k] == null) D[k] = v;
+const NAV_OFF = {programmes: !D.prog.length, consensus: !D.statements.length};
+document.querySelectorAll("#nav a").forEach(a => { if (NAV_OFF[a.dataset.v]) a.style.display = "none"; });
+const CASES = F.disease || "cases", MAIN = F.main_contrast || "case_vs_control";
+// ------------------------------------------------------------------ indexes
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const enc = s => encodeURIComponent(s);
+const $ = s => document.querySelector(s);
+const split = s => (s || "").split(";").map(x => x.trim()).filter(Boolean);
+const C = Object.fromEntries(D.claims.map(c => [c.id, c]));
+const DS = Object.fromEntries(D.datasets.map(d => [d.dataset, d]));
+const P = Object.fromEntries(D.papers.map(p => [p.id, p]));
+const ST = Object.fromEntries(D.statements.map(s => [s.statement_id, s]));
+const EV_C = {}, EV_D = {};
+for (const e of D.evidence) { (EV_C[e.c] ??= []).push(e); (EV_D[e.d] ??= []).push(e); }
+const DSORDER = D.datasets.map(d => d.dataset);
+const PROG = D.programmes;
+const pname = p => PROG[p]?.name || p;
+const CELLS = D.cell_order;
+const cname = c => c === "ALL" ? "All cells" : c;
+const TESTS = Object.assign({age: "Correlation with age (Fisher z)", "post-mortem interval": "Correlation with post-mortem interval (Fisher z)"}, D.contrast_labels || {});
+const OUT = {reproduced: ["Reproduced", "var(--good)"], direction_only: ["Same direction only", "var(--warn)"], not_reproduced: ["Not reproduced", "var(--none)"],
+  contradicted: ["Contradicted", "var(--crit)"], not_testable: ["Not testable", "var(--untested)"]};
+const OUTK = Object.keys(OUT);
+const pct = (a, b) => b ? Math.round(100 * a / b) : 0;
+const f2 = v => v == null || isNaN(v) ? "–" : (+v).toFixed(2);
+const fp = p => p == null ? "–" : p < 1e-4 ? p.toExponential(1) : (+p).toPrecision(2);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function hex2rgb(h) { h = h.replace("#", ""); if (h.length === 3) h = h.split("").map(x => x + x).join(""); const n = parseInt(h, 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+function mix(a, b, t) { const x = hex2rgb(a), y = hex2rgb(b); return "rgb(" + x.map((v, i) => Math.round(v + (y[i] - v) * t)).join(",") + ")"; }
+function divColor(v, max) { if (v == null || isNaN(v)) return css("--untested"); const t = Math.max(-1, Math.min(1, v / max)); return t < 0 ? mix(css("--mid"), css("--neg"), -t) : mix(css("--mid"), css("--pos"), t); }
+function signColor(v) { return v < 0 ? css("--neg") : css("--pos"); }
+const tip = (title, rows) => `<b>${esc(title)}</b>` + (rows || []).filter(Boolean).map(r => `<br>${r}`).join("");
+const attr = (t, h) => (t ? ` data-tip="${esc(t)}"` : "") + (h ? ` data-href="${esc(h)}"` : "");
+const VORDER = ["Supported", "Supported (no effect)", "Partly supported", "No effect", "Inconclusive", "Contradicted", "Untested"];
+const CORDER = ["High", "Moderate", "Low", "Very low"];
+const VCOL = v => /^Supported/.test(v) ? "var(--good)" : /Partly/.test(v) ? "var(--warn)" : /Contradicted/.test(v) ? "var(--crit)" : /Untested/.test(v) || !v ? "var(--untested)" : "var(--none)";
+const certDots = c => { const n = 4 - Math.max(0, CORDER.indexOf(c)); return `<span class="cdots" title="${esc(c || "")} certainty">${[0, 1, 2, 3].map(i => `<i class="${i < n ? "on" : ""}"></i>`).join("")}</span>`; };
+const tierOf = c => `${c.verdict || "Untested"} · ${(c.certainty || "Very low").toLowerCase()}`;
+const ratingBadge = c => `<span class="badge" style="white-space:nowrap"><i style="background:${VCOL(c.verdict)}"></i>${esc(c.verdict || "Untested")}</span> ${certDots(c.certainty || "Very low")}`;
+const isF = c => c.origin === "finding";
+const originBadge = c => isF(c) ? `<span class="pill" style="font-size:11px">This study</span> ` : "";
+const ratingScore = c => (VORDER.indexOf(c.verdict || "Untested") + 1) * 10 + CORDER.indexOf(c.certainty || "Very low");
+
+// ------------------------------------------------------------------ chart primitives (SVG strings)
+function niceMax(v) { const m = Math.max(v, 1e-6), p = Math.pow(10, Math.floor(Math.log10(m))), f = m / p; return ([1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find(x => f <= x + 1e-9)) * p; }
+function ticks(lo, hi, n = 4) { const step = niceMax((hi - lo) / n); const out = []; for (let t = Math.ceil(lo / step) * step; t <= hi + 1e-9; t += step) out.push(+t.toFixed(10)); return out; }
+// forest: rows {label, est, lo, hi, sig, tip, href, labelHref, note}
+function forest(rows, o = {}) {
+  const W = o.width || 620, LW = o.labelW || 210, RH = o.rowH || 24, top = 8, H = top + rows.length * RH + 34;
+  const ests = rows.filter(r => r.est != null && !isNaN(r.est)).map(r => Math.abs(r.est)), cis = rows.flatMap(r => [Math.abs(r.lo ?? r.est ?? 0), Math.abs(r.hi ?? r.est ?? 0)]);
+  let ext = o.max || niceMax(Math.min(Math.max(0.1, ...cis), Math.max(0.3, ...ests) * 2.2) * 1.05);
+  const NW = o.noteW || 0, x = v => LW + 10 + (v + ext) / (2 * ext) * (W - LW - 24 - NW);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  if (o.band) s += `<rect x="${x(-o.band)}" y="${top}" width="${x(o.band) - x(-o.band)}" height="${H - 30 - top}" fill="var(--accent-soft)" opacity=".8"/>`;
+  for (const t of ticks(-ext, ext)) s += `<line class="gr" x1="${x(t)}" x2="${x(t)}" y1="${top}" y2="${H - 30}"/><text x="${x(t)}" y="${H - 16}" text-anchor="middle">${+t.toFixed(2)}</text>`;
+  s += `<line class="zero" x1="${x(0)}" x2="${x(0)}" y1="${top}" y2="${H - 30}"/>`;
+  s += `<text x="${(LW + W - NW) / 2}" y="${H - 2}" text-anchor="middle">${esc(o.axis || "effect")}</text>`;
+  rows.forEach((r, i) => {
+    const y = top + i * RH + RH / 2;
+    s += `<rect x="0" y="${y - RH / 2}" width="${W}" height="${RH}" fill="transparent"${attr(r.tip, r.href)}/>`;
+    s += `<text x="${LW}" y="${y + 4}" text-anchor="end" class="${r.labelHref || r.href ? "link" : "lab"}"${attr(null, r.labelHref || r.href)}>${esc(r.label)}</text>`;
+    if (r.est == null || isNaN(r.est)) { s += `<text x="${x(0) + 6}" y="${y + 4}" class="sub">no estimate</text>`; return; }
+    const col = r.color || signColor(r.est), lo = r.lo ?? r.est, hi = r.hi ?? r.est;
+    s += `<line x1="${x(Math.max(-ext, lo))}" x2="${x(Math.min(ext, hi))}" y1="${y}" y2="${y}" stroke="${col}" stroke-width="2" stroke-linecap="round" pointer-events="none"/>`;
+    if (lo < -ext) s += `<path d="M${x(-ext) + 5},${y - 4} L${x(-ext)},${y} L${x(-ext) + 5},${y + 4}" fill="none" stroke="${col}" stroke-width="1.5"/>`;
+    if (hi > ext) s += `<path d="M${x(ext) - 5},${y - 4} L${x(ext)},${y} L${x(ext) - 5},${y + 4}" fill="none" stroke="${col}" stroke-width="1.5"/>`;
+    s += `<circle cx="${x(Math.max(-ext, Math.min(ext, r.est)))}" cy="${y}" r="5.5" fill="${r.sig ? col : css("--panel")}" stroke="${col}" stroke-width="2" pointer-events="none"/>`;
+    if (r.note) s += `<text x="${W - 2}" y="${y + 4}" text-anchor="end">${esc(r.note)}</text>`;
+  });
+  return s + "</svg>";
+}
+// heatmap: rows/cols {key,label,href}; get(r,c) -> {v, sig, tip, href}
+function heatmap(rows, cols, get, o = {}) {
+  const cw = o.cw || 40, ch = o.ch || 24, LW = o.labelW || 270, CH = o.colH || 140, GH = 26, max = o.max || 1;
+  const ys = []; let acc = CH; rows.forEach((r, i) => { if (r.group && i > 0) acc += GH; else if (r.group) acc += GH - 6; ys.push(acc); acc += ch; });
+  const W = LW + cols.length * cw + Math.round(CH * 0.75), H = acc + 6;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  cols.forEach((c, j) => { const x = LW + j * cw + cw / 2; s += `<text transform="translate(${x - 2},${CH - 8}) rotate(-45)" class="${c.href ? "link" : "lab"}"${attr(c.tip, c.href)}>${esc(c.label)}</text>`; });
+  rows.forEach((r, i) => {
+    const y = ys[i];
+    if (r.group) s += `<text x="${LW - 8}" y="${y - 8}" text-anchor="end" style="font-weight:700;fill:var(--muted);font-size:10.5px;letter-spacing:.07em">${esc(r.group.toUpperCase())}</text><line x1="${LW}" x2="${LW + cols.length * cw}" y1="${y - 4}" y2="${y - 4}" class="ax"/>`;
+    s += `<text x="${LW - 8}" y="${y + ch / 2 + 4}" text-anchor="end" class="${r.href ? "link" : "lab"}"${attr(null, r.href)}>${esc(r.label)}</text>`;
+    cols.forEach((c, j) => {
+      const v = get(r, c), x = LW + j * cw;
+      if (!v || v.v == null || isNaN(v.v)) { s += `<rect x="${x + 1}" y="${y + 1}" width="${cw - 2}" height="${ch - 2}" rx="3" fill="var(--bg)" stroke="var(--grid)"/>`; return; }
+      s += `<rect x="${x + 1}" y="${y + 1}" width="${cw - 2}" height="${ch - 2}" rx="3" fill="${divColor(v.v, max)}"${attr(v.tip, v.href)}/>`;
+      if (v.sig) s += `<circle cx="${x + cw / 2}" cy="${y + ch / 2}" r="3" fill="${Math.abs(v.v) > max * .55 ? "#fff" : css("--ink")}" pointer-events="none"/>`;
+    });
+  });
+  return s + "</svg>";
+}
+// diverging horizontal bars: items {label, v, sig, tip, href}
+function hbars(items, o = {}) {
+  const W = o.width || 560, LW = o.labelW || 230, RH = o.rowH || 22, H = items.length * RH + 36;
+  const ext = o.max || niceMax(Math.max(0.1, ...items.map(i => Math.abs(i.v || 0))) * 1.05);
+  const allPos = o.positive || items.every(i => (i.v || 0) >= 0);
+  const x0 = allPos ? LW + 8 : LW + 8 + (W - LW - 16) / 2, sc = allPos ? (W - LW - 16) / ext : (W - LW - 16) / 2 / ext;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  for (const t of ticks(allPos ? 0 : -ext, ext)) s += `<line class="gr" x1="${x0 + t * sc}" x2="${x0 + t * sc}" y1="0" y2="${H - 26}"/><text x="${x0 + t * sc}" y="${H - 12}" text-anchor="middle">${+t.toFixed(2)}</text>`;
+  items.forEach((it, i) => {
+    const y = i * RH, v = it.v || 0, w = Math.abs(v) * sc, x = v < 0 ? x0 - w : x0, col = it.color || signColor(v);
+    s += `<rect x="0" y="${y}" width="${W}" height="${RH}" fill="transparent"${attr(it.tip, it.href)}/>`;
+    s += `<text x="${LW}" y="${y + RH / 2 + 4}" text-anchor="end" class="${it.href ? "link" : "lab"}"${attr(null, it.href)}>${esc(it.label)}</text>`;
+    s += `<rect x="${x}" y="${y + 4}" width="${Math.max(w, 1)}" height="${RH - 8}" rx="3" fill="${col}" opacity="${it.sig === false ? .38 : 1}" pointer-events="none"/>`;
+  });
+  s += `<line class="zero" x1="${x0}" x2="${x0}" y1="0" y2="${H - 26}"/>`;
+  if (o.axis) s += `<text x="${(LW + W) / 2}" y="${H - 1}" text-anchor="middle">${esc(o.axis)}</text>`;
+  return s + "</svg>";
+}
+// stacked horizontal 100% bars: rows {label, href, segs:[{k,n,color,label}]}
+function stacked(rows, o = {}) {
+  const W = o.width || 760, LW = o.labelW || 250, RH = 26, H = rows.length * RH + 6;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  rows.forEach((r, i) => {
+    const y = i * RH, tot = r.segs.reduce((a, b) => a + b.n, 0) || 1; let x = LW + 8;
+    s += `<text x="${LW}" y="${y + 17}" text-anchor="end" class="${r.href ? "link" : "lab"}"${attr(null, r.href)}>${esc(r.label)}</text>`;
+    for (const g of r.segs) { const w = (W - LW - 60) * g.n / tot; if (w > 0) s += `<rect x="${x}" y="${y + 5}" width="${Math.max(w - 2, .5)}" height="${RH - 10}" rx="3" fill="${g.color}"${attr(tip(r.label, [`${esc(g.label)}: <b>${g.n}</b> claims (${pct(g.n, tot)}%)`]), r.href)}/>`; x += w; }
+    s += `<text x="${W - 4}" y="${y + 17}" text-anchor="end">${tot}</text>`;
+  });
+  return s + "</svg>";
+}
+// small multiple: ordered categories with CI
+function stageChart(pts, o = {}) {
+  const W = o.width || 250, H = o.height || 160, L = 36, B = 30, T = 22;
+  const ests = pts.filter(p => p.est != null).map(p => Math.abs(p.est));
+  const ext = o.max || niceMax(Math.max(0.3, ...ests) * 1.6);
+  const x = i => L + 12 + i * (W - L - 24) / Math.max(1, pts.length - 1), y = v => T + (ext - v) / (2 * ext) * (H - T - B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  if (o.title) s += `<text x="0" y="13" class="${o.href ? "link" : "lab"}" style="font-weight:600"${attr(null, o.href)}>${esc(o.title)}</text>`;
+  for (const t of ticks(-ext, ext, 3)) s += `<line class="gr" x1="${L}" x2="${W}" y1="${y(t)}" y2="${y(t)}"/><text x="${L - 4}" y="${y(t) + 4}" text-anchor="end">${+t.toFixed(2)}</text>`;
+  s += `<line class="zero" x1="${L}" x2="${W}" y1="${y(0)}" y2="${y(0)}"/>`;
+  const ok = pts.map((p, i) => [p, i]).filter(([p]) => p.est != null);
+  if (ok.length > 1) s += `<polyline fill="none" stroke="var(--muted)" stroke-width="1.5" points="${ok.map(([p, i]) => `${x(i)},${y(p.est)}`).join(" ")}"/>`;
+  pts.forEach((p, i) => {
+    s += `<text x="${x(i)}" y="${H - 10}" text-anchor="middle">${esc(p.label)}</text>`;
+    if (p.est == null) return;
+    const col = signColor(p.est), lo = p.est - 1.96 * (p.se || 0), hi = p.est + 1.96 * (p.se || 0);
+    s += `<line x1="${x(i)}" x2="${x(i)}" y1="${y(Math.max(-ext, lo))}" y2="${y(Math.min(ext, hi))}" stroke="${col}" stroke-width="2"/>`;
+    if (hi > ext) s += `<path d="M${x(i) - 4},${y(ext) + 5} L${x(i)},${y(ext)} L${x(i) + 4},${y(ext) + 5}" fill="none" stroke="${col}" stroke-width="1.5"/>`;
+    if (lo < -ext) s += `<path d="M${x(i) - 4},${y(-ext) - 5} L${x(i)},${y(-ext)} L${x(i) + 4},${y(-ext) - 5}" fill="none" stroke="${col}" stroke-width="1.5"/>`;
+    s += `<circle cx="${x(i)}" cy="${y(p.est)}" r="5.5" fill="${p.sig ? col : css("--panel")}" stroke="${col}" stroke-width="2"${attr(p.tip)}/>`;
+  });
+  return s + "</svg>";
+}
+// brain map drawn from the ggseg atlas outlines (Desikan-Killiany cortex, FreeSurfer subcortical segmentation)
+const ANATV = Object.fromEntries(D.anat.map(v => [v.key, v]));
+function brainView(V, vals, o) {
+  const fs = V.fs, max = o.max || 1, uid = "b" + Math.random().toString(36).slice(2, 8), NS = `vector-effect="non-scaling-stroke"`;
+  let defs = "", s = "";
+  for (const d of V.base) s += `<path d="${d}" fill="var(--brain)" stroke="var(--muted)" stroke-width="1.1" ${NS}/>`;
+  V.parcels.forEach((p, i) => {
+    if (!p.site) {
+      const n = p.name || "", fill = /Ventricle/.test(n) ? "var(--panel)" : /^CC_/.test(n) ? "var(--brain2)" : "var(--brain)";
+      s += `<path d="${p.d}" fill="${fill}" stroke="var(--muted)" stroke-width=".6" stroke-opacity=".7" ${NS}><title>${esc(n.replace(/_left$/, "").replace(/-/g, " "))}</title></path>`; return; }
+    const v = vals[p.site], sel = o.selected === p.site, href = "#region/" + enc(p.site);
+    let clip = "";
+    if (p.clip) { const [x0, y0, x1, y1] = p.clip; defs += `<clipPath id="${uid}${i}"><rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}"/></clipPath>`; clip = ` clip-path="url(#${uid}${i})"`; }
+    s += `<path d="${p.d}"${clip} fill="${v ? divColor(v.v, max) : "var(--brain2)"}" stroke="${sel ? css("--accent") : v && v.p < 0.05 ? css("--ink") : css("--muted")}" stroke-width="${sel ? 3 : v && v.p < 0.05 ? 1.8 : .8}" ${NS}${v ? "" : ` stroke-dasharray="3 2"`}${attr(v ? v.tip : tip(p.site, ["no estimate for this selection"]), href)}/>`;
+  });
+  for (const L of V.labels) {
+    const v = vals[L.site], st = D.sites[L.site] || {}, gap = L.anchor === "end" ? fs * .3 : -fs * .3;
+    s += `<polyline points="${L.ax},${L.ay} ${L.lx + gap * 2},${L.ly - fs * .35} ${L.lx + gap},${L.ly - fs * .35}" fill="none" stroke="var(--muted)" stroke-width=".8" ${NS} pointer-events="none"/><circle cx="${L.ax}" cy="${L.ay}" r="${fs * .14}" fill="var(--ink)" pointer-events="none"/>`;
+    s += `<text x="${L.lx}" y="${L.ly}" text-anchor="${L.anchor}" style="font-size:${fs}px;${v ? "fill:var(--ink)" : "fill:var(--muted)"}"${attr(v ? v.tip : null, "#region/" + enc(L.site))}>${esc(L.text)}${st.stage ? ` · ${esc(F.site_stage_short || "S")}${st.stage}` : ""}<tspan x="${L.lx}" dy="${fs * 1.15}" style="font-weight:700">${v ? (v.v > 0 ? "+" : "") + f2(v.v) : "not sampled"}</tspan></text>`;
+  }
+  return `<svg viewBox="${V.vb.join(" ")}" width="100%" role="img" aria-label="${esc(V.title)}"><defs>${defs}</defs>${s}</svg>`;
+}
+function brain(vals, o = {}) {
+  const views = o.views || ["lateral", "medial", "coronal", "sagittal"];
+  return `<div class="brainviews"${views.length === 1 ? ' style="grid-template-columns:1fr!important"' : ""}>${views.map(k => `<figure><figcaption>${esc(ANATV[k].title)}</figcaption>${brainView(ANATV[k], vals, o)}</figure>`).join("")}${o.extra ? `<div>${o.extra}</div>` : ""}</div>`;
+}
+const divLegend = (lo, hi, label) => `<span class="legend"><span>${esc(lo)}</span><span class="gradient" style="background:linear-gradient(90deg,${css("--neg")},${css("--mid")},${css("--pos")})"></span><span>${esc(hi)}</span><span class="sub">${esc(label || "")}</span></span>`;
+const outLegend = (keys = OUTK) => `<div class="legend">${keys.map(k => `<span><i style="background:${OUT[k][1]}"></i>${OUT[k][0]}</span>`).join("")}</div>`;
+const sigLegend = `<span class="legend"><span><svg width="14" height="14" style="vertical-align:-2px"><circle cx="7" cy="7" r="5" fill="var(--muted)"/></svg> filled / dot = FDR &lt; 0.05</span><span><svg width="14" height="14" style="vertical-align:-2px"><circle cx="7" cy="7" r="5" fill="none" stroke="var(--muted)" stroke-width="2"/></svg> open = not significant</span></span>`;
+const badge = o => `<span class="badge"><i style="background:${(OUT[o] || OUT.not_testable)[1]}"></i>${(OUT[o] || ["–"])[0]}</span>`;
+function strip(id) { // one square per dataset, coloured by outcome
+  const ev = Object.fromEntries((EV_C[id] || []).map(e => [e.d, e]));
+  return `<span style="display:inline-flex;gap:2px;vertical-align:middle">` + DSORDER.map(d => { const e = ev[d]; const o = e ? e.o : null;
+    return `<i style="display:inline-block;width:8px;height:12px;border-radius:2px;background:${o ? OUT[o]?.[1] || css("--untested") : "transparent"};border:1px solid ${e && e.role === "source" ? css("--ink") : "transparent"}"${attr(tip(d, [e ? (OUT[e.o]?.[0] || e.o) + (e.role === "source" ? " (source data)" : "") : "not tested"]))}></i>`; }).join("") + `</span>`;
+}
+
+// ------------------------------------------------------------------ data helpers
+const progRow = (p, c, t) => D.prog.find(r => r.programme === p && r.cell_class === c && r.test === t);
+const PROG_LIST = Object.keys(PROG).filter(p => D.prog.some(r => r.programme === p));
+const groupsOf = list => { const g = {}; list.forEach(p => (g[PROG[p]?.group || "Other"] ??= []).push(p)); return g; };
+const GROUP_ORDER = F.programme_groups || [...new Set(Object.values(PROG).map(p => p.group))];
+const orderedProgs = () => GROUP_ORDER.flatMap(g => PROG_LIST.filter(p => PROG[p].group === g));
+const progCells = () => CELLS.filter(c => D.prog.some(r => r.cell_class === c && r.test === MAIN));
+const progTip = r => tip(`${pname(r.programme)} · ${cname(r.cell_class)}`, [esc(TESTS[r.test] || r.test), `effect <b>${f2(r.est)}</b> (95% CI ${f2(r.est - 1.96 * r.se)} to ${f2(r.est + 1.96 * r.se)})`, `FDR ${fp(r.fdr)} · ${r.k} datasets`]);
+const SITE_OF_REGION = {}; for (const [s, p] of Object.entries(D.sites)) for (const r of p.regions) SITE_OF_REGION[r] = s;
+function claimsAbout(fn) { return D.claims.filter(fn).sort((a, b) => ratingScore(a) - ratingScore(b) || (a.rank ?? 1e9) - (b.rank ?? 1e9)); }
+function claimTable(list, o = {}) {
+  if (!list.length) return `<div class="empty">No claims.</div>`;
+  const n = o.limit || 400;
+  return `${outLegend()}<table><thead><tr><th>Claim</th><th>Statement</th><th>Rating</th><th>Tested in each dataset</th></tr></thead><tbody>${list.slice(0, n).map(c =>
+    `<tr data-href="#claim/${enc(c.id)}"><td class="sub" style="white-space:nowrap">${esc(c.id)}</td><td>${originBadge(c)}${esc(c.statement)}</td><td style="white-space:nowrap">${ratingBadge(c)}</td><td>${strip(c.id)}</td></tr>`).join("")}</tbody></table>${list.length > n ? `<div class="note">${list.length - n} more not shown.</div>` : ""}`;
+}
+
+// ------------------------------------------------------------------ pages
+const pages = {};
+pages.overview = () => {
+  const s = D.stats, kf = F.key_findings || [];
+  return `<div class="crumb">${esc(F.crumb || "")}</div>
+  <h1>${esc(F.headline || F.title || "Claim atlas")}</h1>
+  <p class="lead">${F.lead ? esc(F.lead) + " " : ""}${s.datasets} datasets harmonised with donors as the unit, and the ${s.claims} main claims of ${s.papers} studies re-tested in their own data and in the other datasets.</p>
+  ${askBox(false)}
+  <div class="tiles">
+    <div class="tile"><b>${s.datasets}</b><span>datasets</span></div>
+    <div class="tile"><b>${s.donors.toLocaleString()}</b><span>donors</span></div>
+    ${s.nuclei ? `<div class="tile"><b>${esc(s.nuclei)}</b><span>nuclei</span></div>` : ""}
+    <div class="tile"><b>${s.regions}</b><span>${esc(F.regions_label || "brain regions")}</span></div>
+    <div class="tile"><b>${s.claims}</b><span>published claims from ${s.papers} studies</span></div>
+    <div class="tile"><b>${s.tested}</b><span>claims re-tested in the data</span></div>
+    <div class="tile"><b>${s.held}</b><span>supported, ${s.strong} with moderate or high certainty</span></div>
+    ${s.findings ? `<div class="tile"><b>${s.findings}</b><span>findings of this study, rated the same way</span></div>` : ""}
+  </div>
+  ${kf.length ? `<h3>Key findings</h3><div class="findings">${kf.map(f => `<div class="finding" data-href="${esc(f.href || "#claims")}"><span class="k">${esc(f.label || "")}</span><span class="t">${esc(f.title || "")}</span><div class="sub">${esc(f.text || "")}</div></div>`).join("")}</div>` : ""}
+  ${secFindings()}${secBackground()}${secComposition()}${secProgrammes()}${secBrain()}${secStages()}${secSpec()}${secGenetics()}${secLiterature()}${secData()}`;
+};
+// --- this study's findings, rated like published claims
+function secFindings() {
+  const fs = D.claims.filter(isF).sort((a, b) => ratingScore(a) - ratingScore(b));
+  if (!fs.length) return "";
+  const rows = fs.map(c => ({label: c.statement.length > 70 ? c.statement.slice(0, 68) + "…" : c.statement, est: c.est, lo: c.lo, hi: c.hi, sig: /^Supported/.test(c.verdict),
+    color: /^Supported/.test(c.verdict) ? css("--good") : /Contradicted/.test(c.verdict) ? css("--crit") : css("--none"), href: "#claim/" + enc(c.id),
+    tip: tip(c.statement, [`${esc(c.verdict)}, ${esc((c.certainty || "").toLowerCase())} certainty`, `pooled SMD ${f2(c.est)} (${f2(c.lo)} to ${f2(c.hi)}), ${c.k_cohorts} cohorts`, esc(c.reasons || "")]),
+    note: `${c.verdict} · ${(c.certainty || "").toLowerCase()}`}));
+  return `<section class="card" id="sec-findings"><div class="sechead"><div><h2>This study's findings, rated like any claim</h2><p>${fs.length} findings of the re-analysis, each linked to the results table that produced it and rated with the same rules as the published claims. Effect: pooled standardised mean difference, positive = in the stated direction (for no-difference findings, the raw effect; the shaded band marks the ±0.2 equivalence margin).</p></div></div>
+  <div style="overflow-x:auto">${forest(rows, {width: 1180, labelW: 470, rowH: 24, axis: "pooled effect (SMD), positive = as stated", max: 1.2, noteW: 170, band: 0.2})}</div></section>`;
+}
+// --- composition
+const compState = {contrast: MAIN, denom: "all nuclei"};
+function compRows(cells, scope, st = compState) {
+  return cells.map(c => { const r = D.comp.find(x => x.contrast === st.contrast && x.denominator === st.denom && x.scope === scope && x.cell_class === c);
+    return {label: cname(c), est: r?.est, lo: r ? r.est - 1.96 * r.se : null, hi: r ? r.est + 1.96 * r.se : null, sig: r && r.fdr < 0.05, href: "#cell/" + enc(c),
+      tip: r ? tip(`${cname(c)} · ${scope}`, [`difference in logit share <b>${f2(r.est)}</b> (CI ${f2(r.est - 1.96 * r.se)} to ${f2(r.est + 1.96 * r.se)})`, `FDR ${fp(r.fdr)} · ${r.k} datasets · I² ${pct(r.I2, 1)}%`]) : tip(cname(c), ["not estimated"])}; });
+}
+function secComposition() {
+  if (!D.comp.length) return "";
+  const scopes = (F.comp_scopes || [...new Set(D.comp.map(r => r.scope))]);
+  const cells = CELLS.filter(c => D.comp.some(r => r.cell_class === c && r.denominator === compState.denom && r.contrast === compState.contrast));
+  return `<section class="card" id="sec-comp"><div class="sechead"><div><h2>Which cells change</h2><p>Change in each cell type's share of nuclei, ${esc(CASES)} vs controls, pooled across datasets (random effects). Left of zero: fewer in ${esc(CASES)}; right: more.</p></div>
+    <div class="controls"><select onchange="compState.denom=this.value;rerender()">${["all nuclei", "non-neuronal nuclei", "all neurons"].map(d => `<option ${d === compState.denom ? "selected" : ""}>${d}</option>`).join("")}</select>
+    <select onchange="compState.contrast=this.value;rerender()">${[...new Set(D.comp.map(r => r.contrast))].map(k => `<option value="${esc(k)}" ${compState.contrast === k ? "selected" : ""}>${esc(TESTS[k] || k)}</option>`).join("")}</select></div></div>
+    ${sigLegend}<div class="two" style="grid-template-columns:1fr 1fr">${scopes.map(sc => `<div><div class="pill">${esc(sc)}</div>${forest(compRows(cells, sc), {width: 560, labelW: 150, rowH: 23, axis: "Δ logit share (case − control)"})}</div>`).join("")}</div></section>`;
+}
+// --- programme heatmap
+const progState = {test: MAIN};
+function secProgrammes() {
+  if (!D.prog.length) return "";
+  const cells = progCells(), progs = orderedProgs().filter(p => D.prog.some(r => r.programme === p && r.test === progState.test));
+  let last = null; const rows = progs.map(p => { const g = PROG[p].group; const r = {key: p, label: pname(p), href: "#programme/" + enc(p), group: g !== last ? g : null}; last = g; return r; });
+  const cols = cells.map(c => ({key: c, label: cname(c), href: "#cell/" + enc(c)}));
+  const isCorr = [F.stage_test || "stage", "age", "post-mortem interval"].includes(progState.test);
+  return `<section class="card" id="sec-prog"><div class="sechead"><div><h2>What changes inside the cells</h2><p>Transcriptional programmes (rows) scored per donor in each cell type (columns), then compared ${esc(TESTS[progState.test])} and pooled across datasets. Red = higher in ${esc(CASES)}, blue = lower. Click a row or column to explore it.</p></div>
+    <div class="controls"><select onchange="progState.test=this.value;rerender()">${Object.entries(TESTS).map(([k, v]) => `<option value="${k}" ${k === progState.test ? "selected" : ""}>${esc(v)}</option>`).join("")}</select></div></div>
+    ${divLegend("lower in " + CASES, "higher in " + CASES, isCorr ? "Fisher z of the correlation" : "Hedges' g")}<span class="legend">● FDR &lt; 0.05</span>
+    <div style="overflow-x:auto">${heatmap(rows, cols, (r, c) => { const x = progRow(r.key, c.key, progState.test); return x && {v: x.est, sig: x.fdr < 0.05, tip: progTip(x), href: "#programme/" + enc(r.key) + "/" + enc(c.key)}; }, {max: isCorr ? 0.4 : 0.8, labelW: 300})}</div></section>`;
+}
+// --- brain
+const brainState = {prog: (D.region[0] || {}).programme, cell: "ALL"};
+function brainVals(prog, cell) { const v = {}; for (const r of D.region.filter(r => r.programme === prog && r.cell_class === cell)) v[r.site] = {v: r.est, p: r.p, donors: r.donors, tip: tip(`${r.site} · ${pname(prog)} · ${cname(cell)}`, [`Hedges' g <b>${f2(r.est)}</b> (CI ${f2(r.est - 1.96 * r.se)} to ${f2(r.est + 1.96 * r.se)}), p ${fp(r.p)}`, `${r.donors} donors · ${esc(split(r.datasets).join(", "))}`])}; return v; }
+function brainControls(st, cb) {
+  const progs = [...new Set(D.region.map(r => r.programme))], cells = CELLS.filter(c => D.region.some(r => r.programme === st.prog && r.cell_class === c));
+  if (!cells.includes(st.cell)) st.cell = cells[0];
+  return `<div class="controls"><select onchange="${cb}.prog=this.value;rerender()">${progs.map(p => `<option value="${esc(p)}" ${p === st.prog ? "selected" : ""}>${esc(pname(p))}</option>`).join("")}</select>
+  <select onchange="${cb}.cell=this.value;rerender()">${cells.map(c => `<option value="${esc(c)}" ${c === st.cell ? "selected" : ""}>${esc(cname(c))}</option>`).join("")}</select></div>`;
+}
+function secBrain() {
+  if (!D.region.length || !D.anat.length) return "";
+  const v = brainVals(brainState.prog, brainState.cell), ranked = Object.entries(v).sort((a, b) => b[1].v - a[1].v);
+  return `<section class="card" id="sec-brain"><div class="sechead"><div><h2>Where in the brain</h2><p>Case–control difference per brain region, pooled over the datasets that sampled it. Dark outline: p &lt; 0.05.${F.site_stage_note ? " " + esc(F.site_stage_note) : ""} Hover or click a structure.</p></div>${brainControls(brainState, "brainState")}</div>
+  ${divLegend("lower in " + CASES, "higher in " + CASES, "Hedges' g")}
+  ${brain(v, {max: 1, extra: `<h3>Ranked</h3>${hbars(ranked.map(([s, x]) => ({label: s, v: x.v, sig: x.p < 0.05, tip: x.tip, href: "#region/" + enc(s)})), {width: 520, labelW: 170, axis: "Hedges' g"})}`})}
+  <div class="note">${esc(F.brain_note || "Outlines from the ggseg atlases (Desikan–Killiany cortical parcels, FreeSurfer subcortical segmentation; left hemisphere for cortex). Dashed: not sampled for this selection.")}</div></section>`;
+}
+// --- stages
+function stagePts(prog, cell) {
+  return (F.stage_tests || []).map(([t, l]) => { const r = progRow(prog, cell, t);
+    return {label: l, est: r?.est, se: r?.se, sig: r && r.fdr < 0.05, tip: r ? progTip(r) : null}; });
+}
+function secStages() {
+  if (!(F.stage_tests || []).length || !D.prog.length) return "";
+  const core = F.stage_programmes || [];
+  return `<section class="card" id="sec-stage"><div class="sechead"><div><h2>When along the disease</h2><p>Programmes in all cells, compared with controls at each stage. Filled: FDR &lt; 0.05.</p></div></div>
+  <div class="three">${core.map(p => `<div>${stageChart(stagePts(p, "ALL"), {title: pname(p), href: "#programme/" + enc(p)})}</div>`).join("")}</div><div class="note">y axis: Hedges' g vs controls. Stage groups come from the datasets with staging.</div></section>`;
+}
+// --- specificity
+const specState = {cell: "Oligodendrocytes"};
+function secSpec() {
+  if (!D.spec.length) return "";
+  const cells = [...new Set(D.spec.map(r => r.cell_class))], groups = [...new Set(D.spec.map(r => r.group))];
+  if (!cells.includes(specState.cell)) specState.cell = cells[0];
+  const progs = [...new Set(D.spec.filter(r => r.cell_class === specState.cell).map(r => r.programme))];
+  const rows = progs.map(p => ({key: p, label: pname(p), href: "#programme/" + enc(p)})), cols = groups.map(g => ({key: g, label: g}));
+  return `<section class="card" id="sec-spec"><div class="sechead"><div><h2>Is it specific to ${esc(F.disease || "the disease")}?</h2><p>${esc((F.captions || {}).spec || "Each diagnosis compared with controls; effect in control SD units.")}</p></div>
+  <div class="controls"><select onchange="specState.cell=this.value;rerender()">${cells.map(c => `<option ${c === specState.cell ? "selected" : ""}>${esc(c)}</option>`).join("")}</select></div></div>
+  ${divLegend("lower than controls", "higher than controls", "effect (control SD)")}<span class="legend">● FDR &lt; 0.05</span>
+  <div style="overflow-x:auto">${heatmap(rows, cols, (r, c) => { const x = D.spec.find(s => s.programme === r.key && s.group === c.key && s.cell_class === specState.cell);
+    return x && {v: x.effect_sd, sig: x.fdr < 0.05, tip: tip(`${pname(x.programme)} · ${x.group}`, [`effect <b>${f2(x.effect_sd)}</b> SD (p ${fp(x.p)}, FDR ${fp(x.fdr)})`, `${x.n_group} cases vs ${x.n_ctrl} controls · ${pct(x.share_above_ctrl95, 1)}% above the control 95th percentile`])}; }, {max: 0.8, cw: 52, labelW: 300, colH: 130})}</div></section>`;
+}
+// --- genetics
+const genState = {set: "specificity"};
+const SETNAME = s => (F.gene_set_names || {})[s] || s;
+function secGenetics() {
+  if (!D.gen.length) return "";
+  const sets = [...new Set(D.gen.map(g => g.set_type))];
+  const rows = D.gen.filter(g => g.set_type === genState.set && g.k >= 3).sort((a, b) => (b.z ?? 0) - (a.z ?? 0));
+  return `<section class="card" id="sec-gen"><div class="sechead"><div><h2>Where genetic risk converges</h2><p>${esc((F.captions || {}).gen || "Enrichment of genetic risk in each cell type's gene sets, combined across datasets (Stouffer z, one-sided). Bars at full colour: p < 0.05.")}</p></div>
+  <div class="controls"><select onchange="genState.set=this.value;rerender()">${sets.map(s => `<option value="${esc(s)}" ${s === genState.set ? "selected" : ""}>${esc(SETNAME(s))}</option>`).join("")}</select></div></div>
+  ${!(F.overlap_sets || []).includes(genState.set) && rows.some(r => r.z != null) ? hbars(rows.map(r => ({label: cname(r.cell_class), v: r.z, sig: r.p < 0.05, color: r.z > 0 ? css("--pos") : css("--none"), href: "#cell/" + enc(r.cell_class), tip: tip(cname(r.cell_class), [`z <b>${f2(r.z)}</b>, p ${fp(r.p)} · ${r.k} datasets`, `significant in: ${esc(r.datasets_p05 || "none")}`])})), {width: 640, labelW: 170, axis: "combined z"})
+    : `<p class="sub">Overlap of ${esc(SETNAME(genState.set))} with each cell type's genes, combined by a binomial test over datasets.</p><table><tr><th>Cell type</th><th>p</th><th>datasets</th><th>significant in</th></tr>${rows.sort((a, b) => a.p - b.p).map(r => `<tr data-href="#cell/${enc(r.cell_class)}"><td>${esc(cname(r.cell_class))}</td><td class="num">${fp(r.p)}</td><td class="num">${r.k}</td><td class="sub">${esc(r.datasets_p05 || "")}</td></tr>`).join("")}</table>`}</section>`;
+}
+// --- literature
+function themeSegs(t) {
+  const untested = Math.max(0, t.claims - t.tested);
+  return [{k: "holds", n: (t.robust || 0) + (t.supported || 0), color: css("--good"), label: "Holds (robust or supported)"}, {k: "mixed", n: t.inconsistent || 0, color: css("--warn"), label: "Inconsistent"},
+    {k: "nr", n: t.not_replicated || 0, color: css("--none"), label: "Not replicated"}, {k: "con", n: t.contradicted || 0, color: css("--crit"), label: "Contradicted"}, {k: "un", n: untested, color: css("--untested"), label: "Not testable in these data"}];
+}
+const RSEG = [["Supported, high or moderate certainty", c => /^Supported/.test(c.verdict) && ["High", "Moderate"].includes(c.certainty), "var(--good)"],
+  ["Supported, low or very low certainty", c => /^Supported/.test(c.verdict) && !["High", "Moderate"].includes(c.certainty), "var(--good-soft)"],
+  ["Partly supported", c => c.verdict === "Partly supported", "var(--warn)"], ["Inconclusive or no effect", c => ["Inconclusive", "No effect"].includes(c.verdict), "var(--none)"],
+  ["Contradicted", c => c.verdict === "Contradicted", "var(--crit)"], ["Untested", c => !c.verdict || c.verdict === "Untested", "var(--untested)"]];
+const rsegs = list => RSEG.map(([l, f, col]) => ({n: list.filter(f).length, color: css(col.slice(4, -1)), label: l}));
+function secLiterature() {
+  const themes = [...new Set(D.claims.flatMap(c => split(c.themes)))];
+  const rows = themes.map(t => { const l = D.claims.filter(c => split(c.themes).includes(t)); return {label: t, href: "#claims?theme=" + enc(t), segs: rsegs(l), score: l.filter(RSEG[0][1]).length / l.length}; }).sort((a, b) => b.score - a.score);
+  return `<section class="card" id="sec-lit"><div class="sechead"><div><h2>How solid is the published literature?</h2><p>The ${D.stats.claims} claims grouped by theme, rated by verdict and certainty of the cross-dataset evidence (GRADE-style: starting level from independent cohorts, lowered for risk of bias, inconsistency, indirectness, imprecision and dependence). Click a theme to see its claims.</p></div></div>
+  <div class="legend">${rsegs(D.claims).map(g => `<span><i style="background:${g.color}"></i>${g.label}</span>`).join("")}</div>
+  ${stacked(rows, {width: 860, labelW: 240})}</section>`;
+}
+function secLiteratureOld() {
+  const th = D.themes.slice().sort((a, b) => b.share_robust_or_supported - a.share_robust_or_supported);
+  return `<section class="card" id="sec-lit"><div class="sechead"><div><h2>How solid is the published literature?</h2><p>The ${D.stats.claims} claims grouped by theme, with the outcome of re-testing them across datasets. Click a theme to see its claims; see the <a href="#consensus">consensus statements</a> for the 18 conclusions they add up to.</p></div></div>
+  <div class="legend">${themeSegs(th[0]).map(g => `<span><i style="background:${g.color}"></i>${g.label}</span>`).join("")}</div>
+  ${stacked(th.map(t => ({label: t.theme, href: "#claims?theme=" + enc(t.theme), segs: themeSegs(t)})), {width: 860, labelW: 240})}</section>`;
+}
+// --- data landscape
+const RG_OF = F.region_group_of || {}, rgOf = r => RG_OF[r] || r;
+const RG = F.region_groups || [...new Set(D.datasets.flatMap(d => split(d.regions)).map(rgOf))];
+function ancShort(d) {
+  try { const c = JSON.parse(d.ancestry_counts || "{}"), known = Object.entries(c).filter(([k]) => !/unknown/i.test(k)), tot = Object.values(c).reduce((a, b) => a + b, 0), kn = known.reduce((a, [, v]) => a + v, 0);
+    if (!kn) return "not reported"; const [top, n] = known.sort((a, b) => b[1] - a[1])[0];
+    return `${pct(n, kn)}% ${top}${kn < tot ? `, ${pct(tot - kn, tot)}% unknown` : ""} (${d.ancestry_basis.replace("_", "-")})`; } catch (e) { return d.ancestry_summary; } }
+function landscape() {
+  const W = 1000, LW = 260, cw = 78, RH = 26, H = 40 + D.datasets.length * RH, AX = LW + RG.length * cw + 20;
+  const ds = D.datasets.slice().sort((a, b) => RG.indexOf(rgOf(split(a.regions)[0])) - RG.indexOf(rgOf(split(b.regions)[0])) || b.n_donors - a.n_donors);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  RG.forEach((g, j) => s += `<text x="${LW + j * cw + cw / 2}" y="24" text-anchor="middle" class="lab" style="font-weight:600">${g}</text>`);
+  s += `<text x="${AX}" y="24" class="lab" style="font-weight:600">ancestry</text>`;
+  ds.forEach((d, i) => {
+    const y = 40 + i * RH + RH / 2, regs = split(d.regions);
+    s += `<rect x="0" y="${y - RH / 2}" width="${W}" height="${RH}" fill="transparent"${attr(tip(d.cohort, [`${d.n_donors} donors · ${esc(d.donors_by_disease)}`, `regions: ${esc(regs.join(", "))}`, `ancestry: ${esc(d.ancestry_summary)}`]), "#dataset/" + enc(d.dataset))}/>`;
+    s += `<text x="${LW - 8}" y="${y + 4}" text-anchor="end" class="link" pointer-events="none">${esc(d.label || d.dataset)}</text><line class="gr" x1="${LW}" x2="${AX - 10}" y1="${y}" y2="${y}"/>`;
+    RG.forEach((g, j) => { const n = regs.filter(r => rgOf(r) === g); if (n.length) s += `<circle cx="${LW + j * cw + cw / 2}" cy="${y}" r="${4 + Math.sqrt(d.n_donors) * 0.7}" fill="${css("--accent")}" opacity=".8" pointer-events="none"/>`; });
+    const known = d.ancestry_basis && d.ancestry_basis !== "not_reported";
+    s += `<text x="${AX}" y="${y + 4}" style="fill:${known ? css("--ink") : css("--muted")}" pointer-events="none">${known ? esc(ancShort(d)) : "not reported"}</text>`;
+  });
+  return s + "</svg>";
+}
+function secData() {
+  const known = D.datasets.filter(d => d.ancestry_basis && d.ancestry_basis !== "not_reported").length;
+  return `<section class="card" id="sec-data"><div class="sechead"><div><h2>The data behind it</h2><p>Each harmonised dataset, the brain regions it sampled (circle size: donors) and the ancestry of its donors. Ancestry is reported for only ${known} of ${D.datasets.length} datasets, so conclusions here mostly describe brain-bank cohorts of unknown or predominantly European ancestry.</p></div></div>${landscape()}</section>`;
+}
+
+// --- cell types
+pages.cells = () => {
+  const cells = CELLS.filter(c => D.comp.some(r => r.cell_class === c) || D.prog.some(r => r.cell_class === c) || D.claims.some(x => split(x.cell_types).includes(c === "ALL" ? "All" : c)));
+  return `<h1>Cell types</h1><p class="lead">${D.comp.length || D.prog.length ? "What happens to each cell type: how its share changes, which programmes switch on or off, which genes and pathways move, and what the literature claims about it." : "What the published claims say about each cell type, and how they fared when re-tested."}</p>
+  <div class="grid4">${cells.map(c => { const comp = D.comp.find(r => r.cell_class === c && r.scope === "all regions" && r.contrast === MAIN && r.denominator === "all nuclei");
+    const ups = D.prog.filter(r => r.cell_class === c && r.test === MAIN && r.fdr < 0.05);
+    const nc = D.claims.filter(x => split(x.cell_types).includes(c === "ALL" ? "All" : c)).length;
+    return `<div class="ccard" data-href="#cell/${enc(c)}"><div class="n">${esc(cname(c))}</div>${D.comp.length ? `<div class="sub">${comp ? `share ${comp.est > 0 ? "up" : "down"} ${f2(Math.abs(comp.est))} logit${comp.fdr < 0.05 ? " (FDR &lt; 0.05)" : " (n.s.)"}` : "share not estimated"}</div>` : ""}
+    <div class="sub">${D.prog.length ? `${ups.length} programmes changed · ` : ""}${nc} claims</div></div>`; }).join("")}</div>`;
+};
+pages.cell = c => {
+  const st = {contrast: MAIN};
+  const compRowsC = ["all nuclei", "non-neuronal nuclei", "all neurons"].flatMap(den => (F.comp_scopes || [...new Set(D.comp.map(r => r.scope))]).map(sc => { const r = D.comp.find(x => x.cell_class === c && x.scope === sc && x.denominator === den && x.contrast === st.contrast);
+    return r && {label: `${sc} · ${den}`, est: r.est, lo: r.est - 1.96 * r.se, hi: r.est + 1.96 * r.se, sig: r.fdr < 0.05, tip: tip(`${cname(c)} · ${sc}`, [`${den}: Δ logit <b>${f2(r.est)}</b>`, `FDR ${fp(r.fdr)} · ${r.k} datasets`])}; })).filter(Boolean);
+  const progs = D.prog.filter(r => r.cell_class === c && r.test === MAIN).sort((a, b) => b.est - a.est);
+  const CLONE = /^[A-Z]{1,2}\d{5,6}\.\d+$/;
+  const genes = D.genes.filter(g => g.cell_class === c && g.fdr < 0.05 && !CLONE.test(g.gene));
+  const up = genes.filter(g => g.est > 0).sort((a, b) => b.est - a.est).slice(0, 15), dn = genes.filter(g => g.est < 0).sort((a, b) => a.est - b.est).slice(0, 15);
+  const gs = D.gsea.filter(g => g.cell_class === c);
+  const gen = D.gen.filter(g => g.cell_class === c && g.k >= 3 && !(F.overlap_sets || []).includes(g.set_type));
+  const claimLabel = c === "ALL" ? "All" : c;
+  const cl = claimsAbout(x => split(x.cell_types).includes(claimLabel));
+  const geneBar = list => hbars(list.map(g => ({label: g.gene, v: g.est, href: "#gene/" + enc(g.gene), tip: tip(g.gene, [`log fold change <b>${f2(g.est)}</b>, FDR ${fp(g.fdr)}`, `${g.k} datasets, ${pct(g.frac_dir, 1)}% same direction`])})), {width: 360, labelW: 90, rowH: 19, axis: "pooled log2 fold change"});
+  return `<div class="crumb"><a href="#cells">Cell types</a> ›</div><h1>${esc(cname(c))}</h1>
+  ${D.comp.length || D.prog.length ? `<section class="card"><div class="two"><div><h2>Share of nuclei</h2><p class="sub">${esc(F.case_label || "cases vs controls")}, by region group and denominator.</p>${compRowsC.length ? forest(compRowsC, {width: 560, labelW: 230, axis: "Δ logit share (case − control)"}) : `<div class="empty">Not estimated for this cell type.</div>`}</div>
+  <div><h2>Programmes</h2><p class="sub">${esc(F.case_label || "cases vs controls")} (Hedges' g). Faded: FDR ≥ 0.05.</p>${progs.length ? hbars(progs.map(r => ({label: pname(r.programme), v: r.est, sig: r.fdr < 0.05, tip: progTip(r), href: "#programme/" + enc(r.programme) + "/" + enc(c)})), {width: 520, labelW: 270, rowH: 20, axis: "Hedges' g"}) : `<div class="empty">No programme scores.</div>`}</div></div></section>` : ""}
+  ${D.genes.length ? `<section class="card"><h2>Genes most consistently changed</h2><p class="sub">Gene-level meta-analysis across datasets (all regions), FDR &lt; 0.05; ${genes.length} named genes (unnamed lncRNA clones hidden). Click a gene.</p>
+  <div class="two"><div><h3>Up in ${esc(CASES)}</h3>${up.length ? geneBar(up) : `<div class="empty">none</div>`}</div><div><h3>Down in ${esc(CASES)}</h3>${dn.length ? geneBar(dn) : `<div class="empty">none</div>`}</div></div></section>` : ""}
+  ${gs.length ? `<section class="card"><h2>Pathways</h2><p class="sub">Gene-set enrichment on the pooled gene ranking (Hallmark, Reactome; FDR &lt; 0.05). Bars: normalised enrichment score.</p>${hbars(gs.sort((a, b) => b.nes - a.nes).map(g => ({label: g.term.length > 52 ? g.term.slice(0, 50) + "…" : g.term, v: g.nes, tip: tip(g.term, [`${g.library} · NES <b>${f2(g.nes)}</b>, FDR ${fp(g.fdr)}`])})), {width: 820, labelW: 380, rowH: 19, axis: "NES"})}</section>` : ""}
+  ${gen.length ? `<section class="card"><h2>Genetic risk</h2>${hbars(gen.map(g => ({label: SETNAME(g.set_type), v: g.z ?? 0, sig: g.p < 0.05, color: (g.z ?? 0) > 0 ? css("--pos") : css("--none"), tip: tip(SETNAME(g.set_type), [`z ${f2(g.z)}, p ${fp(g.p)}, ${g.k} datasets`])})), {width: 760, labelW: 380, axis: "combined z"})}</section>` : ""}
+  <section class="card"><h2>Published claims about ${esc(cname(c).toLowerCase())} (${cl.length})</h2>${claimTable(cl)}</section>`;
+};
+// --- programmes
+pages.programmes = () => {
+  const g = groupsOf(orderedProgs());
+  return `<h1>Transcriptional programmes</h1><p class="lead">Gene programmes scored in every donor and cell type: the core stress response, the glial states published by individual studies, inflammation pathways and metabolism. Cards show the strongest pooled change, ${esc(F.case_label || "cases vs controls")}.</p>
+  ${GROUP_ORDER.filter(k => g[k]).map(k => `<h3>${esc(k)}</h3><div class="grid4">${g[k].map(p => { const rs = D.prog.filter(r => r.programme === p && r.test === MAIN);
+    const best = rs.slice().sort((a, b) => Math.abs(b.est) - Math.abs(a.est))[0], nsig = rs.filter(r => r.fdr < 0.05).length;
+    return `<div class="ccard statecard" style="border-left-color:${best ? divColor(best.est, .8) : "var(--line)"}" data-href="#programme/${enc(p)}"><div class="n">${esc(pname(p))}</div><div class="sub">${best ? `strongest: ${esc(cname(best.cell_class))} g ${best.est > 0 ? "+" : ""}${f2(best.est)}` : "–"}</div><div class="sub">${nsig} of ${rs.length} cell types FDR &lt; 0.05</div></div>`; }).join("")}</div>`).join("")}`;
+};
+const KW = p => { const m = {"heat response": ["heat", "HSP", "chaperone", "HSF1"], "chaperone folding": ["chaperone", "HSP"], "unfolded protein response": ["UPR", "unfolded"], "hypoxia": ["hypoxi"], "cold-inducible (CIRBP, RBM3)": ["CIRBP", "RBM3"],
+  "oxidative phosphorylation": ["oxidative phosph", "OXPHOS", "mitochondri"], "inflammatory response": ["inflamm"], "TNFa / NF-kB": ["TNF", "NF-kB", "NF-κB"], "interferon gamma": ["interferon"]}[p];
+  if (m) return m; const inner = (p.match(/^(.*?)(,|\()/) || [, p])[1].trim(); return [inner.replace(/ (astrocytes|microglia|oligodendrocytes|cells|DA subtype)$/i, "").trim() || inner]; };
+pages.programme = (p, cellSel) => {
+  if (!PROG[p] && !D.prog.some(r => r.programme === p)) return `<div class="empty">Unknown programme.</div>`;
+  const rs = D.prog.filter(r => r.programme === p && r.test === MAIN);
+  const cells = CELLS.filter(c => D.prog.some(r => r.programme === p && r.cell_class === c));
+  const cell = cells.includes(cellSel) ? cellSel : (cells.includes("ALL") ? "ALL" : rs.slice().sort((a, b) => Math.abs(b.est) - Math.abs(a.est))[0]?.cell_class || cells[0]);
+  const byCell = cells.map(c => { const r = progRow(p, c, MAIN); return {label: cname(c), est: r?.est, lo: r ? r.est - 1.96 * r.se : null, hi: r ? r.est + 1.96 * r.se : null, sig: r && r.fdr < 0.05, tip: r && progTip(r), href: `#programme/${enc(p)}/${enc(c)}`, labelHref: "#cell/" + enc(c)}; });
+  const tests = [...new Set(D.prog.filter(r => r.programme === p).map(r => r.test))].filter(t => t !== MAIN && ![F.stage_test || "stage", "age", "post-mortem interval"].includes(t));
+  const byTest = tests.map(t => { const r = progRow(p, cell, t); return {label: (TESTS[t] || t).replace(" vs control", ""), est: r?.est, lo: r ? r.est - 1.96 * r.se : null, hi: r ? r.est + 1.96 * r.se : null, sig: r && r.fdr < 0.05, tip: r && progTip(r)}; });
+  const cov = [F.stage_test || "stage", "age", "post-mortem interval"].map(t => { const r = progRow(p, cell, t); return {label: t, est: r?.est, lo: r ? r.est - 1.96 * r.se : null, hi: r ? r.est + 1.96 * r.se : null, sig: r && r.fdr < 0.05, tip: r && progTip(r)}; });
+  const hasRegion = D.region.some(r => r.programme === p), het = D.het.filter(h => h.programme === p);
+  const regCells = CELLS.filter(c => D.region.some(r => r.programme === p && r.cell_class === c)), rc = regCells.includes(cell) ? cell : regCells[0];
+  const spec = D.spec.filter(s => s.programme === p);
+  const kws = KW(p).map(k => k.toLowerCase());
+  const cl = claimsAbout(x => kws.some(k => `${x.statement} ${x.cell_state}`.toLowerCase().includes(k)));
+  return `<div class="crumb"><a href="#programmes">Programmes</a> › ${esc(PROG[p]?.group || "")}</div><h1>${esc(pname(p))}</h1>
+  <section class="card"><div class="two"><div><h2>In which cells</h2><p class="sub">${esc(F.case_label || "cases vs controls")}, Hedges' g with 95% CI. Click a row to focus that cell type below.</p>${sigLegend}${forest(byCell, {width: 560, labelW: 170, axis: "Hedges' g"})}</div>
+  <div><h2>${esc(cname(cell))}: by diagnosis and stage</h2><p class="sub">Each group vs controls.</p>${forest(byTest, {width: 520, labelW: 190, axis: "Hedges' g"})}<h3>Correlation with</h3>${forest(cov, {width: 520, labelW: 190, axis: "Fisher z"})}
+  <div class="controls">Cell type: <select onchange="location.hash='#programme/${enc(p)}/'+encodeURIComponent(this.value)">${cells.map(c => `<option value="${esc(c)}" ${c === cell ? "selected" : ""}>${esc(cname(c))}</option>`).join("")}</select></div></div></div></section>
+  ${hasRegion ? (() => { const bv = brainVals(p, rc), rk = Object.entries(bv).sort((a, b) => b[1].v - a[1].v); return `<section class="card"><h2>Where in the brain · ${esc(cname(rc))}</h2>${divLegend("lower in " + CASES, "higher in " + CASES, "Hedges' g")}${brain(bv, {max: 1, extra: `<h3>Ranked</h3>${hbars(rk.map(([st, x]) => ({label: st, v: x.v, sig: x.p < 0.05, tip: x.tip, href: "#region/" + enc(st)})), {width: 520, labelW: 170, axis: "Hedges' g"})}`})}</section>`; })() : ""}
+  ${spec.length ? `<section class="card"><h2>Other disorders (PsychAD)</h2>${heatmap([...new Set(spec.map(s => s.cell_class))].map(c => ({key: c, label: c})), [...new Set(spec.map(s => s.group))].map(g => ({key: g, label: g})), (r, c) => { const x = spec.find(s => s.cell_class === r.key && s.group === c.key); return x && {v: x.effect_sd, sig: x.fdr < 0.05, tip: tip(`${x.group} · ${x.cell_class}`, [`effect ${f2(x.effect_sd)} SD, FDR ${fp(x.fdr)}`, `${x.n_group} cases`])}; }, {max: .8, cw: 52, labelW: 160, colH: 130})}</section>` : ""}
+  ${het.length ? `<section class="card"><h2>How many patients carry it</h2><p class="sub">Share of cases above the 95th percentile of controls (5% expected by chance).</p>${hbars(het.map(h => ({label: cname(h.cell_class), v: h.share_above, color: css("--pos"), tip: tip(cname(h.cell_class), [`${pct(h.share_above, 1)}% of ${h.n_cases} cases above the control 95th percentile`])})), {width: 560, labelW: 170, positive: true, axis: "share of cases"})}</section>` : ""}
+  <section class="card"><h2>Related published claims (${cl.length})</h2><p class="sub">Claims whose statement or state mentions: ${kws.map(esc).join(", ")}.</p>${claimTable(cl, {limit: 60})}</section>`;
+};
+// --- regions
+pages.regions = () => {
+  if (!Object.keys(D.sites).length) { const regs = [...new Set(D.datasets.flatMap(d => split(d.regions)))].sort();
+    return `<h1>Regions</h1><p class="lead">The regions the datasets sampled, with the claims about each.</p>
+    <div class="grid4">${regs.map(r => `<div class="ccard" data-href="#claims?region=${enc(r)}"><div class="n">${esc(r)}</div><div class="sub">${D.datasets.filter(d => split(d.regions).includes(r)).length} datasets · ${D.claims.filter(c => split(c.regions).includes(r)).length} claims</div></div>`).join("")}</div>`; }
+  const v = brainVals(brainState.prog, brainState.cell);
+  return `<h1>Brain regions</h1><p class="lead">Each region's change in ${esc(CASES)}, pooled over the datasets that sampled it. Pick a programme and cell type; click a region for everything measured there.</p>
+  <section class="card"><div class="sechead"><div></div>${brainControls(brainState, "brainState")}</div>${divLegend("lower in " + CASES, "higher in " + CASES, "Hedges' g")}${brain(v, {max: 1})}</section>
+  <section class="card"><h2>Regions</h2><div class="grid4">${Object.entries(D.sites).map(([s, p]) => { const dsets = D.datasets.filter(d => split(d.regions).some(r => p.regions.includes(r)));
+    return `<div class="ccard" data-href="#region/${enc(s)}"><div class="n">${esc(s)}</div><div class="sub">${p.stage ? `${esc(F.site_stage_label || "stage")} ${p.stage}` : ""} · ${dsets.length} datasets</div></div>`; }).join("")}</div></section>`;
+};
+pages.region = s => {
+  const p = D.sites[s]; if (!p) return `<div class="empty">Unknown region.</div>`;
+  const rows = D.region.filter(r => r.site === s).sort((a, b) => b.est - a.est);
+  const dsets = D.datasets.filter(d => split(d.regions).some(r => p.regions.includes(r)));
+  const cl = claimsAbout(x => split(x.regions).some(r => p.regions.includes(r)));
+  return `<div class="crumb"><a href="#regions">Brain regions</a> ›</div><h1>${esc(s)}</h1><p class="lead">${p.stage ? `Reached at ${esc(F.site_stage_label || "stage")} ${p.stage}.` : ""} Sampled by ${dsets.length} datasets.</p>
+  <section class="card">${brain(brainVals(brainState.prog, brainState.cell), {max: 1, selected: s})}<div class="note">Map shows ${esc(pname(brainState.prog))} in ${esc(cname(brainState.cell))}; this region is outlined in blue. Change the programme on the <a href="#regions">regions page</a>.</div></section>
+  <section class="card"><div><h2>Programmes measured here</h2>${rows.length ? hbars(rows.map(r => ({label: `${pname(r.programme)} · ${cname(r.cell_class)}`, v: r.est, sig: r.p < 0.05, href: "#programme/" + enc(r.programme) + "/" + enc(r.cell_class), tip: tip(`${pname(r.programme)} · ${cname(r.cell_class)}`, [`g <b>${f2(r.est)}</b>, p ${fp(r.p)}, ${r.donors} donors`])})), {width: 760, labelW: 320, rowH: 19, axis: "Hedges' g"}) : `<div class="empty">No regional estimates.</div>`}</div></section>
+  ${bgBox(BG_OF_REGION(s))}
+  <section class="card"><h2>Datasets</h2>${dsets.map(d => `<a class="chip" href="#dataset/${enc(d.dataset)}">${esc(d.dataset)} · ${d.n_donors} donors</a>`).join("")}</section>
+  <section class="card"><h2>Published claims about this region (${cl.length})</h2>${claimTable(cl, {limit: 120})}</section>`;
+};
+// --- consensus
+const VERDICT_COL = v => /established/.test(v) ? css("--good") : /contradict/.test(v) ? css("--crit") : /not|unresolved|weak/.test(v) ? css("--none") : css("--warn");
+const VGROUP = v => /established|^supported|when pooled|loss supported/i.test(v) ? 0 : /partly|loss yes/i.test(v) ? 1 : 2;
+const ESTABLISHED_BY = id => (D.background || []).filter(b => (b.establishes || []).includes(id));
+const VRANK = v => /established/i.test(v) ? 0 : /^supported$/i.test(v) ? 1 : /when pooled/i.test(v) ? 2 : 3;
+const BG_OF_STMT = id => (D.background || []).filter(b => (b.statements || []).includes(id));
+const BG_OF_CLAIM = id => (D.background || []).filter(b => ["supports_claims", "consistent_with", "contrasts_with"].some(k => (b[k] || []).includes(id)));
+const BG_OF_REGION = site => (D.background || []).filter(b => (b.regions || []).includes(site));
+const BGREL = (b, id) => (b.supports_claims || []).includes(id) ? "This record directly supports the claim and raises its certainty (triangulation)." :
+  (b.contrasts_with || []).includes(id) ? "This record sits in tension with the claim; the note explains the difference in what is measured." :
+  (b.consistent_with || []).includes(id) ? "This record is consistent with the claim and gives its wider context." : "";
+function bgBox(list, o = {}) {
+  return list.map(b => `<section class="card bgcard"><div class="sechead"><div><span class="pill">Reference knowledge</span> <span class="sub">${esc(b.evidence_type)}</span><h2 style="margin-top:6px">${esc(b.statement)}</h2></div></div>
+    <ul class="refs">${(b.references || []).map(r => `<li><b>${esc(r.citation)}</b>${r.doi ? ` <a href="https://doi.org/${esc(r.doi)}" target="_blank" rel="noopener">doi</a>` : ""}${r.pmid ? ` <span class="sub">PMID ${esc(r.pmid)}</span>` : ""}<br><span class="sub">${esc(r.finding)}</span></li>`).join("")}</ul>
+    ${b.measurement_note ? `<h3>How the single-cell data relate</h3><div class="ctx">${esc(b.measurement_note)}</div>` : ""}
+    ${o.claim && BGREL(b, o.claim) ? `<div class="note">${BGREL(b, o.claim)}</div>` : ""}${o.link !== false ? `<div class="note"><a href="#reference/${enc(b.id)}">All statements and claims this record bears on →</a></div>` : ""}</section>`).join("");
+}
+function stmtCard(s) {
+  const sc = D.relations.filter(r => r.b === s.statement_id), ns = sc.filter(r => r.r.startsWith("supports")).length, no = sc.filter(r => r.r.startsWith("opposes")).length;
+  const bg = BG_OF_STMT(s.statement_id), est = ESTABLISHED_BY(s.statement_id);
+  const vlabel = est.length ? `Established · single-cell: ${s.verdict}` : s.verdict, vcol = est.length ? css("--good") : VERDICT_COL(s.verdict);
+  return `<div class="ccard" style="border-top:4px solid ${vcol}" data-href="#statement/${s.statement_id}"><div class="verdict" style="color:${vcol}">${esc(vlabel)}</div><div class="n" style="margin:4px 0">${esc(s.statement)}</div>
+    ${est.length ? `<div style="margin:4px 0"><span class="pill">Established by ${esc(est[0].evidence_type.split(" (")[0])}</span></div>` : bg.length ? `<div style="margin:4px 0"><span class="pill" style="background:var(--bg);color:var(--ink2)">Related reference knowledge</span></div>` : ""}<div class="sub">${ns} supporting · ${no} opposing claims</div><div class="sub" style="margin-top:6px">${esc((s.our_evidence || "").slice(0, 170))}${(s.our_evidence || "").length > 170 ? "…" : ""}</div></div>`;
+}
+pages.consensus = () => {
+  const groups = [["What holds", "Statements the cross-dataset evidence supports: the current picture at single-cell resolution. Where an older kind of evidence (such as neuropathology) establishes the same thing, it is shown on the card."],
+    ["What partly holds", "Statements with one part supported and another not."],
+    ["What does not hold", "Statements the re-analysis does not support or contradicts."]];
+  return `<h1>What the literature agrees on</h1><p class="lead">The ${D.stats.claims} published claims grouped by hand into ${D.statements.length} statements, each with the verdict of the cross-dataset re-analysis, ordered from best supported. Click one for its claims, their evidence and any reference knowledge.</p>
+  ${groups.map(([h, p], gi) => { const ss = D.statements.filter(s => VGROUP(s.verdict) === gi).sort((a, b) => VRANK(a.verdict) - VRANK(b.verdict));
+    ss.sort((a, b) => (ESTABLISHED_BY(a.statement_id).length ? 0 : VRANK(a.verdict)) - (ESTABLISHED_BY(b.statement_id).length ? 0 : VRANK(b.verdict)));
+    return ss.length ? `<section class="cgroup"><h2>${esc(h)} <span class="sub">(${ss.length})</span></h2><p class="sub">${esc(p)}</p><div class="three">${ss.map(stmtCard).join("")}</div></section>` : ""; }).join("")}`;
+};
+pages.statement = id => {
+  const s = ST[id]; if (!s) return `<div class="empty">Unknown statement.</div>`;
+  const rs = D.relations.filter(r => r.b === id), sup = rs.filter(r => r.r.startsWith("supports")).map(r => C[r.a]).filter(Boolean), opp = rs.filter(r => r.r.startsWith("opposes")).map(r => C[r.a]).filter(Boolean);
+  const outs = list => { const n = {}; list.forEach(c => (EV_C[c.id] || []).filter(e => e.role === "replication" && e.o !== "not_testable").forEach(e => n[e.o] = (n[e.o] || 0) + 1)); return n; };
+  const bar = (label, n) => stacked([{label, segs: ["reproduced", "direction_only", "not_reproduced", "contradicted"].map(k => ({n: n[k] || 0, color: OUT[k][1], label: OUT[k][0]}))}], {width: 760, labelW: 200});
+  const est = ESTABLISHED_BY(id);
+  return `<div class="crumb"><a href="#consensus">Consensus</a> › ${esc(id)} · <a href="#graph/statement:${enc(id)}">in the graph</a></div><div class="verdict" style="color:${est.length ? css("--good") : VERDICT_COL(s.verdict)}">${esc(est.length ? `Established by ${est[0].evidence_type.split(" (")[0]} · single-cell evidence: ${s.verdict}` : s.verdict)}</div><h1>${esc(s.statement)}</h1>
+  ${bgBox(BG_OF_STMT(id))}
+  <section class="card"><h2>What the single-cell re-analysis found</h2><div class="ctx">${esc(s.our_evidence)}</div><h3>Tests of the supporting claims in other datasets</h3>${outLegend(["reproduced", "direction_only", "not_reproduced", "contradicted"])}${bar("supporting claims", outs(sup))}${opp.length ? bar("opposing claims", outs(opp)) : ""}</section>
+  <section class="card"><h2>Supporting claims (${sup.length})</h2>${claimTable(sup)}</section>${opp.length ? `<section class="card"><h2>Opposing claims (${opp.length})</h2>${claimTable(opp)}</section>` : ""}`;
+};
+pages.reference = id => {
+  const b = (D.background || []).find(x => x.id === id); if (!b) return `<div class="empty">Unknown record.</div>`;
+  const ids = k => (b[k] || []).map(c => C[c]).filter(Boolean);
+  const sts = (b.statements || []).map(s => ST[s]).filter(Boolean);
+  return `<div class="crumb"><a href="#overview/sec-bg">Reference knowledge</a> › ${esc(b.id)}</div>${bgBox([b], {link: false})}
+  ${sts.length ? `<section class="card"><h2>Consensus statements it bears on</h2><div class="three">${sts.map(stmtCard).join("")}</div></section>` : ""}
+  ${ids("supports_claims").length ? `<section class="card"><h2>Claims it directly supports</h2>${claimTable(ids("supports_claims"))}</section>` : ""}
+  ${ids("consistent_with").length ? `<section class="card"><h2>Claims it is consistent with</h2>${claimTable(ids("consistent_with"))}</section>` : ""}
+  ${ids("contrasts_with").length ? `<section class="card"><h2>Claims it sits in tension with</h2>${claimTable(ids("contrasts_with"))}</section>` : ""}
+  ${(b.regions || []).length ? `<section class="card"><h2>Brain regions</h2>${b.regions.map(r => `<a class="chip" href="#region/${enc(r)}">${esc(r)}</a>`).join("")}</section>` : ""}`;
+};
+function secBackground() {
+  const bs = D.background || []; if (!bs.length) return "";
+  return `<section class="card" id="sec-bg"><div class="sechead"><div><h2>What else is established</h2><p>Findings from neuropathology, biochemistry and genetics that frame the single-cell results. Each is linked to the statements and claims it bears on, with a note where the single-cell data measure the same thing differently.</p></div></div>
+  <div class="three">${bs.map(b => `<div class="ccard" data-href="#reference/${enc(b.id)}"><span class="pill">${esc(b.evidence_type.split(" (")[0])}</span><div class="n" style="margin:6px 0">${esc(b.statement)}</div><div class="sub">${(b.references || []).map(r => esc(r.citation.split(".")[0].replace(/,.*$/, "") + " " + (r.citation.match(/(\d{4})\.?$/) || ["", ""])[1])).join(" · ")}</div></div>`).join("")}</div></section>`;
+}
+// --- claims explorer
+const cf = {q: "", theme: "", cell: "", region: "", tier: "", cert: "", origin: "", ds: ""};
+pages.claims = params => {
+  if (params) Object.assign(cf, params);
+  const themes = [...new Set(D.claims.flatMap(c => split(c.themes)))].sort();
+  const opt = (vals, cur, lab) => `<option value="">${lab}</option>` + vals.map(v => `<option value="${esc(v)}" ${v === cur ? "selected" : ""}>${esc(v)}</option>`).join("");
+  return `<h1>Claims</h1><p class="lead">Every catalogued claim (rows) with its rating (verdict and certainty, ●●●● = high) and its re-test in each dataset (columns). Ranked by rating. Click a row for its full context and data; click a column header for the dataset.</p>
+  <section class="card"><div class="controls">
+    <input class="f" id="cfq" placeholder="Search text, gene, state…" value="${esc(cf.q)}" style="width:220px">
+    <select id="cft">${opt(themes, cf.theme, "All themes")}</select>
+    <select id="cfc">${opt([...new Set(D.claims.flatMap(c => split(c.cell_types)))].sort(), cf.cell, "All cell types")}</select>
+    <select id="cfr">${opt([...new Set(D.claims.flatMap(c => split(c.region_groups)))].sort(), cf.region, "All region groups")}</select>
+    <select id="cfi">${opt(VORDER.filter(v => D.claims.some(c => (c.verdict || "Untested") === v)), cf.tier, "All verdicts")}</select>
+    <select id="cfk">${opt(CORDER, cf.cert, "Any certainty")}</select>
+    <select id="cfo"><option value="">Published claims and findings</option><option value="published" ${cf.origin === "published" ? "selected" : ""}>Published claims only</option><option value="finding" ${cf.origin === "finding" ? "selected" : ""}>This study's findings only</option></select>
+    <select id="cfd">${opt(DSORDER, cf.ds, "All source datasets")}</select></div>
+    ${outLegend()}<div class="note">Outlined square: the claim's own source data.</div><div id="cmat"></div></section>`;
+};
+function drawMatrix() {
+  const el = $("#cmat"); if (!el) return;
+  const q = cf.q.toLowerCase();
+  const list = claimsAbout(c => (!q || `${c.id} ${c.statement} ${c.cell_state} ${c.genes} ${c.subject}`.toLowerCase().includes(q)) && (!cf.theme || split(c.themes).includes(cf.theme)) &&
+    (!cf.cell || split(c.cell_types).includes(cf.cell)) && (!cf.region || split(c.region_groups).includes(cf.region)) && (!cf.tier || (c.verdict || "Untested") === cf.tier) && (!cf.cert || c.certainty === cf.cert) && (!cf.origin || (c.origin || "published") === cf.origin) && (!cf.ds || c.ds === cf.ds));
+  const head = `<div class="mhead" style="--nd:${DSORDER.length}"><div class="sub" style="padding:4px 8px">${list.length} claims</div><div class="sub" style="padding:4px 8px">rating</div>${DSORDER.map(d => `<div class="v" data-href="#dataset/${enc(d)}">${esc(d)}</div>`).join("")}<div class="sub" style="padding:4px 8px">statement</div></div>`;
+  el.innerHTML = `<div class="matrix">${head}${list.map(c => { const ev = Object.fromEntries((EV_C[c.id] || []).map(e => [e.d, e]));
+    return `<div class="mrow" style="--nd:${DSORDER.length}" data-href="#claim/${enc(c.id)}"><div class="s sub">${esc(c.id)}</div><div class="s" style="font-size:11.5px">${ratingBadge(c)}</div>${DSORDER.map(d => { const e = ev[d];
+      return `<div class="mcell" style="background:${e ? (OUT[e.o] || OUT.not_testable)[1] : "transparent"};${e && e.role === "source" ? "outline:2px solid var(--ink);outline-offset:-1px" : ""}"${e ? attr(tip(d, [(OUT[e.o] || [e.o])[0] + (e.role === "source" ? " · source data" : ""), e.z != null ? `z ${f2(e.z)}` : null, e.nc != null ? `${e.nc} vs ${e.nr} units` : null])) : ""}></div>`; }).join("")}<div class="s">${originBadge(c)}${esc(c.statement)}</div></div>`; }).join("")}</div>`;
+}
+function bindClaims() {
+  const b = (id, k) => { const e = $("#" + id); if (e) e.addEventListener("input", () => { cf[k] = e.value; drawMatrix(); }); };
+  b("cfq", "q"); b("cft", "theme"); b("cfc", "cell"); b("cfr", "region"); b("cfi", "tier"); b("cfk", "cert"); b("cfo", "origin"); b("cfd", "ds"); drawMatrix();
+}
+pages.claim = id => {
+  const c = C[id]; if (!c) return `<div class="empty">Unknown claim ${esc(id)}</div>`;
+  const p = P[c.paper] || {}, d = DS[c.ds] || {};
+  const ev = (EV_C[id] || []).slice().sort((a, b) => (a.role === "source" ? -1 : 1) - (b.role === "source" ? -1 : 1) || OUTK.indexOf(a.o) - OUTK.indexOf(b.o));
+  const zo = e => Math.abs(e.z) * (["reproduced", "direction_only"].includes(e.o) ? 1 : -1);
+  const tested = ev.filter(e => e.o !== "not_testable" && e.z != null).map(e => ({...e, z: zo(e)}));
+  const zmax = niceMax(Math.max(2, ...tested.map(e => Math.min(Math.abs(e.z), 12))));
+  const dot = tested.map(e => ({label: `${DS[e.d]?.label || e.d}${e.role === "source" ? " (source)" : ""}`, est: Math.max(-zmax, Math.min(zmax, e.z)), sig: true, color: (OUT[e.o] || OUT.not_testable)[1], href: "#dataset/" + enc(e.d),
+    tip: tip(e.d, [(OUT[e.o] || [e.o])[0], `z ${f2(e.z)} · effect ${f2(e.effect)} · p ${fp(e.p)}`, e.nc != null ? `${e.nc} vs ${e.nr} units` : null, e.rm ? `region: ${e.rm}` : null, esc([e.reg, e.cls].filter(Boolean).join(" · "))])}));
+  const rels = D.relations.filter(r => r.a === id || (r.basis === "computed" && r.b === id));
+  const withIds = (labels, ids) => split(labels).map((l, i) => `${esc(l)}<span class="oid">${esc(split(ids)[i] || "")}</span>`).join(", ");
+  return `<div class="crumb"><a href="#claims">Claims</a> › ${esc(c.id)} · <a href="#graph/claim:${enc(c.id)}">in the graph</a> · ${isF(c) ? `<span class="pill">This study</span> finding · ${esc(c.analysis_date || "")}` : `${esc(p.first_author || c.paper)} ${p.year ? Math.round(p.year) : ""} · ${esc(c.centrality)}`}</div>
+  <h1 style="font-size:24px">${esc(c.statement)}</h1>
+  ${c.quote ? `<blockquote>“${esc(c.quote)}” — ${esc(c.location)}</blockquote>` : ""}
+  ${isF(c) ? `<div class="sub">Produced by <code>${esc(c.analysis_script)}</code> from <code>${esc(c.analysis_results)}</code>; the evidence is read from that table at every build.${c.notes ? `<br>Note: ${esc(c.notes)}` : ""}</div>` :
+    `<div class="sub">${esc(p.title || "")} ${p.doi ? `<a href="https://doi.org/${esc(p.doi)}" target="_blank" rel="noopener">doi:${esc(p.doi)}</a>` : ""}</div>`}
+  ${ratingPanel(c)}
+  ${bgBox(BG_OF_CLAIM(id), {claim: id})}
+  <section class="card"><div class="two"><div><h2>Evidence across datasets</h2><p class="sub">Test statistic in each dataset where the claim could be tested: z, positive = change in the direction the paper claims. Colour = outcome.</p>
+    ${tested.length ? forest(dot, {width: 560, labelW: 200, axis: "test z (positive = in the claimed direction)", max: zmax}) : `<div class="empty">Not testable in the harmonised data.</div>`}${outLegend()}<div>${strip(id)}</div></div>
+  <div><h2>Context</h2><dl class="kv">
+    <dt>Organism</dt><dd>${withIds(c.organisms, c.organism_ids)}${c.organism_note ? ` — ${esc(c.organism_note)}` : ""}</dd>
+    <dt>Sample</dt><dd>${esc(c.sample_type)}</dd>
+    <dt>Region</dt><dd>${withIds(c.regions, c.region_ids)}${c.region_asserted.includes("multiple") ? ` <span class="sub">(paper: multiple regions)</span>` : ""}</dd>
+    <dt>Cell type</dt><dd>${split(c.cell_types).map(t => `<a href="#cell/${enc(t === "All" ? "ALL" : t)}">${esc(t)}</a>`).join(", ")}<span class="oid">${esc(c.cell_type_ids)}</span>${c.cell_state ? `<br>state: <b>${esc(c.cell_state)}</b>` : ""}</dd>
+    <dt>Assay</dt><dd>${esc(c.assay)}<span class="oid">${esc(c.assay_id)}</span></dd>
+    <dt>Assertion</dt><dd><b>${esc(c.subject)}</b> <span class="chip">${esc(c.predicate)}</span> ${c.case_group ? `${esc(c.case_group)} vs ${esc(c.reference_group)}` : esc(c.comparison_raw)}</dd>
+    <dt>Unit / method</dt><dd>${esc(c.unit_of_analysis)} · ${esc(c.method)}</dd>
+    <dt>Reported</dt><dd>${esc(c.reported_stat)}</dd>
+    <dt>Source data</dt><dd>${isF(c) ? `this study's donor-level analysis of ${new Set(ev.map(e => e.d)).size} datasets` : !c.ds && D.public ? `the authors' own cohort, not part of this public release` : `<a href="#dataset/${enc(c.ds)}">${esc(c.ds)}</a> · ${esc(d.cohort || "")}<br>ancestry: <b>${esc(d.ancestry_summary || "not reported")}</b>${d.brain_banks ? `<br>${esc(d.brain_banks)}` : ""}`}</dd>
+    ${c.genes ? `<dt>Genes</dt><dd>${split(c.genes).map(g => `<a class="chip" href="#gene/${enc(g)}">${esc(g)}</a>`).join("")}</dd>` : ""}
+  </dl>${c.needs_review ? `<div class="note">Needs review: ${esc(c.needs_review)}</div>` : ""}</div></div></section>
+  <section class="card"><h2>Contextualised statement</h2><div class="ctx">${esc(c.statement)} ${esc(c.context_text)} ${esc(c.evidence_text)}</div></section>
+  ${rels.length ? `<section class="card"><h2>Related</h2>${rels.map(r => r.basis === "curated" ? `<div>${r.r.startsWith("supports") ? "Supports" : "Opposes"} <a href="#statement/${r.b}">${esc(ST[r.b]?.statement || r.b)}</a></div>` : `<div><span class="chip">${esc(r.r.replace("_", " "))}</span> <a href="#claim/${enc(r.a === id ? r.b : r.a)}">${esc(C[r.a === id ? r.b : r.a]?.statement || "")}</a></div>`).join("")}</section>` : ""}
+  <section class="card"><h2>All tests</h2><table><thead><tr><th>Dataset</th><th>Role</th><th>Region</th><th>Outcome</th><th>z</th><th>p</th><th>n case/ref</th><th>Tested in</th></tr></thead><tbody>
+  ${ev.map(e => `<tr data-href="#dataset/${enc(e.d)}"><td>${esc(e.d)}${e.v && e.v !== "both" ? ` <span class="sub">(${esc(e.v)})</span>` : ""}</td><td>${esc(e.role)}</td><td>${esc(e.rm || "")}</td><td>${badge(e.o)}</td><td class="num">${f2(e.z)}</td><td class="num">${fp(e.p)}</td><td class="num">${e.nc ?? ""}${e.nr != null ? "/" + e.nr : ""}</td><td class="sub">${esc([e.reg, e.cls].filter(Boolean).join(" · ") || e.note || "")}</td></tr>`).join("")}</tbody></table></section>`;
+};
+// --- rating panel (claims/ROADMAP.md section 3; scripts/52_rating.py)
+const DOMAINS = [["rob", "Risk of bias", "sorted nuclei, cell-level statistics, confounding"], ["inconsistency", "Inconsistency", "do datasets agree?"],
+  ["indirectness", "Indirectness", "tested where and how the claim says?"], ["imprecision", "Imprecision", "enough donors, narrow interval?"],
+  ["dependence", "Dependence", "evidence independent of the claimants?"], ["upgrade", "Upgrades", "large effect, gradient, triangulation"]];
+function ratingPanel(c) {
+  if (!c.verdict) return "";
+  const reasons = split((c.reasons || "").replace(/; /g, ";"));
+  const why = key => reasons.filter(r => r.toLowerCase().startsWith(key === "rob" ? "risk of bias" : key === "upgrade" ? "upgrade" : key)).map(r => r.replace(/^[^:]+: /, "")).join("; ");
+  const eff = c.family === "effect" && c.est != null ? `pooled effect ${f2(c.est)} (95% CI ${f2(c.lo)} to ${f2(c.hi)}), approx. standardised mean difference, positive = as claimed; I² ${pct(c.i2 || 0, 1)}%` :
+    c.family === "pattern" ? `detected in ${pct(c.detect || 0, 1)}% of datasets; combined z ${f2(c.z_comb)}` : "no informative test";
+  return `<section class="card"><div class="sechead"><div><h2>Rating</h2><p>${ratingBadge(c)} <b>${esc(c.verdict)}</b>, ${esc((c.certainty || "").toLowerCase())} certainty · ${esc(eff)}</p></div></div>
+  <table><thead><tr><th>Domain</th><th>Effect on certainty</th><th>Reason</th></tr></thead><tbody>
+  <tr><td>Starting level</td><td><b>${esc(c.start || "Very low")}</b></td><td class="sub">${c.k_cohorts || 0} independent cohorts with an informative donor-level test (≥ 3 high, 2 moderate, 1 low, none very low)</td></tr>
+  ${DOMAINS.map(([k, n, q]) => { const v = +c[k] || 0; return `<tr><td>${n}<div class="sub">${q}</div></td><td>${v === 0 ? "none" : v > 0 ? `<b style="color:var(--good)">+${v}</b>` : `<b style="color:var(--crit)">${v}</b>`}</td><td class="sub">${esc(why(k) || (v === 0 ? (k === "upgrade" ? "none applied" : "no serious concern") : ""))}</td></tr>`; }).join("")}
+  <tr><td>Final certainty</td><td><b>${esc(c.certainty)}</b> ${certDots(c.certainty)}</td><td class="sub">Not yet assessed: ${esc(c.not_assessed || "")}</td></tr></tbody></table>
+  ${c.scope_tested ? `<h3>Scope of validity</h3><div class="sub">Tested in: ${esc(c.scope_tested)}<br>In the claimed direction in: ${esc(c.scope_held || "none")}${c.caveats ? `<br>Caveat: ${esc(c.caveats)}` : ""}</div>` : ""}</section>`;
+}
+// --- datasets
+pages.datasets = () => `<h1>Datasets</h1><p class="lead">The ${D.datasets.length} harmonised single-nucleus datasets: what they sampled, who the donors are, and how the published claims fared in each.</p>
+  <section class="card">${landscape()}</section>
+  <div class="grid4">${D.datasets.map(d => { const ev = (EV_D[d.dataset] || []).filter(e => e.role === "replication" && e.o !== "not_testable"); const rep = ev.filter(e => e.o === "reproduced").length;
+    return `<div class="ccard" data-href="#dataset/${enc(d.dataset)}"><div class="n">${esc(d.label || d.cohort)}</div><div class="sub">${esc(split(d.regions).join(", "))}</div><div class="sub">${d.n_donors} donors · ancestry ${esc(d.ancestry_basis === "not_reported" ? "not reported" : d.ancestry_basis)}</div><div class="sub">${ev.length} tests of other claims, ${pct(rep, ev.length)}% reproduced</div></div>`; }).join("")}</div>`;
+const dsState = {o: ""};
+pages.dataset = id => {
+  const d = DS[id]; if (!d) return `<div class="empty">Unknown dataset.</div>`;
+  const own = claimsAbout(c => c.ds === id), ev = (EV_D[id] || []).filter(e => e.role === "replication"), inf = ev.filter(e => e.o !== "not_testable");
+  const by = {}; split(d.donors_by_disease).forEach(x => { const m = x.match(/^(.*) (\d+)$/); if (m) by[m[1]] = +m[2]; });
+  let anc = ""; try { if (d.ancestry_counts) anc = Object.entries(JSON.parse(d.ancestry_counts)).map(([k, v]) => `${k} ${v}`).join(" · "); } catch (e) {}
+  const n = {}; inf.forEach(e => n[e.o] = (n[e.o] || 0) + 1);
+  return `<div class="crumb"><a href="#datasets">Datasets</a> › ${esc(id)}${d.cohort_status && d.cohort_status !== "reviewed" ? ` · <span style="color:var(--crit)">cohort context: ${esc(d.cohort_status)}</span>` : ""}</div><h1>${esc(d.label || d.cohort)}</h1><div class="sub">${esc(d.title)} ${d.doi ? `<a href="https://doi.org/${esc(d.doi)}" target="_blank" rel="noopener">doi</a>` : ""}</div>
+  <section class="card"><div class="two"><div><h2>Cohort</h2><dl class="kv">
+    <dt>Sample</dt><dd>${esc(d.organism)} · ${esc(d.sample_type)}</dd><dt>Regions</dt><dd>${split(d.regions).map(r => SITE_OF_REGION[r] ? `<a class="chip" href="#region/${enc(SITE_OF_REGION[r])}">${esc(r)}</a>` : `<span class="chip">${esc(r)}</span>`).join("")}</dd>
+    <dt>Donors</dt><dd>${d.n_donors} · ${d.n_female} F / ${d.n_male} M · age ${esc(d.age_range)} · PMI ${esc(d.pmi_range)} h</dd>
+    <dt>Ancestry</dt><dd><b>${esc(d.ancestry_summary)}</b>${anc ? `<br><span class="sub">${esc(anc)}</span>` : ""}<br><span class="sub">${esc(d.ancestry_basis)} · ${esc(d.ancestry_source)}</span></dd>
+    <dt>Brain bank</dt><dd>${esc(d.brain_banks || "–")} ${d.country ? "· " + esc(d.country) : ""}</dd><dt>Diagnoses</dt><dd>${esc(d.disease_definitions || "–")}</dd>
+    <dt>Staging</dt><dd>${esc(d.lewy_staging || d.staging || "–")}</dd><dt>Sampling</dt><dd>${esc(d.sampling || "–")}</dd><dt>Assay</dt><dd>${esc(d.assay || d.modality)}</dd><dt>Accession</dt><dd>${esc(d.accession)} · ${esc(d.access)}</dd>
+    ${d.cohort_notes ? `<dt>Notes</dt><dd>${esc(d.cohort_notes)}</dd>` : ""}</dl></div>
+  <div><h2>Donors by diagnosis</h2>${hbars(Object.entries(by).map(([k, v]) => ({label: k, v, color: css("--accent")})), {width: 420, labelW: 90, positive: true, axis: "donors"})}
+  <h2 style="margin-top:14px">Other studies' claims tested here</h2>${outLegend(["reproduced", "direction_only", "not_reproduced", "contradicted"])}${stacked([{label: `${inf.length} informative tests`, segs: ["reproduced", "direction_only", "not_reproduced", "contradicted"].map(k => ({n: n[k] || 0, color: OUT[k][1], label: OUT[k][0]}))}], {width: 480, labelW: 130})}</div></div></section>
+  <section class="card"><h2>Claims drawn from this dataset (${own.length})</h2>${claimTable(own)}</section>
+  <section class="card"><div class="sechead"><h2>Tests of other claims in this dataset</h2><select onchange="dsState.o=this.value;rerender()"><option value="">All outcomes</option>${OUTK.map(o => `<option value="${o}" ${o === dsState.o ? "selected" : ""}>${OUT[o][0]}</option>`).join("")}</select></div>
+  <table><thead><tr><th>Claim</th><th>Outcome</th><th>Region</th><th>z</th><th>Statement</th></tr></thead><tbody>${ev.filter(e => !dsState.o || e.o === dsState.o).sort((a, b) => OUTK.indexOf(a.o) - OUTK.indexOf(b.o)).map(e => `<tr data-href="#claim/${enc(e.c)}"><td class="sub">${esc(e.c)}</td><td>${badge(e.o)}</td><td>${esc(e.rm || "")}</td><td class="num">${f2(e.z)}</td><td>${esc(C[e.c]?.statement || "")}</td></tr>`).join("")}</tbody></table></section>`;
+};
+// --- genes
+pages.genes = () => {
+  const all = D.genes.filter(g => g.cell_class === "ALL" && !/^[A-Z]{1,2}\d{5,6}\.\d+$/.test(g.gene)).sort((a, b) => a.fdr - b.fdr);
+  const up = all.filter(g => g.est > 0).slice(0, 40), dn = all.filter(g => g.est < 0).slice(0, 40);
+  return `<h1>Genes</h1><p class="lead">${D.genes.length ? "Genes changed consistently across datasets (gene-level meta-analysis), and the claims that name them. Search above, or start from the most consistent changes in all cells." : "Genes named by the published claims or in the signatures they are tested on. Search above for a gene."}</p>
+  ${D.genes.length ? `<section class="card"><div class="two"><div><h3>Most consistently up</h3>${up.map(g => `<a class="chip" href="#gene/${enc(g.gene)}" style="border-color:${divColor(g.est, 1)}">${esc(g.gene)}</a>`).join("")}</div><div><h3>Most consistently down</h3>${dn.map(g => `<a class="chip" href="#gene/${enc(g.gene)}" style="border-color:${divColor(g.est, 1)}">${esc(g.gene)}</a>`).join("")}</div></div></section>` : `<section class="card"><h3>Genes named by the most claims</h3>${Object.entries(D.gene_claims).sort((a, b) => (b[1][0].length + b[1][1].length) - (a[1][0].length + a[1][1].length)).slice(0, 80).map(([g, [n, sg]]) => `<a class="chip" href="#gene/${enc(g)}">${esc(g)} · ${n.length + sg.length}</a>`).join("")}</section>`}`;
+};
+pages.gene = g => {
+  const rows = CELLS.map(c => D.genes.find(x => x.gene === g && x.cell_class === c)).filter(Boolean);
+  const [named, insig] = D.gene_claims[g] || [[], []];
+  return `<div class="crumb"><a href="#genes">Genes</a> ›</div><h1>${esc(g)}</h1>
+  <section class="card"><h2>Change in ${esc(CASES)} by cell type</h2><p class="sub">Pooled log2 fold change, ${esc(F.case_label || "cases vs controls")}; only cell types where the gene passed the consensus filter are shown.</p>${rows.length ? forest(rows.map(r => ({label: cname(r.cell_class), est: r.est, lo: r.est - 1.96 * r.se, hi: r.est + 1.96 * r.se, sig: r.fdr < 0.05, href: "#cell/" + enc(r.cell_class), tip: tip(`${g} · ${cname(r.cell_class)}`, [`log2FC <b>${f2(r.est)}</b>, FDR ${fp(r.fdr)}`, `${r.k} datasets, ${pct(r.frac_dir, 1)}% same direction`])})), {width: 620, labelW: 170, axis: "log2 fold change"}) : `<div class="empty">Not among the consistently changed genes.</div>`}</section>
+  <section class="card"><h2>Claims naming ${esc(g)} (${named.length})</h2>${claimTable(named.map(id => C[id]).filter(Boolean))}</section>
+  ${insig.length ? `<section class="card"><h2>Claims whose gene signatures include ${esc(g)} (${insig.length})</h2>${claimTable(insig.map(id => C[id]).filter(Boolean), {limit: 80})}</section>` : ""}`;
+};
+
+// ------------------------------------------------------------------ ask the atlas: retrieval over every record + Claude (when hosted on claude.ai)
+const DOCS = [], DOC = {};
+function addDoc(id, kind, title, text, href) { const d = {id, kind, title, text, href}; DOCS.push(d); DOC[id] = d; }
+(function buildDocs() {
+  for (const c of D.claims) { const p = P[c.paper] || {};
+    addDoc("claim:" + c.id, "claim", c.statement, `Published claim (${p.first_author || c.paper} ${p.year ? Math.round(p.year) : ""}, ${c.centrality}). ${c.statement} Subject: ${c.subject}; ${c.predicate}; ${c.case_group ? c.case_group + " vs " + c.reference_group : c.comparison_raw}. Themes: ${c.themes || ""}. Reported: ${c.reported_stat || ""}. ${c.context_text} ${c.evidence_text}`, "#claim/" + enc(c.id)); }
+  for (const b of D.background || []) addDoc("bg:" + b.id, "reference", b.statement, `Reference knowledge from ${b.evidence_type}. ${b.statement} ` + (b.references || []).map(r => `${r.citation} ${r.finding}`).join(" ") + ` Bears on statements ${(b.statements || []).join(", ") || "none"}; regions ${(b.regions || []).join(", ") || "none"}. Measurement note: ${b.measurement_note || ""}`, "#reference/" + enc(b.id));
+  for (const s of D.statements) { const rs = D.relations.filter(r => r.b === s.statement_id);
+    addDoc("stmt:" + s.statement_id, "consensus", s.statement, `Consensus statement (${rs.filter(r => r.r.startsWith("supports")).length} supporting, ${rs.filter(r => r.r.startsWith("opposes")).length} opposing published claims). Verdict of the cross-dataset re-analysis: ${s.verdict}. Evidence: ${s.our_evidence}`, "#statement/" + s.statement_id); }
+  const byPC = {}; for (const r of D.prog) (byPC[r.programme + "|" + r.cell_class] ??= []).push(r);
+  for (const [k, rows] of Object.entries(byPC)) { const [pg, c] = k.split("|"); const o = t => rows.find(r => r.test === t);
+    const parts = Object.keys(TESTS).map(t => o(t) && `${TESTS[t]}: ${f2(o(t).est)} (FDR ${fp(o(t).fdr)}, ${o(t).k} datasets)`).filter(Boolean);
+    addDoc("prog:" + k, "programme", `${pname(pg)} in ${cname(c)}`, `Transcriptional programme "${pname(pg)}" (${PROG[pg]?.group || ""}) scored per donor in ${cname(c)} and meta-analysed across datasets; effects are Hedges' g vs controls (correlations as Fisher z). ${parts.join("; ")}.`, `#programme/${enc(pg)}/${enc(c)}`); }
+  for (const c of CELLS) { const rows = D.comp.filter(r => r.cell_class === c && r.contrast === MAIN); if (!rows.length) continue;
+    addDoc("comp:" + c, "composition", `Share of ${cname(c)} in ${CASES}`, `Cell composition change for ${cname(c)}, ${esc(F.case_label || "cases vs controls")}, difference in logit share pooled across datasets: ` + rows.map(r => `${r.scope}, ${r.denominator}: ${f2(r.est)} (FDR ${fp(r.fdr)}, ${r.k} datasets, I² ${pct(r.I2, 1)}%)`).join("; ") + ".", "#cell/" + enc(c)); }
+  for (const [site, p] of Object.entries(D.sites)) { const rows = D.region.filter(r => r.site === site);
+    addDoc("region:" + site, "region", site, `Brain region ${site}${p.stage ? `, reached at stage ${p.stage}` : ""}. Case-control effects (Hedges' g): ` + rows.map(r => `${pname(r.programme)} in ${cname(r.cell_class)} ${f2(r.est)} (p ${fp(r.p)}, ${r.donors} donors)`).join("; ") + ".", "#region/" + enc(site)); }
+  for (const d of D.datasets) addDoc("ds:" + d.dataset, "dataset", d.label || d.cohort, `Dataset ${d.label || d.dataset} (${d.cohort}). ${d.organism}, ${d.sample_type}; regions ${d.regions}; ${d.n_donors} donors (${d.donors_by_disease}); ${d.n_female} female, ${d.n_male} male; age ${d.age_range}. Ancestry: ${d.ancestry_summary}. Brain bank: ${d.brain_banks || "not reported"}. Diagnoses: ${d.disease_definitions}. Sampling: ${d.sampling}. Assay: ${d.assay || d.modality}. Staging: ${d.lewy_staging || d.staging || ""}.`, "#dataset/" + enc(d.dataset));
+  const bySP = {}; for (const r of D.spec) (bySP[r.programme + "|" + r.cell_class] ??= []).push(r);
+  for (const [k, rows] of Object.entries(bySP)) { const [pg, c] = k.split("|");
+    addDoc("spec:" + k, "specificity", `${pname(pg)} in ${c} across disorders (PsychAD)`, `Disease specificity in PsychAD (Lee 2026, dorsolateral prefrontal cortex), each diagnosis vs 258 controls, effect in control SD: ` + rows.map(r => `${r.group} ${f2(r.effect_sd)} (FDR ${fp(r.fdr)}, n=${r.n_group})`).join("; ") + ".", "#programme/" + enc(pg)); }
+  for (const c of CELLS) { const rows = D.gen.filter(g => g.cell_class === c && g.k >= 3); if (!rows.length) continue;
+    addDoc("gen:" + c, "genetics", `Genetic risk in ${cname(c)}`, `Genetic risk enrichment in ${cname(c)} gene sets, combined across datasets: ` + rows.map(r => `${SETNAME(r.set_type)}: z ${f2(r.z)}, p ${fp(r.p)}, ${r.k} datasets`).join("; ") + ".", "#cell/" + enc(c)); }
+})();
+const STOP = new Set("a an and are as at be by does do for from has have how in is it its of on or that the this to was were what when where which who why with vs versus disease".split(" ").concat(F.stop_words || []));
+const SYN = Object.assign({microglial: ["microglia"], astrocytic: ["astrocytes", "astrocyte"], oligodendrocytic: ["oligodendrocytes"],
+  inflammation: ["inflammatory", "reactive", "activation"], ancestry: ["ancestry", "race", "ethnicity"], specific: ["specificity"],
+  genetic: ["gwas", "risk", "heritability"], tcells: ["t", "cells"], expand: ["increase", "more", "number", "share"], increase: ["expand", "more"],
+  lost: ["loss", "decrease", "depleted", "fewer", "share"], loss: ["lost", "depleted", "decrease"], die: ["loss", "depleted", "vulnerable"],
+  infiltrate: ["infiltration", "infiltrating"], diverse: ["ancestry"], cohort: ["ancestry", "donor"], where: ["region"], when: ["stage"]}, F.synonyms || {});
+const tok = t => (t.toLowerCase().match(/[a-z0-9]+/g) || []).map(w => w.length > 3 && w.endsWith("s") ? w.slice(0, -1) : w);
+const IDX = (() => { const df = {}, docs = DOCS.map(d => { const tf = {}; const ts = tok(d.title + " " + d.title + " " + d.text); ts.forEach(w => tf[w] = (tf[w] || 0) + 1); Object.keys(tf).forEach(w => df[w] = (df[w] || 0) + 1); return {tf, len: ts.length}; });
+  return {df, docs, avg: docs.reduce((a, b) => a + b.len, 0) / docs.length}; })();
+function retrieve(q, k = 30, kind) {
+  let qs = tok(q).filter(w => !STOP.has(w)); qs = qs.concat(...qs.map(w => SYN[w] || []));
+  const N = DOCS.length, sc = [];
+  IDX.docs.forEach((d, i) => { if (kind && DOCS[i].kind !== kind) return; let s = 0;
+    for (const w of new Set(qs)) { const f = d.tf[w]; if (!f) continue; const idf = Math.log(1 + (N - IDX.df[w] + .5) / (IDX.df[w] + .5)); s += idf * f * 2.2 / (f + 1.2 * (.25 + .75 * d.len / IDX.avg)); }
+    const tt = new Set(tok(DOCS[i].title)); let tb = 0; for (const w of new Set(qs)) if (tt.has(w)) tb += Math.log(1 + N / (IDX.df[w] || 1));
+    s += 0.8 * tb;
+    if (s > 0) sc.push([s * (DOCS[i].kind === "consensus" ? 1.4 : DOCS[i].kind === "claim" ? 1 : 1.15), i]); });
+  return sc.sort((a, b) => b[0] - a[0]).slice(0, k).map(([s, i]) => DOCS[i]);
+}
+function mixedHits(q) { // keyword ranking plus a few records of the kinds the question points at
+  const want = [[/\b(where|region|brain area|cortex|cerebell|amygdala|hippocamp|thalam|brainstem)/i, "region", 5], [/\b(cohort|donor|ancestr|divers|ethnic|dataset|sample|brain bank|sex)/i, "dataset", 8],
+    [/\b(when|stage|early|late|progress)/i, "programme", 4], [/\b(specific|other disorder|other disease|dementia)/i, "specificity", 4], [/\b(gene|genetic|gwas|risk|heritab)/i, "genetics", 4],
+    [/\b(lost|loss|expand|more|fewer|proportion|number|composition)/i, "composition", 4]];
+  const out = retrieve(q, 24), seen = new Set(out.map(d => d.id));
+  for (const [re, kind, n] of want) if (re.test(q)) for (const d of (retrieve(q, n, kind).length ? retrieve(q, n, kind) : DOCS.filter(x => x.kind === kind).slice(0, n))) if (!seen.has(d.id)) { seen.add(d.id); out.push(d); }
+  return out.slice(0, 40);
+}
+// ---- question log: questions saved to the page's shared database (claims/ROADMAP.md section 4)
+const dbPromise = (window.claude && claude.use) ? claude.use("db").catch(() => null) : Promise.resolve(null);
+const userPromise = (window.claude && claude.use) ? claude.use("user").catch(() => null) : Promise.resolve(null);
+const QLOG = {list: null, error: "", started: false, off: false};
+const QSTATUS = {answered: ["Answered from the atlas", "var(--good)"], needs_analysis: ["Analysis requested", "var(--warn)"], in_analysis: ["Being analysed", "var(--warn)"],
+  analysed: ["Analysed: new finding", "var(--accent)"], no_data: ["Not testable with these data", "var(--none)"]};
+async function startQlog() {
+  if (QLOG.started) return; QLOG.started = true;
+  const db = await dbPromise; if (!db) { QLOG.off = true; refreshQlog(); return; }
+  const timer = setTimeout(() => { if (QLOG.list === null) { QLOG.error = "The question log cannot be reached yet."; refreshQlog(); } }, 10000);
+  db.collection("questions").orderBy("asked_at", "desc").limit(100).onSnapshot(sn => {
+    if (!sn.metadata.fromCache) clearTimeout(timer);
+    QLOG.list = sn.docs.map(d => ({id: d.id, ...d.data()})); QLOG.error = ""; refreshQlog();
+  }, e => { clearTimeout(timer); QLOG.error = `The question log is unavailable (${e.code}).`; refreshQlog(); });
+}
+function qlogHtml() {
+  if (QLOG.off) return D.links?.question_form ? `<div class="note">Questions to the evidence base are collected on GitHub, where they are answered and, when they need a new analysis, turned into rated findings: <a href="${esc(D.links.question_form)}" target="_blank" rel="noopener">ask a question</a>.</div>` : `<div class="note">The question log works when the atlas is opened on claude.ai.</div>`;
+  if (QLOG.error) return `<div class="note">${esc(QLOG.error)}</div>`;
+  if (QLOG.list === null) return `<div class="note">Loading the question log…</div>`;
+  if (!QLOG.list.length) return `<div class="empty">No questions yet. Ask one above; it is saved here with its answer.</div>`;
+  return QLOG.list.map(q => { const st = QSTATUS[q.status] || [q.status || "", "var(--none)"];
+    return `<details class="qitem"><summary><span class="badge"><i style="background:${st[1]}"></i>${esc(st[0])}</span> <b>${esc(q.text)}</b> <span class="sub">${esc(String(q.asked_at || "").slice(0, 10))}${q.asker_label ? " · " + esc(q.asker_label) : ""}</span></summary>
+      ${q.loop_note ? `<div class="ctx" style="margin:6px 0">${esc(q.loop_note)}</div>` : ""}
+      ${(q.finding_ids || []).length ? `<div>Findings: ${(q.finding_ids || []).map(f => `<a class="chip" href="#claim/${enc(f)}">${esc(C[f]?.statement || f)}</a>`).join("")}</div>` : ""}
+      ${q.answer ? `<div class="answer">${md(String(q.answer))}</div>` : ""}</details>`; }).join("");
+}
+const refreshQlog = () => { const e = $("#qlog"); if (e) e.innerHTML = qlogHtml(); };
+async function saveQuestion() {
+  const db = await dbPromise; if (!db || !ASK.q) return;
+  try {
+    const u = await userPromise; const uid = u ? await u.id().catch(() => "") : "";
+    if (!ASK.docId) ASK.docId = "q-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6);
+    await db.doc("questions/" + ASK.docId).set({text: ASK.q, asked_at: new Date().toISOString(), asker: uid || "", answer: (ASK.answer || "").slice(0, 30000),
+      mode: ASK.ai ? "claude" : "search", records: [...new Set([...ASK.used, ...ASK.hits.slice(0, 12).map(d => d.id)])].slice(0, 40),
+      status: "answered", analysis_requested: false, finding_ids: [], loop_note: ""});
+    ASK.saved = true;
+  } catch (e) { ASK.saveError = e.code || "error"; }
+  refreshAsk();
+}
+async function requestAnalysis() {
+  const db = await dbPromise; if (!db || !ASK.docId) return;
+  try { await db.doc("questions/" + ASK.docId).update({status: "needs_analysis", analysis_requested: true}); ASK.requested = true; }
+  catch (e) { ASK.saveError = e.code || "error"; }
+  refreshAsk();
+}
+const ASK = {q: "", answer: "", status: "", busy: false, ctl: null, used: [], hits: [], ai: undefined};
+const samplePromise = (window.claude && claude.use) ? claude.use("sample").catch(() => null) : Promise.resolve(null);
+samplePromise.then(s => { ASK.ai = s; document.querySelectorAll(".askmode").forEach(e => e.innerHTML = askModeText()); });
+const askModeText = () => ASK.ai ? "Answers by Claude, grounded in the atlas records and citing them." : ASK.ai === null ? (D.public ? `Showing the most relevant records.${D.links?.question_form ? ` For a question they do not answer, use the <a href="${esc(D.links.question_form)}" target="_blank" rel="noopener">question form</a>.` : ""}` : "Showing the most relevant records. Open this atlas on claude.ai to get written answers from Claude, grounded in these records.") : "Checking whether AI answers are available…";
+const EXAMPLES = (F.examples && F.examples.length) ? F.examples : ["Which claims hold up best across datasets?", "What happens to microglia?", "Which claims were contradicted when re-tested?", "How diverse are the donor cohorts behind these conclusions?"];
+const CITE = /\[((?:claim|stmt|prog|comp|region|ds|spec|gen|bg):[^\]\n]{1,140})\]/g;
+function md(t) {
+  let h = esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/^### (.*)$/gm, "<h4>$1</h4>").replace(/^## (.*)$/gm, "<h4>$1</h4>");
+  h = h.replace(/(^|\n)((?:[-*] .*(?:\n|$))+)/g, (m, a, list) => `${a}<ul>${list.trim().split("\n").map(l => `<li>${l.replace(/^[-*] /, "")}</li>`).join("")}</ul>`);
+  h = h.replace(/\[((?:claim|stmt|prog|comp|region|ds|spec|gen|bg):[^\]\n]{1,140})\]/g, (m, id) => { const raw = id.replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"'); const d = DOC[raw];
+    return d ? `<a class="cite" href="${esc(d.href)}"${attr(tip(d.title, [esc(d.kind)]))}>${esc(raw.split(":")[0] === "claim" ? raw.slice(6) : d.title.slice(0, 40))}</a>` : `<span class="cite">${id}</span>`; });
+  return h.split(/\n{2,}/).map(p => /^<(ul|h4)/.test(p) ? p : `<p>${p.replace(/\n/g, "<br>")}</p>`).join("");
+}
+function askBox(full) {
+  return `<section class="card askcard" id="ask"><div class="sechead"><div>${full ? "" : "<h2>Ask the atlas</h2>"}<p class="askmode">${askModeText()}</p></div></div>
+  <form id="askf" class="askrow"><input id="askq" placeholder="${esc(F.ask_placeholder || "Ask a question, e.g. what happens to oligodendrocytes?")}" value="${esc(ASK.q)}" autocomplete="off"><button type="submit" id="askb">${ASK.busy ? "Working…" : "Ask"}</button>${ASK.busy ? `<button type="button" id="asks">Stop</button>` : ""}</form>
+  <div class="examples">${EXAMPLES.map(e => `<button type="button" class="ex" data-q="${esc(e)}">${esc(e)}</button>`).join("")}</div>
+  <div id="askout">${askOut(full)}</div></section>`;
+}
+function askOut(full) {
+  if (!ASK.q) return "";
+  const hits = ASK.hits.slice(0, full ? 20 : 8);
+  const used = [...new Set(ASK.used)].map(id => DOC[id]).filter(Boolean);
+  const logLine = ASK.busy ? "" : ASK.saveError ? `<div class="note">The question could not be saved to the log (${esc(ASK.saveError)}).</div>` :
+    ASK.saved ? `<div class="row" style="margin:6px 0"><span class="sub">Saved to the question log.</span> ${ASK.requested ? `<span class="badge"><i style="background:var(--warn)"></i>Analysis requested</span> <span class="sub">It will be run on the harmonised datasets and added as a rated finding.</span>` :
+      `<button type="button" id="askreq" class="ex">The atlas cannot answer this: request an analysis</button>`}</div>` : "";
+  return `${ASK.status ? `<div class="note">${esc(ASK.status)}</div>` : ""}${ASK.answer ? `<div class="answer">${md(ASK.answer)}</div>` : ""}${logLine}
+  ${used.length ? `<h3>Records Claude opened</h3><div>${used.map(d => `<a class="chip" href="${esc(d.href)}">${esc(d.kind)} · ${esc(d.title.slice(0, 60))}</a>`).join("")}</div>` : ""}
+  <h3>Most relevant records</h3><div class="hits">${hits.map(d => `<div class="hit" data-href="${esc(d.href)}"><span class="pill">${esc(d.kind)}</span> <b>${esc(d.title)}</b><div class="sub">${esc(d.text.slice(0, 220))}…</div></div>`).join("") || `<div class="empty">No matching records.</div>`}</div>
+  ${!full ? `<div class="note"><a href="#ask">Open the full answer page →</a></div>` : ""}`;
+}
+const refreshAsk = () => { const o = $("#askout"); if (o) o.innerHTML = askOut(location.hash.startsWith("#ask")); const b = $("#askb"); if (b) b.textContent = ASK.busy ? "Working…" : "Ask"; };
+const recordText = d => `[${d.id}] (${d.kind}) ${d.title}\n${d.text}`;
+async function runAsk(q) {
+  q = q.trim(); if (!q || ASK.busy) return;
+  ASK.ctl?.abort(); Object.assign(ASK, {q, answer: "", used: [], hits: mixedHits(q), status: "", docId: null, saved: false, requested: false, saveError: ""});
+  if (ASK.ai === undefined) ASK.ai = await samplePromise;
+  if (!ASK.ai) { ASK.status = ""; rerender(); saveQuestion(); return; }
+  ASK.busy = true; ASK.status = "Thinking… (the first answer can take up to a minute)"; rerender();
+  const ctx = ASK.hits.map(d => recordText({...d, text: d.text.slice(0, 900)})).join("\n\n");
+  const prompt = `You answer questions about ${F.scope || "single-nucleus studies of human tissue"}, using ONLY the records of an evidence atlas. The atlas holds: published claims from ${D.stats.papers} studies, each re-tested in ${D.stats.datasets} harmonised datasets (outcome per dataset and a rating)${D.statements.length ? "; consensus statements with verdicts" : ""}${D.prog.length ? "; cross-dataset meta-analyses of transcriptional programmes per cell type, of cell composition and of brain regions" : ""}${D.spec.length ? "; disease specificity" : ""}${D.gen.length ? "; genetic risk" : ""}; and dataset/cohort descriptions.
+
+Rules:
+- Base every statement on the records; cite them inline with their id in square brackets exactly as given, e.g. [claim:${(D.claims[0] || {}).id || "paper2024-C01"}].
+- Distinguish what a paper claimed from what the cross-dataset re-analysis found (outcomes, ratings, effect sizes with FDR), and from reference knowledge established by other kinds of evidence (records [bg:...]), which takes precedence on questions the single-cell data measure poorly.
+- Give numbers (effect sizes, FDR, number of datasets) where they help.${D.prog.length ? " Effects: Hedges' g for programmes, difference in logit share for composition." : ""}
+- Mention relevant limits: human post-mortem tissue, mostly unreported or European ancestry, regions sampled, cell-level vs donor-level statistics.
+- If the records do not answer the question, say so plainly. Use the search_atlas tool if the records below miss something.
+- Answer in at most 250 words, with a one-sentence direct answer first, then short bullets. Plain Markdown, no tables.
+
+Question: ${q}
+
+Records:
+${ctx}`;
+  const tools = [
+    {name: "search_atlas", description: "Search the atlas records by keywords. Returns up to 12 records (id, kind, title, text). kind optionally restricts to one of: claim, consensus, reference, programme, composition, region, dataset, specificity, genetics.",
+      inputSchema: {type: "object", properties: {query: {type: "string"}, kind: {type: "string"}}, required: ["query"]},
+      execute: (i) => { ASK.status = `Searching the atlas for “${String(i.query)}”…`; refreshAsk(); const r = retrieve(String(i.query || ""), 12, i.kind ? String(i.kind) : undefined); r.forEach(d => ASK.used.push(d.id)); return r.map(d => recordText({...d, text: d.text.slice(0, 700)})).join("\n\n") || "No records."; }},
+    {name: "get_record", description: `Get the full text of one atlas record by its id (e.g. claim:${(D.claims[0] || {}).id}, ds:${(D.datasets[0] || {}).dataset}).`,
+      inputSchema: {type: "object", properties: {id: {type: "string"}}, required: ["id"]},
+      execute: (i) => { const d = DOC[String(i.id)]; if (!d) throw new Error("no record with that id"); ASK.used.push(d.id); return recordText({...d, text: d.text.slice(0, 3000)}); }}];
+  let canTools = false; try { canTools = !!(await ASK.ai.limits())?.tools; } catch (e) {}
+  ASK.ctl = new AbortController();
+  try {
+    await ASK.ai(prompt, {signal: ASK.ctl.signal, modelTier: "default", ...(canTools ? {tools} : {}), onText: ({text}) => { ASK.answer = text; ASK.status = ""; refreshAsk(); }});
+    ASK.status = "";
+  } catch (e) {
+    ASK.answer = e.text || ASK.answer;
+    ASK.status = {cancelled: "Stopped.", not_granted: "Claude is not allowed for this page; showing the most relevant records.", sampling_disabled: "Claude is not available for this account.",
+      rate_limited: "Too many questions for now; try again in a little while.", refused: "Claude declined to answer this question.", prompt_too_large: "The question pulled in too much material; try a narrower question."}[e.code] || "The answer was interrupted; try again.";
+    if (["not_granted", "sampling_disabled", "not_declared", "capability_disabled"].includes(e.code)) ASK.ai = null;
+  } finally { ASK.busy = false; rerender(); saveQuestion(); }
+}
+document.addEventListener("submit", e => { if (e.target.id === "askf") { e.preventDefault(); runAsk($("#askq").value); } });
+document.addEventListener("click", e => { if (e.target.id === "askreq") { requestAnalysis(); return; } const x = e.target.closest(".ex"); if (x && x.dataset.q) { $("#askq").value = x.dataset.q; runAsk(x.dataset.q); } if (e.target.id === "asks") ASK.ctl?.abort(); });
+pages.ask = () => `<h1>Ask the atlas</h1><p class="lead">Ask in plain words. Questions are answered from the atlas's ${DOCS.length.toLocaleString()} records: published claims and how they replicated, consensus statements, cross-dataset effects per programme, cell type and brain region, disease specificity, genetics and cohorts. ${D.public ? "Questions the records do not answer can be sent to the maintainers; one that needs a new analysis is run on the harmonised datasets and comes back as a rated finding." : "Every question is kept in the log below; one the atlas cannot answer can be sent for analysis, and its result comes back as a rated finding."}</p>${askBox(true)}
+  <section class="card"><h2>${D.public ? "Questions" : "Question log"}</h2>${D.public ? "" : `<p class="sub">Questions asked here, newest first, with their answers and what came of them.</p>`}<div id="qlog">${qlogHtml()}</div></section>`;
+
+// ------------------------------------------------------------------ knowledge graph (claimstore.kg via D.kg)
+const KG = (() => {
+  const nodes = D.kg.nodes.map(([id, type, label, a], i) => ({i, id, type, label, ...a}));
+  const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
+  const adj = nodes.map(() => []);
+  D.kg.edges.forEach(([s, t, rel, a], k) => { adj[s].push(k); adj[t].push(k); });
+  return {nodes, byId, adj, edges: D.kg.edges, rel: D.kg.relations};
+})();
+const KG_TYPE = {claim: "claim", paper: "paper", dataset: "dataset", cell: "cell type", region: "region", gene: "gene", theme: "theme", statement: "consensus statement", background: "reference knowledge", question: "question"};
+const KG_GROUP = {statement: "know", background: "know", question: "know", cell: "bio", region: "bio", gene: "bio", theme: "bio", paper: "src", dataset: "src"};
+const KG_GROUP_NAME = {know: "Consensus, reference knowledge, questions", bio: "Cell types, regions, genes, themes", src: "Papers and datasets"};
+const KG_LAB = 30, kgLab = n => n.type === "statement" ? (n.short || n.label) : n.label;
+const GV = {hops: 1, genes: true, themes: false, tests: null, q: ""};
+const kgPage = n => {
+  const k = n.id.slice(n.type.length + 1);
+  if (n.type === "claim" && C[k]) return "#claim/" + enc(k);
+  if (n.type === "dataset" && DS[k]) return "#dataset/" + enc(k);
+  if (n.type === "statement") return "#statement/" + enc(k);
+  if (n.type === "background") return "#reference/" + enc(k);
+  if (n.type === "gene") return "#gene/" + enc(k);
+  if (n.type === "cell") { const c = k === "All" ? "ALL" : k; return CELLS.includes(c) ? "#cell/" + enc(c) : null; }
+  if (n.type === "region") { const s = Object.keys(D.sites).find(s => (D.sites[s].regions || []).includes(k)); return s ? "#region/" + enc(s) : null; }
+  return null;
+};
+const kgEdgeCol = (rel, a) => /^(supports|supports_statement|establishes|consistent_with)$/.test(rel) ? "var(--good)" : /^(opposes_statement|contrasts_with)$/.test(rel) ? "var(--crit)"
+  : rel === "tested_in" ? ({reproduced: "var(--good)", contradicted: "var(--crit)", direction_only: "var(--good-soft)"}[a.outcome] || "var(--none)") : "var(--line)";
+const kgTip = n => tip(n.type === "claim" ? n.id.slice(6) : n.label, [KG_TYPE[n.type],
+  n.type === "claim" ? esc(n.label) : null, n.verdict ? `${esc(n.verdict)}${n.certainty ? ", " + esc(n.certainty).toLowerCase() + " certainty" : ""}` : null,
+  n.n_claims ? `${n.n_claims} claims` : null, n.n_donors ? `${n.n_donors} donors` : null, n.ontology_id ? esc(n.ontology_id) : null]);
+
+// neighbourhood of a focus node, capped; overview = consensus statements, reference knowledge and cell types linked through claims
+function kgBall(f) {
+  const tests = GV.tests ?? ["claim", "dataset"].includes(f.type);
+  const okEdge = rel => (tests || rel !== "tested_in") && (GV.themes || f.type === "theme" || rel !== "has_theme") && (GV.genes || f.type === "gene" || rel !== "names_gene");
+  const dist = new Map([[f.i, 0]]); let frontier = [f.i]; const cap = 140;
+  for (let h = 1; h <= GV.hops && dist.size < cap; h++) {
+    const nxt = new Set();
+    frontier.forEach(u => KG.adj[u].forEach(k => { const [s, t, rel] = KG.edges[k]; const v = s === u ? t : s; if (!dist.has(v) && okEdge(rel)) nxt.add(v); }));
+    const order = [...nxt].sort((a, b) => (KG.nodes[a].type === "claim") - (KG.nodes[b].type === "claim") || KG.adj[b].length - KG.adj[a].length);
+    frontier = order.slice(0, cap - dist.size); frontier.forEach(v => dist.set(v, h));
+  }
+  const links = []; dist.forEach((_, u) => KG.adj[u].forEach(k => { const [s, t, rel, a] = KG.edges[k]; if (s === u && dist.has(t) && okEdge(rel)) links.push({s, t, rel, a}); }));
+  return {ids: [...dist.keys()], dist, links, capped: dist.size >= cap};
+}
+function kgOverview() {
+  const keep = KG.nodes.filter(n => ["statement", "background"].includes(n.type) || (n.type === "cell" && n.id !== "cell:All"));
+  const ix = new Set(keep.map(n => n.i)), w = new Map();
+  keep.filter(n => n.type === "statement").forEach(st => KG.adj[st.i].forEach(k => {
+    const [c, , rel] = KG.edges[k]; if (!/_statement$/.test(rel)) return;
+    KG.adj[c].forEach(k2 => { const [s, t, r2] = KG.edges[k2]; if (r2 === "about_cell_type" && s === c && ix.has(t)) { const key = st.i + "|" + t + "|" + rel; w.set(key, (w.get(key) || 0) + 1); } });
+  }));
+  const links = [...w].filter(([, n]) => n >= 2).map(([key, n]) => { const [s, t, rel] = key.split("|"); return {s: +s, t: +t, rel, a: {}, w: n}; });
+  keep.filter(n => n.type === "background").forEach(b => KG.adj[b.i].forEach(k => { const [s, t, rel, a] = KG.edges[k]; if (s === b.i && ix.has(t)) links.push({s, t, rel, a}); }));
+  const used = new Set(links.flatMap(l => [l.s, l.t]));
+  return {ids: keep.filter(n => used.has(n.i)).map(n => n.i), dist: new Map(), links, capped: false};
+}
+function kgLayout(ids, links, W, H, focus) {
+  const P = new Map(), golden = Math.PI * (3 - Math.sqrt(5));
+  const size = i => { const n = KG.nodes[i]; return n.type === "claim" ? [12, 12] : [Math.min(KG_LAB, kgLab(n).length) * 6.4 + 18, 22]; };
+  ids.forEach((i, k) => { const r = i === focus ? 0 : 40 + 9 * Math.sqrt(k + 1) * 6; P.set(i, {x: W / 2 + r * Math.cos(k * golden), y: H / 2 + r * Math.sin(k * golden), s: size(i)}); });
+  const L = links.map(l => ({a: P.get(l.s), b: P.get(l.t), len: (KG.nodes[l.s].type === "claim" && KG.nodes[l.t].type === "claim") ? 40 : 90}));
+  const arr = [...P.values()];
+  for (let it = 0; it < 300; it++) {
+    const al = 1 - it / 300;
+    for (let p = 0; p < arr.length; p++) for (let q = p + 1; q < arr.length; q++) {
+      const A = arr[p], B = arr[q]; let dx = B.x - A.x, dy = B.y - A.y; const d2 = Math.max(dx * dx + dy * dy, 30), d = Math.sqrt(d2);
+      const room = (A.s[0] + B.s[0]) / 2 + 8; const f = (900 / d2 + (d < room ? (room - d) * 0.25 : 0)) * al; dx /= d; dy /= d;
+      A.x -= dx * f; A.y -= dy * f; B.x += dx * f; B.y += dy * f;
+    }
+    L.forEach(({a, b, len}) => { const dx = b.x - a.x, dy = b.y - a.y, d = Math.max(Math.hypot(dx, dy), 1), f = (d - len) * 0.04 * al; a.x += dx / d * f; a.y += dy / d * f; b.x -= dx / d * f; b.y -= dy / d * f; });
+    arr.forEach(p => { p.x += (W / 2 - p.x) * 0.012 * al; p.y += (H / 2 - p.y) * 0.02 * al; });
+    if (focus != null) Object.assign(P.get(focus), {x: W / 2, y: H / 2});
+  }
+  for (let it = 0; it < 80; it++) { let moved = false;  // remove remaining box overlaps (labels must not collide)
+    for (let p = 0; p < arr.length; p++) for (let q = p + 1; q < arr.length; q++) {
+      const A = arr[p], B = arr[q], dx = B.x - A.x, dy = B.y - A.y;
+      const ox = (A.s[0] + B.s[0]) / 2 + 6 - Math.abs(dx), oy = (A.s[1] + B.s[1]) / 2 + 5 - Math.abs(dy);
+      if (ox > 0 && oy > 0) { moved = true; const fixA = A === P.get(focus), fixB = B === P.get(focus);
+        const m = (ox < oy * 2 ? ox : oy) / (fixA || fixB ? 1 : 2), sx = ox < oy * 2 ? (dx < 0 ? -1 : 1) : 0, sy = ox < oy * 2 ? 0 : (dy < 0 ? -1 : 1);
+        if (!fixA) { A.x -= sx * m; A.y -= sy * m; } if (!fixB) { B.x += sx * m; B.y += sy * m; } } }
+    if (!moved) break; }
+  return P;
+}
+function kgSvg(ball, focus) {
+  const W = 960, H = ball.ids.length > 60 ? 680 : 560, P = kgLayout(ball.ids, ball.links, W, H, focus);
+  const pts = [...P.values()], pad = 16;  // fit the view to the drawing
+  let x0 = Math.min(...pts.map(p => p.x - p.s[0] / 2)) - pad, x1 = Math.max(...pts.map(p => p.x + p.s[0] / 2)) + pad;
+  let y0 = Math.min(...pts.map(p => p.y - p.s[1] / 2)) - pad, y1 = Math.max(...pts.map(p => p.y + p.s[1] / 2)) + pad;
+  if (x1 - x0 < 520) { const c = (x0 + x1) / 2; x0 = c - 260; x1 = c + 260; } if (y1 - y0 < 300) { const c = (y0 + y1) / 2; y0 = c - 150; y1 = c + 150; }
+  const maxw = Math.max(1, ...ball.links.map(l => l.w || 1));
+  const lines = ball.links.map(l => { const a = P.get(l.s), b = P.get(l.t);
+    return `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${b.x.toFixed(1)}" y2="${b.y.toFixed(1)}" stroke="${kgEdgeCol(l.rel, l.a)}" stroke-width="${l.w ? 1 + 4 * l.w / maxw : 1.4}" ${l.rel === "tested_in" ? 'stroke-dasharray="3 3"' : ""} opacity=".8"><title>${esc(KG.nodes[l.s].id)} ${esc(l.rel)} ${esc(KG.nodes[l.t].id)}${l.w ? ` (${l.w} claims)` : ""}</title></line>`; }).join("");
+  const nodes = ball.ids.map(i => { const n = KG.nodes[i], p = P.get(i), on = i === focus;
+    const attrs = `data-href="#graph/${enc(n.id)}" data-tip="${esc(kgTip(n))}"`;
+    if (n.type === "claim") return `<g ${attrs}><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${on ? 10 : 6}" fill="${VCOL(n.verdict)}" stroke="var(--panel)" stroke-width="2"/>${on ? `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="14" fill="none" stroke="var(--ink)" stroke-width="1.5"/>` : ""}</g>`;
+    const lab = kgLab(n), t = lab.length > KG_LAB ? lab.slice(0, KG_LAB - 1) + "…" : lab, w = p.s[0];
+    return `<g ${attrs}><rect x="${(p.x - w / 2).toFixed(1)}" y="${(p.y - 11).toFixed(1)}" width="${w.toFixed(1)}" height="22" rx="11" fill="var(--panel)" stroke="var(--g-${KG_GROUP[n.type]})" stroke-width="${on ? 3 : 1.6}"/><text x="${p.x.toFixed(1)}" y="${(p.y + 4).toFixed(1)}" text-anchor="middle" class="lab" style="font-size:11.5px${on ? ";font-weight:700" : ""}">${esc(t)}</text></g>`; }).join("");
+  return `<svg viewBox="${x0.toFixed(0)} ${y0.toFixed(0)} ${(x1 - x0).toFixed(0)} ${(y1 - y0).toFixed(0)}" width="100%" style="max-height:78vh;background:var(--bg);border-radius:10px;border:1px solid var(--line)" role="img" aria-label="Knowledge graph">${lines}${nodes}</svg>`;
+}
+const kgLegend = () => `<div class="legend">${Object.entries(KG_GROUP_NAME).map(([g, t]) => `<span><i style="background:var(--panel);border:2px solid var(--g-${g});border-radius:7px"></i>${t}</span>`).join("")}
+  <span>Claims, by verdict:</span>${["Supported", "Partly supported", "Inconclusive", "Contradicted", "Untested"].map(v => `<span><i style="background:${VCOL(v)};border-radius:50%"></i>${v}</span>`).join("")}</div>
+  <div class="legend"><span><i style="background:var(--good);height:3px"></i>supports</span><span><i style="background:var(--crit);height:3px"></i>opposes or contrasts</span><span><i style="background:repeating-linear-gradient(90deg,var(--good) 0 3px,transparent 3px 6px);height:3px"></i>re-test in a dataset (green reproduced, red contradicted, grey not reproduced)</span><span><i style="background:var(--line);height:3px"></i>other link</span></div>`;
+function kgFind() {
+  const q = GV.q.trim().toLowerCase(); if (q.length < 2) return "";
+  const hits = KG.nodes.filter(n => n.id.toLowerCase().includes(q) || n.label.toLowerCase().includes(q)).sort((a, b) => (a.type === "claim") - (b.type === "claim") || KG.adj[b.i].length - KG.adj[a.i].length).slice(0, 14);
+  return hits.map(n => `<a class="chip" href="#graph/${enc(n.id)}">${esc(n.type === "claim" ? n.id.slice(6) + ": " + n.label.slice(0, 60) : n.label)} <small style="color:var(--muted)">${KG_TYPE[n.type]}</small></a>`).join("") || `<span class="sub">No matches</span>`;
+}
+const kgControls = f => `<div class="controls" style="margin:8px 0">
+  <input class="f" id="kgq" placeholder="Find a claim, gene, cell type, dataset…" value="${esc(GV.q)}" style="width:280px" autocomplete="off">
+  ${f ? `<label class="sub"><select id="kghops"><option value="1"${GV.hops === 1 ? " selected" : ""}>1 step</option><option value="2"${GV.hops === 2 ? " selected" : ""}>2 steps</option></select> around it</label>
+  <label class="sub"><input type="checkbox" data-kg="tests"${(GV.tests ?? ["claim", "dataset"].includes(f.type)) ? " checked" : ""}> re-tests</label>
+  <label class="sub"><input type="checkbox" data-kg="genes"${GV.genes ? " checked" : ""}> genes</label>
+  <label class="sub"><input type="checkbox" data-kg="themes"${GV.themes ? " checked" : ""}> themes</label>` : ""}</div><div id="kgfind" style="margin-bottom:6px">${kgFind()}</div>`;
+function kgSide(f) {
+  const groups = {};
+  KG.adj[f.i].forEach(k => { const [s, t, rel, a] = KG.edges[k]; const v = KG.nodes[s === f.i ? t : s]; const key = s === f.i ? rel : `${rel} (from)`; (groups[key] ||= []).push([v, a]); });
+  const page = kgPage(f);
+  return `<div class="crumb">${KG_TYPE[f.type]}${f.ontology_id ? ` <span class="oid">${esc(f.ontology_id)}</span>` : ""}</div>
+    <h2 style="font-size:18px">${esc(f.type === "claim" ? f.label : f.label)}</h2>
+    ${f.verdict ? `<p>${f.type === "claim" ? ratingBadge(f) : `<span class="badge">${esc(f.verdict)}</span>`}</p>` : ""}
+    ${page ? `<p><a href="${page}">Open the ${KG_TYPE[f.type]} page →</a></p>` : ""}
+    <p class="sub">${KG.adj[f.i].length} links. Click a node to move there; hover for details.</p>
+    ${Object.entries(groups).sort((a, b) => b[1].length - a[1].length).map(([rel, vs]) => `<details${vs.length <= 8 ? " open" : ""}><summary><b>${esc(rel.replace(/_/g, " "))}</b> <span class="sub">${vs.length}</span></summary>
+      <div style="margin:4px 0 8px">${vs.slice(0, 60).map(([v, a]) => `<a class="chip" href="#graph/${enc(v.id)}" data-tip="${esc(kgTip(v))}">${v.type === "claim" ? `<i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${VCOL(v.verdict)}"></i> ${esc(v.id.slice(6))}` : esc(v.type === "statement" ? v.short || v.label : v.label)}${a.outcome ? ` · ${esc(a.outcome.replace("_", " "))}` : ""}</a>`).join("")}${vs.length > 60 ? `<span class="sub"> +${vs.length - 60} more</span>` : ""}</div></details>`).join("")}`;
+}
+pages.graph = id => {
+  const f = id ? KG.byId[id] : null;
+  if (id && !f) return `<div class="empty">Unknown node ${esc(id)}. <a href="#graph">Back to the map</a></div>`;
+  const ball = f ? kgBall(f) : kgOverview();
+  const nt = Object.entries(D.kg.nodes.reduce((m, n) => (m[n[1]] = (m[n[1]] || 0) + 1, m), {}));
+  return `${f ? `<div class="crumb"><a href="#graph">Knowledge graph</a> › ${esc(f.id)}</div>` : ""}
+  <h1>${f ? "Around this record" : "Knowledge graph"}</h1>
+  <p class="lead">${f ? `Everything linked to it in the claim store${GV.hops === 2 ? ", two steps out" : ""}: ${ball.ids.length - 1} records${ball.capped ? " (capped at 140; claims are dropped first)" : ""}.`
+    : `The atlas as one network of ${KG.nodes.length.toLocaleString()} records and ${KG.edges.length.toLocaleString()} links: ${nt.map(([t, n]) => `${n} ${KG_TYPE[t]}${n > 1 && !/s$/.test(KG_TYPE[t]) ? "s" : ""}`).join(", ")}. The map below shows the consensus statements, the reference knowledge behind them and the cell types their claims are about (line width = number of claims). Find any record to see its neighbourhood.`}</p>
+  <p><a class="pill" style="font-size:14px;padding:6px 14px" href="#graph3d${f ? "/" + enc(f.id) : ""}">Explore everything in 3D, full screen →</a></p>
+  ${kgControls(f)}
+  <div class="kgwrap"><div>${kgSvg(ball, f ? f.i : null)}${kgLegend()}</div>
+  <div>${f ? kgSide(f) : `<h3>Start from</h3>${(F.graph_start || ["statement:CS01", "cell:Microglia", "cell:Astrocytes", "cell:Excitatory neurons", "gene:" + (Object.entries(D.gene_claims).sort((a, b) => b[1][0].length - a[1][0].length)[0] || [""])[0], "dataset:" + (D.datasets[0] || {}).dataset, "claim:" + (D.claims[0] || {}).id]).filter(x => KG.byId[x]).map(x => `<a class="chip" href="#graph/${enc(x)}">${esc(KG.byId[x].type === "statement" ? KG.byId[x].short : KG.byId[x].type === "claim" ? x.slice(6) : KG.byId[x].label)}</a>`).join("")}
+    <p class="note">The same graph is exported for Cytoscape or Gephi (results/store/knowledge_graph.graphml) and can be queried from Claude through the claim-store MCP server (neighbours, connect).</p>`}</div></div>`;
+};
+document.addEventListener("input", e => { if (e.target.id === "kgq") { GV.q = e.target.value; $("#kgfind").innerHTML = kgFind(); } });
+document.addEventListener("change", e => {
+  if (e.target.id === "kghops") { GV.hops = +e.target.value; rerender(); }
+  const k = e.target.dataset?.kg; if (k) { GV[k] = e.target.checked; rerender(); }
+});
+
+// ------------------------------------------------------------------ 3D knowledge graph (full screen, #graph3d[/node id])
+// Claims, consensus statements and reference knowledge in one rotatable, zoomable 3D view (3d-force-graph /
+// three.js, loaded on first use). Papers, datasets, genes, cell types, regions and themes are not drawn: they become colourings, and stay
+// in the layout as invisible anchors so claims that share them sit together.
+const G3_LIB = "https://cdn.jsdelivr.net/npm/3d-force-graph@1.73.4/dist/3d-force-graph.min.js";
+const G3_TYPES = ["claim", "statement", "background"];
+const G3_HIDDEN = new Set(["paper", "dataset", "gene", "cell", "region", "theme", "question"]);  // layout anchors only
+const G3_PAL = {light: ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"], dark: ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767"]};
+const G3_RAMP = {light: ["#184f95", "#2a78d6", "#6da7ec", "#b7d3f6"], dark: ["#9ec5f4", "#5598e7", "#256abf", "#104281"]};  // certainty: High -> Very low
+const G3_EDGE = {consensus: "Consensus statements and reference knowledge", agree: "Claims that agree with each other", similar: "Similar in meaning (embedding neighbours)"};
+const g3EdgeGroup = rel => rel === "similar" ? "similar" : rel === "agrees_with" ? "agree"
+  : /^(supports_statement|opposes_statement|bears_on|establishes|consistent_with|supports|contrasts_with)$/.test(rel) ? "consensus" : "anchor";
+let G3V = {}; const g3v = n => G3V[n] ??= css(n);
+const G3 = {lib: null, fg: null, mode: "network", scheme: "type", labels: false, topicLabels: true, rotate: true, lastInput: Date.now(),
+  hideT: new Set(), hideE: new Set(["similar"]), hideC: new Set(), focus: null, near: null, q: "", pick: false, path: null};
+const g3Dark = () => document.documentElement.dataset.theme === "dark" || (document.documentElement.dataset.theme !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+const g3Slot = i => G3_PAL[g3Dark() ? "dark" : "light"][i];
+const g3Mix = (hex, bg, t) => { const p = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)); if (!/^#[0-9a-f]{6}$/i.test(hex) || !/^#[0-9a-f]{6}$/i.test(bg)) return hex;
+  const a = p(hex), b = p(bg); return "#" + a.map((x, i) => Math.round(x * (1 - t) + b[i] * t).toString(16).padStart(2, "0")).join(""); };
+const g3Claim = n => n.type === "claim" ? C[n.id.slice(6)] : null;
+const g3First = s => split(s)[0];
+const g3Of = (n, fn) => { const c = g3Claim(n); return c ? fn(c) : null; };
+const G3_KIND = {composition: "Cell composition", state_enrichment: "Cell composition", de_gene: "Gene expression", de_pathway: "Pathways and programmes", genetic_enrichment: "Genetic risk",
+  state_existence: "Cell states", pathology_association: "Pathology association", communication: "Cell communication", trajectory: "Trajectory"};
+const G3_CONTRAST = {case_control: "Disease vs control", within: "Within disease", stage: "Stage or severity", continuous: "Stage or severity", ageing: "Ageing", genotype: "Genotype",
+  donor_group: "Other donor groups", covariate: "Other donor groups"};
+const G3_RT = (() => {  // re-test outcome per claim, from its tested_in links (role replication)
+  const t = {}; KG.edges.forEach(([s, , rel, a]) => { if (rel !== "tested_in" || (a?.role && a.role !== "replication")) return; const o = (t[s] ||= {r: 0, f: 0, d: 0});
+    a?.outcome === "reproduced" ? o.r++ : /not_reproduced|contradicted/.test(a?.outcome || "") ? o.f++ : o.d++; });
+  const m = {}; KG.nodes.forEach(n => { if (n.type !== "claim") return; const o = t[n.i]; m[n.i] = !o ? "none" : !(o.r + o.f) ? "dir" : o.r / (o.r + o.f) >= 2 / 3 ? "rep" : o.r / (o.r + o.f) < 1 / 3 ? "fail" : "mix"; });
+  return m; })();
+
+// ---- colour schemes: every category of the store. Up to 8 coloured categories in fixed order (dataviz palette); the rest fold into "other".
+const G3_LINEAGE = Object.assign({"Excitatory neurons": "Neurons", "Inhibitory neurons": "Neurons", "Neurons (other)": "Neurons",
+  Astrocytes: "Astrocytes", Microglia: "Microglia and immune", "Immune (other)": "Microglia and immune", Oligodendrocytes: "Oligodendrocyte lineage",
+  OPCs: "Oligodendrocyte lineage", Endothelial: "Vascular", Pericytes: "Vascular", Fibroblasts: "Vascular", "T cells": "T cells"}, F.lineages || {});
+const G3_TOPIC = (() => { const m = {}; (D.kg.topics?.members || []).forEach(([i, k]) => m[i] = k); return m; })();
+const g3Lineage = cts => { const ls = [...new Set(split(cts).map(x => G3_LINEAGE[x] || "several"))]; return ls.length === 1 ? ls[0] : "several"; };
+const g3RegionGroup = n => { if (n.type === "region") return n.region_group || null; const c = g3Claim(n); if (!c) return null; const gs = [...new Set(split(c.region_groups))]; return gs.length === 1 ? gs[0] : "several"; };
+function g3Ranked(fn, keep = 8) {  // categories by claim count, largest first; past `keep` they fold into "other"
+  const cnt = {}; KG.nodes.forEach(n => { if (n.type === "claim") { const k = fn(n); if (k != null && k !== "several") cnt[k] = (cnt[k] || 0) + 1; } });
+  return Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a]).slice(0, keep);
+}
+const G3_SCHEMES = {
+  type: {name: "Record type", of: n => n.type, cats: () => G3_TYPES.map(t => [t, KG_TYPE[t]])},
+  verdict: {name: "Claim verdict", of: n => n.type !== "claim" ? null : /^Supported/.test(n.verdict) ? "s" : /Partly/.test(n.verdict) ? "p" : /Contradicted/.test(n.verdict) ? "c" : /Untested/.test(n.verdict) || !n.verdict ? "u" : "i",
+    cats: () => [["s", "Supported"], ["p", "Partly supported"], ["i", "Inconclusive / no effect"], ["c", "Contradicted"], ["u", "Untested"]],
+    col: k => ({s: g3v("--good"), p: g3v("--warn"), i: g3v("--none"), c: g3v("--crit"), u: g3v("--untested")})[k]},
+  certainty: {name: "Certainty of the rating", of: n => n.type !== "claim" ? null : /Untested/.test(n.verdict) ? "u" : {High: "h", Moderate: "m", Low: "l", "Very low": "v"}[n.certainty] || "v",
+    cats: () => [["h", "High"], ["m", "Moderate"], ["l", "Low"], ["v", "Very low"], ["u", "Untested"]],
+    col: k => k === "u" ? g3v("--untested") : G3_RAMP[g3Dark() ? "dark" : "light"]["hmlv".indexOf(k)]},
+  topic: {name: "Topic (by meaning)", of: n => G3_TOPIC[n.i] != null ? "t" + G3_TOPIC[n.i] : null,
+    cats: () => { const sz = {}; Object.values(G3_TOPIC).forEach(k => sz[k] = (sz[k] || 0) + 1); return Object.keys(sz).sort((a, b) => sz[b] - sz[a]).slice(0, 8).map(k => ["t" + k, D.kg.topics.labels[k]]); }, other: "smaller topics"},
+  cell: {name: "Cell type", of: n => n.type === "cell" ? (n.id === "cell:All" ? "several" : G3_LINEAGE[n.label] || "several") : n.type === "claim" ? g3Lineage(g3Claim(n)?.cell_types) : null,
+    cats: () => [...new Set(Object.values(G3_LINEAGE))].map(x => [x, x]), other: "all or several cell types"},
+  region: {name: "Brain region", of: g3RegionGroup, cats: () => ["midbrain", "basal ganglia", "cortex", "limbic", "brainstem", "cerebellum", "whole brain"].map(x => [x, x]), other: "several regions"},
+  theme: {name: "Biological theme", of: n => n.type === "theme" ? n.label : n.type === "claim" ? (g3First(g3Claim(n)?.themes) || null) : null, cats: () => g3Ranked(n => g3First(g3Claim(n)?.themes), 8).map(x => [x, x]), other: "other themes"},
+  paper: {name: "Source paper", of: n => n.type === "paper" ? n.id.slice(6) : n.type === "claim" ? n.paper : null,
+    cats: () => ["this-study", ...g3Ranked(n => n.paper, 8).filter(p => p !== "this-study")].slice(0, 8).map(p => [p, p === "this-study" ? "This study" : (KG.byId["paper:" + p]?.label || p)]), other: "other papers"},
+  origin: {name: "Published or this study", of: n => n.type === "claim" ? (n.origin === "finding" ? "f" : "p") : null, cats: () => [["p", "Published claim"], ["f", "Finding of this study"]]},
+  retest: {name: "Re-tests in other datasets", of: n => n.type === "claim" ? G3_RT[n.i] : null,
+    cats: () => [["rep", "Mostly reproduced (2/3 or more)"], ["mix", "Mixed"], ["fail", "Mostly not reproduced"], ["dir", "Direction only"], ["none", "Not re-tested"]],
+    col: k => ({rep: g3v("--good"), mix: g3v("--warn"), fail: g3v("--crit"), dir: g3Slot(0), none: g3v("--untested")})[k]},
+  kind: {name: "Kind of claim", of: n => g3Of(n, c => G3_KIND[c.claim_type] || "other"),
+    cats: () => ["Cell composition", "Gene expression", "Pathways and programmes", "Genetic risk", "Cell states", "Pathology association", "Cell communication", "Trajectory"].map(x => [x, x]), other: "other kinds"},
+  direction: {name: "Direction of the effect", of: n => g3Of(n, c => /^(up|enriched|associated_pos)$/.test(c.direction) ? "up" : /^(down|depleted|associated_neg)$/.test(c.direction) ? "down" : c.direction === "exists" ? "ex" : "other"),
+    cats: () => [["down", "Lower / depleted"], ["up", "Higher / enriched"], ["ex", "A state exists"]], other: "no direction"},
+  contrast: {name: "Comparison", of: n => g3Of(n, c => G3_CONTRAST[c.contrast_kind] || "other"),
+    cats: () => ["Disease vs control", "Within disease", "Stage or severity", "Ageing", "Genotype", "Other donor groups"].map(x => [x, x]), other: "not stated"},
+  assay: {name: "Assay", of: n => g3Of(n, c => /^spatial/.test(c.assay) ? "Spatial" : /ATAC/.test(c.assay) ? "Chromatin (ATAC)" : ({snRNA: "snRNA-seq", "multiome-RNA": "Multiome RNA", imaging: "Imaging"})[c.assay] || "other"),
+    cats: () => ["snRNA-seq", "Multiome RNA", "Chromatin (ATAC)", "Spatial", "Imaging"].map(x => [x, x])},
+  centrality: {name: "Weight in its paper", of: n => g3Of(n, c => c.centrality || null),
+    cats: () => [["headline", "Headline"], ["main", "Main result"], ["secondary", "Secondary"]], col: k => G3_RAMP[g3Dark() ? "dark" : "light"][{headline: 0, main: 1, secondary: 2}[k]]},
+};
+function g3Cats() { const sc = G3_SCHEMES[G3.scheme]; if (!sc._cats) { sc._cats = sc.cats(); sc._idx = Object.fromEntries(sc._cats.map(([k], i) => [k, i])); } return sc; }
+function g3Cat(n) { const sc = g3Cats(), k = sc.of(n); return k == null ? null : (k in sc._idx ? k : "other"); }  // null = not classified by this scheme
+function g3CatCol(k) { const sc = g3Cats(); return k == null || k === "other" ? g3v("--none") : sc.col ? sc.col(k) : g3Slot(sc._idx[k]); }
+
+function g3Load() {
+  if (G3.lib) return G3.lib;
+  G3.lib = new Promise((ok, fail) => { const s = document.createElement("script"); s.src = G3_LIB; s.onload = () => ok(window.ForceGraph3D); s.onerror = () => { G3.lib = null; fail(new Error("load")); }; document.head.appendChild(s); });
+  return G3.lib;
+}
+function g3Data() {
+  const nodes = KG.nodes.map(n => ({...n, deg: KG.adj[n.i].length}));
+  const links = KG.edges.map(([s, t, rel, a], k) => ({source: s, target: t, rel, a, k, g: g3EdgeGroup(rel)}))
+    .concat((D.kg.similar || []).map(([s, t, w], j) => ({source: s, target: t, rel: "similar", a: {}, w, g: "similar", k: G3_E0 + j})));
+  return {nodes, links};
+}
+function g3LinkStrength(l) {
+  if (G3.mode === "meaning") return l.g === "similar" ? 0.6 * l.w : l.rel === "tested_in" ? 0 : (l.source.type === "claim" && l.target.type === "claim") ? 0 : 0.03;
+  return l.g === "similar" ? 0 : l.rel === "tested_in" ? 0.01 : l.rel === "has_theme" ? 0.02 : 0.25;
+}
+function g3NodeShown(n) { if (G3_HIDDEN.has(n.type) || G3.hideT.has(n.type)) return false; if (!G3.hideC.size) return true; const k = g3Cat(n); return !(k != null && G3.hideC.has(k)); }
+function g3LinkShown(l) {
+  if (!g3NodeShown(l.source) || !g3NodeShown(l.target)) return false;
+  if (G3.path) return G3.path.links.has(l.k);
+  if (G3.near) return G3.near.has(l.source.i) && G3.near.has(l.target.i) && (l.source.i === G3.focus.i || l.target.i === G3.focus.i) && (l.g !== "similar" || !G3.hideE.has("similar"));
+  return !G3.hideE.has(l.g);
+}
+function g3NodeColor(n) {
+  const c = G3.scheme === "type" ? (n.type in Object.fromEntries(g3Cats()._cats) ? g3Slot(g3Cats()._idx[n.type]) : g3v("--none")) : g3CatCol(g3Cat(n));
+  const lit = G3.path ? G3.path.nodes.has(n.i) : G3.near ? G3.near.has(n.i) : true;
+  return lit ? c : g3Mix(c, g3v("--bg"), 0.85);
+}
+function g3LinkColor(l) {
+  if (G3.path) return g3v("--accent");
+  const r = l.rel, a = l.a || {};
+  return l.g === "similar" ? g3v("--accent") : /^(supports|supports_statement|establishes|consistent_with)$/.test(r) ? g3v("--good") : /^(opposes_statement|contrasts_with)$/.test(r) ? g3v("--crit")
+    : r === "tested_in" ? ({reproduced: g3v("--good"), contradicted: g3v("--crit")}[a.outcome] || g3v("--muted")) : g3v("--muted");
+}
+const g3Strong = l => /^(supports_statement|opposes_statement|establishes|supports|contrasts_with)$/.test(l.rel) || (l.rel === "tested_in" && l.a?.outcome === "contradicted");
+function g3LinkWidth(l) {
+  if (G3.path) return G3.path.links.has(l.k) ? 1.6 : 0;
+  if (G3.focus) return (l.source.i === G3.focus.i || l.target.i === G3.focus.i) ? 0.5 : 0;
+  return g3Strong(l) ? 0.35 : 0;
+}
+function g3Size(n) {
+  const base = n.type === "claim" ? ({High: 3.2, Moderate: 2.3, Low: 1.6, "Very low": 1.1}[n.certainty] || 1.1) * (/Untested/.test(n.verdict) ? 0.7 : 1) : 1.5 + Math.sqrt(n.deg) * 0.9;
+  return base * (G3.focus && n.i === G3.focus.i ? 3 : G3.path && G3.path.nodes.has(n.i) ? 2 : 1);
+}
+const g3Name = n => n.type === "claim" ? n.id.slice(6) : n.type === "statement" ? (n.short || n.label) : n.label;
+const g3Labelled = n => G3.path ? G3.path.nodes.has(n.i) : G3.near ? G3.near.has(n.i) && (n.type !== "claim" || n === G3.focus || G3.near.size < 40)
+  : G3.labels && (n.type === "statement" || n.type === "background");
+
+// ---- path finder: cheapest paths where entering a record costs 1 + log10(its links), so specific links beat hubs (as kg.Graph.paths).
+// Steps run over drawn records only, through the store's links and the similar-in-meaning links (ids KG.edges.length + j).
+const G3_E0 = KG.edges.length;
+const G3_SIMADJ = (() => { const m = {}; (D.kg.similar || []).forEach(([s, t], j) => { (m[s] ||= []).push([t, G3_E0 + j]); (m[t] ||= []).push([s, G3_E0 + j]); }); return m; })();
+const g3Edge = e => e < G3_E0 ? KG.edges[e] : [...D.kg.similar[e - G3_E0].slice(0, 2), "similar in meaning", {}];
+const g3Adj = u => KG.adj[u].map(e => { const [s, t] = KG.edges[e]; return [s === u ? t : s, e]; }).concat(G3_SIMADJ[u] || []);
+function g3Paths(a, b, k = 3, maxHops = 6) {
+  const out = [], banned = new Set();
+  for (let r = 0; r < k; r++) {
+    const best = new Map([[a, 0]]), prev = new Map(), hops = new Map([[a, 0]]), done = new Set(); let found = false;
+    while (true) {
+      let u = -1, bu = Infinity; best.forEach((c, v) => { if (!done.has(v) && c < bu) { bu = c; u = v; } });
+      if (u < 0) break; done.add(u); if (u === b) { found = true; break; }
+      if (hops.get(u) >= maxHops || (u !== a && banned.has(u))) continue;
+      g3Adj(u).forEach(([v, e]) => { if (done.has(v) || G3_HIDDEN.has(KG.nodes[v].type)) return;
+        const c = bu + 1 + (v === b ? 0 : Math.log10(Math.max(KG.adj[v].length, 1)));
+        if (c < (best.get(v) ?? Infinity)) { best.set(v, c); prev.set(v, [u, e]); hops.set(v, hops.get(u) + 1); } });
+    }
+    if (!found) break;
+    const p = []; let v = b; while (v !== a) { const [u, e] = prev.get(v); p.unshift([u, e, v]); v = u; }
+    out.push(p); const mids = p.map(([u]) => u).filter(x => x !== a); if (!mids.length) break; mids.forEach(x => banned.add(x));
+  }
+  return out;
+}
+function g3SetPath(from, to) {
+  const ps = g3Paths(from.i, to.i), nodes = new Set([from.i, to.i]), links = new Set();
+  ps.forEach(p => p.forEach(([u, e, v]) => { nodes.add(u); nodes.add(v); links.add(e); }));
+  G3.path = {from, to, ps, nodes, links}; G3.focus = null; G3.near = null; G3.pick = false;
+  g3Refresh(false);
+  if (ps.length) G3.fg.zoomToFit(1200, 80, n => nodes.has(n.i));
+}
+
+// ---- panel, card
+function g3Panel() {
+  const counts = KG.nodes.reduce((m, n) => (m[n.type] = (m[n.type] || 0) + 1, m), {});
+  const ecounts = {}; KG.edges.forEach(([, , rel]) => { const g = g3EdgeGroup(rel); ecounts[g] = (ecounts[g] || 0) + 1; }); ecounts.similar = (D.kg.similar || []).length;
+  const sc = g3Cats(), cc = {}; KG.nodes.forEach(n => { const k = g3Cat(n); if (k != null) cc[k] = (cc[k] || 0) + 1; });
+  const cats = sc._cats.concat(cc.other ? [["other", sc.other || "other"]] : []);
+  return `<div class="g3top"><a href="#graph">← Atlas</a><b>Knowledge graph · 3D</b></div>
+    <input id="g3q" class="f" placeholder="${G3.pick ? "Pick the second record…" : "Find a record and fly to it…"}" value="${esc(G3.q)}" autocomplete="off"><div id="g3hits"></div>
+    <div class="g3seg">Layout <button data-g3mode="network" class="${G3.mode === "network" ? "on" : ""}" title="Claims from the same paper, cell type, region and genes sit together">By context</button><button data-g3mode="meaning" class="${G3.mode === "meaning" ? "on" : ""}">By meaning</button></div>
+    <label class="g3row">Colour by <select id="g3scheme">${Object.entries(G3_SCHEMES).map(([k, s]) => `<option value="${k}"${G3.scheme === k ? " selected" : ""}>${esc(s.name)}</option>`).join("")}</select></label>
+    <div class="g3legend">${cats.map(([k, t]) => `<label class="g3row" title="Show or hide"><input type="checkbox" data-g3c="${esc(k)}"${G3.hideC.has(k) ? "" : " checked"}><i style="background:${k === "other" ? g3v("--none") : G3.scheme === "type" ? g3Slot(sc._idx[k]) : g3CatCol(k)}"></i>${esc(t)} <span>${cc[k] || 0}</span></label>`).join("")}
+      ${G3.scheme !== "type" ? `<div class="g3note">Records this colouring does not classify are grey.</div>` : ""}</div>
+    <details><summary>Record types</summary>${G3_TYPES.map(t => `<label class="g3row"><input type="checkbox" data-g3t="${t}"${G3.hideT.has(t) ? "" : " checked"}>${esc(KG_TYPE[t])} <span>${counts[t] || 0}</span></label>`).join("")}</details>
+    <details><summary>Links</summary>${Object.entries(G3_EDGE).map(([g, t]) => `<label class="g3row"><input type="checkbox" data-g3e="${g}"${G3.hideE.has(g) ? "" : " checked"}>${esc(t)} <span>${ecounts[g] || 0}</span></label>`).join("")}
+      <div class="g3note"><i style="background:${g3v("--good")}"></i> supports / reproduced · <i style="background:${g3v("--crit")}"></i> opposes / contradicted · thicker lines: links to consensus statements and contradictions</div></details>
+    <label class="g3row"><input type="checkbox" id="g3lab"${G3.labels ? " checked" : ""}> Record labels</label>
+    <label class="g3row"><input type="checkbox" id="g3tlab"${G3.topicLabels ? " checked" : ""}> Topic labels <span>${G3.mode === "meaning" ? "" : "by-meaning layout"}</span></label>
+    <label class="g3row"><input type="checkbox" id="g3rot"${G3.rotate ? " checked" : ""}> Rotate when idle</label>
+    <div class="g3seg"><button id="g3fit">Fit view</button>${G3.dl ? `<button id="g3shot">Save image</button>` : ""}</div>
+    <p class="g3help">Drag to rotate · scroll or pinch to zoom · right-drag to pan · click a record to focus it · Esc or click empty space to clear. Larger claims have more certain ratings. Papers, datasets, genes, cell types, regions and themes are not drawn: colour by them instead (genes are listed on each claim).</p>`;
+}
+function g3Card() {
+  if (G3.path) {
+    const {from, to, ps} = G3.path;
+    return `<button class="g3x" id="g3clear" aria-label="Close">×</button><div class="sub">How these connect</div>
+      <div style="font-weight:600;margin:2px 0 6px">${esc(g3Name(from))} → ${esc(g3Name(to))}</div>
+      ${ps.length ? ps.map((p, i) => `<div class="g3path"><div class="sub">Path ${i + 1} · ${p.length} step${p.length > 1 ? "s" : ""}</div>${p.map(([u, e, v], j) => {
+        const [s, , rel, a] = g3Edge(e), fwd = s === u || rel === "similar in meaning", U = KG.nodes[u], V = KG.nodes[v];
+        return `${j === 0 ? `<a class="chip" data-g3go="${esc(U.id)}">${esc(g3Name(U).slice(0, 40))}</a>` : ""}<div class="g3step">${fwd ? "" : "← "}${esc(rel.replace(/_/g, " "))}${fwd ? " →" : ""}${a?.outcome ? " (" + esc(a.outcome.replace("_", " ")) + ")" : ""}</div><a class="chip" data-g3go="${esc(V.id)}" data-tip="${esc(kgTip(V))}">${esc(g3Name(V).slice(0, 40))}</a>`; }).join("")}</div>`).join("")
+        : `<p class="sub">No path within 6 steps through claims, consensus statements, reference knowledge and similar-in-meaning links.</p>`}`;
+  }
+  const f = G3.focus; if (!f) return G3.pick ? "" : "";
+  const nb = {}; KG.adj[f.i].forEach(k => { const [s, t, rel, a] = KG.edges[k]; const v = KG.nodes[s === f.i ? t : s]; if (!G3_HIDDEN.has(v.type) && !G3.hideT.has(v.type)) (nb[rel] ||= []).push([v, a]); });
+  (D.kg.similar || []).forEach(([s, t]) => { if (s === f.i || t === f.i) (nb["similar in meaning"] ||= []).push([KG.nodes[s === f.i ? t : s], {}]); });
+  const page = kgPage(f), tp = G3_TOPIC[f.i];
+  return `<button class="g3x" id="g3clear" aria-label="Clear focus">×</button><div class="sub">${esc(KG_TYPE[f.type])}${f.type === "claim" ? " · " + esc(f.id.slice(6)) : ""}</div>
+    <div style="font-weight:600;margin:2px 0 6px">${esc(f.label)}</div>${f.type === "claim" ? `<div>${ratingBadge(f)}</div>` : f.verdict ? `<span class="badge">${esc(f.verdict)}</span>` : ""}
+    ${f.type === "claim" && C[f.id.slice(6)] ? (c => `<div class="sub" style="margin-top:4px">${esc([split(c.cell_types).join(", "), split(c.regions).join(", "), KG.byId["paper:" + c.paper]?.label || c.paper].filter(Boolean).join(" · "))}</div>${split(c.genes).length ? `<div class="sub" style="margin-top:2px">Genes: ${esc(split(c.genes).slice(0, 20).join(", "))}${split(c.genes).length > 20 ? " …" : ""}</div>` : ""}`)(C[f.id.slice(6)]) : ""}
+    ${tp != null ? `<div class="sub" style="margin-top:4px">Topic: ${esc(D.kg.topics.labels[tp])}</div>` : ""}
+    <div class="g3seg" style="flex-wrap:wrap">${page ? `<a href="${page}">Open its atlas page →</a>` : ""}<button id="g3pathbtn">${G3.pick ? "Pick the second record…" : "Find how it connects to…"}</button></div>
+    ${Object.entries(nb).sort((a, b) => b[1].length - a[1].length).map(([rel, vs]) => `<details${vs.length <= 6 ? " open" : ""}><summary>${esc(rel.replace(/_/g, " "))} <span class="sub">${vs.length}</span></summary>${vs.slice(0, 80).map(([v, a]) => `<a class="chip" data-g3go="${esc(v.id)}">${v.type === "claim" ? `<i style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${G3_SCHEMES.verdict.col(G3_SCHEMES.verdict.of(v))}"></i> ` : ""}${esc(g3Name(v).slice(0, 40))}${a.outcome ? " · " + esc(a.outcome.replace("_", " ")) : ""}</a>`).join("")}</details>`).join("")}`;
+}
+function g3Refresh(reheat) {
+  const fg = G3.fg; if (!fg) return; G3V = {};
+  $("#g3panel").innerHTML = g3Panel(); $("#g3card").innerHTML = g3Card(); $("#g3card").style.display = G3.focus || G3.path ? "block" : "none";
+  $("#g3pick").style.display = G3.pick ? "block" : "none";
+  fg.backgroundColor(g3v("--bg")).nodeVal(g3Size).nodeColor(g3NodeColor).nodeVisibility(g3NodeShown).linkVisibility(g3LinkShown).linkColor(g3LinkColor).linkWidth(g3LinkWidth)
+    .linkOpacity(G3.path || G3.near ? 0.8 : 0.18);
+  g3BuildLabels();
+  if (reheat) { fg.d3Force("link").strength(g3LinkStrength); fg.d3ReheatSimulation(); }
+}
+
+// ---- labels: records (off at start) and topics; greedy placement so labels never overlap
+function g3BuildLabels() {
+  const box = $("#g3labels"); if (!box || !G3.fg) return;
+  const nodes = G3.fg.graphData().nodes, ns = nodes.filter(n => g3NodeShown(n) && g3Labelled(n));
+  const tops = G3.topicLabels && G3.mode === "meaning" ? (D.kg.topics?.labels || []).map((t, k) => ({k, t, m: nodes.filter(n => G3_TOPIC[n.i] === k)})) : [];
+  box.innerHTML = tops.map(o => `<span class="topic" data-k="${o.k}">${esc(o.t)}</span>`).join("") + ns.map(n => `<span data-i="${n.i}"${n === G3.focus ? ' class="on"' : ""}>${esc(g3Name(n).length > 34 ? g3Name(n).slice(0, 33) + "…" : g3Name(n))}</span>`).join("");
+  G3.lab = tops.map(o => ({topic: o, el: box.querySelector(`[data-k="${o.k}"]`), pri: 1e6 + o.m.length, w: o.t.length * 7.6 + 16, h: 22}))
+    .concat(ns.map(n => ({n, el: box.querySelector(`[data-i="${n.i}"]`), pri: (n === G3.focus ? 2e6 : 0) + n.deg, w: Math.min(34, g3Name(n).length) * 6.6 + 12, h: 17})));
+  G3.lab.sort((a, b) => b.pri - a.pri);
+}
+function g3Tick() {
+  if (!G3.fg || $("#g3").style.display === "none") return;
+  const fg = G3.fg, cam = fg.camera(), e = cam.matrixWorld.elements, dir = [-e[8], -e[9], -e[10]], cp = cam.position, placed = [];
+  const ctr = fg.controls?.(); if (ctr) { ctr.autoRotate = G3.rotate && !G3.focus && !G3.path && Date.now() - G3.lastInput > 6000; ctr.autoRotateSpeed = 0.6; }
+  (G3.lab || []).forEach(L => {
+    let x, y, z;
+    if (L.topic) { const m = L.topic.m.filter(n => n.x != null && g3NodeShown(n)); if (!m.length) { L.el.style.display = "none"; return; }
+      x = m.reduce((s, n) => s + n.x, 0) / m.length; y = m.reduce((s, n) => s + n.y, 0) / m.length; z = m.reduce((s, n) => s + n.z, 0) / m.length; }
+    else { if (L.n.x == null) return; ({x, y, z} = L.n); }
+    const front = (x - cp.x) * dir[0] + (y - cp.y) * dir[1] + (z - cp.z) * dir[2];
+    if (front <= 0) { L.el.style.display = "none"; return; }
+    const p = fg.graph2ScreenCoords(x, y, z), r = [p.x - L.w / 2, p.y - L.h * 1.5, p.x + L.w / 2, p.y - L.h * 0.5];
+    if (r[2] < 0 || r[0] > innerWidth || r[3] < 0 || r[1] > innerHeight || placed.some(q => r[0] < q[2] && r[2] > q[0] && r[1] < q[3] && r[3] > q[1])) { L.el.style.display = "none"; return; }
+    placed.push(r); L.el.style.display = ""; L.el.style.transform = `translate(${p.x.toFixed(0)}px,${p.y.toFixed(0)}px) translate(-50%,-150%)`;
+    L.el.style.opacity = L.topic ? "1" : Math.max(0.45, Math.min(1, 900 / front)).toFixed(2);
+  });
+  requestAnimationFrame(g3Tick);
+}
+function g3Focus(n, fly = true) {
+  if (G3.pick && n && G3.focus && n.i !== G3.focus.i) { g3SetPath(G3.focus, n); return; }
+  G3.pick = false; G3.path = null;
+  G3.focus = n || null;
+  G3.near = n ? new Set([n.i, ...KG.adj[n.i].map(k => { const [s, t] = KG.edges[k]; return s === n.i ? t : s; }),
+    ...(!G3.hideE.has("similar") ? (D.kg.similar || []).filter(([s, t]) => s === n.i || t === n.i).map(([s, t]) => s === n.i ? t : s) : [])]) : null;
+  const want = n ? "#graph3d/" + enc(n.id) : "#graph3d";
+  if (location.hash !== want) history.replaceState(null, "", want);
+  g3Refresh(false);
+  if (n && fly && n.x != null) { const d = 140, r = Math.hypot(n.x, n.y, n.z) || 1; G3.fg.cameraPosition({x: n.x * (1 + d / r), y: n.y * (1 + d / r), z: n.z * (1 + d / r)}, n, 1200); }
+}
+async function show3d(id) {
+  let el = $("#g3");
+  if (!el) {
+    el = document.createElement("div"); el.id = "g3";
+    el.innerHTML = `<div id="g3canvas"></div><div id="g3labels"></div><aside id="g3panel"></aside><aside id="g3card"></aside><div id="g3pick">Click or search the record to connect to · <a id="g3pickx">cancel</a></div><div id="g3msg">Loading the 3D view…</div>`;
+    document.body.appendChild(el);
+    ["pointerdown", "wheel", "touchstart", "keydown"].forEach(ev => el.addEventListener(ev, () => G3.lastInput = Date.now(), {passive: true}));
+  }
+  el.style.display = "block"; document.body.style.overflow = "hidden";
+  if (!G3.fg) {
+    let F; try { F = await g3Load(); } catch (e) { $("#g3msg").innerHTML = `The 3D library could not be loaded (it comes from cdn.jsdelivr.net; this needs a network connection). <a href="#graph">Back to the graph page</a>`; return; }
+    const fg = F({controlType: "orbit", rendererConfig: {antialias: true, alpha: false, preserveDrawingBuffer: true}})($("#g3canvas"));
+    G3.fg = fg;
+    fg.width(innerWidth).height(innerHeight).graphData(g3Data()).nodeId("i").nodeRelSize(3).nodeResolution(12).nodeOpacity(0.95)
+      .nodeLabel(n => `<div style="background:${g3v("--panel")};color:${g3v("--ink")};border:1px solid ${g3v("--line")};border-radius:8px;padding:6px 9px;max-width:340px;font:12.5px/1.4 -apple-system,sans-serif">${kgTip(n)}${G3_TOPIC[n.i] != null ? `<br><span style="color:${g3v("--muted")}">Topic: ${esc(D.kg.topics.labels[G3_TOPIC[n.i]])}</span>` : ""}</div>`)
+      .linkResolution(4).enableNodeDrag(false).showNavInfo(false).warmupTicks(140).cooldownTicks(160)
+      .onNodeClick(n => g3Focus(n)).onBackgroundClick(() => { if (!G3.pick) g3Focus(null); });
+    fg.d3Force("link").strength(g3LinkStrength).distance(l => l.g === "similar" ? 20 : /^(names_gene|has_theme|in_region|about_cell_type)$/.test(l.rel) ? 45 : 35);
+    fg.d3Force("charge").strength(-28).distanceMax(400);
+    addEventListener("resize", () => G3.fg && $("#g3").style.display !== "none" && G3.fg.width(innerWidth).height(innerHeight));
+    $("#g3msg").style.display = "none";
+    g3Refresh(false); requestAnimationFrame(g3Tick);
+  } else { G3.fg.resumeAnimation(); requestAnimationFrame(g3Tick); g3Refresh(false); }
+  const n = id && !G3_HIDDEN.has(KG.byId[id]?.type) ? KG.byId[id] : null;
+  if (n && n !== G3.focus) { const go = () => g3Focus(G3.fg.graphData().nodes[n.i]); G3.fg.graphData().nodes[n.i].x == null ? setTimeout(go, 300) : setTimeout(go, 50); }
+}
+function hide3d() { const el = $("#g3"); if (el && el.style.display !== "none") { el.style.display = "none"; document.body.style.overflow = ""; G3.fg?.pauseAnimation(); } }
+// Save image: in claude.ai through the `downloads` capability (the viewer confirms); as a plain link in the local file.
+G3.dl = window.claude?.use ? undefined : "local";
+if (window.claude?.use) claude.use("downloads").then(d => { G3.dl = d; if (G3.fg) g3Refresh(false); }, () => { G3.dl = null; });
+async function g3Shot() {
+  const fg = G3.fg; if (!fg || !G3.dl) return;
+  fg.renderer().render(fg.scene(), fg.camera());
+  const blob = await new Promise(ok => fg.renderer().domElement.toBlob(ok, "image/png"));
+  if (!blob) return;
+  if (G3.dl === "local") { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "pd_knowledge_graph.png"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 5000); return; }
+  try { await G3.dl.save({filename: "pd_knowledge_graph.png", data: blob}); }
+  catch (e) { if (["unavailable", "not_granted", "capability_disabled", "capability_removed"].includes(e?.code)) { G3.dl = null; g3Refresh(false); } }
+}
+pages.graph3d = () => "";
+document.addEventListener("input", e => {
+  if (e.target.id !== "g3q") return; G3.q = e.target.value; const q = G3.q.trim().toLowerCase();
+  $("#g3hits").innerHTML = q.length < 2 ? "" : KG.nodes.filter(n => !G3_HIDDEN.has(n.type) && (n.id.toLowerCase().includes(q) || n.label.toLowerCase().includes(q))).sort((a, b) => (a.type === "claim") - (b.type === "claim") || KG.adj[b.i].length - KG.adj[a.i].length)
+    .slice(0, 10).map(n => `<a class="chip" data-g3go="${esc(n.id)}">${esc(g3Name(n).slice(0, 44))} <small style="color:var(--muted)">${esc(KG_TYPE[n.type])}</small></a>`).join("") || `<span class="sub">No matches</span>`;
+});
+document.addEventListener("click", e => {
+  const go = e.target.closest("[data-g3go]"); if (go && G3.fg) { const n = KG.byId[go.dataset.g3go]; if (n && !G3_HIDDEN.has(n.type)) { G3.hideT.delete(n.type); G3.q = ""; g3Focus(G3.fg.graphData().nodes[n.i]); } return; }
+  const m = e.target.closest("[data-g3mode]"); if (m) { G3.mode = m.dataset.g3mode; if (G3.mode === "meaning") G3.hideE.delete("similar"); else G3.hideE.add("similar"); g3Refresh(true); return; }
+  if (e.target.id === "g3clear") { G3.path = null; g3Focus(null); }
+  if (e.target.id === "g3pathbtn") { G3.pick = !G3.pick; g3Refresh(false); }
+  if (e.target.id === "g3pickx") { G3.pick = false; g3Refresh(false); }
+  if (e.target.id === "g3fit" && G3.fg) G3.fg.zoomToFit(1000, 40, g3NodeShown);
+  if (e.target.id === "g3shot") g3Shot();
+});
+document.addEventListener("change", e => {
+  const t = e.target.dataset?.g3t, g = e.target.dataset?.g3e, c = e.target.dataset?.g3c;
+  if (t) { e.target.checked ? G3.hideT.delete(t) : G3.hideT.add(t); g3Refresh(false); }
+  if (g) { e.target.checked ? G3.hideE.delete(g) : G3.hideE.add(g); g3Refresh(false); }
+  if (c) { e.target.checked ? G3.hideC.delete(c) : G3.hideC.add(c); g3Refresh(false); }
+  if (e.target.id === "g3scheme") { G3.scheme = e.target.value; G3.hideC.clear(); g3Refresh(false); }
+  if (e.target.id === "g3lab") { G3.labels = e.target.checked; g3BuildLabels(); }
+  if (e.target.id === "g3tlab") { G3.topicLabels = e.target.checked; g3BuildLabels(); }
+  if (e.target.id === "g3rot") G3.rotate = e.target.checked;
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $("#g3")?.style.display !== "none" && (G3.focus || G3.path || G3.pick)) { G3.pick = false; G3.path = null; g3Focus(null); } });
+
+// ------------------------------------------------------------------ router, tooltip, search
+let current = "";
+function rerender() { route(true); }
+function route(keepScroll) {
+  const raw = location.hash.slice(1) || "overview";
+  const [path, qs] = raw.split("?"); const parts = path.split("/").map(decodeURIComponent);
+  const params = qs ? Object.fromEntries(new URLSearchParams(qs)) : null;
+  const view = parts[0], nav = {reference: "overview", cell: "cells", programme: "programmes", region: "regions", statement: "consensus", claim: "claims", dataset: "datasets", gene: "genes", graph3d: "graph"}[view] || view;
+  document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.v === nav));
+  const fn = pages[view] || pages.overview;
+  const y = window.scrollY;
+  $("#main").innerHTML = view === "overview" ? pages.overview() : fn(parts[1] ?? params, parts[2]);
+  if (view === "claims") bindClaims();
+  if (view === "ask") startQlog();
+  if (view === "graph3d") show3d(parts[1]); else hide3d();
+  if (keepScroll === true) window.scrollTo(0, y);
+  else if (view === "overview" && parts[1]) document.getElementById(parts[1])?.scrollIntoView?.({behavior: "smooth"});
+  else window.scrollTo(0, 0);
+  current = raw;
+}
+window.addEventListener("hashchange", () => route());
+document.addEventListener("click", e => { const t = e.target.closest("[data-href]"); if (t && !e.target.closest("a[href],select,input")) { location.hash = t.getAttribute("data-href").replace(/^#/, ""); } });
+const tipEl = $("#tip");
+document.addEventListener("mousemove", e => { const t = e.target.closest?.("[data-tip]"); if (!t) { tipEl.style.display = "none"; return; }
+  tipEl.innerHTML = t.getAttribute("data-tip"); tipEl.style.display = "block";
+  const w = tipEl.offsetWidth, h = tipEl.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + w > innerWidth - 8) x = e.clientX - w - 14; if (y + h > innerHeight - 8) y = e.clientY - h - 14; tipEl.style.left = x + "px"; tipEl.style.top = y + "px"; });
+const sres = $("#sres"), qin = $("#q");
+qin.addEventListener("input", () => {
+  const q = qin.value.trim(), ql = q.toLowerCase(); if (q.length < 2) { sres.style.display = "none"; return; }
+  const out = [];
+  CELLS.filter(c => cname(c).toLowerCase().includes(ql)).forEach(c => out.push([`#cell/${enc(c)}`, cname(c), "cell type"]));
+  Object.keys(PROG).filter(p => pname(p).toLowerCase().includes(ql)).forEach(p => out.push([`#programme/${enc(p)}`, pname(p), "programme"]));
+  Object.keys(D.sites).filter(s => s.includes(ql)).forEach(s => out.push([`#region/${enc(s)}`, s, "brain region"]));
+  D.datasets.filter(d => `${d.dataset} ${d.cohort}`.toLowerCase().includes(ql)).forEach(d => out.push([`#dataset/${enc(d.dataset)}`, d.cohort, "dataset"]));
+  const G = q.toUpperCase(); Object.keys(D.gene_claims).filter(g => g === G).concat([...new Set(D.genes.map(x => x.gene))].filter(g => g.startsWith(G) && g !== G).slice(0, 5)).forEach(g => out.push([`#gene/${enc(g)}`, g, "gene"]));
+  D.claims.filter(c => `${c.id} ${c.statement}`.toLowerCase().includes(ql)).slice(0, 12).forEach(c => out.push([`#claim/${enc(c.id)}`, c.statement, c.id]));
+  sres.innerHTML = out.slice(0, 30).map(([h, t, k]) => `<div data-go="${esc(h)}">${esc(t)}<small>${esc(k)}</small></div>`).join("") || `<div class="sub">No matches</div>`;
+  sres.style.display = "block";
+});
+sres.addEventListener("click", e => { const t = e.target.closest("[data-go]"); if (t) { location.hash = t.dataset.go; sres.style.display = "none"; qin.value = ""; } });
+document.addEventListener("click", e => { if (!e.target.closest(".search")) sres.style.display = "none"; });
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => rerender());
+route();
+</script>
+</body>
+</html>

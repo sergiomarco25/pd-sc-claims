@@ -2,9 +2,10 @@
 
 Usage: python3 -I scripts/62_public_repo.py OUT --release DIR [--atlas FILE] [--force] [--allow-dirty]
 Writes a fresh tree at OUT (no history) from the files committed in this repository (the working tree must be clean):
-  left out   manuscript, reports, figures, internal plans and history, local tool settings, outputs of the full store
-             (claims/store, merged claims, evidence tables, the question log), every file named after a private dataset
-             or paper, and analyses that read private data (EXCLUDE)
+  left out   manuscript, reports, figures, internal plans and history, local tool settings (.claude/ except the
+             claim-replication skill, KEEP), outputs of the full store (claims/store, merged claims, evidence tables,
+             the question log), every file named after a private dataset or paper, and analyses that read private
+             data (EXCLUDE)
   filtered   tables and YAML listing claims or datasets: rows and list items of private datasets and papers removed;
              findings that are not in the public release removed; the question log emptied
   redacted   curation notes, claim files and docs: sentences naming a private dataset or paper are dropped, as the
@@ -52,6 +53,8 @@ EXCLUDE = [
     "scripts/20_references.py", "scripts/21_build_docx.mjs", "scripts/31_story_figures.py", "scripts/32_build_pdf.py",
     "scripts/36_claim_figure.py", "scripts/40_map_figures.py", "scripts/49_video.py",
 ]
+# exported although EXCLUDE matches them: the method as a Claude Code skill (field-neutral; new projects get a copy)
+KEEP = [".claude/skills/claim-replication/*"]
 # code and config: a private dataset id here is a reference (a list entry, a label), not data; listed for review
 CODE = ["*.py", "*.R", "*.sh", "*.sbatch", "*.toml", "*.yml", "*.html", "*.js", "workflow/Snakefile", ".gitignore"]
 TEXT = {".md", ".tsv", ".txt", ".yaml", ".yml", ".py", ".R", ".sh", ".toml", ".html", ".js", ".cff", ".json", ".sbatch",
@@ -68,6 +71,11 @@ def matches(path, globs):
 
 def named_private(path):
     return any(p in path for p in PRIV)
+
+
+def left_out(path):
+    """True for a committed file the public repository does not get."""
+    return (matches(path, EXCLUDE) and not matches(path, KEEP)) or named_private(path)
 
 
 def redact_text(s):
@@ -116,6 +124,36 @@ def filter_tsv(text):
     return buf.getvalue(), dropped
 
 
+def public_config(s):
+    """config/project.toml without the private datasets in [pipeline] datasets and [pipeline.mem_gb]; everything else
+    (the release rules, the project facts) stays. Checked by parsing both versions."""
+    import tomllib
+    out, section = [], ""
+    in_list = False
+    for line in s.splitlines(keepends=True):
+        head = re.match(r"\s*\[([^\]]+)\]\s*$", line)
+        if head:
+            section = head.group(1).strip()
+        if section == "pipeline" and re.match(r"\s*datasets\s*=", line):
+            in_list = True
+        if in_list:
+            for p in sorted(cfg.PRIVATE_DATASETS):
+                line = re.sub(rf'"{re.escape(p)}",\s*|,\s*"{re.escape(p)}"(?=\s*\])', "", line)
+            in_list = "]" not in line
+        if section == "pipeline.mem_gb" and any(re.match(rf"\s*{re.escape(p)}\s*=", line) for p in cfg.PRIVATE_DATASETS):
+            continue
+        out.append(line)
+    new = "".join(out)
+    a, b = tomllib.loads(s), tomllib.loads(new)
+    assert not set(b["pipeline"]["datasets"]) & cfg.PRIVATE_DATASETS, "private dataset left in the pipeline list"
+    assert [d for d in a["pipeline"]["datasets"] if d not in cfg.PRIVATE_DATASETS] == b["pipeline"]["datasets"]
+    a["pipeline"].pop("datasets"), b["pipeline"].pop("datasets")
+    for p in cfg.PRIVATE_DATASETS:
+        a["pipeline"].get("mem_gb", {}).pop(p, None)
+    assert a == b, "the public config differs beyond the pipeline's dataset list"
+    return new
+
+
 def dump_yaml(obj):
     return yaml.safe_dump(obj, sort_keys=False, allow_unicode=True, width=120)
 
@@ -136,12 +174,8 @@ def export_file(rel, src, dst, public_findings, log):
         log.append((rel, f"findings kept {len(keep)} of {len(items)}"))
         data = dump_yaml(redact_obj(keep)).encode()
     elif rel == "config/project.toml":
-        s = data.decode()
-        for p in sorted(cfg.PRIVATE_DATASETS):
-            s = re.sub(rf'"{re.escape(p)}",\s*', "", s)  # pipeline dataset list
-            s = re.sub(rf"(?m)^{re.escape(p)}\s*=.*\n", "", s)  # its memory line
+        data = public_config(data.decode()).encode()
         log.append((rel, "private datasets removed from the pipeline list"))
-        data = s.encode()
     elif rel == "CITATION.cff":
         s = re.sub(r'(?m)^repository-code:.*$', f'repository-code: "{cfg.PUBLIC_REPOSITORY}"', data.decode())
         data = s.encode()
@@ -177,6 +211,12 @@ def export_file(rel, src, dst, public_findings, log):
     shutil.copymode(src, dst)
 
 
+def pages_url(repository):
+    """GitHub Pages address of a repository URL https://github.com/OWNER/NAME (the atlas, served from docs/)."""
+    owner, name = repository.rstrip("/").split("/")[-2:]
+    return f"https://{owner}.github.io/{name}/"
+
+
 README = """# PD single-cell claims: a re-tested evidence base
 
 Published conclusions of human post-mortem brain Parkinson's disease single-cell and single-nucleus studies, extracted
@@ -191,21 +231,24 @@ graph and a server for AI tools (Model Context Protocol).
 | Path | What |
 |---|---|
 | `release/` | the current public release: `claim_store.sqlite`, every table as TSV, the knowledge graph (GraphML, JSON), claims as schema.org JSON-LD, an RO-Crate description, `release.json` and `SHA256SUMS` |
-| `docs/index.html` | the atlas, a single static page built from the release (also served with GitHub Pages) |
+| `docs/index.html` | the atlas, a single static page built from the release, served at {atlas_url} |
 | `claims/` | the claims of each published paper (`<paper>.yaml`, schema in `claims/schema/`), signatures, contexts, consensus statements, reference knowledge and the rating rules |
 | `src/pdrep/`, `scripts/`, `workflow/` | the pipeline: harmonising datasets, donor-level tests, meta-analysis, rating, the store, the atlas and the release (Snakemake; `config/project.toml` holds every path) |
 | `deploy/mcp/` | the MCP server: run it locally against `release/claim_store.sqlite` |
 | `tests/` | tests on a small public test store (run by CI) |
+| `template/`, `scripts/63_new_project.py`, `.claude/skills/claim-replication/` | a claim store for another field: the project template, the command that makes a project from it, and the method step by step as a Claude Code skill |
 
 One harmonised cohort whose own paper is not yet published is not part of this release: its data, its results and its
 paper's claims are left out, and every rating is computed without it. It will be added after publication.
 
 ## Use
-- Browse: open `docs/index.html`.
+- Browse: the atlas at {atlas_url}, or open `docs/index.html`.
 - Query: `sqlite3 release/claim_store.sqlite`, or the TSV files in `release/tables/`.
 - AI tools: see `deploy/mcp/` to serve the store over MCP.
 - Rebuild: the pipeline needs the raw datasets (accessions in `inventory/`); `snakemake -n` shows the plan.
 - Ask a question of the evidence base: open an issue with the "Ask the evidence base" form.
+- Another field: `python3 -I scripts/63_new_project.py DIR --name NAME --title TITLE` makes a new project; in Claude
+  Code, the `claim-replication` skill (`.claude/skills/`) walks through the steps from papers to a public release.
 
 ## Licence and citation
 Code: Apache-2.0 (`LICENSE`). Claims, store, tables and other data and text created here: CC BY 4.0 (`LICENSE-DATA.md`).
@@ -249,7 +292,7 @@ def main():
     if a.allow_dirty:  # new files not yet committed
         files += git("ls-files", "--others", "--exclude-standard").splitlines()
     for rel in files:
-        if matches(rel, EXCLUDE) or named_private(rel):
+        if left_out(rel):
             skipped.append(rel)
             continue
         export_file(rel, ROOT / rel, out / rel, public_findings, log)
@@ -259,7 +302,7 @@ def main():
         shutil.copy2(a.atlas, out / "docs" / "index.html")
     status = (f"release {manifest['version']} ({manifest['counts']['claim']} claims, {manifest['counts']['dataset']} "
               f"datasets, built {manifest['date']}).")
-    (out / "README.md").write_text(README.format(status=status))
+    (out / "README.md").write_text(README.format(status=status, atlas_url=pages_url(cfg.PUBLIC_REPOSITORY)))
     (out / "CHANGELOG.md").write_text(CHANGELOG.format(day=date.today(), version=manifest["version"]))
 
     # audit

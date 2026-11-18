@@ -1,0 +1,41 @@
+# Harmonisation: the common schema of every harmonised dataset and the rules that label cell classes from marker
+# genes (claimstore.harmonise). Fill in this field's regions, diagnoses, cell classes and markers.
+#
+# A loader (src/{{package}}/build/<dataset>.py) returns an AnnData with raw integer counts in X (cells x genes, gene
+# symbols as var_names) and the `obs` columns below (values it cannot fill: NaN / "unknown"), plus AUTHOR_TO_CLASS
+# mapping its author cell labels to `cell_classes` (empty: cells are labelled here by marker clustering).
+
+# Cell metadata every harmonised dataset carries. Between `region` and `author_cell_type` are the donor-level columns
+# of the donor table; `stage` is the stage column ([stage] in config/contrasts.toml).
+obs = ["dataset", "donor", "sample", "region", "disease", "disease_raw", "sex", "age", "pmi", "stage",
+       "author_cell_type", "cell_class"]
+# Donor-level columns beyond the schema that the pseudobulk unit table carries when a dataset has them
+donor_extras = []
+# Values a loader may use (the claim vocabularies are config/schema.toml)
+regions = ["other"]
+diseases = ["control", "case", "other"]
+cell_classes = ["Unknown"]
+# Datasets mixing sorted and unsorted nuclei (obs `enrichment` = "sorted"): these classes are tested on sorted units,
+# every other class on unsorted units
+sorted_classes = []
+
+# Canonical markers of each class: "Class name" = ["GENE1", "GENE2", ...] (a class needs >= 2 detected genes).
+# Needed to check author labels and to label datasets without them.
+[markers]
+
+# Two-step class call (claimstore.harmonise.classify): the lineage first (`pan_neuronal` against each other class),
+# then the neuron subtype for neuron rows. Leave neuron_subtypes empty for a one-step call.
+[labelling]
+neuron_subtypes = []
+pan_neuronal = ""
+subtype_min_z = 0.5
+min_raw = 0.1
+# within the neuron step, the key wins over the value when it clears the subtype threshold
+precedence = {}
+
+# Classes only plausible in some regions: "Class name" = ["region", ...]
+[labelling.region_only]
+
+# Classes a cluster can take only if any listed gene is detected in at least this fraction of its nuclei:
+# "Class name" = { genes = ["GENE1"], min_fraction = 0.2 }
+[labelling.require_detect]

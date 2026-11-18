@@ -24,7 +24,7 @@ direction-free claims keep the sign of the data.
 | family | templates | how datasets are combined |
 |---|---|---|
 | effect | composition (CLR), DE genes, gene-set shift, state-gene shift, trajectory genes, communication genes | oriented z converted to a standardised mean difference, pooled by DerSimonian–Laird random effects |
-| pattern | state existence, PD–AD concordance, GWAS (MAGMA) enrichment and specificity, familial-gene overlap | weighted Stouffer combination of oriented z, plus the share of datasets detecting the pattern |
+| pattern | state existence, concordance between two diseases, GWAS (MAGMA) enrichment and specificity, familial-gene overlap | weighted Stouffer combination of oriented z, plus the share of datasets detecting the pattern |
 
 A claim is in the pattern family only if all its tests use pattern templates.
 
@@ -60,7 +60,7 @@ High / Moderate / Low / Very low. Untested claims are always Very low.
 
 | domain | −1 (serious) | −2 (very serious) |
 |---|---|---|
-| Risk of bias | > 50% of weight from sorted nuclei in a composition test (kamath2022) | — |
+| Risk of bias | > 50% of weight from sorted nuclei in a composition test (datasets in `[rating] enriched_sort` of the project config) | — |
 | Inconsistency (effect) | I² ≥ 50%, or < 70% of datasets in the pooled direction, or the 95% prediction interval crosses 0 for a Supported / Contradicted verdict | I² > 75% and < 60% of datasets in the pooled direction |
 | Inconsistency (pattern) | detected in < 50% of datasets while the verdict is Supported or Partly supported | — |
 | Indirectness | > 50% of weight from tests with one mismatch: other region than claimed, a partial proxy for the claimed cell state (signature coverage partial / text only / none), or sorted nuclei | > 50% of weight with two mismatches, or non-human evidence in the claim |
@@ -80,8 +80,9 @@ Every rating carries the regions tested and the regions where the evidence held 
 each adjustment in plain words, and caveats such as possible donor overlap between datasets drawn from the same
 brain banks (reported, not merged).
 
-Not yet assessed (listed on every rating): a gradient with Lewy-body stage; triangulation beyond the reference
-records; adjustment for age, sex, post-mortem interval and RNA quality.
+Not yet assessed (listed on every rating, as worded in `[rating] not_assessed` of the project config; here: a gradient
+with disease stage, triangulation beyond the reference records, and adjustment for age, sex, post-mortem interval and
+RNA quality). The template families (section 2) are `[rating] effect_templates` and `pattern_templates`.
 
 ## 6. Thresholds
 

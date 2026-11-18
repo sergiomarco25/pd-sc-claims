@@ -1,0 +1,76 @@
+# Claim contexts and the store's contrast vocabulary (claimstore.contexts, claimstore.build_store).
+# A claim's comparison text (lower case) is matched against `rules` in order; the first match gives its contrast
+# code (claims/contrast_overrides.tsv takes precedence). Claims whose statement matches `null_pattern` and whose
+# direction is NA are no-difference claims. `cell_class_expand` maps a claim cell type to the classes tested;
+# `region_map` maps a claim region to the harmonised dataset regions it covers.
+
+null_pattern = "not significantly|no significant|not changed|unchanged|no difference|not (?:reduced|increased|altered|different|depleted|enriched)|comparable|did not differ|does not differ|no change"
+
+rules = [
+    ["aged control vs young|aged vs young|young control|cpp", "aged_vs_youngcontrol"],
+    ["pd vs aged control", "PD_vs_agedcontrol"],
+    ["gba1?-pd vs control|gba1-pd", "GBA_vs_control"],
+    ["lrrk2-pd", "LRRK2_vs_control"],
+    ["dlb vs pdd", "DLB_vs_PDD"],
+    ["pdd vs pd\\b", "PDD_vs_PD"],
+    ["dlb vs pd\\b", "DLB_vs_PD"],
+    ["pd \\(braak 5-6\\) vs control|braak 4-6 vs control|braak lb 3-6 vs control", "LBlate_vs_control"],
+    ["braak lb 1-2 vs control", "LBearly_vs_control"],
+    ["braak|lb stage|lewy body pathology score|lewy body \\+ neurite|pseudotime", "braak"],
+    ["male vs female", "sex"],
+    ["^pdd vs control|^pdd/dlbd vs control|^pdd, dlb", "PDD_vs_control"],
+    ["^dlb vs control", "DLB_vs_control"],
+    ["lbd vs control|pd/lbd|pd/ilbd", "LBDany_vs_control"],
+    ["^pd vs control|^pd effect|^pd, pdd, dlb vs control", "PDany_vs_control"],
+    ["^ad vs control", "AD_vs_control"],
+    ["within|across|vs other|vs reference|vs mol-|vs opcs-|vs dans|vs healthy odc|specificity|markers|all groups|conserved|subtypes|clusters|cell types|neighbourhood|^na$|presence", "within"],
+]
+
+[cell_class_expand]
+"Neurons (other)" = ["DA neurons", "MSNs", "Excitatory neurons", "Inhibitory neurons", "Neurons (other)"]
+All = ["ALL"]
+
+[region_map]
+"SN" = ["SN"]
+"midbrain" = ["SN", "midbrain"]
+"striatum" = ["caudate", "putamen", "striatum"]
+"putamen" = ["putamen"]
+"caudate" = ["caudate"]
+"DLPFC" = ["DLPFC", "PFC"]
+"PFC" = ["DLPFC", "PFC"]
+"cingulate" = ["cingulate"]
+"temporal" = ["MTG", "temporal"]
+"MTG" = ["MTG", "temporal"]
+"cerebellum" = ["cerebellum"]
+
+# contrast code -> [kind, case group, reference group] (the store's vocab_contrasts table)
+[contrast_labels]
+"PDany_vs_control" = ["case_control", "PD or PDD", "control"]
+"PD_vs_control" = ["case_control", "PD", "control"]
+"PDD_vs_control" = ["case_control", "PDD", "control"]
+"DLB_vs_control" = ["case_control", "DLB", "control"]
+"LBDany_vs_control" = ["case_control", "any Lewy body disease (PD, PDD, DLB, LBD)", "control"]
+"AD_vs_control" = ["case_control", "AD", "control"]
+"iLBD_vs_control" = ["case_control", "iLBD", "control"]
+"LBearly_vs_control" = ["stage", "Lewy body stage 1-2 (iLBD or Lewy body disease)", "control"]
+"LBmid_vs_control" = ["stage", "Lewy body stage 3-4", "control"]
+"LBlate_vs_control" = ["stage", "Lewy body stage 5-6", "control"]
+"PDD_vs_PD" = ["between_disease", "PDD", "PD"]
+"DLB_vs_PD" = ["between_disease", "DLB", "PD"]
+"DLB_vs_PDD" = ["between_disease", "DLB", "PDD"]
+"PD_vs_agedcontrol" = ["case_control", "PD or PDD", "aged control"]
+"aged_vs_youngcontrol" = ["ageing", "aged control", "young control"]
+"UPR_vs_other" = ["donor_group", "GLIAD UPR-high donors", "other donors"]
+"Reactive_vs_other" = ["donor_group", "GLIAD Reactive donors", "other donors"]
+"UPR_vs_other+Reactive_vs_other" = ["donor_group", "GLIAD UPR-high and Reactive donors", "other donors"]
+"GBA_vs_control" = ["genotype", "GBA1-PD", "control"]
+"LRRK2_vs_control" = ["genotype", "LRRK2-PD", "control"]
+"braak" = ["continuous", "higher Lewy body stage", "lower Lewy body stage"]
+"sex" = ["covariate", "male", "female"]
+"PD_AD_concordance" = ["cross_disease", "PD vs control", "AD vs control (concordance)"]
+"within" = ["within", "", ""]
+"pmi" = ["covariate", "longer post-mortem interval", "shorter post-mortem interval"]
+"age" = ["covariate", "older age", "younger age"]
+"SCZ_vs_control" = ["case_control", "schizophrenia", "control"]
+"not_available" = ["not_available", "", ""]
+"" = ["unassigned", "", ""]
